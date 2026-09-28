@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>믿음으로 요셉은 · 히브리서 11:22 복습</title>
+<style>
+:root{
+  --bg:#ffffff; --bg2:#f5f5f7; --card:#ffffff; --text:#1d1d1f; --sub:#6e6e73; --line:rgba(0,0,0,.08);
+  --blue:#0071e3; --blue-soft:rgba(0,113,227,.10); --green:#1f9d55; --green-soft:rgba(31,157,85,.12);
+  --red:#e0313b; --red-soft:rgba(224,49,59,.10); --gold:#b8860b;
+  --glass:rgba(255,255,255,.72); --shadow:0 4px 24px rgba(0,0,0,.06);
+  --hero1:#0b1b3a; --hero2:#3b2a6b;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#000000; --bg2:#0d0d0f; --card:#1c1c1e; --text:#f5f5f7; --sub:#a1a1a6; --line:rgba(255,255,255,.12);
+    --blue:#2997ff; --blue-soft:rgba(41,151,255,.16); --green:#30d158; --green-soft:rgba(48,209,88,.16);
+    --red:#ff453a; --red-soft:rgba(255,69,58,.16); --gold:#ffd60a;
+    --glass:rgba(28,28,30,.72); --shadow:0 4px 24px rgba(0,0,0,.5);
+  }
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;
+  line-height:1.6;word-break:keep-all;-webkit-font-smoothing:antialiased;
+}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+
+/* progress + nav */
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--blue);z-index:200;transition:width .1s}
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;height:48px;
+  background:var(--glass);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);
+  border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:center;gap:4px;
+  overflow-x:auto;padding:0 12px;scrollbar-width:none;
+}
+nav::-webkit-scrollbar{display:none}
+nav a{color:var(--sub);text-decoration:none;font-size:13px;padding:6px 12px;border-radius:980px;white-space:nowrap;transition:.2s}
+nav a:hover,nav a.on{color:var(--text);background:var(--blue-soft)}
+
+/* hero */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+  padding:110px 24px 80px;color:#fff;
+  background:radial-gradient(1200px 700px at 50% 0%,var(--hero2),transparent 70%),linear-gradient(180deg,var(--hero1),#000);
+}
+.eyebrow{font-size:15px;font-weight:600;letter-spacing:.02em;color:#ff9f0a;margin-bottom:14px}
+.hero h1{font-size:clamp(44px,9vw,92px);line-height:1.05;font-weight:700;letter-spacing:-.03em;margin:0 0 20px}
+.hero h1 span{background:linear-gradient(90deg,#ffd60a,#ff9f0a,#ff6b6b);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .verse{max-width:640px;font-size:clamp(17px,2.4vw,22px);color:rgba(255,255,255,.82);margin:0 auto 34px;font-weight:400}
+.hero .ref{display:block;margin-top:10px;font-size:14px;color:rgba(255,255,255,.55)}
+.btn{display:inline-block;background:var(--blue);color:#fff;padding:13px 28px;border-radius:980px;font-size:17px;font-weight:500;text-decoration:none;transition:.2s}
+.btn:hover{filter:brightness(1.1);transform:scale(1.03)}
+.btn.ghost{background:var(--blue-soft);color:var(--blue)}
+.scroll-hint{margin-top:56px;font-size:13px;color:rgba(255,255,255,.5);animation:bob 2s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(8px)}}
+
+/* sections */
+section{padding:110px 22px}
+section.alt{background:var(--bg2)}
+.wrap{max-width:860px;margin:0 auto}
+.kicker{color:var(--blue);font-weight:600;font-size:15px;margin-bottom:8px}
+h2{font-size:clamp(30px,5.5vw,52px);line-height:1.12;letter-spacing:-.025em;margin:0 0 14px;font-weight:700}
+.lead{font-size:clamp(17px,2.2vw,21px);color:var(--sub);margin:0 0 44px;max-width:680px}
+.card{background:var(--card);border-radius:22px;box-shadow:var(--shadow);border:1px solid var(--line)}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* timeline */
+.tl{position:relative;margin-left:16px;padding-left:34px;border-left:2px solid var(--line)}
+.tl-item{position:relative;margin-bottom:14px}
+.tl-item::before{content:"";position:absolute;left:-43px;top:22px;width:16px;height:16px;border-radius:50%;background:var(--card);border:3px solid var(--blue);transition:.3s}
+.tl-item.open::before{background:var(--blue);box-shadow:0 0 0 6px var(--blue-soft)}
+.tl-item.final::before{border-color:#ff9f0a}
+.tl-item.final.open::before{background:#ff9f0a;box-shadow:0 0 0 6px rgba(255,159,10,.2)}
+.tl-btn{width:100%;text-align:left;padding:18px 22px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.tl-btn b{font-size:19px;font-weight:600}
+.tl-btn small{display:block;color:var(--sub);font-size:14px;font-weight:400}
+.chev{transition:transform .3s;color:var(--sub);font-size:20px;flex-shrink:0}
+.open>.tl-btn .chev,.open>.pt-btn .chev{transform:rotate(90deg)}
+.fold{max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.2,.7,.2,1)}
+.fold-in{padding:0 22px 20px;color:var(--sub);font-size:16.5px}
+.tl-item.final .tl-btn b{color:#ff9f0a}
+.callout{margin-top:28px;padding:20px 24px;border-radius:18px;background:var(--blue-soft);font-size:17px}
+.callout b{color:var(--blue)}
+
+/* points */
+.pt{margin-bottom:14px;overflow:hidden}
+.pt-btn{width:100%;display:flex;align-items:center;gap:16px;text-align:left;padding:22px}
+.num{flex-shrink:0;width:38px;height:38px;border-radius:50%;background:var(--blue);color:#fff;font-weight:700;display:grid;place-items:center;font-size:17px}
+.pt-btn .t{font-size:clamp(17px,2.3vw,20px);font-weight:600;line-height:1.4;flex:1}
+.pt .fold-in{color:var(--text);padding:0 24px 24px 76px}
+.pt ul{margin:0;padding-left:20px}
+.pt li{margin-bottom:10px}
+.pt li::marker{color:var(--blue)}
+.verse-box{margin:0 0 14px;padding:14px 18px;background:var(--bg2);border-left:4px solid var(--blue);border-radius:0 14px 14px 0;font-size:15.5px;color:var(--sub)}
+.verse-box b{display:block;color:var(--blue);font-size:13px;margin-bottom:2px}
+.tag-extra{font-size:12px;font-weight:600;color:#ff9f0a;background:rgba(255,159,10,.14);padding:2px 9px;border-radius:980px;margin-right:6px;vertical-align:2px}
+.arrow{color:var(--blue);font-weight:600}
+
+/* flip */
+.flips{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.flip{perspective:1200px;height:300px;cursor:pointer}
+.flip-in{position:relative;width:100%;height:100%;transition:transform .8s cubic-bezier(.2,.7,.2,1);transform-style:preserve-3d}
+.flip.on .flip-in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:24px;padding:26px;display:flex;flex-direction:column;justify-content:center;text-align:center}
+.face.front{background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow)}
+.face.back{transform:rotateY(180deg);background:linear-gradient(145deg,#0a84ff,#5e5ce6);color:#fff}
+.face small{font-size:13px;color:var(--sub);margin-bottom:8px}
+.face.back small{color:rgba(255,255,255,.7)}
+.face .big{font-size:36px;font-weight:700;letter-spacing:-.02em;margin:6px 0 12px}
+.face p{margin:0;font-size:15px;line-height:1.55}
+.face .tap{margin-top:14px;font-size:12px;color:var(--sub)}
+.same{margin-top:26px;text-align:center;font-size:18px;opacity:0;transform:scale(.96);transition:.6s;min-height:60px}
+.same.show{opacity:1;transform:none}
+.same b{color:var(--blue)}
+.gr{font-size:30px;font-weight:600;margin-top:4px}
+
+/* blanks */
+.fill{padding:26px 28px;margin-bottom:16px}
+.fill p{font-size:clamp(18px,2.4vw,22px);margin:0 0 18px;line-height:1.75;font-weight:500}
+.blank{display:inline-block;min-width:88px;text-align:center;border-bottom:3px solid var(--blue);color:transparent;padding:0 8px;transition:.3s;border-radius:6px 6px 0 0}
+.blank.ok{color:var(--green);background:var(--green-soft);border-color:var(--green);font-weight:700}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{padding:9px 20px;border-radius:980px;background:var(--bg2);font-size:16px;font-weight:500;transition:.2s;border:1px solid var(--line)}
+.chip:hover{background:var(--blue-soft)}
+.chip.no{background:var(--red-soft);color:var(--red);animation:shake .4s}
+.chip.yes{background:var(--green);color:#fff}
+.fill.done .chip:not(.yes){opacity:.35;pointer-events:none}
+@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.fill .note{margin-top:14px;font-size:14px;color:var(--sub);min-height:20px}
+
+/* quiz */
+.quiz{padding:34px 30px;min-height:420px}
+.q-top{display:flex;justify-content:space-between;align-items:center;color:var(--sub);font-size:14px;margin-bottom:12px}
+.q-bar{height:6px;background:var(--bg2);border-radius:99px;overflow:hidden;margin-bottom:26px}
+.q-bar i{display:block;height:100%;width:0;background:var(--blue);border-radius:99px;transition:width .5s}
+.q-tag{display:inline-block;font-size:12px;font-weight:600;color:var(--blue);background:var(--blue-soft);padding:3px 11px;border-radius:99px;margin-bottom:12px}
+.q-text{font-size:clamp(20px,3vw,26px);font-weight:600;line-height:1.4;margin:0 0 24px;letter-spacing:-.01em}
+.opts{display:grid;gap:10px}
+.opt{text-align:left;padding:16px 20px;border-radius:16px;background:var(--bg2);border:2px solid transparent;font-size:17px;transition:.2s}
+.opt:hover:not(:disabled){background:var(--blue-soft)}
+.opt.right{border-color:var(--green);background:var(--green-soft)}
+.opt.wrong{border-color:var(--red);background:var(--red-soft);animation:shake .4s}
+.opts.ox{grid-template-columns:1fr 1fr}
+.opts.ox .opt{text-align:center;font-size:40px;font-weight:700;padding:22px}
+.expl{margin-top:20px;padding:16px 20px;border-radius:16px;background:var(--bg2);font-size:16px;display:none}
+.expl.show{display:block;animation:pop .4s}
+@keyframes pop{from{opacity:0;transform:translateY(8px)}}
+.q-next{margin-top:18px;display:none}
+.q-next.show{display:inline-block}
+.result{text-align:center;padding:30px 0}
+.result .score{font-size:84px;font-weight:700;letter-spacing:-.04em;background:linear-gradient(90deg,#0a84ff,#bf5af2);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1.1}
+.result p{font-size:19px;color:var(--sub);margin:12px 0 28px}
+
+/* match */
+.mgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.mc{aspect-ratio:1/1.05;perspective:800px;cursor:pointer}
+.mc-in{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+.mc.flipped .mc-in,.mc.done .mc-in{transform:rotateY(180deg)}
+.mc .f,.mc .b{position:absolute;inset:0;border-radius:16px;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;align-items:center;justify-content:center;text-align:center;padding:8px}
+.mc .f{background:linear-gradient(145deg,#0a84ff,#5e5ce6);color:#fff;font-size:30px}
+.mc .b{transform:rotateY(180deg);background:var(--card);border:1px solid var(--line);font-size:13px;line-height:1.4;font-weight:500;box-shadow:var(--shadow)}
+.mc .b.ref{font-weight:700;color:var(--blue);font-size:16px}
+.mc.done .b{background:var(--green-soft);border-color:var(--green)}
+.mstat{display:flex;justify-content:space-between;margin-bottom:16px;color:var(--sub);font-size:15px}
+.mwin{margin-top:22px;text-align:center;font-size:20px;font-weight:600;opacity:0;transition:.5s;min-height:30px}
+.mwin.show{opacity:1}
+
+/* slider */
+.slide-card{padding:34px 30px}
+.range-wrap{position:relative;margin:26px 0 8px}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:8px;border-radius:99px;outline:0;
+  background:linear-gradient(90deg,#c9a86a,#0a84ff);}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:32px;height:32px;border-radius:50%;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.3);border:0}
+input[type=range]::-moz-range-thumb{width:32px;height:32px;border-radius:50%;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.3);border:0}
+.rl{display:flex;justify-content:space-between;font-size:14px;font-weight:600;color:var(--sub);margin-bottom:22px}
+.scene{border-radius:18px;padding:26px;text-align:center;min-height:170px;transition:background .5s;display:flex;flex-direction:column;justify-content:center}
+.scene .em{font-size:52px;line-height:1.2}
+.scene h3{font-size:22px;margin:8px 0 6px}
+.scene p{margin:0;color:var(--sub);font-size:16px}
+.chipsline{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:14px}
+.chipsline span{font-size:13px;padding:4px 12px;border-radius:99px;background:rgba(128,128,128,.14)}
+
+/* quote block */
+.quote{padding:34px 32px;margin-bottom:22px;background:linear-gradient(145deg,rgba(255,159,10,.12),rgba(191,90,242,.10));border:1px solid var(--line)}
+.quote p{margin:0;font-size:clamp(17px,2.2vw,20px);line-height:1.8}
+.quote cite{display:block;margin-top:14px;font-size:14px;color:var(--sub);font-style:normal}
+
+/* reflect */
+textarea{width:100%;min-height:130px;border-radius:18px;border:1px solid var(--line);background:var(--bg2);color:var(--text);padding:18px 20px;font:inherit;font-size:17px;resize:vertical;outline:0;transition:.2s}
+textarea:focus{border-color:var(--blue);box-shadow:0 0 0 4px var(--blue-soft)}
+.saved{font-size:13px;color:var(--green);height:20px;margin-top:8px;opacity:0;transition:.3s}
+.saved.show{opacity:1}
+.privacy{font-size:13px;color:var(--sub);margin-top:6px}
+
+/* finish */
+.finish{background:linear-gradient(180deg,var(--hero1),#000);color:#fff;text-align:center;padding:120px 24px}
+.finish h2{color:#fff}
+.finish .weekly{max-width:640px;margin:0 auto 36px;font-size:clamp(20px,2.8vw,26px);line-height:1.7;font-weight:500}
+.finish .weekly b{color:#ffd60a}
+.finish .pray{max-width:640px;margin:0 auto;color:rgba(255,255,255,.7);font-size:16px;line-height:1.85;text-align:left}
+.finish .small{margin-top:44px;font-size:13px;color:rgba(255,255,255,.4)}
+
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:300}
+
+@media (max-width:640px){
+  section{padding:80px 18px}
+  .flips{grid-template-columns:1fr}
+  .flip{height:270px}
+  .pt .fold-in{padding-left:24px}
+  .mgrid{grid-template-columns:repeat(4,1fr);gap:8px}
+  .mc .b{font-size:11px}.mc .b.ref{font-size:13px}.mc .f{font-size:22px}
+  .quiz{padding:26px 20px}
+  nav{justify-content:flex-start}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<canvas id="confetti"></canvas>
+
+<nav id="nav">
+  <a href="#top">시작</a><a href="#life">요셉의 삶</a><a href="#points">핵심 5포인트</a><a href="#exodos">엑소도스</a>
+  <a href="#blank">빈칸</a><a href="#quiz">퀴즈</a><a href="#match">짝 맞추기</a><a href="#slider">애굽↔가나안</a><a href="#me">나의 해골</a>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="eyebrow">히브리서 강해 (43) · 복습</div>
+  <h1>믿음으로<br><span>요셉은</span></h1>
+  <p class="verse">“믿음으로 요셉은 임종 시에 이스라엘 자손들이 떠날 것을 말하고 또 자기 뼈를 위하여 명하였으며”<span class="ref">히브리서 11:22</span></p>
+  <a class="btn" href="#life">복습 시작하기</a>
+  <div class="scroll-hint">↓ 아래로 스크롤</div>
+</header>
+
+<!-- 1. TIMELINE -->
+<section id="life">
+  <div class="wrap">
+    <div class="kicker reveal">1 · 요셉의 삶</div>
+    <h2 class="reveal">굉장히 드라마틱한 삶,<br>그러나 한 장면.</h2>
+    <p class="lead reveal">카드를 눌러 요셉의 삶을 따라가 보세요. 마지막 카드까지 열어 보면 히브리서 저자가 왜 그 장면을 골랐는지 보입니다.</p>
+
+    <div class="tl reveal" id="tl">
+      <div class="tl-item card"><button class="tl-btn"><span><b>① 17세, 꿈</b><small>아버지의 사랑을 독차지한 요셉</small></span><span class="chev">›</span></button>
+        <div class="fold"><div class="fold-in">요셉은 다른 형제들에 비해 아버지의 사랑을 독차지했었고, 17세가 되었을 때 하나님께서 요셉에게 꿈을 주셨는데, 그 꿈 때문에 형들에게 더욱 미움을 받아 애굽에 팔려가게 됩니다.</div></div></div>
+      <div class="tl-item card"><button class="tl-btn"><span><b>② 보디발의 집, 그리고 옥</b><small>유혹을 이긴 대가</small></span><span class="chev">›</span></button>
+        <div class="fold"><div class="fold-in">보디발의 집에서 성실함을 인정받아 가정 총무가 되었지만, 보디발의 아내의 유혹에 넘어가서 감옥에 간 것이 아니라, 오히려 유혹을 이긴 대가로 옥에 갇히게 됩니다.</div></div></div>
+      <div class="tl-item card"><button class="tl-btn"><span><b>③ 두 관원장의 꿈</b><small>그 뒤로도 2년</small></span><span class="chev">›</span></button>
+        <div class="fold"><div class="fold-in">옥에서 애굽의 두 관원장을 만나 그들의 꿈을 해석해 줍니다. 그 이후 2년간 더 감옥에 있었지만, 그것이 연결고리가 되었습니다.</div></div></div>
+      <div class="tl-item card"><button class="tl-btn"><span><b>④ 애굽의 총리</b><small>바로 왕의 꿈을 해석하다</small></span><span class="chev">›</span></button>
+        <div class="fold"><div class="fold-in">결국 바로 왕의 꿈을 해석해 주고 애굽의 총리가 됩니다. 이 이후에도 요셉의 삶에 드라마틱한 이야기가 계속 이어집니다.</div></div></div>
+      <div class="tl-item card final"><button class="tl-btn"><span><b>⑤ 임종의 자리, 유언</b><small>히브리서 저자가 고른 딱 한 장면</small></span><span class="chev">›</span></button>
+        <div class="fold"><div class="fold-in">히브리서 저자는 요셉의 믿음을 설명할 때, 이 모든 걸 다 뒤로하고 딱 한 장면만 소개합니다. 요셉이 임종의 자리에서 남긴 그의 유언입니다.</div></div></div>
+    </div>
+
+    <div class="callout reveal"><b>왜 이 장면일까요?</b><br>히브리서 11장 1절에서 소개한 믿음의 정의를 따라 요셉도 믿음의 삶을 살았다는 것을 보여주기 위함입니다.<br><br>
+      <i>“믿음은 바라는 것들의 실상이요 보이지 않는 것들의 증거니”</i> — 히 11:1</div>
+  </div>
+</section>
+
+<!-- 2. POINTS -->
+<section class="alt" id="points">
+  <div class="wrap">
+    <div class="kicker reveal">2 · 핵심 5포인트</div>
+    <h2 class="reveal">오늘 말씀을<br>다섯 장면으로.</h2>
+    <p class="lead reveal">카드를 눌러 펼쳐 보세요. 근거 구절도 함께 정리했습니다.</p>
+
+    <div class="card pt reveal">
+      <button class="pt-btn"><span class="num">1</span><span class="t">요셉의 믿음은 화려한 삶이 아니라 유언 한 장면에 담겼다</span><span class="chev">›</span></button>
+      <div class="fold"><div class="fold-in">
+        <div class="verse-box"><b>히브리서 11:22</b>“믿음으로 요셉은 임종 시에 이스라엘 자손들이 떠날 것을 말하고 또 자기 뼈를 위하여 명하였으며”</div>
+        <ul>
+          <li>요셉의 삶은 총리가 되기까지 굉장히 드라마틱했지만, 히브리서 저자는 그 모든 것을 뒤로하고 임종의 유언 한 장면만 소개</li>
+          <li>이는 히브리서 11:1의 믿음의 정의(“바라는 것들의 실상이요 보이지 않는 것들의 증거”)를 요셉이 그대로 살아낸 증거</li>
+        </ul></div></div>
+    </div>
+
+    <div class="card pt reveal">
+      <button class="pt-btn"><span class="num">2</span><span class="t">요셉은 자신은 죽어도 하나님의 언약은 변치 않음을 믿었다</span><span class="chev">›</span></button>
+      <div class="fold"><div class="fold-in">
+        <div class="verse-box"><b>창세기 50:24</b>“요셉이 그의 형제들에게 이르되 나는 죽을 것이나 하나님이 당신들을 돌보시고 당신들을 이 땅에서 인도하여 내사 아브라함과 이삭과 야곱에게 맹세하신 땅에 이르게 하시리라 하고”</div>
+        <div class="verse-box"><b>창세기 15:13-14</b>“여호와께서 아브람에게 이르시되 너는 반드시 알라 네 자손이 이방에서 객이 되어 그들을 섬기겠고 그들은 사백 년 동안 네 자손을 괴롭히리니/ 그들이 섬기는 나라를 내가 징벌할지며 그 후에 네 자손이 큰 재물을 이끌고 나오리라”</div>
+        <ul>
+          <li>요셉의 죽음과 하나님의 신실하심의 대조 — “나는 죽을 것이나… 그러나 하나님은…”</li>
+          <li>이 약속의 근거는 아브라함에게 주신 400년 객살이와 큰 재물로 나올 것이라는 언약</li>
+          <li><b>“떠날 것”</b>은 헬라어 “엑소도스”(출애굽)이며, 눅 9:31 변화산에서 예수님의 “별세”(엑소도스)를 가리킬 때도 동일하게 사용됨</li>
+          <li><span class="arrow">→</span> 요셉의 출애굽 예언은 장차 그리스도께서 죽음으로 우리를 영적 애굽에서 건지실 참된 출애굽을 멀리서 내다본 신앙고백</li>
+        </ul></div></div>
+    </div>
+
+    <div class="card pt reveal">
+      <button class="pt-btn"><span class="num">3</span><span class="t">요셉은 애굽에서 성공했지만 애굽을 영원한 본향으로 여기지 않았다</span><span class="chev">›</span></button>
+      <div class="fold"><div class="fold-in">
+        <div class="verse-box"><b>창세기 50:25</b>“요셉이 또 이스라엘 자손에게 맹세시켜 이르기를 하나님이 반드시 당신들을 돌보시리니 당신들은 여기서 내 해골을 메고 올라가겠다 하라 하였더라”</div>
+        <ul>
+          <li>자신의 뼈를 가나안으로 옮기라는 명령</li>
+          <li>요셉은 애굽의 총리로 권력·명예·부·가정을 다 이루었지만, 애굽이 언약의 종착지가 아님을 알고 있었음</li>
+          <li><span class="arrow">→</span> 우리도 직장·집·건강 등 세상의 필요를 부인하지 않되, 이 세상이 영원한 종착지가 아님을 기억해야 함</li>
+        </ul></div></div>
+    </div>
+
+    <div class="card pt reveal">
+      <button class="pt-btn"><span class="num">4</span><span class="t"><span class="tag-extra">💡 덧붙임</span>요셉의 해골 - 고난 중 이스라엘 백성에게 소망과 위로가 되다</span><span class="chev">›</span></button>
+      <div class="fold"><div class="fold-in">
+        <ul>
+          <li>야곱의 장례와 달리 요셉의 해골은 출애굽 전까지 애굽에 그대로 남아 있었음(창세기는 모세가 출애굽 이후 광야에서 기록)</li>
+          <li>어느 주석가의 해석: “요셉을 알지 못하는 새 왕이 이스라엘을 학대할 때, 백성들이 요셉의 무덤으로 달려가 해골 앞에서 가나안으로 올라갈 소망을 얻으며 위로받았다”</li>
+          <li>본 설교 적용: 문자 언약이 없던 시대, 요셉의 해골 자체가 하나님의 언약을 확인하는 눈에 보이는 증거였음</li>
+        </ul></div></div>
+    </div>
+
+    <div class="card pt reveal">
+      <button class="pt-btn"><span class="num">5</span><span class="t">요셉의 해골은 그리스도의 십자가를 예표하는 천국 입장표다</span><span class="chev">›</span></button>
+      <div class="fold"><div class="fold-in">
+        <ul>
+          <li>요셉은 예수님을 상징하며, 요셉의 해골은 곧 예수님의 죽으심과 십자가를 예표</li>
+          <li>이스라엘이 요셉의 해골을 메고 가나안에 들어갔듯, 우리도 하나님 나라에 들어갈 때 붙들어야 할 것은 그리스도의 십자가</li>
+          <li><span class="arrow">→</span> 천국 문 앞에서 “왜 너를 들어가게 해야 하느냐”는 물음에 우리의 답은 오직 예수 그리스도의 십자가</li>
+        </ul></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. EXODOS -->
+<section id="exodos">
+  <div class="wrap">
+    <div class="kicker reveal">3 · 같은 단어, 다른 무대</div>
+    <h2 class="reveal">“떠날 것”과 “별세”,<br>우연이 아닙니다.</h2>
+    <p class="lead reveal">두 카드를 눌러 뒤집어 보세요.</p>
+    <div class="flips reveal">
+      <div class="flip" data-f="1"><div class="flip-in">
+        <div class="face front"><small>히브리서 11:22</small><div class="big">“떠날 것”</div><p>이스라엘 자손들이 떠날 것을 말하고…</p><div class="tap">눌러서 뒤집기 ↻</div></div>
+        <div class="face back"><small>원어</small><div class="big">엑소도스</div><p>곧 “출애굽”을 의미합니다. 요셉은 아직 일어나지 않은 출애굽을 하나님의 약속 때문에 말했습니다.</p></div>
+      </div></div>
+      <div class="flip" data-f="2"><div class="flip-in">
+        <div class="face front"><small>누가복음 9:31</small><div class="big">“별세”</div><p>“영광중에 나타나서 장차 예수께서 예루살렘에서 별세하실 것을 말할새”</p><div class="tap">눌러서 뒤집기 ↻</div></div>
+        <div class="face back"><small>원어</small><div class="big">엑소도스</div><p>변화산에서 모세와 엘리야가 예수님의 별세를 말씀하는 장면. 여기서 사용된 “별세”가 바로 헬라어로 엑소도스입니다.</p></div>
+      </div></div>
+    </div>
+    <div class="same" id="same">
+      <div class="gr">ἔξοδος</div>
+      <div style="margin-top:10px">요셉이 바라본 “이스라엘의 떠남” → 장차 그리스도께서 죽으심으로<br><b>우리를 죄와 사망의 영적 애굽에서 건져내시는 참된 출애굽</b></div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. BLANKS -->
+<section class="alt" id="blank">
+  <div class="wrap">
+    <div class="kicker reveal">4 · 빈칸 채우기</div>
+    <h2 class="reveal">기억나는 대로<br>채워 보세요.</h2>
+    <p class="lead reveal">알맞은 단어를 눌러 빈칸을 채웁니다.</p>
+    <div id="fills"></div>
+  </div>
+</section>
+
+<!-- 5. QUIZ -->
+<section id="quiz">
+  <div class="wrap">
+    <div class="kicker reveal">5 · 퀴즈</div>
+    <h2 class="reveal">얼마나 기억하나요?</h2>
+    <p class="lead reveal">O/X와 객관식 아홉 문제입니다. 정답을 고르면 해설이 나옵니다.</p>
+    <div class="card quiz reveal" id="quizBox"></div>
+  </div>
+</section>
+
+<!-- 6. MATCH -->
+<section class="alt" id="match">
+  <div class="wrap">
+    <div class="kicker reveal">6 · 카드 짝 맞추기</div>
+    <h2 class="reveal">구절과 내용을<br>이어 보세요.</h2>
+    <p class="lead reveal">카드 두 장을 차례로 뒤집어 성경 구절과 그 내용을 짝지어 보세요.</p>
+    <div class="mstat reveal"><span>시도 <b id="mTry">0</b>회</span><span>맞춘 짝 <b id="mHit">0</b> / 4</span></div>
+    <div class="mgrid reveal" id="mgrid"></div>
+    <div class="mwin" id="mwin"></div>
+    <div style="text-align:center;margin-top:18px"><button class="btn ghost" id="mReset">다시 섞기</button></div>
+  </div>
+</section>
+
+<!-- 7. SLIDER -->
+<section id="slider">
+  <div class="wrap">
+    <div class="kicker reveal">7 · 애굽에서, 가나안을 바라보며</div>
+    <h2 class="reveal">성공한 자리,<br>그러나 종착지는 아닙니다.</h2>
+    <p class="lead reveal">슬라이더를 움직여 요셉의 마음을 따라가 보세요.</p>
+    <div class="card slide-card reveal">
+      <div class="range-wrap"><input type="range" id="rng" min="0" max="100" value="0" aria-label="애굽에서 가나안까지"></div>
+      <div class="rl"><span>🏛 애굽</span><span>가나안 ⛰</span></div>
+      <div class="scene" id="scene"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 8. ME -->
+<section class="alt" id="me">
+  <div class="wrap">
+    <div class="kicker reveal">8 · 나의 적용</div>
+    <h2 class="reveal">나의 “요셉의 해골”은<br>무엇입니까?</h2>
+    <div class="card quote reveal">
+      <p>“오늘 우리에게 있어서 요셉의 해골은 무엇입니까? 여러분들이 어렵고 힘들 때마다 달려가서 위로를 받고, 새 힘을 얻고 소망을 얻는 요셉의 해골은 무엇입니까?”</p>
+      <cite>— 설교 중에서</cite>
+    </div>
+    <div class="reveal">
+      <textarea id="note" placeholder="어렵고 힘들 때 내가 달려가는 곳, 붙드는 것을 적어 보세요."></textarea>
+      <div class="saved" id="saved">✓ 이 기기에 저장되었습니다</div>
+      <div class="privacy">🔒 적은 내용은 이 기기의 브라우저 안에만 저장되며 어디로도 전송되지 않습니다.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FINISH -->
+<section class="finish">
+  <div class="wrap">
+    <div class="kicker" style="color:#ff9f0a">이번 주 붙들 한 문장</div>
+    <h2>십자가를 붙들고,<br>주님과 동행하는 한 주.</h2>
+    <p class="weekly">“우리가 매고 들어가야 할 요셉의 해골은 바로 <b>예수 그리스도의 십자가</b>입니다.”</p>
+    <p class="pray">천국 문앞에 있는 문지기가 ‘내가 너를 이 천국에 들어가게 해야할 이유가 무엇이냐?’라고 물으실때, 우리의 대답은 무엇이어야 하겠습니까? 예수 그리스도, 예수 그리스도의 십자가라고 대답해야 할 것입니다. 그러므로 오늘도 그 십자가 붙들고 믿음의 여정을 걸으며 주님과 동행해야 하는 것입니다. 이번 한주간도 십자가 붙들고 주님과 동행하는 저와 여러분 되시기 바랍니다.</p>
+    <div class="small">히브리서 강해(43) · 믿음으로 요셉은 · 히브리서 11:22</div>
+    <div style="margin-top:28px"><a class="btn ghost" href="#top">처음으로 ↑</a></div>
+  </div>
+</section>
+
+<script>
+(function(){
+  /* progress + nav highlight */
+  var bar=document.getElementById('progress');
+  var links=[].slice.call(document.querySelectorAll('nav a'));
+  var secs=links.map(function(a){return document.querySelector(a.getAttribute('href'))});
+  function onScroll(){
+    var h=document.documentElement;
+    bar.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
+    var y=window.scrollY+140,cur=0;
+    secs.forEach(function(s,i){if(s&&s.offsetTop<=y)cur=i});
+    links.forEach(function(a,i){a.classList.toggle('on',i===cur)});
+    var on=links[cur];
+    if(on&&window.scrollY>200){var n=document.getElementById('nav');n.scrollTo({left:on.offsetLeft-n.clientWidth/2+on.clientWidth/2})}
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+  /* reveal on scroll */
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+
+  /* accordion helper */
+  function bindFold(root,btnSel,itemSel){
+    root.querySelectorAll(btnSel).forEach(function(btn){
+      btn.addEventListener('click',function(){
+        var item=btn.closest(itemSel),fold=item.querySelector('.fold');
+        var open=item.classList.toggle('open');
+        fold.style.maxHeight=open?fold.scrollHeight+'px':'0';
+      });
+    });
+  }
+  bindFold(document.getElementById('tl'),'.tl-btn','.tl-item');
+  bindFold(document.getElementById('points'),'.pt-btn','.pt');
+  window.addEventListener('resize',function(){document.querySelectorAll('.open>.fold').forEach(function(f){f.style.maxHeight=f.scrollHeight+'px'})});
+
+  /* flips */
+  var flipped={};
+  document.querySelectorAll('.flip').forEach(function(f){
+    f.addEventListener('click',function(){
+      f.classList.toggle('on');
+      if(f.classList.contains('on'))flipped[f.dataset.f]=1;
+      if(flipped[1]&&flipped[2])document.getElementById('same').classList.add('show');
+    });
+  });
+
+  /* fill in the blanks */
+  var fills=[
+    {a:'나는 죽을 것이나, 그러나 <span class="blank">B</span>은 죽지 않으시고, 그분의 약속은 변하지 않습니다.',ans:'하나님',opts:['하나님','요셉','바로'],note:'“요셉은 죽으나 하나님은 죽지 않으시고, 하나님의 약속은 변하지 않는다.” (창 50:24)'},
+    {a:'믿음은 바라는 것들의 <span class="blank">B</span>이요 보이지 않는 것들의 증거니',ans:'실상',opts:['실상','그림자','소망'],note:'히브리서 11:1 — 믿음의 정의'},
+    {a:'요셉은 애굽 한복판에서 살았지만 애굽을 자신의 영원한 <span class="blank">B</span>으로 여기지 않았습니다.',ans:'본향',opts:['본향','왕궁','감옥'],note:'애굽은 하나님이 말씀하신 언약의 종착지가 아니었습니다.'},
+    {a:'우리가 하나님 나라에 들어갈 때 매고 들어가야 할 요셉의 해골은 바로 예수 그리스도의 <span class="blank">B</span>입니다.',ans:'십자가',opts:['십자가','기도','예물'],note:'예수 그리스도의 십자가는 천국으로 들어가는 입장표입니다.'}
+  ];
+  var fbox=document.getElementById('fills');
+  fills.forEach(function(f){
+    var d=document.createElement('div');d.className='card fill reveal';
+    d.innerHTML='<p>'+f.a.replace('B',f.ans)+'</p><div class="chips"></div><div class="note"></div>';
+    var bl=d.querySelector('.blank');
+    var chips=d.querySelector('.chips');
+    f.opts.slice().sort(function(){return Math.random()-.5}).forEach(function(o){
+      var c=document.createElement('button');c.className='chip';c.textContent=o;
+      c.onclick=function(){
+        if(o===f.ans){bl.classList.add('ok');c.classList.add('yes');d.classList.add('done');d.querySelector('.note').textContent='✓ '+f.note;pop(c)}
+        else{c.classList.remove('no');void c.offsetWidth;c.classList.add('no')}
+      };
+      chips.appendChild(c);
+    });
+    fbox.appendChild(d);io.observe(d);
+  });
+
+  /* quiz */
+  var Q=[
+    {t:'O/X',q:'히브리서 저자는 요셉의 믿음을 설명하면서 그의 드라마틱한 삶 전체를 차례로 소개했다.',ox:true,a:1,e:'히브리서 저자는 그 모든 것을 뒤로하고 요셉이 임종의 자리에서 남긴 유언 한 장면만 소개합니다.'},
+    {t:'객관식',q:'히브리서 저자가 요셉의 유언 장면을 소개한 이유는 무엇입니까?',o:['요셉이 가장 오래 산 인물이라서','히브리서 11:1의 믿음의 정의를 따라 요셉도 믿음의 삶을 살았음을 보여주려고','요셉이 애굽을 떠나고 싶어 했기 때문에'],a:1,e:'“믿음은 바라는 것들의 실상이요 보이지 않는 것들의 증거니” — 요셉도 바로 그 믿음으로 유언을 남겼습니다.'},
+    {t:'객관식',q:'요셉의 유언에서 살펴본 두 가지는 무엇입니까?',o:['재산 분배와 후계자 지명','이스라엘 자손들이 떠날 것, 그리고 자기 뼈에 대한 명령','형제들에 대한 용서와 애굽에 대한 감사'],a:1,e:'첫째는 이스라엘 자손들이 떠날 것에 대한 것이고, 둘째는 그때 자신의 뼈에 대한 명령입니다.'},
+    {t:'객관식',q:'“나는 죽을 것이나…” 이 말씀이 보여주는 중요한 대조는 무엇입니까?',o:['요셉은 죽으나 하나님은 죽지 않으시고, 하나님의 약속은 변하지 않는다','요셉은 약하지만 형제들은 강하다','애굽은 멸망하고 가나안은 번영한다'],a:0,e:'요셉은 죽으나 하나님은 죽지 않으시고, 하나님이 아브라함과 이삭과 야곱에게 맹세하신 땅에 이르게 하실 것입니다.'},
+    {t:'O/X',q:'“떠날 것”으로 번역된 헬라어 “엑소도스”는 누가복음 9:31에서 예수님의 “별세”를 가리킬 때도 사용된 단어이다.',ox:true,a:0,e:'변화산에서 모세와 엘리야가 말한 예수님의 별세, 그것이 헬라어로 엑소도스입니다. 우연이 아닙니다.'},
+    {t:'객관식',q:'요셉이 자기 해골을 가나안으로 메고 올라가라고 한 것은 어떤 의미입니까?',o:['애굽을 경멸했다는 뜻이다','애굽이 언약의 종착지가 아님을 알고 있었다는 뜻이다','단순히 고향에 묻히고 싶었다는 뜻이다'],a:1,e:'이것은 애굽을 경멸했다는 뜻이 아닙니다. 요셉은 애굽에서 충성스럽게 섬겼지만, 애굽이 언약의 종착지가 아님을 알고 있었습니다.'},
+    {t:'O/X',q:'요셉이 죽을 때 그의 유언은 “곧장 가나안 땅에 장사하라”는 것이었다.',ox:true,a:1,e:'야곱은 죽은 후 곧장 가나안 땅에 장사되었지만, 요셉은 “너희가 올라갈 때 내 해골을 메고 올라가라”고 유언했습니다.'},
+    {t:'객관식',q:'출애굽 전까지 요셉의 해골은 어디에 있었습니까?',o:['가나안 땅 막벨라 굴','애굽','시내산'],a:1,e:'이스라엘이 출애굽하기 전까지 요셉의 해골은 애굽에 있었습니다. 그것은 야곱의 후손들에게 하나님의 언약을 눈으로 확인하게 하는 근거가 되었을 것입니다.'},
+    {t:'객관식',q:'설교에서 요셉의 해골은 무엇을 상징한다고 했습니까? (그리고 우리가 천국에 들어갈 때 매고 들어갈 것은?)',o:['우리의 선행과 헌신','예수님의 죽으심, 곧 예수 그리스도의 십자가','우리가 이룬 성공'],a:1,e:'요셉은 예수님을 상징하며, 요셉의 해골은 예수님의 죽으심과 십자가를 상징합니다. 십자가는 천국으로 들어가는 입장표입니다.'}
+  ];
+  var qi=0,score=0,qb=document.getElementById('quizBox');
+  function renderQ(){
+    var q=Q[qi];
+    var h='<div class="q-top"><span>문제 '+(qi+1)+' / '+Q.length+'</span><span>점수 '+score+'</span></div><div class="q-bar"><i style="width:'+(qi/Q.length*100)+'%"></i></div>';
+    h+='<span class="q-tag">'+q.t+'</span><p class="q-text">'+q.q+'</p>';
+    if(q.ox){h+='<div class="opts ox"><button class="opt" data-i="0">O</button><button class="opt" data-i="1">X</button></div>'}
+    else{h+='<div class="opts">'+q.o.map(function(o,i){return '<button class="opt" data-i="'+i+'">'+o+'</button>'}).join('')+'</div>'}
+    h+='<div class="expl"></div><button class="btn q-next">'+(qi===Q.length-1?'결과 보기':'다음 문제 →')+'</button>';
+    qb.innerHTML=h;
+    // animate bar
+    setTimeout(function(){var b=qb.querySelector('.q-bar i');if(b)b.style.width=((qi+1)/Q.length*100)+'%'},30);
+    var opts=qb.querySelectorAll('.opt');
+    opts.forEach(function(b){
+      b.onclick=function(){
+        var i=+b.dataset.i;
+        opts.forEach(function(x){x.disabled=true});
+        opts[q.a].classList.add('right');
+        var ex=qb.querySelector('.expl');
+        if(i===q.a){score++;ex.innerHTML='<b style="color:var(--green)">✓ 정답!</b> '+q.e;pop(b)}
+        else{b.classList.add('wrong');ex.innerHTML='<b style="color:var(--red)">다시 생각해 볼까요?</b> '+q.e}
+        ex.classList.add('show');
+        qb.querySelector('.q-next').classList.add('show');
+      };
+    });
+    qb.querySelector('.q-next').onclick=function(){qi++;qi<Q.length?renderQ():showResult()};
+  }
+  function showResult(){
+    var pct=Math.round(score/Q.length*100);
+    var msg=score===Q.length?'완벽합니다! 요셉의 믿음을 마음에 새기셨네요.':score>=Q.length*0.7?'훌륭해요! 핵심을 잘 붙들고 계십니다.':'괜찮아요. 위 카드들을 다시 훑고 한 번 더 도전해 보세요.';
+    qb.innerHTML='<div class="result"><div class="score">'+score+' / '+Q.length+'</div><p>'+msg+'</p><button class="btn" id="qAgain">다시 풀기</button></div>';
+    document.getElementById('qAgain').onclick=function(){qi=0;score=0;renderQ()};
+    if(pct>=70)confetti();
+  }
+  renderQ();
+
+  /* match game */
+  var pairs=[
+    {id:1,ref:'창세기 50:24',txt:'“나는 죽을 것이나 하나님이 당신들을 돌보시고…”'},
+    {id:2,ref:'창세기 15:13-14',txt:'400년 객살이 후 큰 재물을 이끌고 나오리라'},
+    {id:3,ref:'누가복음 9:31',txt:'예수님의 “별세” = 엑소도스'},
+    {id:4,ref:'창세기 50:25',txt:'“여기서 내 해골을 메고 올라가겠다 하라”'}
+  ];
+  var grid=document.getElementById('mgrid'),first=null,lock=false,tries=0,hits=0;
+  function buildMatch(){
+    grid.innerHTML='';first=null;lock=false;tries=0;hits=0;
+    document.getElementById('mTry').textContent=0;document.getElementById('mHit').textContent=0;
+    var w=document.getElementById('mwin');w.classList.remove('show');w.textContent='';
+    var cards=[];
+    pairs.forEach(function(p){cards.push({id:p.id,t:p.ref,r:true});cards.push({id:p.id,t:p.txt,r:false})});
+    cards.sort(function(){return Math.random()-.5});
+    cards.forEach(function(c){
+      var d=document.createElement('div');d.className='mc';d.dataset.id=c.id;
+      d.innerHTML='<div class="mc-in"><div class="f">?</div><div class="b'+(c.r?' ref':'')+'">'+c.t+'</div></div>';
+      d.onclick=function(){
+        if(lock||d.classList.contains('flipped')||d.classList.contains('done'))return;
+        d.classList.add('flipped');
+        if(!first){first=d;return}
+        tries++;document.getElementById('mTry').textContent=tries;
+        if(first.dataset.id===d.dataset.id){
+          first.classList.add('done');d.classList.add('done');first=null;hits++;
+          document.getElementById('mHit').textContent=hits;
+          if(hits===pairs.length){var w=document.getElementById('mwin');w.textContent='🎉 모두 맞췄어요! ('+tries+'번 만에)';w.classList.add('show');confetti()}
+        }else{
+          lock=true;var a=first;first=null;
+          setTimeout(function(){a.classList.remove('flipped');d.classList.remove('flipped');lock=false},900);
+        }
+      };
+      grid.appendChild(d);
+    });
+  }
+  buildMatch();
+  document.getElementById('mReset').onclick=buildMatch;
+
+  /* slider */
+  var scenes=[
+    {max:24,bg:'rgba(201,168,106,.18)',em:'🏛',h:'애굽의 총리',p:'요셉은 권력·명예·부를 얻고 가정을 이루었으며, 애굽 사람들의 존경도 받았습니다. 인간적으로 말하면 애굽에서 성공한 사람입니다.',c:['권력','명예','부','가정','존경']},
+    {max:49,bg:'rgba(201,168,106,.10)',em:'🛠',h:'충성스럽게 섬긴 요셉',p:'하나님께서는 애굽에서 요셉을 사용하셨고, 요셉은 애굽을 충성스럽게 섬겼습니다. 성경은 세상의 필요를 악하다고 말하지 않습니다.',c:['직장','집','건강','경제적 안정']},
+    {max:74,bg:'rgba(10,132,255,.10)',em:'⏳',h:'그러나 종착지는 아니다',p:'요셉은 애굽이 하나님이 말씀하신 언약의 종착지가 아니라는 것을 알고 있었습니다. 애굽 한복판에서 살았지만, 애굽을 자신의 영원한 본향으로 여기지 않았습니다.',c:['본향이 아님','언약의 종착지 아님']},
+    {max:100,bg:'rgba(10,132,255,.20)',em:'⛰',h:'“내 해골을 메고 올라가라”',p:'이 세상이 우리의 영원한 종착지가 아니기에, 우리도 올라가야 할 약속의 땅, 가나안이 있다는 것을 기억하고 이 땅을 살아야 합니다.',c:['약속의 땅','영원한 본향']}
+  ];
+  var rng=document.getElementById('rng'),sc=document.getElementById('scene');
+  function updScene(){
+    var v=+rng.value,s=scenes.find(function(x){return v<=x.max});
+    sc.style.background=s.bg;
+    sc.innerHTML='<div class="em">'+s.em+'</div><h3>'+s.h+'</h3><p>'+s.p+'</p><div class="chipsline">'+s.c.map(function(x){return '<span>'+x+'</span>'}).join('')+'</div>';
+  }
+  rng.addEventListener('input',updScene);updScene();
+
+  /* reflection (local only) */
+  var note=document.getElementById('note'),saved=document.getElementById('saved'),KEY='hebrews43-joseph-note',tm;
+  try{note.value=localStorage.getItem(KEY)||''}catch(e){}
+  note.addEventListener('input',function(){
+    clearTimeout(tm);
+    tm=setTimeout(function(){
+      try{localStorage.setItem(KEY,note.value);saved.classList.add('show');setTimeout(function(){saved.classList.remove('show')},1600)}catch(e){}
+    },500);
+  });
+
+  /* tiny pop + confetti */
+  function pop(el){el.animate([{transform:'scale(1)'},{transform:'scale(1.06)'},{transform:'scale(1)'}],{duration:300})}
+  function confetti(){
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+    var cv=document.getElementById('confetti'),cx=cv.getContext('2d');
+    cv.width=innerWidth;cv.height=innerHeight;
+    var cols=['#ff9f0a','#0a84ff','#bf5af2','#30d158','#ff453a','#ffd60a'];
+    var ps=[];for(var i=0;i<110;i++)ps.push({x:innerWidth/2,y:innerHeight*.6,vx:(Math.random()-.5)*16,vy:-Math.random()*16-4,s:Math.random()*8+4,c:cols[i%cols.length],r:Math.random()*6,vr:(Math.random()-.5)*.4});
+    var t=0;
+    (function f(){
+      cx.clearRect(0,0,cv.width,cv.height);
+      ps.forEach(function(p){p.x+=p.vx;p.y+=p.vy;p.vy+=.35;p.r+=p.vr;cx.save();cx.translate(p.x,p.y);cx.rotate(p.r);cx.fillStyle=p.c;cx.fillRect(-p.s/2,-p.s/2,p.s,p.s*.6);cx.restore()});
+      if(++t<130)requestAnimationFrame(f);else cx.clearRect(0,0,cv.width,cv.height);
+    })();
+  }
+})();
+</script>
+</body>
+</html>
