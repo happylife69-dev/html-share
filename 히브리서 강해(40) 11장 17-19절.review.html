@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>믿음으로 아브라함은 2 · 히브리서 11:17-19 복습</title>
+<style>
+  :root {
+    --bg: #f5f5f7;
+    --card-bg: #ffffff;
+    --card-bg-soft: rgba(255,255,255,0.72);
+    --text: #1d1d1f;
+    --text-secondary: #6e6e73;
+    --accent: #0071e3;
+    --accent-soft: rgba(0,113,227,0.1);
+    --border: rgba(0,0,0,0.08);
+    --success: #34c759;
+    --danger: #ff3b30;
+    --shadow: 0 4px 24px rgba(0,0,0,0.06);
+    --shadow-lg: 0 20px 60px rgba(0,0,0,0.12);
+    --radius: 22px;
+    --ease: cubic-bezier(0.28, 0.11, 0.32, 1);
+  }
+  body.dark {
+    --bg: #000000;
+    --card-bg: #1c1c1e;
+    --card-bg-soft: rgba(28,28,30,0.72);
+    --text: #f5f5f7;
+    --text-secondary: #98989d;
+    --accent: #2997ff;
+    --accent-soft: rgba(41,151,255,0.16);
+    --border: rgba(255,255,255,0.1);
+    --shadow: 0 4px 24px rgba(0,0,0,0.4);
+    --shadow-lg: 0 20px 60px rgba(0,0,0,0.55);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
+      "Apple SD Gothic Neo", "Pretendard", "Helvetica Neue", sans-serif;
+    transition: background .5s var(--ease), color .5s var(--ease);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Progress bar */
+  #progress-wrap {
+    position: fixed; top: 0; left: 0; width: 100%; height: 3px;
+    background: transparent; z-index: 1000;
+  }
+  #progress-bar {
+    height: 100%; width: 0%;
+    background: linear-gradient(90deg, var(--accent), #5ac8fa);
+    transition: width .08s linear;
+  }
+
+  /* Top nav */
+  .topnav {
+    position: sticky; top: 3px; z-index: 900;
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    background: var(--card-bg-soft);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 20px;
+  }
+  .topnav .brand { font-weight: 600; font-size: 14px; color: var(--text-secondary); letter-spacing: .2px; }
+  .topnav .links { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; }
+  .topnav .links::-webkit-scrollbar { display: none; }
+  .topnav a {
+    white-space: nowrap;
+    font-size: 13px; padding: 7px 13px; border-radius: 100px;
+    color: var(--text); text-decoration: none;
+    background: rgba(128,128,128,0.08);
+    transition: background .25s var(--ease), transform .2s var(--ease);
+  }
+  .topnav a:hover { background: var(--accent-soft); color: var(--accent); }
+  #theme-toggle {
+    border: none; background: rgba(128,128,128,0.12);
+    width: 34px; height: 34px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; font-size: 15px; flex-shrink: 0; margin-left: 10px;
+    transition: transform .3s var(--ease), background .3s var(--ease);
+  }
+  #theme-toggle:hover { transform: scale(1.1) rotate(15deg); }
+
+  /* Hero */
+  .hero {
+    max-width: 780px; margin: 0 auto; padding: 64px 24px 32px;
+    text-align: center;
+  }
+  .hero .kicker {
+    display: inline-block; font-size: 13px; font-weight: 600;
+    color: var(--accent); background: var(--accent-soft);
+    padding: 6px 16px; border-radius: 100px; margin-bottom: 18px;
+    letter-spacing: .3px;
+  }
+  .hero h1 {
+    font-size: clamp(32px, 6vw, 48px); font-weight: 700; letter-spacing: -0.02em;
+    margin: 0 0 12px; line-height: 1.15;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero p.sub {
+    font-size: 18px; color: var(--text-secondary); margin: 0 0 22px; line-height: 1.5;
+  }
+  .hero .verses {
+    display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+  }
+  .chip {
+    font-size: 12.5px; padding: 6px 13px; border-radius: 100px;
+    background: var(--card-bg); border: 1px solid var(--border); color: var(--text-secondary);
+    box-shadow: var(--shadow);
+  }
+
+  main { max-width: 780px; margin: 0 auto; padding: 0 20px 100px; }
+  section { margin-top: 56px; scroll-margin-top: 70px; }
+  .section-head { margin-bottom: 20px; }
+  .section-head .eyebrow {
+    font-size: 12.5px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: .06em;
+  }
+  .section-head h2 {
+    font-size: clamp(24px, 4vw, 30px); font-weight: 700; margin: 6px 0 6px; letter-spacing: -0.01em;
+  }
+  .section-head p { color: var(--text-secondary); margin: 0; font-size: 15.5px; line-height: 1.6; }
+
+  /* Intro card */
+  .intro-card {
+    background: var(--card-bg); border-radius: var(--radius); padding: 26px 28px;
+    box-shadow: var(--shadow); border: 1px solid var(--border);
+    font-size: 16px; line-height: 1.75; color: var(--text);
+  }
+
+  /* Accordion */
+  .accordion { display: flex; flex-direction: column; gap: 12px; }
+  .acc-item {
+    background: var(--card-bg); border-radius: 18px; border: 1px solid var(--border);
+    box-shadow: var(--shadow); overflow: hidden;
+  }
+  .acc-header {
+    display: flex; align-items: center; gap: 14px; padding: 20px 22px;
+    cursor: pointer; user-select: none;
+  }
+  .acc-num {
+    flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%;
+    background: var(--accent-soft); color: var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 14px;
+  }
+  .acc-title { flex: 1; font-size: 16.5px; font-weight: 600; letter-spacing: -0.01em; }
+  .acc-chevron {
+    width: 22px; height: 22px; flex-shrink: 0; color: var(--text-secondary);
+    transition: transform .35s var(--ease);
+  }
+  .acc-item.open .acc-chevron { transform: rotate(180deg); color: var(--accent); }
+  .acc-body { max-height: 0; overflow: hidden; transition: max-height .45s var(--ease); }
+  .acc-body-inner { padding: 0 22px 22px 66px; font-size: 15.2px; line-height: 1.75; color: var(--text-secondary); }
+  .acc-body-inner ul { margin: 0; padding-left: 18px; }
+  .acc-body-inner li { margin-bottom: 9px; }
+  .acc-body-inner .quote {
+    display: block; margin: 12px 0; padding: 12px 16px; border-radius: 12px;
+    background: var(--accent-soft); color: var(--text); font-style: normal; font-size: 14.5px;
+  }
+  .acc-body-inner .apply {
+    margin-top: 12px; padding: 12px 16px; border-radius: 12px;
+    background: rgba(255,149,0,0.12); color: var(--text); font-size: 14.5px;
+  }
+
+  /* Flip cards */
+  .flip-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+  }
+  @media (max-width: 680px) { .flip-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 460px) { .flip-grid { grid-template-columns: 1fr; } }
+  .flip-card {
+    perspective: 1200px; height: 168px; cursor: pointer;
+  }
+  .flip-inner {
+    position: relative; width: 100%; height: 100%;
+    transition: transform .6s var(--ease); transform-style: preserve-3d;
+  }
+  .flip-card.flipped .flip-inner { transform: rotateY(180deg); }
+  .flip-front, .flip-back {
+    position: absolute; inset: 0; backface-visibility: hidden;
+    border-radius: 16px; padding: 16px; display: flex; flex-direction: column;
+    justify-content: center; box-shadow: var(--shadow); border: 1px solid var(--border);
+  }
+  .flip-front {
+    background: var(--card-bg); align-items: flex-start;
+  }
+  .flip-front .ref { font-size: 12px; font-weight: 700; color: var(--accent); margin-bottom: 8px; }
+  .flip-front .txt { font-size: 14px; line-height: 1.55; color: var(--text); }
+  .flip-front .hint { position: absolute; bottom: 10px; right: 14px; font-size: 11px; color: var(--text-secondary); }
+  .flip-back {
+    background: linear-gradient(150deg, var(--accent), #5ac8fa);
+    color: #fff; transform: rotateY(180deg); align-items: center; text-align: center;
+  }
+  .flip-back .label { font-size: 11px; opacity: .85; margin-bottom: 6px; letter-spacing: .04em; }
+  .flip-back .msg { font-size: 15px; font-weight: 600; line-height: 1.4; }
+
+  /* Typology table */
+  .typo-list { display: flex; flex-direction: column; gap: 10px; }
+  .typo-row {
+    background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px;
+    box-shadow: var(--shadow); cursor: pointer; overflow: hidden;
+  }
+  .typo-row-head {
+    display: grid; grid-template-columns: 1fr 34px 1fr 26px; align-items: center;
+    gap: 8px; padding: 16px 18px;
+  }
+  @media (max-width: 560px) {
+    .typo-row-head { grid-template-columns: 1fr 1fr 20px; }
+    .typo-row-head .typo-arrow { display: none; }
+  }
+  .typo-side { font-size: 14.5px; line-height: 1.4; }
+  .typo-side.isaac { color: var(--text); font-weight: 600; }
+  .typo-side.jesus { color: var(--accent); font-weight: 600; text-align: right; }
+  @media (max-width: 560px) { .typo-side.jesus { text-align: left; } }
+  .typo-arrow { text-align: center; color: var(--text-secondary); font-size: 16px; }
+  .typo-caret { text-align: right; color: var(--text-secondary); transition: transform .35s var(--ease); }
+  .typo-row.open .typo-caret { transform: rotate(180deg); }
+  .typo-detail { max-height: 0; overflow: hidden; transition: max-height .4s var(--ease); }
+  .typo-detail-inner {
+    padding: 0 18px 18px; font-size: 14px; color: var(--text-secondary); line-height: 1.7;
+    border-top: 1px solid var(--border); margin-top: 2px; padding-top: 14px;
+  }
+  .typo-tag {
+    display: inline-block; font-size: 11px; font-weight: 700; color: var(--accent);
+    background: var(--accent-soft); padding: 3px 9px; border-radius: 100px; margin-bottom: 6px;
+  }
+
+  /* Quiz */
+  .quiz-card {
+    background: var(--card-bg); border: 1px solid var(--border); border-radius: 18px;
+    box-shadow: var(--shadow); padding: 22px 24px; margin-bottom: 14px;
+  }
+  .quiz-q { font-size: 16px; font-weight: 600; margin-bottom: 14px; line-height: 1.5; }
+  .quiz-q .qnum { color: var(--accent); margin-right: 6px; }
+  .quiz-options { display: flex; flex-direction: column; gap: 9px; }
+  .quiz-opt {
+    text-align: left; padding: 13px 16px; border-radius: 12px;
+    border: 1px solid var(--border); background: var(--bg); color: var(--text);
+    font-size: 14.5px; cursor: pointer; transition: all .25s var(--ease);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .quiz-opt:hover:not(:disabled) { border-color: var(--accent); background: var(--accent-soft); }
+  .quiz-opt:disabled { cursor: default; }
+  .quiz-opt .dot {
+    width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border);
+    flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #fff;
+  }
+  .quiz-opt.correct { background: rgba(52,199,89,0.14); border-color: var(--success); }
+  .quiz-opt.correct .dot { background: var(--success); border-color: var(--success); }
+  .quiz-opt.wrong { background: rgba(255,59,48,0.1); border-color: var(--danger); }
+  .quiz-opt.wrong .dot { background: var(--danger); border-color: var(--danger); }
+  .quiz-feedback { margin-top: 12px; font-size: 13.5px; color: var(--text-secondary); display: none; }
+  .quiz-feedback.show { display: block; }
+
+  .quiz-summary {
+    text-align: center; background: linear-gradient(150deg, var(--accent), #5ac8fa);
+    color: #fff; border-radius: var(--radius); padding: 36px 24px; margin-top: 6px;
+    box-shadow: var(--shadow-lg);
+  }
+  .quiz-summary h3 { margin: 0 0 6px; font-size: 24px; }
+  .quiz-summary .score { font-size: 44px; font-weight: 800; margin: 10px 0; }
+  .quiz-summary p { opacity: .92; margin: 0 0 18px; font-size: 14.5px; }
+  .quiz-summary button {
+    border: none; background: rgba(255,255,255,0.2); color: #fff; font-weight: 600;
+    padding: 11px 26px; border-radius: 100px; cursor: pointer; font-size: 14px;
+    transition: background .25s var(--ease);
+  }
+  .quiz-summary button:hover { background: rgba(255,255,255,0.32); }
+
+  /* Closing */
+  .closing-card {
+    background: var(--card-bg); border-radius: var(--radius); padding: 30px 28px;
+    box-shadow: var(--shadow); border: 1px solid var(--border); text-align: center;
+  }
+  .closing-card .icon { font-size: 30px; margin-bottom: 10px; }
+  .closing-card blockquote {
+    margin: 0 0 16px; font-size: 16.5px; line-height: 1.8; color: var(--text);
+    font-weight: 500;
+  }
+  .closing-card .apply-q {
+    background: var(--accent-soft); border-radius: 14px; padding: 16px 20px;
+    font-size: 15px; color: var(--text); text-align: left; margin-top: 18px; line-height: 1.6;
+  }
+  .closing-card .apply-q b { color: var(--accent); }
+
+  footer {
+    text-align: center; color: var(--text-secondary); font-size: 12.5px;
+    padding: 40px 20px 60px; line-height: 1.8;
+  }
+
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<div id="progress-wrap"><div id="progress-bar"></div></div>
+
+<nav class="topnav">
+  <span class="brand">히브리서 11:17-19 · 복습</span>
+  <div class="links">
+    <a href="#points">핵심 포인트</a>
+    <a href="#verses">말씀 카드</a>
+    <a href="#typology">모형론</a>
+    <a href="#quiz">퀴즈</a>
+    <a href="#closing">마무리</a>
+  </div>
+  <button id="theme-toggle" title="다크 모드 전환">🌙</button>
+</nav>
+
+<header class="hero">
+  <span class="kicker">히브리서 강해 (40)</span>
+  <h1>믿음으로 <span>아브라함은</span> 2</h1>
+  <p class="sub">모리아산에서 아브라함이 통과한 시험, 그리고 그 안에 감춰진 부활 신앙과 십자가의 예표를 함께 복습합니다.</p>
+  <div class="verses">
+    <span class="chip">히브리서 11:17</span>
+    <span class="chip">히브리서 11:19</span>
+    <span class="chip">창세기 22장</span>
+    <span class="chip">대하 3:1</span>
+    <span class="chip">요한복음 1:29 · 19:17</span>
+  </div>
+</header>
+
+<main>
+
+  <section id="intro" class="reveal">
+    <div class="section-head">
+      <span class="eyebrow">Overview</span>
+      <h2>오늘 본문 한눈에</h2>
+    </div>
+    <div class="intro-card">
+      본문의 배경은 창세기 22장 1-19절입니다. 백세에 얻은 약속의 아들 이삭을 모리아산에서 번제로 바치라는 하나님의 명령 앞에서, 아브라함은 인간적 이해를 넘어 <b>하나님의 성품과 신실하심</b>을 신뢰함으로 시험을 통과합니다. 히브리서 기자는 이 사건을 통해 아브라함의 믿음이 곧 <b>부활 신앙</b>이었다고 증언하며, 나아가 모리아산 사건 전체가 장차 오실 <b>그리스도의 십자가와 부활</b>을 미리 보여주는 그림자였음을 가르칩니다.
+    </div>
+  </section>
+
+  <section id="points" class="reveal">
+    <div class="section-head">
+      <span class="eyebrow">Key Points</span>
+      <h2>핵심 포인트 4가지</h2>
+      <p>카드를 눌러 내용을 펼쳐보세요.</p>
+    </div>
+    <div class="accordion" id="accordion"></div>
+  </section>
+
+  <section id="verses" class="reveal">
+    <div class="section-head">
+      <span class="eyebrow">Scripture Cards</span>
+      <h2>핵심 구절 뒤집어보기</h2>
+      <p>카드를 클릭하면 말씀의 의미가 뒤집혀서 나타납니다.</p>
+    </div>
+    <div class="flip-grid" id="flip-grid"></div>
+  </section>
+
+  <section id="typology" class="reveal">
+    <div class="section-head">
+      <span class="eyebrow">Typology</span>
+      <h2>이삭 ↔ 예수님, 모형론 대조표</h2>
+      <p>각 항목을 눌러 구속사적 의미를 확인해보세요.</p>
+    </div>
+    <div class="typo-list" id="typo-list"></div>
+  </section>
+
+  <section id="quiz" class="reveal">
+    <div class="section-head">
+      <span class="eyebrow">Self Check</span>
+      <h2>자가 점검 퀴즈</h2>
+      <p>다섯 문제로 오늘 말씀을 얼마나 기억하는지 확인해보세요.</p>
+    </div>
+    <div id="quiz-container"></div>
+  </section>
+
+  <section id="closing" class="reveal">
+    <div class="section-head">
+      <span class="eyebrow">Reflection</span>
+      <h2>말씀을 맺으며</h2>
+    </div>
+    <div class="closing-card">
+      <div class="icon">🌿</div>
+      <blockquote>
+        "이 시험은 아브라함을 넘어뜨리기 위한 것이 아니라, 그를 참된 믿음의 사람으로 세우기 위한 하나님의 시험이었습니다. 그리고 그 시험의 한복판에서 아브라함이 붙든 것은 하나님은 능히 죽은 자 가운데서 다시 살릴 수 있다는 부활 신앙이었습니다."
+      </blockquote>
+      <div class="apply-q">
+        <b>오늘의 적용 질문</b><br>
+        지금 내 손에 쥐어진 가장 소중한 것을 두고 하나님이 시험하신다면, 나는 불평 대신 "하나님, 이 시험을 통해 무엇을 가르치기를 원하십니까"라고 고백할 준비가 되어 있습니까?
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  히브리서 강해(40) · 히브리서 11장 17-19절 · 복습용 인터랙티브 노트<br>
+  원본 설교 노트: 「히브리서 강해(40) 11장 17-19절」
+</footer>
+
+<script>
+/* ---------- Data ---------- */
+const points = [
+  {
+    title: "이삭을 번제로 바치라는 명령은 약속과 충돌해 보인다",
+    body: `
+      <ul>
+        <li>이삭은 백세에 얻은 기적의 아들이며, "네 자손이라 칭할 자는 이삭으로 말미암으리라"(창21:21)는 언약의 아들입니다.</li>
+        <li>하나님이 그 약속의 실체인 이삭을 번제물로 바치라 명령하십니다 → 인간적으로는 하나님이 스스로 약속을 파기하시는 것처럼 보입니다.</li>
+        <li>아브라함은 인간적 이해를 넘어 하나님의 성품과 신실하심을 신뢰함으로 시험을 통과합니다.</li>
+      </ul>
+      <span class="quote">칼뱅: "아브라함이 겪은 시험 중 가장 크고 참혹한 시험"</span>
+    `
+  },
+  {
+    title: "하나님의 시험과 마귀의 유혹은 다르다",
+    body: `
+      <ul>
+        <li><b>출제자</b>가 다릅니다 — 시험은 하나님께로부터, 유혹은 마귀·세상으로부터 옵니다.</li>
+        <li><b>목적</b>도 다릅니다 — 시험은 건설적·교육적, 유혹은 파괴적입니다.</li>
+        <li><b>태도</b>도 달라야 합니다 → 시험은 기꺼이 응하고, 유혹은 단호히 거절해야 합니다.</li>
+        <li>미드라쉬에 따르면 아브라함은 총 10번의 시험을 받았고, 창세기 22장이 가장 강도 높은 마지막 시험이었습니다.</li>
+      </ul>
+      <span class="quote">히11:17 "아브라함은 시험을 받을 때에 믿음으로 이삭을 드렸으니"</span>
+      <div class="apply">오늘 내게 가장 소중한 것을 두고 시험받을 때, 불평이 아니라 "무엇을 가르치시려 하십니까" 고백해야 합니다.</div>
+    `
+  },
+  {
+    title: "아브라함은 부활 신앙으로 시험을 통과했다",
+    body: `
+      <ul>
+        <li>히11:19 "하나님이 능히 죽은 자 가운데서 다시 살리실 줄로 생각한지라" — 아브라함의 믿음은 부활 신앙이었습니다.</li>
+        <li>헬라어 <b>아나스타시스</b>(부활)는 '다시'(아나) + '일어섬'(스타시스)의 합성어입니다.</li>
+        <li>부활 신앙은 종말의 육신 부활만이 아니라, 오늘 삶에서 넘어지고 쓰러질 때 필요한 실제적 능력입니다.</li>
+      </ul>
+      <div class="apply">하나님은 무너진 우리의 일상을 부활의 능력으로 다시 일으켜 세우십니다.</div>
+    `
+  },
+  {
+    title: "모리아산 사건은 그리스도의 십자가와 부활을 예표한다",
+    body: `
+      <ul>
+        <li><b>장소</b>: 모리아산은 훗날 솔로몬 성전이 세워진 곳(대하3:1)이자 골고다 언덕이 위치한 곳입니다.</li>
+        <li><b>나무를 진 이삭</b>: 창22:6, 장작을 메고 오른 모습은 십자가를 지신 예수님(요19:17)의 예표입니다.</li>
+        <li><b>대속의 숫양</b>: 이삭을 대신한 숫양은 세상 죄를 지고 가는 하나님의 어린양(요1:29)의 모형이며, 그 땅은 '여호와 이레'로 명명되었습니다.</li>
+        <li><b>사흘 만의 부활</b>: 창22:4, 사흘째 되는 날 이삭이 다시 산 자로 돌아옴 — 예수님의 사흘 만의 부활을 예고하는 그림자입니다.</li>
+      </ul>
+      <div class="apply">우리는 아브라함처럼 그림자가 아니라, 이미 죽으시고 다시 살아나신 그리스도 그 실체를 보고 믿는 특권을 가졌습니다.</div>
+    `
+  }
+];
+
+const verseCards = [
+  { ref: "창세기 21:21", front: "네 자손이라 칭할 자는 이삭으로 말미암으리라", back: "언약의 아들, 시험의 배경" },
+  { ref: "히브리서 11:17", front: "아브라함은 시험을 받을 때에 믿음으로 이삭을 드렸으니", back: "믿음으로 시험을 통과하다" },
+  { ref: "히브리서 11:19", front: "하나님이 능히 죽은 자 가운데서 다시 살리실 줄로 생각한지라", back: "아브라함의 믿음 = 부활 신앙" },
+  { ref: "창세기 22:6", front: "이삭이 번제 나무를 자기 아들 이삭에게 지우고", back: "십자가를 지신 예수님의 예표" },
+  { ref: "요한복음 1:29", front: "보라 세상 죄를 지고 가는 하나님의 어린 양이로다", back: "대속의 숫양 = 예수 그리스도" },
+  { ref: "창세기 22:4", front: "제 삼일에 아브라함이 눈을 들어 그곳을 멀리 바라본지라", back: "사흘 만의 부활을 예고하는 그림자" }
+];
+
+const typology = [
+  { tag: "장소", isaac: "모리아산 (창22:2)", jesus: "골고다 언덕 (요19:17)", detail: "모리아산은 훗날 솔로몬이 성전을 세운 자리(대하3:1)이며, 신약 시대 예수 그리스도가 십자가에 못 박히신 골고다 언덕이 위치한 바로 그 지역입니다. 하나님은 수천 년 전 그곳에서 일어날 구속의 대역사를 아브라함을 통해 미리 연출하셨습니다." },
+  { tag: "짐을 짐", isaac: "장작을 멘 이삭 (창22:6)", jesus: "십자가를 지신 예수님 (요19:17)", detail: "이삭은 제물을 태울 장작을 직접 어깨에 메고 산으로 올라갔습니다. 이는 훗날 예수 그리스도께서 친히 자기 십자가를 지고 골고다 언덕을 오르신 사건의 정확한 예표입니다." },
+  { tag: "순종", isaac: "아버지의 뜻에 결박당한 이삭", jesus: "자원하여 복종하신 예수님", detail: "아버지의 뜻에 기꺼이 결박당한 이삭은, 우리를 구원하시기 위해 아버지의 뜻에 자원하여 복종하신 예수님의 순종을 그대로 보여줍니다." },
+  { tag: "대속물", isaac: "수풀에 뿔 걸린 숫양", jesus: "하나님의 어린양 (요1:29)", detail: "아브라함이 칼을 들 때, 하나님은 이삭을 대신할 숫양을 예비하셨고 그 땅을 '여호와 이레'라 불렀습니다. 이 숫양은 자기 백성의 죄를 대신하여 십자가에서 피 흘려 죽으실 예수님의 모형입니다." },
+  { tag: "사흘", isaac: "사흘 길 후 다시 산 자로 (창22:4)", jesus: "사흘 만의 부활", detail: "모리아산으로 향한 3일의 여정 동안, 아브라함에게 이삭은 이미 죽은 자와 같았습니다. 사흘째 그를 다시 산 자로 돌려받은 것은, 예수님이 십자가에서 죽으신 지 사흘 만에 부활하신 사건을 그대로 예고하는 그림자였습니다." }
+];
+
+const quiz = [
+  {
+    q: "히브리서 11:17에서 아브라함이 이삭을 드린 것은 무엇 때문이라고 말합니까?",
+    options: ["두려움으로", "믿음으로", "율법의 의무로", "주변 사람들의 시선 때문에"],
+    correct: 1
+  },
+  {
+    q: "시험(test)과 유혹(temptation)의 차이로 옳은 것은?",
+    options: [
+      "시험과 유혹 모두 마귀로부터 온다",
+      "시험은 마귀로부터, 유혹은 하나님으로부터 온다",
+      "시험은 하나님께로부터, 유혹은 마귀·세상으로부터 온다",
+      "둘 다 목적이 파괴적이라는 점에서 같다"
+    ],
+    correct: 2
+  },
+  {
+    q: "아브라함이 이삭을 다시 살리실 줄로 믿었다는 내용은 히브리서 몇 절에 기록되어 있습니까?",
+    options: ["히브리서 11:1", "히브리서 11:6", "히브리서 11:17", "히브리서 11:19"],
+    correct: 3
+  },
+  {
+    q: "헬라어 '아나스타시스'(부활)의 문자적 의미는 무엇입니까?",
+    options: ["영원한 생명", "다시 일어섬", "죄를 씻음", "빛으로 나아감"],
+    correct: 1
+  },
+  {
+    q: "모리아산에서 이삭을 대신하여 번제물로 드려진 것은 무엇입니까?",
+    options: ["비둘기", "수풀에 뿔이 걸린 숫양", "떡과 포도주", "어린 사슴"],
+    correct: 1
+  }
+];
+
+/* ---------- Render: Accordion ---------- */
+const accEl = document.getElementById('accordion');
+points.forEach((p, i) => {
+  const item = document.createElement('div');
+  item.className = 'acc-item';
+  item.innerHTML = `
+    <div class="acc-header">
+      <div class="acc-num">${i + 1}</div>
+      <div class="acc-title">${p.title}</div>
+      <svg class="acc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="acc-body"><div class="acc-body-inner">${p.body}</div></div>
+  `;
+  const header = item.querySelector('.acc-header');
+  const body = item.querySelector('.acc-body');
+  header.addEventListener('click', () => {
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.acc-item').forEach(other => {
+      other.classList.remove('open');
+      other.querySelector('.acc-body').style.maxHeight = null;
+    });
+    if (!isOpen) {
+      item.classList.add('open');
+      body.style.maxHeight = body.scrollHeight + 'px';
+    }
+  });
+  accEl.appendChild(item);
+});
+
+/* ---------- Render: Flip cards ---------- */
+const flipGrid = document.getElementById('flip-grid');
+verseCards.forEach(v => {
+  const card = document.createElement('div');
+  card.className = 'flip-card';
+  card.innerHTML = `
+    <div class="flip-inner">
+      <div class="flip-front">
+        <div class="ref">${v.ref}</div>
+        <div class="txt">“${v.front}”</div>
+        <div class="hint">탭하여 뒤집기 ↻</div>
+      </div>
+      <div class="flip-back">
+        <div class="label">이 말씀의 의미</div>
+        <div class="msg">${v.back}</div>
+      </div>
+    </div>
+  `;
+  card.addEventListener('click', () => card.classList.toggle('flipped'));
+  flipGrid.appendChild(card);
+});
+
+/* ---------- Render: Typology ---------- */
+const typoList = document.getElementById('typo-list');
+typology.forEach(t => {
+  const row = document.createElement('div');
+  row.className = 'typo-row';
+  row.innerHTML = `
+    <div class="typo-row-head">
+      <div class="typo-side isaac">🪵 ${t.isaac}</div>
+      <div class="typo-arrow">→</div>
+      <div class="typo-side jesus">✝️ ${t.jesus}</div>
+      <div class="typo-caret">⌄</div>
+    </div>
+    <div class="typo-detail"><div class="typo-detail-inner"><span class="typo-tag">${t.tag}</span><br>${t.detail}</div></div>
+  `;
+  const head = row.querySelector('.typo-row-head');
+  const detail = row.querySelector('.typo-detail');
+  head.addEventListener('click', () => {
+    const isOpen = row.classList.contains('open');
+    if (isOpen) {
+      row.classList.remove('open');
+      detail.style.maxHeight = null;
+    } else {
+      row.classList.add('open');
+      detail.style.maxHeight = detail.scrollHeight + 'px';
+    }
+  });
+  typoList.appendChild(row);
+});
+
+/* ---------- Render: Quiz ---------- */
+const quizContainer = document.getElementById('quiz-container');
+let score = 0;
+let answered = 0;
+
+function renderQuiz() {
+  quizContainer.innerHTML = '';
+  score = 0; answered = 0;
+  quiz.forEach((item, qi) => {
+    const card = document.createElement('div');
+    card.className = 'quiz-card';
+    card.innerHTML = `
+      <div class="quiz-q"><span class="qnum">Q${qi + 1}.</span>${item.q}</div>
+      <div class="quiz-options">
+        ${item.options.map((opt, oi) => `
+          <button class="quiz-opt" data-oi="${oi}">
+            <span class="dot"></span><span>${opt}</span>
+          </button>
+        `).join('')}
+      </div>
+      <div class="quiz-feedback"></div>
+    `;
+    const buttons = card.querySelectorAll('.quiz-opt');
+    const feedback = card.querySelector('.quiz-feedback');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const chosen = parseInt(btn.dataset.oi, 10);
+        buttons.forEach(b => b.disabled = true);
+        if (chosen === item.correct) {
+          btn.classList.add('correct');
+          btn.querySelector('.dot').textContent = '✓';
+          feedback.textContent = '정답입니다! 🎉';
+          score++;
+        } else {
+          btn.classList.add('wrong');
+          btn.querySelector('.dot').textContent = '✕';
+          buttons[item.correct].classList.add('correct');
+          buttons[item.correct].querySelector('.dot').textContent = '✓';
+          feedback.textContent = '아쉽지만 다시 한 번 본문을 살펴보세요.';
+        }
+        feedback.classList.add('show');
+        answered++;
+        if (answered === quiz.length) showSummary();
+      });
+    });
+    quizContainer.appendChild(card);
+  });
+}
+
+function showSummary() {
+  const summary = document.createElement('div');
+  summary.className = 'quiz-summary';
+  const pct = Math.round((score / quiz.length) * 100);
+  let msg = '전체 내용을 잘 이해하고 계세요.';
+  if (pct === 100) msg = '완벽합니다! 오늘 말씀이 마음에 온전히 새겨졌네요 👏';
+  else if (pct >= 60) msg = '좋아요! 조금만 더 다듬으면 완벽해요.';
+  else msg = '괜찮아요, 위 카드들을 다시 한 번 살펴보세요.';
+  summary.innerHTML = `
+    <h3>퀴즈 결과</h3>
+    <div class="score">${score} / ${quiz.length}</div>
+    <p>${msg}</p>
+    <button id="quiz-retry">다시 풀기</button>
+  `;
+  quizContainer.appendChild(summary);
+  document.getElementById('quiz-retry').addEventListener('click', renderQuiz);
+}
+
+renderQuiz();
+
+/* ---------- Progress bar ---------- */
+const progressBar = document.getElementById('progress-bar');
+function updateProgress() {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+  progressBar.style.width = Math.min(pct, 100) + '%';
+}
+window.addEventListener('scroll', updateProgress);
+updateProgress();
+
+/* ---------- Theme toggle ---------- */
+const themeBtn = document.getElementById('theme-toggle');
+function applyTheme(dark) {
+  document.body.classList.toggle('dark', dark);
+  themeBtn.textContent = dark ? '☀️' : '🌙';
+}
+const savedTheme = localStorage.getItem('sermon-review-theme');
+const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+applyTheme(savedTheme ? savedTheme === 'dark' : prefersDark);
+themeBtn.addEventListener('click', () => {
+  const isDark = !document.body.classList.contains('dark');
+  applyTheme(isDark);
+  localStorage.setItem('sermon-review-theme', isDark ? 'dark' : 'light');
+});
+
+/* ---------- Reveal on scroll ---------- */
+const revealEls = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in');
+      io.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+revealEls.forEach(el => io.observe(el));
+</script>
+</body>
+</html>
