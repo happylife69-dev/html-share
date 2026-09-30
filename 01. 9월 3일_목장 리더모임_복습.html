@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>교회란 무엇인가 · 목장 리더 모임 복습</title>
+<style>
+  :root{
+    --bg:#ffffff; --bg-alt:#f5f5f7; --card:#ffffff; --text:#1d1d1f; --text-2:#6e6e73; --line:rgba(0,0,0,.08);
+    --blue:#0071e3; --blue-soft:rgba(0,113,227,.10);
+    --green:#30a14e; --orange:#f56300; --purple:#8944ab; --red:#e30b3d;
+    --shadow:0 2px 12px rgba(0,0,0,.06), 0 12px 40px rgba(0,0,0,.06);
+    --glass:rgba(255,255,255,.72);
+    --radius:22px;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --bg:#000000; --bg-alt:#111113; --card:#1c1c1e; --text:#f5f5f7; --text-2:#a1a1a6; --line:rgba(255,255,255,.12);
+      --blue:#2997ff; --blue-soft:rgba(41,151,255,.16);
+      --green:#32d74b; --orange:#ff9f0a; --purple:#bf5af2; --red:#ff453a;
+      --shadow:0 2px 12px rgba(0,0,0,.4), 0 12px 40px rgba(0,0,0,.4);
+      --glass:rgba(28,28,30,.72);
+    }
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Apple SD Gothic Neo","Pretendard","Noto Sans KR",sans-serif;
+    background:var(--bg);color:var(--text);line-height:1.6;letter-spacing:-.011em;
+    -webkit-font-smoothing:antialiased;word-break:keep-all;
+  }
+  button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
+  .wrap{max-width:980px;margin:0 auto;padding:0 22px}
+
+  /* progress + nav */
+  #bar{position:fixed;top:0;left:0;height:3px;width:0;background:var(--blue);z-index:100;transition:width .1s}
+  nav{
+    position:sticky;top:0;z-index:50;background:var(--glass);
+    backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{display:flex;align-items:center;gap:6px;height:48px;overflow-x:auto;scrollbar-width:none}
+  nav .wrap::-webkit-scrollbar{display:none}
+  nav b{font-size:14px;font-weight:600;margin-right:auto;white-space:nowrap;padding-right:14px}
+  nav a{font-size:12.5px;color:var(--text-2);text-decoration:none;white-space:nowrap;padding:6px 11px;border-radius:99px;transition:.2s}
+  nav a:hover,nav a.on{color:var(--text);background:var(--blue-soft)}
+
+  /* hero */
+  .hero{text-align:center;padding:96px 0 84px;position:relative;overflow:hidden}
+  .hero::before{
+    content:"";position:absolute;inset:-20% -10% auto -10%;height:120%;z-index:-1;
+    background:
+      radial-gradient(40% 40% at 20% 30%,var(--blue-soft),transparent 70%),
+      radial-gradient(35% 35% at 80% 20%,rgba(137,68,171,.14),transparent 70%),
+      radial-gradient(40% 40% at 60% 70%,rgba(48,161,78,.12),transparent 70%);
+    filter:blur(20px);
+  }
+  .eyebrow{font-size:14px;font-weight:600;color:var(--orange);letter-spacing:.02em;margin-bottom:14px}
+  h1{font-size:clamp(38px,8vw,72px);line-height:1.08;font-weight:700;letter-spacing:-.03em}
+  h1 span{background:linear-gradient(90deg,var(--blue),var(--purple) 60%,var(--orange));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .lead{font-size:clamp(17px,2.4vw,24px);color:var(--text-2);max-width:640px;margin:22px auto 0;font-weight:400}
+  .pill-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:34px}
+  .btn{display:inline-block;padding:12px 24px;border-radius:99px;font-size:16px;font-weight:500;background:var(--blue);color:#fff;text-decoration:none;transition:.2s}
+  .btn:hover{transform:scale(1.03);filter:brightness(1.08)}
+  .btn.ghost{background:var(--blue-soft);color:var(--blue)}
+
+  /* sections */
+  section{padding:88px 0}
+  section.alt{background:var(--bg-alt)}
+  .kicker{font-size:14px;font-weight:600;color:var(--blue);margin-bottom:8px}
+  h2{font-size:clamp(30px,5vw,48px);line-height:1.12;font-weight:700;letter-spacing:-.025em}
+  .sub{color:var(--text-2);font-size:19px;margin-top:12px;max-width:640px}
+  .hint{display:inline-flex;align-items:center;gap:6px;margin-top:22px;font-size:13.5px;color:var(--text-2);background:var(--card);padding:6px 14px;border-radius:99px;border:1px solid var(--line)}
+
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  .card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid var(--line)}
+
+  /* flip cards */
+  .flips{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:40px}
+  .flip{perspective:1200px;text-align:left;display:block;width:100%}
+  .flip-in{display:grid;transition:transform .7s cubic-bezier(.2,.7,.2,1);transform-style:preserve-3d;min-height:290px}
+  .flip.on .flip-in{transform:rotateY(180deg)}
+  .face{grid-area:1/1;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:var(--radius);padding:28px;display:flex;flex-direction:column;justify-content:space-between;
+    background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow)}
+  .face.back{transform:rotateY(180deg);background:linear-gradient(160deg,var(--blue),#5e5ce6);color:#fff;border:none}
+  .face .num{font-size:13px;font-weight:600;color:var(--text-2)}
+  .face h3{font-size:24px;line-height:1.3;font-weight:650;letter-spacing:-.02em}
+  .face .tap{font-size:13px;color:var(--blue)}
+  .face.back p{font-size:16.5px;line-height:1.65}
+  .face.back .tag{font-size:13px;opacity:.8}
+  .emoji{font-size:38px;line-height:1}
+
+  .summary{margin-top:28px;padding:30px 32px;border-radius:var(--radius);background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow)}
+  .summary small{display:block;color:var(--orange);font-weight:600;font-size:13px;margin-bottom:8px}
+  .summary p{font-size:clamp(18px,2.4vw,23px);line-height:1.6;font-weight:500;letter-spacing:-.018em}
+
+  /* triangle */
+  .stage{display:grid;grid-template-columns:1.05fr 1fr;gap:28px;align-items:center;margin-top:40px}
+  @media(max-width:780px){.stage{grid-template-columns:1fr}}
+  .tri{padding:20px}
+  .tri svg{width:100%;height:auto;display:block;overflow:visible}
+  .node{cursor:pointer;outline:none}
+  .node circle.bg{fill:var(--card);stroke:var(--line);stroke-width:1.5;transition:.3s}
+  .node text{fill:var(--text);text-anchor:middle;pointer-events:none}
+  .node .t1{font-size:19px;font-weight:650}
+  .node .t2{font-size:13px;fill:var(--text-2)}
+  .node:hover circle.bg,.node:focus-visible circle.bg{transform-box:fill-box;transform-origin:center;transform:scale(1.06)}
+  .node.on circle.bg{stroke-width:3.5}
+  .tri line{stroke:var(--line);stroke-width:2;stroke-dasharray:5 6}
+  .detail{padding:32px;min-height:320px;transition:.3s}
+  .detail .ico{font-size:40px}
+  .detail h3{font-size:28px;margin:10px 0 4px;letter-spacing:-.02em}
+  .detail .role{font-size:15px;font-weight:600;margin-bottom:14px}
+  .detail p{color:var(--text-2);font-size:17px}
+  .verse{margin-top:16px;padding:14px 18px;border-radius:14px;background:var(--bg-alt);border-left:4px solid var(--blue);font-size:16px;color:var(--text)}
+  .verse cite{display:block;font-style:normal;font-size:13px;color:var(--text-2);margin-top:4px}
+  .fade{animation:fade .45s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .callout{margin-top:24px;padding:20px 24px;border-radius:18px;background:var(--blue-soft);font-size:17px;font-weight:500}
+
+  /* segmented */
+  .seg{display:inline-flex;background:var(--bg);padding:4px;border-radius:14px;margin-top:34px;border:1px solid var(--line);flex-wrap:wrap}
+  section.alt .seg{background:var(--card)}
+  .seg button{padding:10px 20px;border-radius:11px;font-size:15px;font-weight:500;color:var(--text-2);transition:.25s}
+  .seg button.on{background:var(--blue);color:#fff;box-shadow:0 2px 8px rgba(0,113,227,.35)}
+  .stott{margin-top:20px;padding:34px}
+  .stott .en{font-size:13px;font-weight:600;letter-spacing:.06em;color:var(--blue);text-transform:uppercase}
+  .stott h3{font-size:30px;margin:6px 0 10px;letter-spacing:-.02em}
+  .stott p{font-size:18px;color:var(--text-2)}
+
+  /* cycle */
+  .cycle-box{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center;margin-top:34px}
+  @media(max-width:780px){.cycle-box{grid-template-columns:1fr}}
+  .cycle-box svg{width:100%;max-width:420px;margin:0 auto;display:block;overflow:visible}
+  .cyc-node{cursor:pointer}
+  .cyc-node circle{fill:var(--card);stroke-width:3;transition:.3s}
+  .cyc-node:hover circle{transform-box:fill-box;transform-origin:center;transform:scale(1.07)}
+  .cyc-node text{text-anchor:middle;font-weight:650;font-size:20px;fill:var(--text);pointer-events:none}
+  .quote{padding:28px;font-size:18px;line-height:1.7;letter-spacing:-.015em}
+  .quote em{font-style:normal;background:linear-gradient(transparent 60%,rgba(245,99,0,.3) 60%)}
+  .quote small{display:block;margin-top:12px;color:var(--text-2);font-size:13px}
+  .quote .btn{margin-top:14px;font-size:14px;padding:8px 18px}
+
+  /* balance */
+  .balance{padding:34px;margin-top:34px}
+  .balance .ends{display:flex;justify-content:space-between;gap:12px;font-size:15px;font-weight:600}
+  .balance .ends span small{display:block;font-weight:400;color:var(--text-2);font-size:13px}
+  .balance .ends span:last-child{text-align:right}
+  input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:8px;border-radius:99px;margin:26px 0 16px;outline:none;
+    background:linear-gradient(90deg,var(--purple),var(--blue) 50%,var(--orange))}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:32px;height:32px;border-radius:50%;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.35);border:none;cursor:grab}
+  input[type=range]::-moz-range-thumb{width:32px;height:32px;border-radius:50%;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.35);border:none}
+  .bal-msg{text-align:center;font-size:19px;font-weight:600;min-height:30px;transition:.3s}
+  .bal-msg.ok{color:var(--green)}
+  .bal-note{text-align:center;color:var(--text-2);font-size:15px;margin-top:6px}
+
+  /* match */
+  .match{display:grid;grid-template-columns:1fr 1fr;gap:16px 28px;margin-top:34px}
+  @media(max-width:640px){.match{grid-template-columns:1fr}}
+  .match h4{font-size:13px;color:var(--text-2);font-weight:600;margin-bottom:2px}
+  .m-item{width:100%;text-align:left;padding:16px 20px;border-radius:16px;background:var(--card);border:1.5px solid var(--line);box-shadow:var(--shadow);transition:.2s;font-size:16px;margin-top:10px}
+  .m-item:hover{transform:translateY(-2px)}
+  .m-item.sel{border-color:var(--blue);background:var(--blue-soft)}
+  .m-item.done{border-color:var(--green);background:rgba(48,161,78,.12);pointer-events:none}
+  .m-item.bad{animation:shake .4s;border-color:var(--red)}
+  .m-item cite{display:block;font-style:normal;font-size:13px;color:var(--text-2);margin-bottom:2px}
+  @keyframes shake{25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
+  .m-status{margin-top:18px;font-weight:600;color:var(--green);min-height:26px}
+
+  /* quiz */
+  .quiz{padding:36px;margin-top:34px;max-width:720px;margin-left:auto;margin-right:auto}
+  .q-top{display:flex;justify-content:space-between;align-items:center;font-size:14px;color:var(--text-2);font-weight:500}
+  .q-prog{height:6px;border-radius:99px;background:var(--bg-alt);margin:10px 0 26px;overflow:hidden}
+  .q-prog i{display:block;height:100%;width:0;background:var(--blue);border-radius:99px;transition:width .5s}
+  .q-text{font-size:clamp(20px,3vw,26px);line-height:1.4;font-weight:650;letter-spacing:-.02em;margin-bottom:22px}
+  .opt{display:block;width:100%;text-align:left;padding:16px 20px;margin-top:10px;border-radius:16px;border:1.5px solid var(--line);background:var(--bg);font-size:17px;transition:.2s}
+  section.alt .opt{background:var(--card)}
+  .opt:hover:not(:disabled){border-color:var(--blue);background:var(--blue-soft)}
+  .opt.right{border-color:var(--green);background:rgba(48,161,78,.14)}
+  .opt.wrong{border-color:var(--red);background:rgba(227,11,61,.10);animation:shake .4s}
+  .opt:disabled{cursor:default}
+  .explain{margin-top:20px;padding:16px 20px;border-radius:16px;background:var(--bg-alt);font-size:15.5px;color:var(--text-2);display:none}
+  .explain.show{display:block;animation:fade .4s}
+  .explain b{color:var(--text)}
+  .next{margin-top:20px;float:right}
+  .result{text-align:center;padding:10px 0}
+  .ring{width:170px;height:170px;margin:0 auto 14px;position:relative}
+  .ring svg{transform:rotate(-90deg)}
+  .ring circle{fill:none;stroke-width:12;stroke-linecap:round}
+  .ring .track{stroke:var(--bg-alt)}
+  .ring .val{stroke:var(--blue);stroke-dasharray:440;stroke-dashoffset:440;transition:stroke-dashoffset 1.2s cubic-bezier(.2,.7,.2,1)}
+  .ring div{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:40px;font-weight:700}
+  .ring div small{font-size:14px;color:var(--text-2);font-weight:400}
+  .result h3{font-size:26px}
+  .result p{color:var(--text-2);margin:8px 0 22px}
+  .gen{margin-top:20px;font-size:12.5px;color:var(--text-2);text-align:center}
+
+  footer{padding:60px 0 80px;text-align:center;color:var(--text-2);font-size:13.5px;line-height:1.8}
+  footer b{color:var(--text)}
+  .srcs{max-width:680px;margin:18px auto 0}
+
+  .confetti{position:fixed;top:-20px;width:10px;height:14px;z-index:200;pointer-events:none;animation:fall linear forwards}
+  @keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:.9}}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+
+<nav>
+  <div class="wrap">
+    <b>목장 리더 모임 복습</b>
+    <a href="#define">교회의 정의</a>
+    <a href="#purpose">존재 목적</a>
+    <a href="#mission">본질적 사명</a>
+    <a href="#balance">균형</a>
+    <a href="#quiz">퀴즈</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow reveal">목장 리더 모임 · 9월 3일</div>
+    <h1 class="reveal">교회는<br><span>무엇인가?</span></h1>
+    <p class="lead reveal">목장의 리더들은 교회를 섬기는 가장 중요한 사람들. 교회를 섬기기에 교회가 무엇인지를 잘 이해해야 합니다.</p>
+    <div class="pill-row reveal">
+      <a class="btn" href="#define">복습 시작하기</a>
+      <a class="btn ghost" href="#quiz">바로 퀴즈 풀기</a>
+    </div>
+  </div>
+</header>
+
+<!-- 1. 정의 -->
+<section id="define" class="alt">
+  <div class="wrap">
+    <div class="kicker reveal">01 · 교회의 정의</div>
+    <h2 class="reveal">교회는 건물이 아니라<br>사람입니다.</h2>
+    <p class="sub reveal">카드를 눌러 뒤집어 보세요. 앞면은 핵심 문장, 뒷면은 강의 설명입니다.</p>
+    <div class="flips">
+      <button class="flip reveal" aria-label="카드 뒤집기">
+        <div class="flip-in">
+          <div class="face"><div><div class="num">1</div><div class="emoji" style="margin:14px 0">🧍‍♀️🧍🧍‍♂️</div><h3>교회는 건물이 아니라 사람이다</h3></div><div class="tap">눌러서 뒤집기 ↻</div></div>
+          <div class="face back"><div><div class="tag">1</div><p style="margin-top:12px">예수 그리스도를 구주와 주님으로 영접한 사람들이 곧 교회다.</p></div></div>
+        </div>
+      </button>
+      <button class="flip reveal" aria-label="카드 뒤집기">
+        <div class="flip-in">
+          <div class="face"><div><div class="num">2</div><div class="emoji" style="margin:14px 0">🫶</div><h3>교회는 그리스도의 몸이며, 성도는 그 지체다</h3></div><div class="tap">눌러서 뒤집기 ↻</div></div>
+          <div class="face back"><div><div class="tag">2</div><p style="margin-top:12px">각 지체가 다르지만 하나의 몸으로 연결되어, 서로 없어서는 안 되는 유기적 공동체다. (고전 12장)</p></div></div>
+        </div>
+      </button>
+      <button class="flip reveal" aria-label="카드 뒤집기">
+        <div class="flip-in">
+          <div class="face"><div><div class="num">3</div><div class="emoji" style="margin:14px 0">🎒</div><h3>교회는 사랑으로 서로 짐을 지는 공동체다</h3></div><div class="tap">눌러서 뒤집기 ↻</div></div>
+          <div class="face back"><div><div class="tag">3 · 갈 6:2</div><p style="margin-top:12px">"너희가 짐을 서로 지라 그리하여 그리스도의 법을 성취하라"(갈 6:2) — 문제와 짐이 있는 것이 정상이며, 그것을 사랑으로 함께 나누는 것이 교회다.</p></div></div>
+        </div>
+      </button>
+    </div>
+    <div class="summary reveal">
+      <small>한 줄 요약</small>
+      <p>교회는 건물·조직이 아니라, 예수 그리스도를 주로 고백한 사람들이 그리스도의 몸을 이루어 사랑으로 서로 짐을 지며 세상에 그분의 영광을 증언하는 공동체다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 2. 목적 -->
+<section id="purpose">
+  <div class="wrap">
+    <div class="kicker reveal">02 · 교회의 존재 목적</div>
+    <h2 class="reveal">세 방향을 향해<br>존재합니다.</h2>
+    <p class="sub reveal">하나님 · 성도 · 세상. 원 세 개를 눌러 각 방향의 목적을 확인해 보세요.</p>
+    <div class="stage">
+      <div class="card tri reveal">
+        <svg viewBox="0 0 400 360" role="group" aria-label="교회의 세 가지 목적">
+          <line x1="200" y1="72" x2="82" y2="276"/><line x1="200" y1="72" x2="318" y2="276"/><line x1="82" y1="276" x2="318" y2="276"/>
+          <g class="node on" data-k="god" tabindex="0" role="button" aria-label="하나님을 위해서">
+            <circle class="bg" cx="200" cy="72" r="62" style="stroke:var(--blue)"/><text class="t1" x="200" y="70">하나님</text><text class="t2" x="200" y="92">예배</text>
+          </g>
+          <g class="node" data-k="church" tabindex="0" role="button" aria-label="교회를 위해서">
+            <circle class="bg" cx="82" cy="276" r="62" style="stroke:var(--green)"/><text class="t1" x="82" y="274">성도</text><text class="t2" x="82" y="296">교제·훈련</text>
+          </g>
+          <g class="node" data-k="world" tabindex="0" role="button" aria-label="세상을 위해서">
+            <circle class="bg" cx="318" cy="276" r="62" style="stroke:var(--orange)"/><text class="t1" x="318" y="274">세상</text><text class="t2" x="318" y="296">전도</text>
+          </g>
+        </svg>
+      </div>
+      <div class="card detail reveal" id="purposeDetail"></div>
+    </div>
+    <div class="callout reveal">세 방향(하나님/성도/세상) 중 하나로 교회의 목적을 축소하지 말고 균형 있게 감당해야 건강한 교회다. <span style="color:var(--text-2);font-weight:400">(Wayne Grudem, 『조직신학』 44장)</span></div>
+
+    <h3 class="reveal" style="font-size:26px;margin-top:64px;letter-spacing:-.02em">🎯 말씀 짝 맞추기</h3>
+    <p class="sub reveal" style="font-size:16px;margin-top:6px">왼쪽 말씀을 누르고, 오른쪽에서 알맞은 목적을 골라 보세요.</p>
+    <div class="match reveal" id="match">
+      <div><h4>말씀</h4><div id="mLeft"></div></div>
+      <div><h4>목적</h4><div id="mRight"></div></div>
+    </div>
+    <div class="m-status" id="mStatus"></div>
+  </div>
+</section>
+
+<!-- 3. 사명 -->
+<section id="mission" class="alt">
+  <div class="wrap">
+    <div class="kicker reveal">03 · 교회의 본질적 사명</div>
+    <h2 class="reveal">존 스토트가 말한<br>교회의 4가지 특징</h2>
+    <p class="sub reveal">『살아있는 교회(The Living Church)』 — 행 2:42-47을 기초로 제시한 교회의 본질적 특징입니다.</p>
+    <div class="seg reveal" id="stottSeg" role="tablist"></div>
+    <div class="card stott fade" id="stottPanel"></div>
+
+    <h3 class="reveal" style="font-size:28px;margin-top:70px;letter-spacing:-.02em">🔄 예배와 전도의 순환</h3>
+    <div class="cycle-box">
+      <svg viewBox="0 0 400 320" class="reveal" id="cycSvg" role="group" aria-label="예배와 전도의 순환">
+        <defs>
+          <marker id="ah" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--text-2)"/></marker>
+          <path id="cycPath" d="M120 160 C120 40,280 40,280 160 C280 280,120 280,120 160"/>
+        </defs>
+        <path d="M148 68 C190 42,240 42,262 80" fill="none" stroke="var(--text-2)" stroke-width="2.5" marker-end="url(#ah)"/>
+        <path d="M252 252 C210 278,160 278,138 240" fill="none" stroke="var(--text-2)" stroke-width="2.5" marker-end="url(#ah)"/>
+        <text x="200" y="36" text-anchor="middle" font-size="13" fill="var(--text-2)">증거로</text>
+        <text x="200" y="312" text-anchor="middle" font-size="13" fill="var(--text-2)">다시 예배로</text>
+        <g class="cyc-node" data-c="w"><circle cx="120" cy="160" r="58" stroke="var(--blue)"/><text x="120" y="167">예배</text></g>
+        <g class="cyc-node" data-c="e"><circle cx="280" cy="160" r="58" stroke="var(--orange)"/><text x="280" y="167">전도</text></g>
+        <circle r="8" fill="var(--purple)"><animateMotion dur="6s" repeatCount="indefinite"><mpath href="#cycPath"/></animateMotion></circle>
+      </svg>
+      <div class="card quote reveal" id="cycQuote"></div>
+    </div>
+
+    <div class="callout reveal" style="margin-top:40px">
+      <b>총체적 선교(holistic mission)</b> — 로잔언약(1974)의 실질적 기초자로서, 교회의 세상을 향한 사명을 전도(evangelism)와 사회적 책임(social responsibility)을 함께 아우르는 것으로 정의함 (『Christian Mission in the Modern World』)
+    </div>
+  </div>
+</section>
+
+<!-- 4. 균형 -->
+<section id="balance">
+  <div class="wrap">
+    <div class="kicker reveal">04 · 핵심은 '균형'</div>
+    <h2 class="reveal">이중 정체성,<br>어느 쪽으로도 치우치지 않기</h2>
+    <p class="sub reveal">성도는 "세상 밖으로 부름받음"(예배·교제·양육)과 "세상 속으로 파송됨"(전도·사회적 책임)이라는 이중 정체성을 가지며, 어느 한쪽으로 치우치지 않아야 한다.</p>
+    <div class="card balance reveal">
+      <div class="ends"><span>세상 밖으로 부름받음<small>예배 · 교제 · 양육</small></span><span>세상 속으로 파송됨<small>전도 · 사회적 책임</small></span></div>
+      <input type="range" id="balRange" min="0" max="100" value="12" aria-label="균형 슬라이더">
+      <div class="bal-msg" id="balMsg"></div>
+      <div class="bal-note" id="balNote">슬라이더를 움직여 균형점을 찾아보세요. <small>(체험용 문구는 복습을 위해 새로 붙인 것입니다)</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. 퀴즈 -->
+<section id="quiz" class="alt">
+  <div class="wrap">
+    <div class="kicker reveal">05 · 복습 퀴즈</div>
+    <h2 class="reveal">얼마나 기억나세요?</h2>
+    <p class="sub reveal">10문제. 틀려도 괜찮아요. 해설에서 강의 내용을 다시 확인할 수 있습니다.</p>
+    <div class="card quiz reveal" id="quizBox"></div>
+    <p class="gen">※ 퀴즈의 문제·보기·해설 구성은 복습을 위해 새로 만든 것이며, 정답의 근거는 강의 노트 내용입니다.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <b>오늘의 한 줄</b><br>
+    교회는 건물·조직이 아니라, 예수 그리스도를 주로 고백한 사람들이 그리스도의 몸을 이루어 사랑으로 서로 짐을 지며 세상에 그분의 영광을 증언하는 공동체다.
+    <div class="srcs">
+      참고: Wayne Grudem, Systematic Theology, ch.44 "The Purposes of the Church" · Rick Warren, The Purpose Driven Church (5대 목적: 예배·교제·훈련·봉사·전도) · John Stott, The Living Church: Convictions of a Lifelong Pastor (IVP, 2007) · Christian Mission in the Modern World (1975) · Lausanne Covenant (1974)
+    </div>
+    <div class="srcs" style="opacity:.7">원본 노트: 목장 리더 모임 (9월 3일) · 이 복습 페이지는 인터넷 연결 없이 열립니다.</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+
+  /* reveal + progress + nav highlight */
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+  $$('.reveal').forEach(el=>io.observe(el));
+  const links=$$('nav a'), secs=links.map(a=>$(a.getAttribute('href')));
+  function onScroll(){
+    const h=document.documentElement;
+    $('#bar').style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
+    let cur=-1; secs.forEach((s,i)=>{if(s.getBoundingClientRect().top<160)cur=i});
+    links.forEach((a,i)=>a.classList.toggle('on',i===cur));
+  }
+  addEventListener('scroll',onScroll,{passive:true}); onScroll();
+
+  /* flip cards */
+  $$('.flip').forEach(f=>f.addEventListener('click',()=>f.classList.toggle('on')));
+
+  /* purposes */
+  const P={
+    god:{ico:'🙏',h:'하나님을 위해서',role:'예배',c:'var(--blue)',
+      p:'교회는 예배로 하나님을 섬긴다.',v:'시와 찬송과 신령한 노래로... 하나님을 찬양하고',r:'골 3:16'},
+    world:{ico:'🌍',h:'세상을 위해서',role:'전도(와 섬김)',c:'var(--orange)',
+      p:'복음을 전하여 제자 삼는 것.',v:'너희는 가서 모든 민족을 제자로 삼아...',r:'마 28:19'},
+    church:{ico:'🤝',h:'교회를 위해서',role:'교제와 훈련(양육)',c:'var(--green)',
+      p:'서로를 그리스도 안에서 온전한 자로 세우는 것.',v:'우리가... 각 사람을 그리스도 안에서 완전한 자로 세우려 함이니',r:'골 1:28',
+      x:'초대교회는 가르침(훈련)·교제·떡을 뗌·기도에 힘썼다(행 2:42).'}
+  };
+  function showPurpose(k){
+    const d=P[k];
+    $$('.node').forEach(n=>n.classList.toggle('on',n.dataset.k===k));
+    const el=$('#purposeDetail');
+    el.innerHTML=`<div class="fade"><div class="ico">${d.ico}</div><h3>${d.h}</h3><div class="role" style="color:${d.c}">— ${d.role}</div><p>${d.p}</p>
+      <div class="verse" style="border-color:${d.c}">"${d.v}"<cite>${d.r}</cite></div>${d.x?`<p style="margin-top:14px;font-size:15.5px">${d.x}</p>`:''}</div>`;
+  }
+  $$('.node').forEach(n=>{
+    n.addEventListener('click',()=>showPurpose(n.dataset.k));
+    n.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();showPurpose(n.dataset.k)}});
+  });
+  showPurpose('god');
+
+  /* matching game */
+  const pairs=[
+    {ref:'골 3:16',v:'시와 찬송과 신령한 노래로... 하나님을 찬양하고',a:'god'},
+    {ref:'마 28:19',v:'너희는 가서 모든 민족을 제자로 삼아...',a:'world'},
+    {ref:'골 1:28',v:'우리가... 각 사람을 그리스도 안에서 완전한 자로 세우려 함이니',a:'church'}
+  ];
+  const targets=[{k:'church',t:'교회를 위해서 — 교제와 훈련(양육)'},{k:'god',t:'하나님을 위해서 — 예배'},{k:'world',t:'세상을 위해서 — 전도(와 섬김)'}];
+  let selL=null, matched=0;
+  const mL=$('#mLeft'), mR=$('#mRight');
+  pairs.forEach(p=>{
+    const b=document.createElement('button');b.className='m-item';b.dataset.a=p.a;
+    b.innerHTML=`<cite>${p.ref}</cite>"${p.v}"`;
+    b.onclick=()=>{ $$('.m-item',mL).forEach(x=>x.classList.remove('sel')); b.classList.add('sel'); selL=b; };
+    mL.appendChild(b);
+  });
+  targets.forEach(t=>{
+    const b=document.createElement('button');b.className='m-item';b.dataset.k=t.k;b.textContent=t.t;
+    b.onclick=()=>{
+      if(!selL){ $('#mStatus').textContent='먼저 왼쪽에서 말씀을 골라 주세요.'; $('#mStatus').style.color='var(--text-2)'; return; }
+      if(selL.dataset.a===t.k){
+        selL.classList.remove('sel');selL.classList.add('done');b.classList.add('done');selL=null;matched++;
+        $('#mStatus').style.color='var(--green)';
+        $('#mStatus').textContent=matched===3?'🎉 모두 맞혔어요!':`정답! (${matched}/3)`;
+        if(matched===3) burst();
+      }else{
+        b.classList.add('bad');setTimeout(()=>b.classList.remove('bad'),450);
+        $('#mStatus').style.color='var(--red)';$('#mStatus').textContent='다시 한 번 생각해 보세요.';
+      }
+    };
+    mR.appendChild(b);
+  });
+
+  /* Stott */
+  const S=[
+    {k:'배우는 교회',en:'Learning',t:'사도의 가르침을 받아 말씀에 굳게 서는 교회'},
+    {k:'돌보는 교회',en:'Caring',t:'서로 교제하며 필요를 나누는 교회 (고후 8-9장의 희생적 헌금 정신)'},
+    {k:'예배하는 교회',en:'Worshipping',t:'떡을 떼며 기도하는, 말씀을 듣는 데서 시작되는 참된 예배'},
+    {k:'전도하는 교회',en:'Evangelising',t:'날마다 구원받는 사람을 더하게 하시는 교회'}
+  ];
+  const seg=$('#stottSeg');
+  S.forEach((s,i)=>{
+    const b=document.createElement('button');b.textContent=s.k;b.setAttribute('role','tab');
+    b.onclick=()=>{ $$('button',seg).forEach(x=>x.classList.remove('on')); b.classList.add('on');
+      const p=$('#stottPanel'); p.classList.remove('fade'); void p.offsetWidth; p.classList.add('fade');
+      p.innerHTML=`<div class="en">${i+1} · ${s.en}</div><h3>${s.k}</h3><p>${s.t}</p>`; };
+    seg.appendChild(b);
+  });
+  seg.firstChild.click();
+
+  /* cycle */
+  const svg=$('#cycSvg'); let running=true;
+  const q=$('#cycQuote');
+  function cycShow(c){
+    if(c==='w') q.innerHTML=`<em>"우리가 참으로 하나님을 예배한다면, 그분을 다른 이에게 알리지 않을 수 없게 된다...</em>"<small>예배 → 전도 · 존 스토트</small>${btn()}`;
+    else if(c==='e') q.innerHTML=`"...<em>예배는 증거로 이어지고, 증거는 다시 예배로 이어지는 끊임없는 순환을 이룬다.</em>"<small>전도 → 예배 · 존 스토트</small>${btn()}`;
+    else q.innerHTML=`<em>예배와 전도를 분리된 목적이 아니라 서로를 낳는 순환 관계로 봄</em><small>원을 눌러 스토트의 말을 확인해 보세요</small>${btn()}`;
+    const bt=$('#cycBtn'); if(bt) bt.onclick=toggle;
+  }
+  function btn(){return `<br><button class="btn ghost" id="cycBtn">${running?'⏸ 멈추기':'▶ 움직이기'}</button>`}
+  function toggle(){ running=!running; running?svg.unpauseAnimations():svg.pauseAnimations(); const b=$('#cycBtn'); if(b)b.textContent=running?'⏸ 멈추기':'▶ 움직이기'; }
+  $$('.cyc-node').forEach(n=>n.addEventListener('click',()=>cycShow(n.dataset.c)));
+  cycShow();
+
+  /* balance */
+  const r=$('#balRange'), bm=$('#balMsg'), bn=$('#balNote');
+  function bal(){
+    const v=+r.value;
+    if(v>=42&&v<=58){bm.textContent='⚖️ 균형!';bm.className='bal-msg ok';bn.textContent='부름받음과 파송됨, 두 정체성이 함께 서 있습니다.';}
+    else if(v<42){bm.textContent='안으로만 향하고 있어요';bm.className='bal-msg';bn.textContent='예배·교제·양육에 머물러 있지는 않은지 — 핵심은 균형.';}
+    else{bm.textContent='밖으로만 향하고 있어요';bm.className='bal-msg';bn.textContent='전도·사회적 책임에 치우쳐 예배와 양육이 약해지지는 않았는지 — 핵심은 균형.';}
+  }
+  r.addEventListener('input',bal);bal();
+
+  /* quiz */
+  const Q=[
+    {q:'교회는 건물이 아니라 무엇인가?',o:['사람','조직','프로그램','전통'],a:0,e:'예수 그리스도를 구주와 주님으로 영접한 <b>사람들</b>이 곧 교회입니다.'},
+    {q:'"교회는 그리스도의 (   )이며, 성도는 그 (   )다." 알맞은 짝은?',o:['머리 / 종','몸 / 지체','집 / 기둥','신부 / 하객'],a:1,e:'각 지체가 다르지만 하나의 몸으로 연결된 유기적 공동체입니다. (고전 12장)'},
+    {q:'갈 6:2 "너희가 짐을 서로 지라"에 담긴 교회의 모습은?',o:['짐이 없어야 참된 교회다','문제와 짐이 있는 것이 정상이며, 사랑으로 함께 나눈다','각자 자기 짐은 각자 진다','목회자가 모든 짐을 진다'],a:1,e:'<b>문제와 짐이 있는 것이 정상</b>이며, 그것을 사랑으로 함께 나누는 것이 교회입니다.'},
+    {q:'"하나님을 위해서" 교회가 하는 일은?',o:['예배','전도','교제','봉사'],a:0,e:'교회는 <b>예배</b>로 하나님을 섬깁니다. (골 3:16)'},
+    {q:'"세상을 위해서" 교회가 하는 일은?',o:['훈련','전도(와 섬김)','예배','교제'],a:1,e:'복음을 전하여 제자 삼는 것입니다. (마 28:19)'},
+    {q:'골 1:28 "각 사람을 그리스도 안에서 완전한 자로 세우려 함"과 가장 관련 깊은 목적은?',o:['예배','전도','교제와 훈련(양육)','헌금'],a:2,e:'교회를 위해서 — <b>교제와 훈련(양육)</b>. 서로를 그리스도 안에서 온전한 자로 세우는 것입니다.'},
+    {q:'존 스토트가 말한 교회의 4가지 특징에 <u>없는</u> 것은?',o:['배우는 교회','돌보는 교회','건축하는 교회','전도하는 교회'],a:2,e:'배우는(Learning) · 돌보는(Caring) · 예배하는(Worshipping) · 전도하는(Evangelising) 교회입니다.'},
+    {q:'"서로 교제하며 필요를 나누는 교회"는 스토트의 어느 특징인가?',o:['배우는 교회','돌보는 교회','예배하는 교회','전도하는 교회'],a:1,e:'<b>돌보는 교회(Caring)</b> — 고후 8-9장의 희생적 헌금 정신과 연결됩니다.'},
+    {q:'스토트가 본 예배와 전도의 관계는?',o:['서로 분리된 두 목적','전도가 예배보다 우선','서로를 낳는 순환 관계','예배만 있으면 충분'],a:2,e:'예배는 증거로 이어지고, 증거는 다시 예배로 이어지는 <b>끊임없는 순환</b>을 이룹니다.'},
+    {q:'로잔언약(1974)의 기초자로서 스토트가 말한 총체적 선교란?',o:['예배와 찬양','전도와 사회적 책임을 함께 아우르는 것','교회 성장','교제와 양육'],a:1,e:'교회의 세상을 향한 사명을 <b>전도(evangelism)와 사회적 책임(social responsibility)</b>을 함께 아우르는 것으로 정의합니다.'}
+  ];
+  const box=$('#quizBox'); let qi=0, score=0;
+  function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+  function renderQ(){
+    const it=Q[qi]; const opts=shuffle(it.o.map((t,i)=>({t,ok:i===it.a})));
+    box.innerHTML=`<div class="q-top"><span>문제 ${qi+1} / ${Q.length}</span><span>점수 ${score}</span></div>
+      <div class="q-prog"><i style="width:${qi/Q.length*100}%"></i></div>
+      <div class="q-text">${it.q}</div><div id="opts"></div>
+      <div class="explain" id="exp"></div><div style="overflow:hidden"><button class="btn next" id="nx" style="display:none">${qi===Q.length-1?'결과 보기':'다음 문제'}</button></div>`;
+    requestAnimationFrame(()=>{ $('.q-prog i',box).style.width=((qi)/Q.length*100)+'%'; });
+    const wrap=$('#opts');
+    opts.forEach(o=>{
+      const b=document.createElement('button');b.className='opt';b.textContent=o.t;
+      b.onclick=()=>{
+        $$('.opt',wrap).forEach(x=>x.disabled=true);
+        const all=$$('.opt',wrap);
+        all.forEach((x,i)=>{ if(opts[i].ok) x.classList.add('right'); });
+        if(o.ok){score++;}else{b.classList.add('wrong');}
+        const ex=$('#exp');ex.innerHTML=(o.ok?'✅ 정답! ':'❌ 아쉬워요. ')+it.e;ex.classList.add('show');
+        $('#nx').style.display='inline-block';
+        $('.q-prog i',box).style.width=((qi+1)/Q.length*100)+'%';
+      };
+      wrap.appendChild(b);
+    });
+    $('#nx').onclick=()=>{ qi++; qi<Q.length?renderQ():renderR(); };
+  }
+  function renderR(){
+    const pct=score/Q.length;
+    const msg=pct===1?['완벽합니다! 🎉','교회의 정의·목적·사명을 온전히 붙드셨네요.']:pct>=.7?['훌륭해요! 👏','핵심을 잘 기억하고 계세요. 틀린 부분만 한 번 더 살펴보세요.']:['한 번 더 복습해 볼까요? 📖','위로 스크롤해 카드와 다이어그램을 다시 눌러 보세요.'];
+    box.innerHTML=`<div class="result"><div class="ring"><svg viewBox="0 0 170 170" width="170" height="170"><circle class="track" cx="85" cy="85" r="70"/><circle class="val" id="rv" cx="85" cy="85" r="70"/></svg><div>${score}<small>/ ${Q.length}</small></div></div>
+      <h3>${msg[0]}</h3><p>${msg[1]}</p><button class="btn" id="again">다시 풀기</button></div>`;
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{$('#rv').style.strokeDashoffset=440*(1-pct)}));
+    $('#again').onclick=()=>{qi=0;score=0;renderQ()};
+    if(pct>=.7) burst();
+  }
+  renderQ();
+
+  /* confetti */
+  function burst(){
+    const cols=['#0071e3','#30a14e','#f56300','#8944ab','#e30b3d','#ffcc00'];
+    for(let i=0;i<60;i++){
+      const c=document.createElement('i');c.className='confetti';
+      c.style.left=Math.random()*100+'vw';c.style.background=cols[i%cols.length];
+      c.style.animationDuration=(1.8+Math.random()*1.8)+'s';c.style.animationDelay=Math.random()*.5+'s';
+      c.style.borderRadius=Math.random()>.5?'50%':'2px';
+      document.body.appendChild(c);setTimeout(()=>c.remove(),4200);
+    }
+  }
+})();
+</script>
+</body>
+</html>
