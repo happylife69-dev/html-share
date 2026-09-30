@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>2강 복습 · 목자의 소명과 성경적 모델</title>
+<style>
+:root{
+  --bg:#f5f5f7; --card:#ffffff; --text:#1d1d1f; --sub:#6e6e73; --line:rgba(0,0,0,.08);
+  --blue:#0071e3; --green:#34c759; --red:#ff3b30; --orange:#ff9f0a; --purple:#af52de;
+  --shadow:0 2px 12px rgba(0,0,0,.06); --shadow-lg:0 12px 40px rgba(0,0,0,.12);
+  --nav:rgba(255,255,255,.72); --soft:#f0f0f3;
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Apple SD Gothic Neo","Noto Sans KR","Helvetica Neue",sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#000; --card:#1c1c1e; --text:#f5f5f7; --sub:#98989d; --line:rgba(255,255,255,.12);
+    --blue:#2997ff; --shadow:none; --shadow-lg:0 12px 40px rgba(0,0,0,.6); --nav:rgba(29,29,31,.72); --soft:#2c2c2e;}
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;word-break:keep-all}
+button{font-family:inherit;cursor:pointer;border:none;color:inherit}
+textarea{font-family:inherit}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:50;background:var(--nav);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:980px;margin:0 auto;padding:0 20px;height:52px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.nav-title{font-size:15px;font-weight:600;white-space:nowrap}
+.nav-links{display:flex;gap:18px;font-size:13px;overflow-x:auto;scrollbar-width:none}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links a{color:var(--sub);text-decoration:none;white-space:nowrap;transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.bar{height:3px;background:transparent}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--purple));transition:width .5s cubic-bezier(.4,0,.2,1)}
+
+/* LAYOUT */
+section{max-width:980px;margin:0 auto;padding:90px 20px 20px}
+.eyebrow{font-size:14px;font-weight:600;color:var(--orange);letter-spacing:.02em;margin-bottom:8px}
+h2{font-size:clamp(30px,5vw,48px);font-weight:700;letter-spacing:-.03em;line-height:1.15;margin-bottom:12px}
+.lead{font-size:clamp(17px,2.2vw,21px);color:var(--sub);max-width:680px;margin-bottom:36px}
+.card{background:var(--card);border-radius:24px;padding:28px;box-shadow:var(--shadow)}
+
+/* HERO */
+.hero{text-align:center;padding:100px 20px 40px;max-width:980px;margin:0 auto}
+.hero .chip{display:inline-block;background:var(--card);color:var(--sub);font-size:13px;font-weight:500;padding:6px 14px;border-radius:99px;box-shadow:var(--shadow);margin-bottom:24px}
+.hero h1{font-size:clamp(40px,8vw,84px);font-weight:800;letter-spacing:-.045em;line-height:1.05;
+  background:linear-gradient(135deg,#0071e3 0%,#af52de 55%,#ff9f0a 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{font-size:clamp(18px,2.6vw,26px);color:var(--sub);margin:22px auto 34px;max-width:680px;font-weight:500}
+.btn{display:inline-block;background:var(--blue);color:#fff;font-size:17px;font-weight:500;padding:13px 28px;border-radius:99px;text-decoration:none;transition:transform .2s,opacity .2s}
+.btn:hover{opacity:.9}.btn:active{transform:scale(.96)}
+.btn.ghost{background:var(--soft);color:var(--blue)}
+.pills{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:34px}
+.pill{background:var(--card);border-radius:99px;padding:8px 16px;font-size:14px;color:var(--sub);box-shadow:var(--shadow)}
+.pill b{color:var(--text)}
+
+/* RECAP */
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.tap{background:var(--card);border-radius:24px;padding:26px;text-align:left;box-shadow:var(--shadow);transition:transform .25s,box-shadow .25s;width:100%}
+.tap:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.tap .ic{font-size:38px;margin-bottom:10px}
+.tap h3{font-size:22px;letter-spacing:-.02em}
+.tap p{max-height:0;overflow:hidden;opacity:0;color:var(--sub);font-size:15px;transition:all .35s}
+.tap.open p{max-height:120px;opacity:1;margin-top:10px}
+.callout{margin-top:20px;background:var(--soft);border-radius:18px;padding:18px 22px;font-size:16px}
+.callout b{color:var(--blue)}
+
+/* FLASH */
+.flash-wrap{display:flex;flex-direction:column;align-items:center;gap:20px}
+.flash{perspective:1400px;width:100%;max-width:640px;height:340px;cursor:pointer}
+.flash-in{position:relative;width:100%;height:100%;transition:transform .7s cubic-bezier(.3,1.2,.4,1);transform-style:preserve-3d}
+.flash.flip .flash-in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:28px;padding:34px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;box-shadow:var(--shadow-lg)}
+.face.front{background:var(--card)}
+.face.back{background:linear-gradient(140deg,#0071e3,#5e5ce6);color:#fff;transform:rotateY(180deg)}
+.face .tag{font-size:13px;font-weight:600;color:var(--orange);margin-bottom:14px}
+.face.back .tag{color:rgba(255,255,255,.75)}
+.face .q{font-size:clamp(22px,3.6vw,30px);font-weight:700;letter-spacing:-.02em;line-height:1.3}
+.face .a{font-size:clamp(16px,2.4vw,19px);line-height:1.65;font-weight:500}
+.face .hint{position:absolute;bottom:16px;font-size:12px;color:var(--sub)}
+.face.back .hint{color:rgba(255,255,255,.6)}
+.ctrl{display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center}
+.ctrl button{background:var(--card);box-shadow:var(--shadow);padding:11px 22px;border-radius:99px;font-size:15px;font-weight:500;transition:transform .15s}
+.ctrl button:active{transform:scale(.94)}
+.dots{display:flex;gap:6px}
+.dots i{width:8px;height:8px;border-radius:50%;background:var(--line);transition:all .3s}
+.dots i.seen{background:var(--blue)}
+.dots i.cur{transform:scale(1.5)}
+.count{font-size:14px;color:var(--sub);min-width:50px;text-align:center}
+
+/* GAME */
+.stage{max-width:640px;margin:0 auto;text-align:center}
+.game-card{min-height:230px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:14px;animation:pop .4s}
+@keyframes pop{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
+.stmt{font-size:clamp(21px,3.4vw,28px);font-weight:700;letter-spacing:-.02em;line-height:1.35}
+.tagline{font-size:13px;color:var(--sub)}
+.choices{display:flex;gap:12px;margin-top:18px;justify-content:center;flex-wrap:wrap}
+.choice{flex:1;min-width:130px;max-width:240px;background:var(--soft);padding:16px 18px;border-radius:18px;font-size:17px;font-weight:600;transition:transform .15s,background .25s,color .25s}
+.choice:hover:not(:disabled){transform:translateY(-2px)}
+.choice.right{background:var(--green);color:#fff}
+.choice.wrong{background:var(--red);color:#fff;animation:shake .4s}
+.choice:disabled{cursor:default}
+@keyframes shake{0%,100%{transform:none}25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
+.fb{min-height:52px;margin-top:16px;font-size:15px;color:var(--sub);line-height:1.5}
+.fb b{color:var(--text)}
+.score{font-size:14px;color:var(--sub);margin-bottom:14px}
+.big{font-size:64px;font-weight:800;letter-spacing:-.04em}
+.next{margin-top:14px;background:var(--blue);color:#fff;padding:12px 26px;border-radius:99px;font-size:16px;font-weight:500}
+
+/* MATCH */
+.opts{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:16px;width:100%}
+.opt{background:var(--soft);padding:14px;border-radius:16px;font-size:15px;font-weight:600;transition:all .2s}
+.opt small{display:block;font-weight:400;color:var(--sub);font-size:12px;margin-top:2px}
+.opt.right{background:var(--green);color:#fff}.opt.right small{color:rgba(255,255,255,.85)}
+.opt.wrong{background:var(--red);color:#fff;animation:shake .4s}.opt.wrong small{color:rgba(255,255,255,.85)}
+.opt:disabled{cursor:default}
+
+/* DIAG */
+.diag{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:center}
+.slider-row{margin-bottom:24px}
+.slider-row label{display:flex;justify-content:space-between;font-weight:600;font-size:17px;margin-bottom:2px}
+.slider-row label span.v{color:var(--blue);font-variant-numeric:tabular-nums}
+.slider-row p{font-size:13px;color:var(--sub);margin-bottom:10px}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:6px;background:var(--soft);border-radius:99px;outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;border-radius:50%;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.3);border:.5px solid var(--line)}
+input[type=range]::-moz-range-thumb{width:26px;height:26px;border-radius:50%;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.3);border:none}
+.radar{width:100%;max-width:320px;margin:0 auto;display:block}
+.diag-msg{margin-top:14px;background:var(--soft);border-radius:16px;padding:14px 18px;font-size:15px}
+
+/* QUIZ */
+.qprog{height:6px;background:var(--soft);border-radius:99px;overflow:hidden;margin-bottom:22px}
+.qprog i{display:block;height:100%;background:var(--blue);width:0;transition:width .4s}
+.qtext{font-size:clamp(20px,3vw,26px);font-weight:700;letter-spacing:-.02em;line-height:1.35;margin-bottom:18px}
+.qopts{display:flex;flex-direction:column;gap:10px}
+.qopt{text-align:left;background:var(--soft);padding:16px 20px;border-radius:16px;font-size:16px;font-weight:500;transition:all .2s}
+.qopt:hover:not(:disabled){transform:translateX(4px)}
+.qopt.right{background:var(--green);color:#fff}
+.qopt.wrong{background:var(--red);color:#fff;animation:shake .4s}
+.qopt:disabled{cursor:default}
+.expl{margin-top:16px;padding:14px 18px;background:var(--soft);border-radius:14px;font-size:15px;color:var(--sub);display:none}
+.expl.show{display:block;animation:pop .3s}
+.result{text-align:center;padding:10px 0}
+.result .big{background:linear-gradient(135deg,#0071e3,#af52de);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* ACTION */
+.qa{margin-bottom:22px}
+.qa h4{font-size:16px;margin-bottom:8px;line-height:1.5}
+.qa textarea{width:100%;min-height:76px;border-radius:14px;border:1px solid var(--line);background:var(--soft);color:var(--text);padding:12px 14px;font-size:15px;resize:vertical;outline:none;transition:border .2s}
+.qa textarea:focus{border-color:var(--blue)}
+.note{font-size:12px;color:var(--sub);margin-top:6px}
+.chk{display:flex;align-items:flex-start;gap:14px;padding:16px 4px;border-bottom:1px solid var(--line);cursor:pointer}
+.chk:last-of-type{border-bottom:none}
+.chk input{display:none}
+.chk .box{flex:none;width:28px;height:28px;border-radius:50%;border:2px solid var(--sub);display:grid;place-items:center;transition:all .25s;margin-top:1px}
+.chk .box svg{width:16px;height:16px;stroke:#fff;stroke-width:3;fill:none;stroke-dasharray:24;stroke-dashoffset:24;transition:stroke-dashoffset .3s .1s}
+.chk input:checked+.box{background:var(--green);border-color:var(--green)}
+.chk input:checked+.box svg{stroke-dashoffset:0}
+.chk span.t{font-size:17px;transition:color .25s}
+.chk input:checked~span.t{color:var(--sub);text-decoration:line-through}
+
+/* PRAYER */
+.prayer{text-align:center;padding:60px 28px;background:linear-gradient(160deg,#1d1d1f,#2c2c54);color:#f5f5f7;border-radius:32px}
+.prayer h2{font-size:clamp(26px,4vw,38px)}
+.prayer p{font-size:clamp(17px,2.4vw,21px);line-height:1.8;max-width:600px;margin:0 auto;color:#d2d2d7}
+footer{text-align:center;color:var(--sub);font-size:13px;padding:50px 20px 70px}
+
+.reveal{opacity:0;transform:translateY(24px);transition:all .8s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.confetti{position:fixed;top:-12px;width:9px;height:14px;z-index:99;pointer-events:none;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:.8}}
+
+@media(max-width:720px){
+  .grid3{grid-template-columns:1fr}
+  .diag{grid-template-columns:1fr}
+  .nav-title{display:none}
+  .flash{height:380px}
+  .opts{grid-template-columns:1fr}
+  section{padding-top:70px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-in">
+    <div class="nav-title">2강 복습</div>
+    <div class="nav-links">
+      <a href="#recap">1강 연결</a><a href="#cards">카드</a><a href="#sort">삯꾼 vs 목자</a>
+      <a href="#match">겔34장</a><a href="#diag">자가진단</a><a href="#quiz">퀴즈</a><a href="#action">실천</a>
+    </div>
+  </div>
+  <div class="bar"><i id="progress"></i></div>
+</nav>
+
+<header class="hero">
+  <div class="chip">목장 리더 모임 · 2강 복습</div>
+  <h1>목자의 소명과<br>성경적 모델</h1>
+  <p>관리가 아니라 관계, 기술 이전에 긍휼.<br>눌러 보고, 맞춰 보고, 돌아보며 복습해요.</p>
+  <a href="#recap" class="btn">복습 시작하기</a>
+  <div class="pills">
+    <div class="pill">📖 <b>요 10장</b></div>
+    <div class="pill">🐑 <b>겔 34장</b></div>
+    <div class="pill">💛 <b>막 6장</b></div>
+    <div class="pill">👑 <b>벧전 5장</b></div>
+  </div>
+</header>
+
+<!-- 1강 연결 -->
+<section id="recap" class="reveal">
+  <div class="eyebrow">지난 시간 연결</div>
+  <h2>교회는 건물이 아니라<br>사람, 그리스도의 몸</h2>
+  <p class="lead">1강에서 배운 교회의 존재 목적, 세 가지 방향을 눌러 보세요.</p>
+  <div class="grid3">
+    <button class="tap" data-i="0"><div class="ic">🙌</div><h3>예배</h3><p>교회 존재 목적의 세 방향 중 하나입니다. 세 방향은 균형을 이루어야 합니다.</p></button>
+    <button class="tap" data-i="1"><div class="ic">📣</div><h3>전도</h3><p>교회 존재 목적의 세 방향 중 하나입니다. 세 방향은 균형을 이루어야 합니다.</p></button>
+    <button class="tap" data-i="2"><div class="ic">🤝</div><h3>양육(교제)</h3><p>목장 리더가 특히 최전선에 서 있는 영역입니다. 양육과 교제로 교회를 세웁니다.</p></button>
+  </div>
+  <div class="callout">목장 리더(목자·부목자)는 이 세 방향 중 특히 <b>양육과 교제</b>의 최전선에서 교회를 세우는 사람들입니다. 그렇다면 <b>"목자"</b>라는 이름은 성경에서 무엇을 의미할까요?</div>
+</section>
+
+<!-- 플래시카드 -->
+<section id="cards" class="reveal">
+  <div class="eyebrow">핵심 구절 카드</div>
+  <h2>카드를 눌러<br>뒤집어 보세요</h2>
+  <p class="lead">앞면의 질문에 먼저 답해 보고, 눌러서 확인하세요. 모든 카드를 보면 진행률이 올라갑니다.</p>
+  <div class="flash-wrap">
+    <div class="flash" id="flash" tabindex="0" role="button" aria-label="카드 뒤집기">
+      <div class="flash-in">
+        <div class="face front"><div class="tag" id="fTag"></div><div class="q" id="fQ"></div><div class="hint">탭하여 뒤집기</div></div>
+        <div class="face back"><div class="tag" id="fTag2"></div><div class="a" id="fA"></div><div class="hint">탭하여 되돌리기</div></div>
+      </div>
+    </div>
+    <div class="ctrl">
+      <button id="fPrev">← 이전</button>
+      <div class="count" id="fCount"></div>
+      <button id="fNext">다음 →</button>
+    </div>
+    <div class="dots" id="fDots"></div>
+  </div>
+</section>
+
+<!-- 삯꾼 vs 목자 -->
+<section id="sort" class="reveal">
+  <div class="eyebrow">게임 ① 요 10:11-18</div>
+  <h2>삯꾼일까,<br>목자일까?</h2>
+  <p class="lead">문장을 읽고 누구의 모습인지 골라 보세요.</p>
+  <div class="card stage" id="sortStage"></div>
+</section>
+
+<!-- 겔34 -->
+<section id="match" class="reveal">
+  <div class="eyebrow">게임 ② 겔 34:2-4, 11-16</div>
+  <h2>거짓 목자가 놓친 양,<br>참 목자가 찾는 양</h2>
+  <p class="lead">우리 목장에서 마주칠 수 있는 상황입니다. 어떤 양에 해당하고, 목자는 무엇을 해야 할까요?</p>
+  <div class="card stage" id="matchStage"></div>
+</section>
+
+<!-- 자가진단 -->
+<section id="diag" class="reveal">
+  <div class="eyebrow">자가진단 · 벧전 5:1-4</div>
+  <h2>나의 목양,<br>몇 점일까요?</h2>
+  <p class="lead">베드로가 말한 세 가지 기준으로 최근의 나를 돌아보세요. 슬라이더를 움직이면 그래프가 바뀝니다.</p>
+  <div class="card diag">
+    <div>
+      <div class="slider-row"><label>억지로 ✕ → 자원함 ○ <span class="v" id="v0">5</span></label><p>의무감이 아니라 자원하는 마음으로</p><input type="range" min="1" max="10" value="5" data-k="0"></div>
+      <div class="slider-row"><label>더러운 이득 ✕ → 즐거운 뜻 ○ <span class="v" id="v1">5</span></label><p>인정·보상이 아니라 기쁨으로</p><input type="range" min="1" max="10" value="5" data-k="1"></div>
+      <div class="slider-row"><label>주장함 ✕ → 본이 됨 ○ <span class="v" id="v2">5</span></label><p>군림이 아니라 삶으로 보여주는 리더십</p><input type="range" min="1" max="10" value="5" data-k="2"></div>
+    </div>
+    <div>
+      <svg class="radar" viewBox="0 0 300 280" id="radar"></svg>
+      <div class="diag-msg" id="diagMsg">슬라이더를 움직여 보세요.</div>
+    </div>
+  </div>
+  <div class="note" style="text-align:center;margin-top:10px">점수는 이 브라우저에만 저장되며 어디로도 전송되지 않습니다.</div>
+</section>
+
+<!-- 퀴즈 -->
+<section id="quiz" class="reveal">
+  <div class="eyebrow">미니 퀴즈</div>
+  <h2>얼마나 기억하고<br>계신가요?</h2>
+  <p class="lead">7문항입니다. 틀려도 괜찮아요. 해설을 읽으며 다시 새겨 보세요.</p>
+  <div class="card" id="quizBox"></div>
+</section>
+
+<!-- 실천 -->
+<section id="action" class="reveal">
+  <div class="eyebrow">토의 · 실천</div>
+  <h2>삶으로<br>이어가기</h2>
+  <p class="lead">나눔 질문을 떠올려 보고, 다음 모임까지 실천할 과제에 체크하세요.</p>
+
+  <div class="card" style="margin-bottom:20px">
+    <h3 style="font-size:22px;margin-bottom:18px;letter-spacing:-.02em">💬 토의 / 나눔 질문</h3>
+    <div class="qa"><h4>1. 나는 요즘 목장 사역을 "삯꾼"의 마음으로 대할 때가 있는가, "목자"의 마음으로 대하는가? 구체적인 순간을 나눠보자.</h4><textarea data-n="q1" placeholder="나의 묵상 메모 (이 기기에만 저장됩니다)"></textarea></div>
+    <div class="qa"><h4>2. 우리 목장 안에 겔34장의 "병든 자·쫓기는 자·상한 자·잃어버린 자"에 해당하는 목원이 있는가? 이름을 떠올려보고, 어떻게 다가갈 수 있을지 나눠보자.</h4><textarea data-n="q2" placeholder="나의 묵상 메모 (이 기기에만 저장됩니다)"></textarea><div class="note">※ 목원의 실명이나 개인 정보는 이 메모에 적지 않는 것을 권장합니다.</div></div>
+    <div class="qa" style="margin-bottom:0"><h4>3. 벧전5장의 세 기준(자원함/즐거움/본이 됨)으로 최근 내 목자 사역을 돌아본다면 몇 점을 주겠는가? 왜 그런가?</h4><textarea data-n="q3" placeholder="나의 묵상 메모 (이 기기에만 저장됩니다)"></textarea></div>
+  </div>
+
+  <div class="card">
+    <h3 style="font-size:22px;margin-bottom:8px;letter-spacing:-.02em">✅ 실천 과제 (다음 모임까지)</h3>
+    <label class="chk"><input type="checkbox" data-c="0"><span class="box"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span><span class="t">우리 목장 목원 명단을 다시 보며, 이름과 최근 기도제목을 점검한다.</span></label>
+    <label class="chk"><input type="checkbox" data-c="1"><span class="box"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span><span class="t">최근 연락이 뜸했던 목원("잃어버린 양") 최소 1명에게 이번 주 안에 연락 또는 심방한다.</span></label>
+    <label class="chk"><input type="checkbox" data-c="2"><span class="box"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span><span class="t">이번 주 목장모임에서 오늘 나눈 벧전5장 세 기준 중 하나를 목원들 앞에서 나눠본다.</span></label>
+    <div class="note" id="chkNote" style="margin-top:12px"></div>
+  </div>
+</section>
+
+<!-- 기도 -->
+<section class="reveal" style="padding-top:60px">
+  <div class="prayer">
+    <div class="eyebrow" style="color:#ff9f0a">마무리 기도</div>
+    <h2>목자장 되신 주님께</h2>
+    <p>목자장 되신 주님께서 우리를 참 목자로 빚어주시기를, 삯꾼의 마음이 아니라 긍휼의 마음으로 목원들을 대하게 하시기를 함께 기도합니다.</p>
+    <p style="margin-top:22px;color:#ff9f0a;font-weight:600">"목자장이 나타나실 때에 시들지 아니하는 영광의 관을 얻으리라" (벧전 5:4)</p>
+  </div>
+</section>
+
+<footer>2강. 목자의 소명과 성경적 모델 · 목장 리더 모임 복습 자료</footer>
+
+<script>
+(function(){
+  const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+  const store={get(k,d){try{const v=localStorage.getItem('shep2:'+k);return v===null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem('shep2:'+k,JSON.stringify(v))}catch(e){}}};
+
+  /* ---------- Progress ---------- */
+  const done={cards:false,sort:false,match:false,diag:false,quiz:false,action:false};
+  function mark(k){ if(!done[k]){done[k]=true;update();} }
+  function update(){
+    const n=Object.values(done).filter(Boolean).length;
+    $('#progress').style.width=(n/Object.keys(done).length*100)+'%';
+  }
+  function confetti(){
+    const cols=['#0071e3','#af52de','#ff9f0a','#34c759','#ff3b30'];
+    for(let i=0;i<50;i++){
+      const c=document.createElement('i');c.className='confetti';
+      c.style.left=Math.random()*100+'vw';c.style.background=cols[i%cols.length];
+      c.style.animationDuration=(1.8+Math.random()*1.6)+'s';c.style.animationDelay=Math.random()*.4+'s';
+      c.style.borderRadius=Math.random()>.5?'50%':'2px';
+      document.body.appendChild(c);setTimeout(()=>c.remove(),4200);
+    }
+  }
+
+  /* ---------- Reveal on scroll ---------- */
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.08});
+  $$('.reveal').forEach(el=>io.observe(el));
+
+  /* ---------- Recap ---------- */
+  $$('.tap').forEach(t=>t.addEventListener('click',()=>t.classList.toggle('open')));
+
+  /* ---------- Flashcards ---------- */
+  const cards=[
+    {t:'요한복음 10:12-13 · 11,15',q:'삯꾼과 목자의 차이는?',a:'삯꾼은 양이 제 것이 아니므로 이리가 오면 양을 버리고 도망하지만, 목자는 양을 위하여 목숨을 버립니다.'},
+    {t:'요한복음 10:3, 14',q:'목양의 시작은 무엇에서 출발할까요?',a:'관리(management)가 아니라 관계(relationship)입니다. "나는 내 양을 알고 양도 나를 아는 것이…" 목원 한 사람 한 사람의 이름, 상황, 기도제목을 아는 것이 목양의 시작입니다.'},
+    {t:'요한복음 10:4, 27',q:'양은 언제 목자의 음성을 따를까요?',a:'신뢰관계가 쌓여야 목원이 목자의 권면과 인도를 따릅니다. 신뢰는 하루아침에 생기지 않습니다.'},
+    {t:'에스겔 34:2-4',q:'거짓 목자의 모습은?',a:'자기만 먹고, 양떼를 먹이지 않으며, 병든 자를 강하게 하지 아니하며, 병든 자를 고치지 아니하며, 상한 자를 싸매어 주지 아니하며, 쫓기는 자를 돌아오게 하지 아니하며, 잃어버린 자를 찾지 아니하고 다만 포악으로 다스렸습니다.'},
+    {t:'에스겔 34:11-16',q:'그래서 하나님은 어떻게 하실까요?',a:'하나님이 친히 목자가 되어 찾으십니다. "그 잃어버린 자를 내가 찾으며 쫓기는 자를 내가 돌아오게 하며 상한 자를 내가 싸매 주며 병든 자를 내가 강하게 하려니와…"'},
+    {t:'마가복음 6:34',q:'목자 없는 양 같은 무리를 보신 예수님의 마음은?',a:'불쌍히 여기사 가르치기 시작하셨습니다. 모든 기술 이전에 긍휼의 마음이 먼저입니다. 기술만 있고 긍휼이 없으면 목장은 형식적인 모임이 됩니다.'},
+    {t:'베드로전서 5:1-4',q:'목자 된 자들을 향한 세 가지 기준은?',a:'① 억지로 하지 말고 자원함으로 ② 더러운 이득을 위해서가 아니라 즐거운 뜻으로 ③ 맡은 자들에게 주장하는 자세가 아니라 본이 되어'},
+    {t:'베드로전서 5:4',q:'목자의 수고에 대한 소망은?',a:'"목자장이 나타나실 때에 시들지 아니하는 영광의 관을 얻으리라" 지금의 수고는 헛되지 않습니다.'}
+  ];
+  let ci=0; const seen=new Set([0]);
+  const flash=$('#flash');
+  function renderCard(){
+    flash.classList.remove('flip');
+    const c=cards[ci];
+    $('#fTag').textContent=c.t;$('#fTag2').textContent=c.t;$('#fQ').textContent=c.q;$('#fA').textContent=c.a;
+    $('#fCount').textContent=(ci+1)+' / '+cards.length;
+    $('#fDots').innerHTML=cards.map((_,i)=>'<i class="'+(seen.has(i)?'seen ':'')+(i===ci?'cur':'')+'"></i>').join('');
+    if(seen.size===cards.length) mark('cards');
+  }
+  flash.addEventListener('click',()=>flash.classList.toggle('flip'));
+  flash.addEventListener('keydown',e=>{if(e.key===' '||e.key==='Enter'){e.preventDefault();flash.classList.toggle('flip')}});
+  function go(d){ci=(ci+d+cards.length)%cards.length;seen.add(ci);renderCard()}
+  $('#fPrev').onclick=()=>go(-1);$('#fNext').onclick=()=>go(1);
+  renderCard();
+
+  /* ---------- Sort game ---------- */
+  const sortQs=[
+    {s:'이리가 오면 양을 버리고 도망한다',a:0,r:'요 10:12-13 · 양이 제 것이 아니므로 삯꾼은 위기 앞에서 양을 버립니다.'},
+    {s:'양을 위하여 목숨을 버린다',a:1,r:'요 10:11, 15 · 선한 목자이신 예수님의 모습입니다.'},
+    {s:'목장을 "맡겨진 업무"로만 여긴다',a:0,r:'목장 사역이 업무일 때 삯꾼의 마음이 됩니다. 목자는 "내 목숨을 걸 만큼 소중한 사람들"로 대합니다.'},
+    {s:'양의 이름을 알고, 양도 나를 안다',a:1,r:'요 10:3, 14 · 목양은 관리가 아니라 관계에서 출발합니다.'},
+    {s:'양이 제 것이 아니라고 생각한다',a:0,r:'요 10:12 · 삯꾼은 양이 제 것이 아니므로 돌보지 않습니다.'},
+    {s:'한 사람 한 사람의 상황과 기도제목을 안다',a:1,r:'목원의 이름, 상황, 기도제목을 아는 것이 목양의 시작입니다.'}
+  ];
+  let si=0,ss=0;
+  function renderSort(){
+    const box=$('#sortStage');
+    if(si>=sortQs.length){
+      mark('sort'); if(ss===sortQs.length)confetti();
+      box.innerHTML='<div class="game-card"><div class="big">'+ss+' / '+sortQs.length+'</div><div class="stmt">'+(ss===sortQs.length?'완벽해요! 🎉':ss>=4?'아주 좋아요! 👏':'한 번 더 도전해 볼까요?')+'</div><button class="next" id="sortAgain">다시 하기</button></div>';
+      $('#sortAgain').onclick=()=>{si=0;ss=0;renderSort()};return;
+    }
+    const q=sortQs[si];
+    box.innerHTML='<div class="score">'+(si+1)+' / '+sortQs.length+' · 맞힌 개수 '+ss+'</div><div class="game-card"><div class="tagline">누구의 모습일까요?</div><div class="stmt">"'+q.s+'"</div></div><div class="choices"><button class="choice" data-a="0">🐺 삯꾼</button><button class="choice" data-a="1">🐑 목자</button></div><div class="fb" id="sfb"></div>';
+    $$('.choice',box).forEach(b=>b.onclick=()=>{
+      const ok=+b.dataset.a===q.a; if(ok)ss++;
+      $$('.choice',box).forEach(x=>{x.disabled=true;if(+x.dataset.a===q.a)x.classList.add('right')});
+      if(!ok)b.classList.add('wrong');
+      $('#sfb').innerHTML='<b>'+(ok?'정답!':'아쉬워요.')+'</b> '+q.r+'<br><button class="next" id="sn">'+(si===sortQs.length-1?'결과 보기':'다음')+'</button>';
+      $('#sn').onclick=()=>{si++;renderSort()};
+    });
+  }
+  renderSort();
+
+  /* ---------- Match game ---------- */
+  const kinds=[
+    {k:'lost',n:'잃어버린 자',v:'찾는다'},
+    {k:'driven',n:'쫓기는 자',v:'돌아오게 한다'},
+    {k:'hurt',n:'상한 자',v:'싸매 준다'},
+    {k:'sick',n:'병든 자',v:'강하게 한다'}
+  ];
+  const matchQs=[
+    {s:'몇 주째 연락이 닿지 않는 목원이 있습니다.',a:'lost',r:'연락이 끊긴 목원은 "잃어버린 자"입니다. 목자는 직접 찾아 나섭니다.'},
+    {s:'교회를 떠나려는 마음을 내비친 목원이 있습니다.',a:'driven',r:'교회를 떠나려는 목원은 "쫓기는 자"입니다. 목자는 돌아오게 합니다.'},
+    {s:'모임에서 받은 말 때문에 마음을 다친 목원이 있습니다.',a:'hurt',r:'마음 다친 목원은 "상한 자"입니다. 목자는 싸매 줍니다.'},
+    {s:'신앙이 약해져 기도도 예배도 힘겨워하는 목원이 있습니다.',a:'sick',r:'신앙이 약해진 목원은 "병든 자"입니다. 목자는 강하게 합니다.'}
+  ];
+  let mi=0,ms=0;
+  function renderMatch(){
+    const box=$('#matchStage');
+    if(mi>=matchQs.length){
+      mark('match'); if(ms===matchQs.length)confetti();
+      box.innerHTML='<div class="game-card"><div class="big">'+ms+' / '+matchQs.length+'</div><div class="stmt">잘 나오는 목원만이 아니라,<br>찾아가는 것이 목자의 역할입니다.</div><button class="next" id="mAgain">다시 하기</button></div>';
+      $('#mAgain').onclick=()=>{mi=0;ms=0;renderMatch()};return;
+    }
+    const q=matchQs[mi];
+    box.innerHTML='<div class="score">'+(mi+1)+' / '+matchQs.length+' · 맞힌 개수 '+ms+'</div><div class="game-card"><div class="tagline">이 목원은 어떤 양일까요?</div><div class="stmt">'+q.s+'</div></div><div class="opts">'+kinds.map(k=>'<button class="opt" data-k="'+k.k+'">'+k.n+'<small>목자는 '+k.v+'</small></button>').join('')+'</div><div class="fb" id="mfb"></div>';
+    $$('.opt',box).forEach(b=>b.onclick=()=>{
+      const ok=b.dataset.k===q.a; if(ok)ms++;
+      $$('.opt',box).forEach(x=>{x.disabled=true;if(x.dataset.k===q.a)x.classList.add('right')});
+      if(!ok)b.classList.add('wrong');
+      $('#mfb').innerHTML='<b>'+(ok?'정답!':'아쉬워요.')+'</b> '+q.r+'<br><button class="next" id="mn">'+(mi===matchQs.length-1?'결과 보기':'다음')+'</button>';
+      $('#mn').onclick=()=>{mi++;renderMatch()};
+    });
+  }
+  renderMatch();
+
+  /* ---------- Diagnosis ---------- */
+  const labels=['자원함','즐거운 뜻','본이 됨'];
+  let vals=store.get('diag',[5,5,5]);
+  let touched=store.get('diagTouched',false);
+  function pt(i,r){const ang=-Math.PI/2+i*2*Math.PI/3;return [150+r*Math.cos(ang),150+r*Math.sin(ang)]}
+  function drawRadar(){
+    const R=100; let s='';
+    [.25,.5,.75,1].forEach(f=>{s+='<polygon points="'+[0,1,2].map(i=>pt(i,R*f).join(',')).join(' ')+'" fill="none" stroke="currentColor" stroke-opacity=".12"/>'});
+    [0,1,2].forEach(i=>{const p=pt(i,R);s+='<line x1="150" y1="150" x2="'+p[0]+'" y2="'+p[1]+'" stroke="currentColor" stroke-opacity=".12"/>'});
+    const poly=vals.map((v,i)=>pt(i,R*v/10).join(',')).join(' ');
+    s+='<polygon points="'+poly+'" fill="#0071e3" fill-opacity=".25" stroke="#0071e3" stroke-width="2.5" stroke-linejoin="round"/>';
+    vals.forEach((v,i)=>{const p=pt(i,R*v/10);s+='<circle cx="'+p[0]+'" cy="'+p[1]+'" r="5" fill="#0071e3"/>'});
+    [0,1,2].forEach(i=>{const p=pt(i,R+22);s+='<text x="'+p[0]+'" y="'+(p[1]+4)+'" text-anchor="middle" font-size="13" font-weight="600" fill="currentColor">'+labels[i]+'</text>'});
+    $('#radar').innerHTML=s;
+    $('#radar').style.color='var(--text)';
+  }
+  function diagMsg(){
+    if(!touched){$('#diagMsg').textContent='슬라이더를 움직여 보세요.';return}
+    const avg=vals.reduce((a,b)=>a+b,0)/3;
+    const low=vals.indexOf(Math.min(...vals));
+    const tips=['의무감이 아니라 자원하는 마음으로 섬길 수 있도록 기도해 보세요.','인정과 보상이 아닌 기쁨으로 섬기고 있는지 돌아보세요.','말보다 삶으로 보여주는 본이 되기 위해 한 가지를 정해 보세요.'];
+    $('#diagMsg').innerHTML='평균 <b>'+avg.toFixed(1)+'</b>점 · 가장 낮은 항목은 <b>'+labels[low]+'</b>입니다. '+tips[low];
+  }
+  $$('input[type=range]').forEach(r=>{
+    const k=+r.dataset.k; r.value=vals[k]; $('#v'+k).textContent=vals[k];
+    r.addEventListener('input',()=>{
+      vals[k]=+r.value;$('#v'+k).textContent=r.value;touched=true;
+      store.set('diag',vals);store.set('diagTouched',true);drawRadar();diagMsg();mark('diag');
+    });
+  });
+  drawRadar();diagMsg();if(touched)mark('diag');
+
+  /* ---------- Quiz ---------- */
+  const quiz=[
+    {q:'1강에서 배운 교회 존재 목적의 세 방향은?',o:['예배 · 전도 · 양육(교제)','기도 · 헌금 · 봉사','설교 · 찬양 · 성찬'],a:0,e:'교회는 건물이 아니라 사람, 그리스도의 몸입니다. 예배·전도·양육(교제)의 균형이 필요합니다.'},
+    {q:'삯꾼과 목자의 결정적 차이는? (요 10:11-13)',o:['성경을 얼마나 아는가','이리가 왔을 때 양을 버리는가, 양을 위해 목숨을 버리는가','모임을 몇 번 인도했는가'],a:1,e:'삯꾼은 양이 제 것이 아니므로 도망하고, 목자는 양을 위하여 목숨을 버립니다.'},
+    {q:'목자의 일은 관리(management)가 아니라 무엇에서 출발할까요?',o:['계획','권위','관계(relationship)'],a:2,e:'목원 한 사람 한 사람의 이름, 상황, 기도제목을 아는 것이 목양의 시작입니다.'},
+    {q:'에스겔 34장이 말하는 거짓 목자의 모습이 아닌 것은?',o:['자기만 먹는다','잃어버린 자를 찾지 아니한다','상한 자를 싸매어 준다','병든 자를 고치지 아니한다'],a:2,e:'상한 자를 싸매어 주는 것은 참 목자의 모습입니다. 거짓 목자는 싸매어 주지 아니했습니다.'},
+    {q:'막 6:34에서 예수님이 무리를 보시고 가지신 마음은?',o:['불쌍히 여기심','책망하고 싶은 마음','기다리려는 마음'],a:0,e:'모든 목양 기술 이전에 긍휼의 마음이 먼저입니다.'},
+    {q:'벧전 5장에서 "맡은 자들에게 주장하는 자세"의 반대로 말씀하는 것은?',o:['자원함','즐거운 뜻','본이 됨'],a:2,e:'군림이 아니라 삶으로 보여주는 리더십, 곧 본이 되는 것입니다.'},
+    {q:'벧전 5:4에서 목자장이 나타나실 때 얻는 것은?',o:['시들지 아니하는 영광의 관','큰 재물','높은 직분'],a:0,e:'지금의 수고는 헛되지 않습니다.'}
+  ];
+  let qi=0,qs=0;
+  function renderQuiz(){
+    const box=$('#quizBox');
+    if(qi>=quiz.length){
+      mark('quiz'); if(qs>=quiz.length-1)confetti();
+      const msg=qs===quiz.length?'만점입니다! 🎉':qs>=5?'훌륭해요! 👏':qs>=3?'좋아요, 조금만 더!':'카드를 다시 보고 도전해 볼까요?';
+      box.innerHTML='<div class="result"><div class="big">'+qs+' / '+quiz.length+'</div><div class="qtext" style="margin-top:10px">'+msg+'</div><button class="next" id="qAgain">다시 풀기</button></div>';
+      $('#qAgain').onclick=()=>{qi=0;qs=0;renderQuiz()};return;
+    }
+    const q=quiz[qi];
+    box.innerHTML='<div class="qprog"><i style="width:'+(qi/quiz.length*100)+'%"></i></div><div class="tagline" style="margin-bottom:8px">'+(qi+1)+' / '+quiz.length+'</div><div class="qtext">'+q.q+'</div><div class="qopts">'+q.o.map((t,i)=>'<button class="qopt" data-i="'+i+'">'+t+'</button>').join('')+'</div><div class="expl" id="qe"></div>';
+    $$('.qopt',box).forEach(b=>b.onclick=()=>{
+      const i=+b.dataset.i, ok=i===q.a; if(ok)qs++;
+      $$('.qopt',box).forEach((x,j)=>{x.disabled=true;if(j===q.a)x.classList.add('right')});
+      if(!ok)b.classList.add('wrong');
+      const e=$('#qe');e.innerHTML='<b>'+(ok?'정답!':'아쉬워요.')+'</b> '+q.e+'<br><button class="next" id="qn">'+(qi===quiz.length-1?'결과 보기':'다음 문제')+'</button>';e.classList.add('show');
+      $('#qn').onclick=()=>{qi++;renderQuiz()};
+    });
+  }
+  renderQuiz();
+
+  /* ---------- Action ---------- */
+  $$('textarea[data-n]').forEach(t=>{
+    t.value=store.get('n_'+t.dataset.n,'');
+    t.addEventListener('input',()=>store.set('n_'+t.dataset.n,t.value));
+  });
+  const chks=$$('input[data-c]');
+  const saved=store.get('chk',[false,false,false]);
+  function chkStatus(){
+    const n=chks.filter(c=>c.checked).length;
+    $('#chkNote').textContent=n===chks.length?'🎉 모든 실천 과제를 마쳤습니다. 수고하셨습니다!':n+' / '+chks.length+' 완료';
+    if(n>0) mark('action');
+  }
+  chks.forEach((c,i)=>{
+    c.checked=!!saved[i];
+    c.addEventListener('change',()=>{store.set('chk',chks.map(x=>x.checked));chkStatus();if(chks.every(x=>x.checked))confetti()});
+  });
+  chkStatus();
+})();
+</script>
+</body>
+</html>
