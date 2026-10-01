@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>4강 복습 · 말씀을 사모하는 목자, 말씀을 나누는 목자</title>
+<style>
+:root{
+  --bg:#fbfbfd; --bg2:#f5f5f7; --card:#ffffff; --text:#1d1d1f; --text2:#6e6e73; --line:rgba(0,0,0,.08);
+  --blue:#0071e3; --blue-soft:rgba(0,113,227,.10); --green:#30a14e; --red:#e5484d; --orange:#ff9f0a;
+  --shadow:0 2px 12px rgba(0,0,0,.05), 0 12px 40px rgba(0,0,0,.06);
+  --nav:rgba(251,251,253,.72);
+  --r:22px;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#000; --bg2:#0d0d0f; --card:#1c1c1e; --text:#f5f5f7; --text2:#a1a1a6; --line:rgba(255,255,255,.10);
+    --blue:#2997ff; --blue-soft:rgba(41,151,255,.16); --green:#32d74b; --red:#ff453a; --orange:#ff9f0a;
+    --shadow:0 2px 12px rgba(0,0,0,.4);
+    --nav:rgba(0,0,0,.72);
+  }
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.65;letter-spacing:-.011em;
+  -webkit-font-smoothing:antialiased;word-break:keep-all;
+}
+button,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer;border:0;background:none}
+.wrap{max-width:980px;margin:0 auto;padding:0 24px}
+.narrow{max-width:720px;margin:0 auto}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:50;height:52px;background:var(--nav);
+  -webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line)}
+nav .wrap{height:100%;display:flex;align-items:center;justify-content:space-between;gap:16px}
+nav b{font-size:15px;font-weight:600;white-space:nowrap}
+nav ul{list-style:none;display:flex;gap:20px;overflow-x:auto;scrollbar-width:none}
+nav ul::-webkit-scrollbar{display:none}
+nav a{font-size:13px;color:var(--text2);text-decoration:none;white-space:nowrap;transition:color .2s}
+nav a:hover,nav a.on{color:var(--text)}
+#progress{position:fixed;top:52px;left:0;height:2px;background:var(--blue);width:0;z-index:51;transition:width .1s}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:100px 24px 60px;
+  background:radial-gradient(ellipse at 50% 0%,var(--blue-soft),transparent 60%)}
+.eyebrow{font-size:17px;font-weight:600;color:var(--blue);margin-bottom:12px}
+h1{font-size:clamp(34px,7vw,68px);line-height:1.1;font-weight:700;letter-spacing:-.03em;max-width:880px}
+h1 span{background:linear-gradient(90deg,#0071e3,#7d5cff 60%,#ff6a88);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{font-size:clamp(17px,2.4vw,24px);color:var(--text2);margin-top:20px;max-width:640px}
+.cta{margin-top:36px;display:inline-block;background:var(--blue);color:#fff;border-radius:980px;padding:13px 28px;font-size:17px;text-decoration:none;transition:transform .2s,opacity .2s}
+.cta:hover{opacity:.88;transform:scale(1.03)}
+.meta{margin-top:28px;font-size:13px;color:var(--text2)}
+.scrollhint{margin-top:60px;color:var(--text2);font-size:22px;animation:bob 2s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(8px)}}
+
+/* SECTIONS */
+section.s{padding:110px 0}
+section.s.alt{background:var(--bg2)}
+.kicker{font-size:14px;font-weight:600;color:var(--blue);margin-bottom:8px}
+h2{font-size:clamp(28px,4.6vw,48px);line-height:1.15;font-weight:700;letter-spacing:-.025em}
+.lead{font-size:clamp(16px,2vw,20px);color:var(--text2);margin-top:14px;max-width:680px}
+.head{margin-bottom:44px}
+.card{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);padding:28px}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}.scrollhint{animation:none}}
+
+/* FLIP CARDS */
+.flips{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}
+.flip{perspective:1200px;height:260px}
+.flip-in{position:relative;width:100%;height:100%;transition:transform .7s cubic-bezier(.2,.7,.2,1);transform-style:preserve-3d}
+.flip.on .flip-in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:var(--r);padding:26px;display:flex;flex-direction:column;justify-content:center;box-shadow:var(--shadow)}
+.front{background:var(--card)}
+.back{background:linear-gradient(145deg,#0071e3,#5e5ce6);color:#fff;transform:rotateY(180deg)}
+.face .n{font-size:13px;font-weight:600;color:var(--blue);margin-bottom:6px}
+.face h3{font-size:22px;line-height:1.3;letter-spacing:-.02em}
+.face p{margin-top:10px;font-size:15px;color:var(--text2)}
+.back .n,.back p{color:rgba(255,255,255,.85)}
+.back h3{font-size:20px}
+.tap{margin-top:14px;font-size:12px;color:var(--text2)}
+.back .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.chip{background:rgba(255,255,255,.2);border-radius:980px;padding:5px 14px;font-size:15px;font-weight:600}
+.bridge{margin-top:34px;padding:24px 28px;border-radius:var(--r);background:var(--blue-soft);font-size:17px}
+.bridge b{color:var(--blue)}
+
+/* SEGMENT / TABS */
+.seg{display:inline-flex;background:var(--bg2);border-radius:12px;padding:3px;gap:2px;max-width:100%;overflow-x:auto}
+section.alt .seg{background:var(--bg)}
+.seg button{padding:9px 20px;border-radius:10px;font-size:14px;font-weight:500;color:var(--text2);white-space:nowrap;transition:all .25s}
+.seg button.on{background:var(--card);color:var(--text);box-shadow:0 1px 6px rgba(0,0,0,.12)}
+.panel{display:none;margin-top:30px;animation:fade .5s}
+.panel.on{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.panel h3{font-size:26px;letter-spacing:-.02em;line-height:1.3}
+.panel .ref{font-size:14px;color:var(--blue);font-weight:600;margin-bottom:6px}
+.panel p.t{margin-top:12px;color:var(--text2);font-size:16.5px}
+.panel p.t b{color:var(--text)}
+
+details.v{background:var(--card);border-radius:16px;margin-top:12px;box-shadow:var(--shadow);overflow:hidden}
+details.v summary{list-style:none;padding:18px 22px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;font-weight:600}
+details.v summary::-webkit-details-marker{display:none}
+details.v summary::after{content:"+";font-size:24px;font-weight:300;color:var(--blue);transition:transform .3s}
+details.v[open] summary::after{transform:rotate(45deg)}
+details.v .bd{padding:0 22px 20px;color:var(--text2);font-size:15.5px}
+details.v blockquote{border-left:3px solid var(--blue);padding-left:14px;margin-bottom:12px;color:var(--text);font-size:16px}
+.apply{margin-top:22px;border-radius:16px;padding:20px 24px;background:var(--blue-soft)}
+.apply b{display:block;color:var(--blue);font-size:13px;margin-bottom:4px}
+
+/* Ezra vs Levite */
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}
+@media(max-width:640px){.vs{grid-template-columns:1fr}}
+.vs .box{border-radius:18px;padding:22px;background:var(--card);box-shadow:var(--shadow);transition:all .35s;opacity:.55;transform:scale(.98)}
+.vs .box.hl{opacity:1;transform:scale(1);outline:2px solid var(--blue)}
+.vs h4{font-size:19px;margin-bottom:6px}
+.vs small{color:var(--text2);display:block;font-size:14px;margin-top:6px}
+.twoq{margin-top:26px}
+.twoq ol{padding-left:22px;color:var(--text2);margin-top:8px}
+.twoq li{margin:6px 0}
+.twoq li b{color:var(--text)}
+
+/* TIMELINE */
+.tl{position:relative;margin-top:30px;padding-left:34px}
+.tl::before{content:"";position:absolute;left:11px;top:6px;bottom:6px;width:2px;background:var(--line)}
+.tl .fill{position:absolute;left:11px;top:6px;width:2px;background:var(--blue);height:0;transition:height .5s}
+.step{position:relative;margin-bottom:14px;cursor:pointer}
+.step::before{content:"";position:absolute;left:-29px;top:20px;width:14px;height:14px;border-radius:50%;background:var(--card);border:2px solid var(--line);transition:all .3s}
+.step.on::before{background:var(--blue);border-color:var(--blue);box-shadow:0 0 0 5px var(--blue-soft)}
+.step .c{background:var(--card);border-radius:16px;padding:16px 20px;box-shadow:var(--shadow)}
+.step .c strong{display:flex;justify-content:space-between;gap:10px}
+.step .c em{font-style:normal;font-size:12px;color:var(--blue);font-weight:600}
+.step .c div{max-height:0;overflow:hidden;opacity:0;transition:all .4s;color:var(--text2);font-size:15.5px}
+.step.on .c div{max-height:240px;opacity:1;margin-top:8px}
+.tlbtn{margin-top:10px;color:var(--blue);font-size:15px}
+
+/* QUIZ */
+.qbox{max-width:720px;margin:0 auto}
+.qtop{display:flex;justify-content:space-between;font-size:13px;color:var(--text2);margin-bottom:10px}
+.bar{height:6px;background:var(--line);border-radius:6px;overflow:hidden;margin-bottom:22px}
+.bar i{display:block;height:100%;width:0;background:var(--blue);border-radius:6px;transition:width .4s}
+.q{font-size:clamp(20px,3vw,26px);font-weight:600;line-height:1.4;letter-spacing:-.02em;margin-bottom:20px}
+.opt{display:block;width:100%;text-align:left;padding:16px 20px;margin-bottom:10px;border-radius:14px;background:var(--bg2);font-size:16.5px;border:2px solid transparent;transition:all .2s}
+section:not(.alt) .opt{background:var(--bg2)}
+.opt:hover:not(:disabled){border-color:var(--blue)}
+.opt.ok{background:rgba(48,161,78,.15);border-color:var(--green)}
+.opt.no{background:rgba(229,72,77,.13);border-color:var(--red);animation:shake .4s}
+.opt:disabled{cursor:default}
+@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.exp{display:none;margin-top:14px;padding:16px 20px;border-radius:14px;background:var(--blue-soft);font-size:15.5px;animation:fade .4s}
+.exp.show{display:block}
+.btn{display:inline-block;margin-top:18px;background:var(--blue);color:#fff;padding:11px 26px;border-radius:980px;font-size:16px;transition:opacity .2s,transform .2s}
+.btn:hover{opacity:.88}
+.btn.ghost{background:var(--blue-soft);color:var(--blue)}
+.score{text-align:center;padding:20px 0}
+.score .big{font-size:84px;font-weight:700;letter-spacing:-.04em;line-height:1}
+.score p{color:var(--text2);margin-top:10px;font-size:18px}
+
+/* CLOZE */
+.cloze{display:grid;gap:14px}
+.cz{background:var(--card);border-radius:18px;padding:22px 24px;box-shadow:var(--shadow);font-size:18px;line-height:2.1}
+.cz .rf{display:block;font-size:13px;color:var(--blue);font-weight:600;line-height:1.5;margin-bottom:4px}
+.cz input{border:0;border-bottom:2px solid var(--blue);background:transparent;text-align:center;width:5.2em;padding:0 4px;outline:none;font-weight:600;border-radius:0}
+.cz input.ok{border-color:var(--green);color:var(--green)}
+.cz input.no{border-color:var(--red);color:var(--red)}
+.hint{font-size:13px;color:var(--text2);margin-top:6px;line-height:1.5}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+/* SELF CHECK */
+.sc{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);padding:26px;margin-bottom:16px}
+.sc p{font-size:18px;font-weight:600;line-height:1.5}
+.sc .sub2{font-size:13px;color:var(--text2);margin-top:4px;font-weight:400}
+.scale{display:flex;gap:8px;margin-top:18px}
+.scale button{flex:1;padding:14px 0;border-radius:12px;background:var(--bg2);font-weight:600;transition:all .2s}
+.scale button:hover{background:var(--blue-soft)}
+.scale button.on{background:var(--blue);color:#fff;transform:scale(1.04)}
+.lbls{display:flex;justify-content:space-between;font-size:12px;color:var(--text2);margin-top:6px}
+.fb{margin-top:14px;font-size:15px;color:var(--text2);min-height:24px}
+
+/* DISCUSS */
+.dq{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);padding:26px;margin-bottom:16px}
+.dq .num{font-size:13px;font-weight:600;color:var(--blue)}
+.dq p{font-size:18px;font-weight:600;margin:6px 0 14px;line-height:1.5}
+.dq textarea{width:100%;min-height:90px;border:1px solid var(--line);background:var(--bg2);border-radius:14px;padding:14px;resize:vertical;outline:none;font-size:15.5px;line-height:1.6}
+.dq textarea:focus{border-color:var(--blue);box-shadow:0 0 0 4px var(--blue-soft)}
+.saved{font-size:12px;color:var(--text2);margin-top:6px;height:16px}
+
+/* TASKS */
+.tasks{display:grid;grid-template-columns:1fr 200px;gap:30px;align-items:center}
+@media(max-width:640px){.tasks{grid-template-columns:1fr}.ringwrap{order:-1}}
+.task{display:flex;gap:14px;align-items:flex-start;background:var(--card);border-radius:16px;padding:18px 20px;margin-bottom:10px;box-shadow:var(--shadow);cursor:pointer;transition:transform .2s}
+.task:active{transform:scale(.98)}
+.cb{flex:none;width:26px;height:26px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;transition:all .3s;margin-top:1px}
+.cb svg{width:14px;height:14px;stroke:#fff;fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:20;stroke-dashoffset:20;transition:stroke-dashoffset .3s .1s}
+.task.done .cb{background:var(--green);border-color:var(--green)}
+.task.done .cb svg{stroke-dashoffset:0}
+.task.done span{color:var(--text2);text-decoration:line-through}
+.ringwrap{text-align:center}
+.ring{width:170px;height:170px;transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:12;stroke-linecap:round}
+.ring .bg{stroke:var(--line)}
+.ring .fg{stroke:var(--blue);stroke-dasharray:452.4;stroke-dashoffset:452.4;transition:stroke-dashoffset .8s cubic-bezier(.2,.7,.2,1)}
+.ringtxt{margin-top:-112px;height:112px;font-size:34px;font-weight:700;display:flex;flex-direction:column;justify-content:center}
+.ringtxt small{font-size:12px;color:var(--text2);font-weight:400}
+
+/* PRAYER */
+.prayer{text-align:center;padding:140px 24px;background:radial-gradient(ellipse at 50% 100%,var(--blue-soft),transparent 65%)}
+.prayer blockquote{font-size:clamp(20px,3vw,30px);line-height:1.7;font-weight:500;letter-spacing:-.02em;max-width:760px;margin:24px auto 0}
+.prayer .amen{margin-top:30px;font-size:15px;color:var(--text2)}
+footer{padding:30px 24px 50px;text-align:center;font-size:12px;color:var(--text2)}
+
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:99}
+</style>
+</head>
+<body>
+<nav>
+  <div class="wrap">
+    <b>4강 복습</b>
+    <ul id="navl">
+      <li><a href="#review">1~3강</a></li>
+      <li><a href="#body">본론</a></li>
+      <li><a href="#quiz">퀴즈</a></li>
+      <li><a href="#cloze">빈칸</a></li>
+      <li><a href="#self">점검</a></li>
+      <li><a href="#talk">나눔</a></li>
+      <li><a href="#tasks">실천</a></li>
+      <li><a href="#pray">기도</a></li>
+    </ul>
+  </div>
+</nav>
+<div id="progress"></div>
+<canvas id="confetti"></canvas>
+
+<header class="hero">
+  <div class="eyebrow">목장 리더 교육 · 4강 복습</div>
+  <h1>말씀을 <span>사모하는</span> 목자,<br>말씀을 <span>나누는</span> 목자</h1>
+  <p class="sub">느헤미야 8장, 에스라의 율법 낭독 사건 속에서 목자가 말씀을 대하는 두 가지 태도를 다시 만나 봅니다.</p>
+  <a class="cta" href="#review">복습 시작하기</a>
+  <div class="meta">9월 24일 목장 리더 모임</div>
+  <div class="scrollhint">↓</div>
+</header>
+
+<!-- 1~3강 -->
+<section class="s" id="review">
+  <div class="wrap">
+    <div class="head rv">
+      <div class="kicker">지난 시간</div>
+      <h2>1~3강 리뷰</h2>
+      <p class="lead">카드를 눌러 뒤집어 보세요. 앞면을 보고 먼저 떠올려 본 다음, 뒷면으로 확인합니다.</p>
+    </div>
+    <div class="flips">
+      <div class="flip rv" tabindex="0" role="button" aria-label="1강 카드">
+        <div class="flip-in">
+          <div class="face front"><div class="n">1강</div><h3>교회는 건물이 아니라 사람, 그리스도의 몸</h3><p>교회의 존재 목적은 세 방향의 균형입니다. 세 가지는?</p><div class="tap">눌러서 확인 ↻</div></div>
+          <div class="face back"><div class="n">1강 · 정답</div><h3>예배 · 전도 · 양육(교제)</h3><div class="chips"><span class="chip">예배</span><span class="chip">전도</span><span class="chip">양육(교제)</span></div></div>
+        </div>
+      </div>
+      <div class="flip rv" tabindex="0" role="button" aria-label="2강 카드">
+        <div class="flip-in">
+          <div class="face front"><div class="n">2강</div><h3>목자는 "관리가 아니라 관계"에서 시작한다</h3><p>그 마음은 무엇에서 출발할까요? (막6:34)</p><div class="tap">눌러서 확인 ↻</div></div>
+          <div class="face back"><div class="n">2강 · 정답</div><h3>긍휼</h3><div class="chips"><span class="chip">긍휼</span><span class="chip">막6:34</span></div></div>
+        </div>
+      </div>
+      <div class="flip rv" tabindex="0" role="button" aria-label="3강 카드">
+        <div class="flip-in">
+          <div class="face front"><div class="n">3강</div><h3>목자의 영적 상태가 목장의 영적 상태를 결정한다</h3><p>그 두 축은 무엇일까요?</p><div class="tap">눌러서 확인 ↻</div></div>
+          <div class="face back"><div class="n">3강 · 정답</div><h3>기도 · 부지런함</h3><div class="chips"><span class="chip">기도</span><span class="chip">부지런함</span></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="bridge rv">기도가 하나님께 말하는 것이라면, 오늘 배울 <b>말씀</b>은 하나님이 우리에게 말씀하시는 것을 듣는 것이다. 목자가 먼저 말씀 앞에 서지 않으면, 목원에게 나눠 줄 말씀이 없다.</div>
+  </div>
+</section>
+
+<!-- 본론 -->
+<section class="s alt" id="body">
+  <div class="wrap">
+    <div class="head rv">
+      <div class="kicker">본론</div>
+      <h2>느헤미야 8장으로 배우는<br>세 가지</h2>
+      <p class="lead">탭을 넘기며 살펴보세요. 구절은 눌러서 펼칩니다.</p>
+    </div>
+    <div class="seg rv" id="tabs">
+      <button class="on" data-t="0">① 사모함</button>
+      <button data-t="1">② 나눔</button>
+      <button data-t="2">③ 결과</button>
+    </div>
+
+    <!-- 1 -->
+    <div class="panel on" data-p="0">
+      <div class="ref">느 8:13</div>
+      <h3>말씀을 사모하는 목자</h3>
+      <p class="t">"그 이튿날 뭇 백성의 족장들과 제사장들과 레위 사람들이 율법의 말씀을 밝히 알고자 하여 학사 에스라에게 모여서"(느8:13) — 전날 6시간 낭독을 듣고 회개와 기쁨을 이미 경험한 지도자들이, 그 다음날 다시 에스라를 <b>찾아간 것</b>이다.</p>
+
+      <div class="vs" id="verbs" style="margin-top:22px">
+        <div class="box hl" data-v="0"><h4>12절 "밝히 앎이라"</h4><small>"이해하는 정도"(understand)</small></div>
+        <div class="box" data-v="1"><h4>13절 "밝히 알고자"</h4><small>"더 깊이 아는 것"(to study)</small></div>
+      </div>
+      <p class="t">지도자들은 백성보다 이미 율법을 더 잘 알고 있었음에도 더 깊이 배우려고 다시 찾아간 것이다.</p>
+      <div class="apply"><b>적용</b>목자는 목원보다 말씀을 더 많이 안다고 안주할 자리가 아니라, 목원보다 먼저 더 깊이 말씀을 사모하는 자리다.</div>
+
+      <p class="t" style="margin-top:34px"><b>이 사모함은 특별한 사람만의 것이 아니라 매일의 습관이어야 한다.</b></p>
+      <details class="v"><summary>수 1:8 · 묵상은 삶의 적용까지</summary><div class="bd"><blockquote>"이 율법책을 네 입에서 떠나지 말게 하며 주야로 그것을 묵상하여 그 가운데에 기록한 대로 다 지켜 행하라"(수1:8)</blockquote>묵상은 알고 끝나는 것이 아니라 삶에 적용하는 것까지를 포함한다.</div></details>
+      <details class="v"><summary>신 8:3 · 만나 자체에 매인 이스라엘</summary><div class="bd"><blockquote>"사람이 떡으로만 사는 것이 아니요 여호와의 입에서 나오는 모든 말씀으로 사는 줄을 너로 알게 하려 하심이니라"(신8:3, 마4:4)</blockquote>광야의 이스라엘은 만나 자체에 매여 이 시험에 실패했다. 목자도 바쁜 사역 일정에 매여 정작 말씀 자체를 놓치기 쉽다.</div></details>
+      <details class="v"><summary>시 119:105 · 발에 등, 길에 빛</summary><div class="bd"><blockquote>"주의 말씀은 내 발에 등이요 내 길에 빛이니이다"(시119:105)</blockquote>시편 119편은 말씀이 구원하고 가르치고 삶에 기쁨의 열매를 맺게 한다고 고백하며, 마지막까지 변함없이 붙드는 결단을 촉구한다(시119:105-112).</div></details>
+      <div class="apply"><b>적용</b>목장모임 준비를 위해서가 아니라, 목자 자신이 매일 말씀 앞에 조용히 머무는 시간(경건의 시간)이 먼저 있어야 한다. 설교 본문을 목장 나눔 자료로만 소비하지 말고, 나를 위한 말씀으로 먼저 받는 습관이 필요하다.</div>
+    </div>
+
+    <!-- 2 -->
+    <div class="panel" data-p="1">
+      <div class="ref">느 8:7-8</div>
+      <h3>말씀을 나누는 목자</h3>
+      <p class="t">"하나님의 율법 책을 낭독하고 그 뜻을 해석하여 백성에게 그 낭독하는 것을 다 깨닫게 하니"(느8:8) — 에스라가 낭독하는 동안, 이름까지 기록된 레위 사람들(느8:7)이 백성 사이에 서서 뜻을 풀어 설명했다.</p>
+      <p class="t">당시 낭독된 율법책은 히브리어였으나 백성은 아람어를 썼기에, 낭독만으로는 뜻이 통하지 않았다. 레위인은 통역과 해설자로서 백성이 "다 깨닫게" 하는 역할을 감당했다.</p>
+
+      <p class="t" style="margin-top:26px"><b>목자는 누구의 자리일까요? 눌러서 비교해 보세요.</b></p>
+      <div class="seg" id="roles" style="margin-top:10px"><button class="on" data-r="0">에스라</button><button data-r="1">레위인</button></div>
+      <div class="vs" id="rolebox">
+        <div class="box hl" data-r="0"><h4>에스라 = 설교자</h4><small>율법책을 낭독하고 말씀을 선포하는 자리 (주일 설교·성경 본문에 해당)</small></div>
+        <div class="box" data-r="1"><h4>레위인 = 목자</h4><small>통역과 해설자. 이미 선포된 말씀이 목원들의 삶 속에서 "다 깨달아지도록" 곁에서 풀어주고 질문하고 적용을 돕는 자리</small></div>
+      </div>
+      <div class="apply"><b>적용</b>목자는 설교자(에스라)가 아니라 <strong>레위인</strong>의 역할이다. 새로운 말씀을 만들어내는 자리가 아니라, 이미 선포된 말씀(주일 설교·성경 본문)이 목원들의 삶 속에서 "다 깨달아지도록" 곁에서 풀어주고 질문하고 적용을 돕는 자리다.</div>
+      <p class="t">나눔을 인도하는 구체적 기술(침묵하는 사람 끌어내기, 토의를 흐트러뜨리지 않기 등)은 앞으로 더 깊이 다루겠지만, 오늘은 그 기술 이전에 "나는 목원들이 말씀을 깨닫도록 돕는 사람"이라는 정체성부터 분명히 한다.</p>
+
+      <div class="twoq">
+        <b>목장모임에서 말씀을 나눌 때 목자가 점검할 두 가지</b>
+        <ol>
+          <li>나는 이번 주 본문을 목원들보다 먼저, 더 깊이 묵상했는가? <b>(사모함이 나눔의 전제)</b></li>
+          <li>나는 목장모임에서 내 생각을 가르치려 하는가, 목원들이 스스로 말씀을 깨닫도록 질문하고 기다려 주는가? <b>(레위인의 자세)</b></li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="panel" data-p="2">
+      <div class="ref">느 8:9-17</div>
+      <h3>말씀이 낳는 결과 — 회개와 기쁨과 순종</h3>
+      <p class="t">각 단계를 눌러 보세요. 깨달음에서 순종까지 이어지는 길입니다.</p>
+      <div class="tl" id="tl">
+        <div class="fill" id="tlfill"></div>
+        <div class="step on"><div class="c"><strong>깨달음과 울음 <em>느 8:9</em></strong><div>"백성이 율법의 말씀을 듣고 다 우는지라"(느8:9). 말씀이 깨달아지자 백성은 먼저 자기 죄를 보고 울었다. 전지전능하신 하나님 앞에 자신의 연약함이 드러난 것이다.</div></div></div>
+        <div class="step"><div class="c"><strong>회개에서 기쁨으로 <em>느 8:9-10</em></strong><div>느헤미야와 에스라는 "이 날은 여호와의 성일이니 슬퍼하지 말며 울지 말라... 여호와로 인하여 기뻐하는 것이 너희의 힘이니라"(느8:9-10)고 권면했다. 회개는 거기서 멈추지 않고 기쁨으로 나아가야 한다.</div></div></div>
+        <div class="step"><div class="c"><strong>삶의 반응 <em>느 8:12</em></strong><div>"그들이 그 읽어 들려 준 말을 밝히 앎이라"(느8:12) — 머리로 아는 데 그치지 않고 가서 먹고 마시며 나누는 삶의 반응으로 이어졌을 때 비로소 "밝히 안 것"이 되었다.</div></div></div>
+        <div class="step"><div class="c"><strong>즉시 순종, 큰 기쁨 <em>느 8:17</em></strong><div>백성은 깨달은 대로 즉시 순종하여 초막절을 지켰고, "눈의 아들 여호수아 때로부터 그날까지 이같이 행한 일이 없으므로 이에 크게 기뻐하며"(느8:17) — 세상이 줄 수 없는 큰 기쁨으로 가득 찼다.</div></div></div>
+      </div>
+      <button class="tlbtn" id="tlnext">다음 단계 →</button>
+      <div class="apply" style="margin-top:26px"><b>적용</b>목장모임에서 말씀 나눔의 목표는 "본문을 잘 이해했다"에서 끝나지 않는다. 깨달음 → 회개(또는 결단) → 실제 순종 → 참된 기쁨까지 이어지도록 목자가 한 걸음 더 물어봐 주어야 한다. ("그래서 이번 주 나는 무엇을 구체적으로 실천할까요?")</div>
+    </div>
+  </div>
+</section>
+
+<!-- 퀴즈 -->
+<section class="s" id="quiz">
+  <div class="wrap">
+    <div class="head rv">
+      <div class="kicker">퀴즈</div>
+      <h2>얼마나 기억하고 있나요?</h2>
+      <p class="lead">10문제입니다. 틀려도 해설이 바로 나오니 편하게 풀어 보세요.</p>
+    </div>
+    <div class="qbox card rv" id="qbox"></div>
+  </div>
+</section>
+
+<!-- 빈칸 -->
+<section class="s alt" id="cloze">
+  <div class="wrap">
+    <div class="head rv">
+      <div class="kicker">빈칸 채우기</div>
+      <h2>말씀을 마음에 새기기</h2>
+      <p class="lead">핵심 구절의 빈칸을 채워 보세요. 막히면 힌트를 눌러 첫 글자를 확인합니다.</p>
+    </div>
+    <div class="cloze" id="czlist"></div>
+    <div class="row rv" style="margin-top:20px">
+      <button class="btn" id="czcheck">정답 확인</button>
+      <button class="btn ghost" id="czreset">다시 하기</button>
+      <span id="czres" style="color:var(--text2);font-size:15px"></span>
+    </div>
+  </div>
+</section>
+
+<!-- 자기 점검 -->
+<section class="s" id="self">
+  <div class="wrap narrow">
+    <div class="head rv">
+      <div class="kicker">자기 점검</div>
+      <h2>레위인의 자세, 나는?</h2>
+      <p class="lead">정답은 없습니다. 솔직하게 스스로를 돌아보는 시간입니다. 선택은 이 브라우저에만 저장됩니다.</p>
+    </div>
+    <div class="sc rv" data-k="sc1">
+      <p>나는 이번 주 본문을 목원들보다 먼저, 더 깊이 묵상했는가?</p>
+      <div class="sub2">사모함이 나눔의 전제</div>
+      <div class="scale"><button>1</button><button>2</button><button>3</button><button>4</button><button>5</button></div>
+      <div class="lbls"><span>아직 못했다</span><span>충분히 했다</span></div>
+      <div class="fb"></div>
+    </div>
+    <div class="sc rv" data-k="sc2">
+      <p>나는 목장모임에서 내 생각을 가르치려 하는가, 목원들이 스스로 말씀을 깨닫도록 질문하고 기다려 주는가?</p>
+      <div class="sub2">레위인의 자세</div>
+      <div class="scale"><button>1</button><button>2</button><button>3</button><button>4</button><button>5</button></div>
+      <div class="lbls"><span>내 생각을 가르친다</span><span>질문하고 기다린다</span></div>
+      <div class="fb"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 나눔 -->
+<section class="s alt" id="talk">
+  <div class="wrap narrow">
+    <div class="head rv">
+      <div class="kicker">토의 / 나눔 질문</div>
+      <h2>함께 나눠 봅시다</h2>
+      <p class="lead">생각을 적어 두면 다음 모임 때 다시 꺼내 볼 수 있습니다. 적은 내용은 이 브라우저에만 저장되고 어디로도 전송되지 않습니다.</p>
+    </div>
+    <div class="dq rv"><div class="num">질문 1</div><p>나는 목장모임을 준비할 때, 목원들에게 나눠 줄 자료로서가 아니라 나 자신을 위한 말씀으로 본문을 먼저 받고 있는가?</p><textarea data-k="dq1" placeholder="여기에 생각을 적어 보세요"></textarea><div class="saved"></div></div>
+    <div class="dq rv"><div class="num">질문 2</div><p>최근 목장모임에서 나는 "레위인"처럼 목원들이 스스로 깨닫도록 도왔는가, 아니면 내 생각을 답으로 가르치려 했는가?</p><textarea data-k="dq2" placeholder="여기에 생각을 적어 보세요"></textarea><div class="saved"></div></div>
+    <div class="dq rv"><div class="num">질문 3</div><p>최근 말씀을 통해 깨달은 것이 실제 순종(삶의 변화)으로 이어진 경험이 있다면 나눠보자. 반대로 깨달음에서 멈춘 경험도 있는가?</p><textarea data-k="dq3" placeholder="여기에 생각을 적어 보세요"></textarea><div class="saved"></div></div>
+  </div>
+</section>
+
+<!-- 실천 -->
+<section class="s" id="tasks">
+  <div class="wrap">
+    <div class="head rv">
+      <div class="kicker">다음 모임까지</div>
+      <h2>실천 과제</h2>
+      <p class="lead">실천할 때마다 체크해 보세요. 체크 상태는 이 브라우저에 저장됩니다.</p>
+    </div>
+    <div class="tasks">
+      <div id="tasklist">
+        <div class="task rv" data-k="t1"><div class="cb"><svg viewBox="0 0 16 16"><path d="M3 8.5l3.2 3.2L13 5"/></svg></div><span>이번 주 매일 짧게라도 성경 본문을 읽고, 한 문장으로 "나를 위한 적용"을 기록해본다.</span></div>
+        <div class="task rv" data-k="t2"><div class="cb"><svg viewBox="0 0 16 16"><path d="M3 8.5l3.2 3.2L13 5"/></svg></div><span>이번 주 목장모임에서 본문을 나눌 때, 답을 먼저 말하기보다 질문으로 시작해본다.</span></div>
+        <div class="task rv" data-k="t3"><div class="cb"><svg viewBox="0 0 16 16"><path d="M3 8.5l3.2 3.2L13 5"/></svg></div><span>목장모임에서 나눈 말씀 중 한 가지를 실제로 순종(실천)하고, 다음 리더모임에서 그 결과를 나눈다.</span></div>
+      </div>
+      <div class="ringwrap rv">
+        <svg class="ring" viewBox="0 0 160 160"><circle class="bg" cx="80" cy="80" r="72"/><circle class="fg" id="ringfg" cx="80" cy="80" r="72"/></svg>
+        <div class="ringtxt"><span id="ringnum">0%</span><small id="ringsub">0 / 3 완료</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 기도 -->
+<section class="prayer" id="pray">
+  <div class="kicker rv">마무리 기도</div>
+  <blockquote class="rv">목자 된 우리가 먼저 말씀을 사모함으로 채워지고, 그 말씀을 목원들이 스스로 깨닫도록 돕는 레위인의 마음을 품게 하시며, 깨달음이 회개와 순종과 참된 기쁨으로 이어지는 목장이 되게 해 주시기를 함께 기도한다.</blockquote>
+  <div class="amen rv">아멘.</div>
+</section>
+<footer>4강 복습 · 9월 24일 목장 리더 모임</footer>
+
+<script>
+(function(){
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const store={get(k){try{return localStorage.getItem('ml4_'+k)}catch(e){return null}},set(k,v){try{localStorage.setItem('ml4_'+k,v)}catch(e){}}};
+
+/* scroll reveal, progress, nav highlight */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+$$('.rv').forEach(el=>io.observe(el));
+const links=$$('#navl a'), secs=links.map(a=>$(a.getAttribute('href')));
+addEventListener('scroll',()=>{
+  const h=document.documentElement; $('#progress').style.width=(scrollY/(h.scrollHeight-innerHeight)*100)+'%';
+  let cur=-1; secs.forEach((s,i)=>{if(s&&s.getBoundingClientRect().top<innerHeight*.4)cur=i});
+  links.forEach((a,i)=>a.classList.toggle('on',i===cur));
+},{passive:true});
+
+/* flip cards */
+$$('.flip').forEach(f=>{
+  const t=()=>f.classList.toggle('on');
+  f.addEventListener('click',t);
+  f.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();t()}});
+});
+
+/* tabs */
+$$('#tabs button').forEach(b=>b.addEventListener('click',()=>{
+  $$('#tabs button').forEach(x=>x.classList.toggle('on',x===b));
+  $$('.panel').forEach(p=>p.classList.toggle('on',p.dataset.p===b.dataset.t));
+}));
+/* verse compare 12 vs 13 */
+$$('#verbs .box').forEach(b=>b.addEventListener('click',()=>$$('#verbs .box').forEach(x=>x.classList.toggle('hl',x===b))));
+/* roles */
+function setRole(r){
+  $$('#roles button').forEach(x=>x.classList.toggle('on',x.dataset.r===r));
+  $$('#rolebox .box').forEach(x=>x.classList.toggle('hl',x.dataset.r===r));
+}
+$$('#roles button').forEach(b=>b.addEventListener('click',()=>setRole(b.dataset.r)));
+$$('#rolebox .box').forEach(b=>b.addEventListener('click',()=>setRole(b.dataset.r)));
+
+/* timeline */
+const steps=$$('#tl .step'); let cur=0;
+function setStep(i){
+  cur=i; steps.forEach((s,j)=>s.classList.toggle('on',j<=i&&j===i));
+  const top=steps[0].offsetTop+20, y=steps[i].offsetTop+26;
+  $('#tlfill').style.height=Math.max(0,y-top+6)+'px';
+  $('#tlnext').textContent=i===steps.length-1?'처음부터 다시 ↺':'다음 단계 →';
+}
+steps.forEach((s,i)=>s.addEventListener('click',()=>setStep(i)));
+$('#tlnext').addEventListener('click',()=>setStep(cur===steps.length-1?0:cur+1));
+setTimeout(()=>setStep(0),100);
+$$('#tabs button')[2].addEventListener('click',()=>setTimeout(()=>setStep(cur),60));
+
+/* quiz */
+const QS=[
+ {q:'1강에서 배운 교회의 존재 목적, 세 방향의 균형은?',o:['예배 · 전도 · 양육(교제)','말씀 · 기도 · 봉사','예배 · 헌금 · 봉사'],a:0,e:'교회는 건물이 아니라 사람, 그리스도의 몸이며 존재 목적은 예배·전도·양육(교제) 세 방향의 균형입니다.'},
+ {q:'2강에서 목자는 "관리가 아니라 관계"에서 시작한다고 했습니다. 그 마음은 무엇에서 출발할까요?',o:['책임감','긍휼 (막6:34)','열심'],a:1,e:'목자의 마음은 긍휼에서 출발합니다(막6:34).'},
+ {q:'3강에서 목자의 영적 상태가 목장의 영적 상태를 결정한다고 했습니다. 그 두 축은?',o:['기도와 부지런함','말씀과 순종','전도와 심방'],a:0,e:'두 축은 기도와 부지런함이었습니다. 기도가 하나님께 말하는 것이라면, 말씀은 하나님이 우리에게 말씀하시는 것을 듣는 것입니다.'},
+ {q:'[O/X] 느헤미야 8:13에서 지도자들이 에스라를 찾아간 것은 율법을 잘 몰랐기 때문이다.',o:['O','X'],a:1,e:'지도자들은 백성보다 이미 율법을 더 잘 알고 있었음에도 더 깊이 배우려고 다시 찾아간 것입니다.'},
+ {q:'12절 "밝히 앎이라"와 13절 "밝히 알고자"의 뜻 차이는?',o:['둘 다 같은 뜻이다','12절은 "이해하는 정도", 13절은 "더 깊이 아는 것"','12절은 "더 깊이 아는 것", 13절은 "이해하는 정도"'],a:1,e:'12절은 이해하는 정도(understand), 13절은 더 깊이 아는 것(to study)을 뜻합니다.'},
+ {q:'신명기 8:3에서 광야의 이스라엘은 무엇에 매여 시험에 실패했을까요?',o:['성막','만나 자체','율법책'],a:1,e:'만나 자체에 매여 실패했습니다. 목자도 바쁜 사역 일정에 매여 정작 말씀 자체를 놓치기 쉽습니다.'},
+ {q:'레위인이 백성 사이에서 뜻을 풀어 설명해야 했던 이유는?',o:['율법책이 너무 길었기 때문','율법책은 히브리어였으나 백성은 아람어를 썼기 때문','에스라의 목소리가 작았기 때문'],a:1,e:'낭독만으로는 뜻이 통하지 않았기에, 레위인이 통역과 해설자로서 백성이 "다 깨닫게" 했습니다.'},
+ {q:'느헤미야 8장의 구조에서 목자는 누구의 역할일까요?',o:['에스라 (설교자)','레위인 (통역·해설자)','느헤미야 (총독)'],a:1,e:'목자는 설교자(에스라)가 아니라 레위인의 역할입니다. 선포된 말씀이 목원들의 삶 속에서 "다 깨달아지도록" 곁에서 풀어주고 질문하고 적용을 돕는 자리입니다.'},
+ {q:'[O/X] 회개는 말씀 앞에서 우는 데서 끝나면 충분하다.',o:['O','X'],a:1,e:'회개는 거기서 멈추지 않고 기쁨으로 나아가야 합니다. "여호와로 인하여 기뻐하는 것이 너희의 힘이니라"(느8:10)'},
+ {q:'목장모임 말씀 나눔의 목표로 노트가 말하는 흐름은?',o:['본문을 정확히 이해한다','깨달음 → 회개(또는 결단) → 실제 순종 → 참된 기쁨','많은 구절을 암송한다'],a:1,e:'"본문을 잘 이해했다"에서 끝나지 않고, 한 걸음 더 물어봐 주어야 합니다. ("그래서 이번 주 나는 무엇을 구체적으로 실천할까요?")'}
+];
+const qb=$('#qbox'); let qi=0,score=0,answered=false;
+function renderQ(){
+  const Q=QS[qi]; answered=false;
+  qb.innerHTML=`<div class="qtop"><span>문제 ${qi+1} / ${QS.length}</span><span>점수 ${score}</span></div>
+  <div class="bar"><i style="width:${qi/QS.length*100}%"></i></div>
+  <div class="q">${Q.q}</div>
+  <div id="opts">${Q.o.map((t,i)=>`<button class="opt" data-i="${i}">${t}</button>`).join('')}</div>
+  <div class="exp" id="exp"></div>
+  <button class="btn" id="qnext" style="display:none">${qi===QS.length-1?'결과 보기':'다음 문제'}</button>`;
+  $$('.opt',qb).forEach(b=>b.addEventListener('click',()=>pick(+b.dataset.i)));
+  $('#qnext').addEventListener('click',()=>{qi++;qi<QS.length?renderQ():result()});
+}
+function pick(i){
+  if(answered)return; answered=true; const Q=QS[qi], ok=i===Q.a; if(ok)score++;
+  $$('.opt',qb).forEach((b,j)=>{b.disabled=true;if(j===Q.a)b.classList.add('ok');else if(j===i)b.classList.add('no')});
+  const ex=$('#exp'); ex.innerHTML=`<b>${ok?'정답입니다! 🎉':'아쉬워요'}</b><br>${Q.e}`; ex.classList.add('show');
+  $('#qnext').style.display='inline-block';
+}
+function result(){
+  const pct=Math.round(score/QS.length*100);
+  const msg=pct===100?'완벽합니다! 레위인의 마음이 잘 새겨졌네요.':pct>=70?'잘하셨어요! 틀린 부분만 본론에서 다시 확인해 보세요.':'본론 탭을 한 번 더 훑고 다시 도전해 보세요.';
+  qb.innerHTML=`<div class="score"><div class="qtop" style="justify-content:center">결과</div><div class="big">${score}<span style="font-size:36px;color:var(--text2)"> / ${QS.length}</span></div><p>${msg}</p><button class="btn" id="qre">다시 풀기</button></div>`;
+  $('#qre').addEventListener('click',()=>{qi=0;score=0;renderQ()});
+  if(pct>=70)boom();
+}
+renderQ();
+
+/* cloze */
+const CZ=[
+ {r:'느 8:10',t:'"... 여호와로 인하여 기뻐하는 것이 너희의 {힘}이니라"'},
+ {r:'시 119:105',t:'"주의 말씀은 내 발에 {등}이요 내 길에 {빛}이니이다"'},
+ {r:'수 1:8',t:'"이 율법책을 네 입에서 떠나지 말게 하며 주야로 그것을 {묵상}하여 그 가운데에 기록한 대로 다 지켜 행하라"'},
+ {r:'느 8:8',t:'"하나님의 율법 책을 낭독하고 그 뜻을 {해석}하여 백성에게 그 낭독하는 것을 다 {깨닫게} 하니"'},
+ {r:'느 8:13',t:'"... 율법의 말씀을 {밝히} 알고자 하여 학사 {에스라}에게 모여서"'}
+];
+const czl=$('#czlist'); let hid=0;
+function renderCZ(){
+  hid=0; czl.innerHTML=''; $('#czres').textContent='';
+  CZ.forEach(c=>{
+    const d=document.createElement('div'); d.className='cz rv in';
+    d.innerHTML='<span class="rf">'+c.r+'</span>'+c.t.replace(/\{(.+?)\}/g,(m,a)=>`<input data-a="${a}" size="${a.length+1}" style="width:${a.length*1.3+2}em" autocomplete="off"><button class="hb" title="힌트" style="font-size:14px;margin-left:2px">💡</button>`);
+    czl.appendChild(d);
+  });
+  $$('.hb',czl).forEach(b=>b.addEventListener('click',()=>{const i=b.previousElementSibling;i.placeholder=i.dataset.a[0]+'…';i.focus()}));
+}
+$('#czcheck').addEventListener('click',()=>{
+  let ok=0,all=0; $$('#czlist input').forEach(i=>{all++;const g=i.value.replace(/\s/g,'')===i.dataset.a;i.classList.toggle('ok',g);i.classList.toggle('no',!g);if(g)ok++});
+  $('#czres').textContent=ok+' / '+all+' 정답'+(ok===all?' 🎉':''); if(ok===all)boom();
+});
+$('#czreset').addEventListener('click',renderCZ);
+renderCZ();
+
+/* self check */
+const FB={sc1:['먼저 말씀 앞에 서는 시간을 만드는 것이 이번 주의 첫걸음입니다.','조금씩 시작되고 있습니다. 매일 짧게라도 이어가 보세요.','절반쯤 오셨네요. 나를 위한 말씀으로 먼저 받는 습관을 더해 보세요.','잘하고 계십니다. 사모함이 나눔의 전제가 됩니다.','사모함이 나눔으로 흘러가고 있습니다.'],
+ sc2:['괜찮습니다. 이번 주엔 질문 하나로 시작해 보세요.','가르치려는 마음을 알아차린 것만으로도 시작입니다.','질문과 가르침 사이에서 균형을 찾는 중입니다.','레위인의 자세에 가까워지고 있습니다.','질문하고 기다려 주는 레위인의 자세입니다.']};
+$$('.sc').forEach(sc=>{
+  const k=sc.dataset.k, bs=$$('.scale button',sc), fb=$('.fb',sc);
+  const set=n=>{bs.forEach((b,i)=>b.classList.toggle('on',i===n));fb.textContent=FB[k][n]};
+  bs.forEach((b,i)=>b.addEventListener('click',()=>{set(i);store.set(k,i)}));
+  const s=store.get(k); if(s!==null)set(+s);
+});
+
+/* discuss notes */
+$$('.dq textarea').forEach(t=>{
+  const k=t.dataset.k, sv=t.parentElement.querySelector('.saved'); const v=store.get(k); if(v)t.value=v;
+  let tm; t.addEventListener('input',()=>{store.set(k,t.value);sv.textContent='저장됨';clearTimeout(tm);tm=setTimeout(()=>sv.textContent='',1500)});
+});
+
+/* tasks */
+const tasks=$$('.task');
+function ring(){
+  const n=tasks.filter(t=>t.classList.contains('done')).length, p=n/tasks.length;
+  $('#ringfg').style.strokeDashoffset=452.4*(1-p); $('#ringnum').textContent=Math.round(p*100)+'%'; $('#ringsub').textContent=n+' / '+tasks.length+' 완료';
+  return n;
+}
+tasks.forEach(t=>{
+  if(store.get(t.dataset.k)==='1')t.classList.add('done');
+  t.addEventListener('click',()=>{t.classList.toggle('done');store.set(t.dataset.k,t.classList.contains('done')?'1':'0');if(ring()===tasks.length)boom()});
+});
+setTimeout(ring,400);
+
+/* confetti */
+const cv=$('#confetti'),cx=cv.getContext('2d'); let ps=[],raf;
+function boom(){
+  if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  cv.width=innerWidth;cv.height=innerHeight;
+  const cols=['#0071e3','#5e5ce6','#ff6a88','#ff9f0a','#30d158'];
+  for(let i=0;i<110;i++)ps.push({x:innerWidth/2,y:innerHeight*.6,vx:(Math.random()-.5)*14,vy:-Math.random()*14-4,s:Math.random()*7+4,c:cols[i%5],r:Math.random()*6,l:100});
+  cancelAnimationFrame(raf);(function f(){
+    cx.clearRect(0,0,cv.width,cv.height);
+    ps=ps.filter(p=>p.l>0);ps.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.35;p.r+=.2;p.l--;cx.save();cx.globalAlpha=Math.min(1,p.l/30);cx.translate(p.x,p.y);cx.rotate(p.r);cx.fillStyle=p.c;cx.fillRect(-p.s/2,-p.s/2,p.s,p.s*.6);cx.restore()});
+    if(ps.length)raf=requestAnimationFrame(f);else cx.clearRect(0,0,cv.width,cv.height);
+  })();
+}
+})();
+</script>
+</body>
+</html>
