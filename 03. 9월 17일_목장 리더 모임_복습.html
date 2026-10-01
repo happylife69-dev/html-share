@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>3강 복습 · 기도하는 목자, 부지런한 목자</title>
+<style>
+  :root {
+    --bg: #fbfbfd;
+    --bg-alt: #f5f5f7;
+    --card: #ffffff;
+    --text: #1d1d1f;
+    --text-2: #6e6e73;
+    --line: rgba(0,0,0,.08);
+    --blue: #0071e3;
+    --blue-soft: rgba(0,113,227,.1);
+    --green: #30a46c;
+    --green-soft: rgba(48,164,108,.12);
+    --red: #e5484d;
+    --red-soft: rgba(229,72,77,.1);
+    --orange: #f5a524;
+    --shadow: 0 2px 8px rgba(0,0,0,.04), 0 12px 32px rgba(0,0,0,.06);
+    --glass: rgba(251,251,253,.72);
+    --radius: 22px;
+  }
+  [data-theme="dark"] {
+    --bg: #000000;
+    --bg-alt: #111113;
+    --card: #1c1c1e;
+    --text: #f5f5f7;
+    --text-2: #a1a1a6;
+    --line: rgba(255,255,255,.12);
+    --blue: #2997ff;
+    --blue-soft: rgba(41,151,255,.16);
+    --green: #32d583;
+    --green-soft: rgba(50,213,131,.16);
+    --red: #ff6369;
+    --red-soft: rgba(255,99,105,.16);
+    --shadow: 0 2px 8px rgba(0,0,0,.4), 0 12px 32px rgba(0,0,0,.4);
+    --glass: rgba(0,0,0,.66);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Apple SD Gothic Neo", "Pretendard", "Noto Sans KR", "Malgun Gothic", sans-serif;
+    background: var(--bg); color: var(--text);
+    line-height: 1.6; letter-spacing: -0.01em;
+    -webkit-font-smoothing: antialiased; word-break: keep-all;
+    transition: background .4s, color .4s;
+  }
+  button { font: inherit; color: inherit; cursor: pointer; border: 0; background: none; }
+  input, textarea { font: inherit; color: inherit; }
+
+  /* progress + nav */
+  #progress { position: fixed; top: 0; left: 0; height: 3px; width: 0; background: var(--blue); z-index: 200; transition: width .1s; }
+  nav {
+    position: sticky; top: 0; z-index: 100; height: 48px;
+    background: var(--glass); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: center; gap: 4px; padding: 0 12px; overflow-x: auto; scrollbar-width: none;
+  }
+  nav::-webkit-scrollbar { display: none; }
+  nav a { font-size: 12px; color: var(--text-2); text-decoration: none; padding: 6px 12px; border-radius: 980px; white-space: nowrap; transition: .2s; }
+  nav a:hover, nav a.on { color: var(--text); background: var(--blue-soft); }
+  #theme { font-size: 14px; padding: 6px 10px; border-radius: 980px; }
+  #theme:hover { background: var(--blue-soft); }
+
+  section { padding: 96px 22px; }
+  section.alt { background: var(--bg-alt); }
+  .wrap { max-width: 980px; margin: 0 auto; }
+  .eyebrow { font-size: 14px; font-weight: 600; color: var(--blue); letter-spacing: .02em; margin-bottom: 8px; }
+  h2 { font-size: clamp(30px, 5vw, 48px); line-height: 1.12; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 14px; }
+  .lead { font-size: clamp(17px, 2.2vw, 21px); color: var(--text-2); max-width: 720px; margin-bottom: 44px; }
+  .lead b { color: var(--text); font-weight: 600; }
+
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* hero */
+  #hero { min-height: calc(100vh - 48px); display: flex; align-items: center; text-align: center; padding-top: 40px; position: relative; overflow: hidden; }
+  #hero::before, #hero::after { content: ""; position: absolute; border-radius: 50%; filter: blur(90px); opacity: .35; z-index: 0; }
+  #hero::before { width: 420px; height: 420px; background: #0a84ff; top: -80px; left: -80px; animation: float 14s ease-in-out infinite; }
+  #hero::after { width: 380px; height: 380px; background: #ff9f0a; bottom: -80px; right: -60px; animation: float 17s ease-in-out infinite reverse; }
+  @keyframes float { 50% { transform: translate(60px, 40px) scale(1.1); } }
+  #hero .wrap { position: relative; z-index: 1; }
+  #hero .tag { display: inline-block; font-size: 13px; font-weight: 600; padding: 6px 14px; border-radius: 980px; background: var(--blue-soft); color: var(--blue); margin-bottom: 22px; }
+  #hero h1 { font-size: clamp(40px, 8vw, 84px); line-height: 1.05; font-weight: 800; letter-spacing: -0.045em; }
+  #hero h1 span { background: linear-gradient(90deg, #0a84ff, #bf5af2 55%, #ff9f0a); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  #hero p { font-size: clamp(18px, 2.4vw, 24px); color: var(--text-2); margin: 24px auto 36px; max-width: 640px; }
+  .btn { display: inline-block; background: var(--blue); color: #fff; font-size: 17px; padding: 12px 26px; border-radius: 980px; text-decoration: none; transition: transform .2s, filter .2s; }
+  .btn:hover { filter: brightness(1.1); transform: scale(1.03); }
+  .btn.ghost { background: var(--blue-soft); color: var(--blue); }
+  .btn:disabled { opacity: .4; cursor: default; transform: none; }
+
+  /* flip cards */
+  .grid { display: grid; gap: 20px; }
+  .g3 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+  .g2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+  .flip { perspective: 1200px; height: 320px; cursor: pointer; }
+  .flip-in { position: relative; width: 100%; height: 100%; transition: transform .8s cubic-bezier(.2,.7,.2,1); transform-style: preserve-3d; }
+  .flip.on .flip-in { transform: rotateY(180deg); }
+  .face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow); background: var(--card); display: flex; flex-direction: column; overflow: auto; }
+  .face.back { transform: rotateY(180deg); background: linear-gradient(145deg, #0a84ff, #5e5ce6); color: #fff; font-size: 15.5px; justify-content: center; }
+  .face .num { font-size: 13px; font-weight: 600; color: var(--blue); }
+  .face h3 { font-size: 26px; line-height: 1.2; letter-spacing: -0.03em; margin: 8px 0 auto; }
+  .face .hint { font-size: 13px; color: var(--text-2); margin-top: 12px; }
+  .face.back b { font-weight: 700; }
+
+  /* timeline */
+  .timeline { position: relative; padding-left: 36px; max-width: 760px; }
+  .timeline::before { content: ""; position: absolute; left: 11px; top: 8px; bottom: 8px; width: 2px; background: var(--line); }
+  .tl-item { position: relative; margin-bottom: 14px; }
+  .tl-item::before { content: ""; position: absolute; left: -32px; top: 22px; width: 14px; height: 14px; border-radius: 50%; background: var(--bg-alt); border: 2px solid var(--text-2); transition: .3s; z-index: 1; }
+  .tl-item.open::before { background: var(--blue); border-color: var(--blue); box-shadow: 0 0 0 6px var(--blue-soft); }
+  .tl-btn { width: 100%; text-align: left; background: var(--card); border-radius: 18px; padding: 18px 22px; box-shadow: var(--shadow); display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .tl-btn strong { font-size: 18px; letter-spacing: -0.02em; }
+  .tl-btn small { color: var(--blue); font-weight: 600; font-size: 13px; }
+  .tl-btn .chev { color: var(--text-2); transition: transform .3s; }
+  .tl-item.open .chev { transform: rotate(90deg); }
+  .tl-body { max-height: 0; overflow: hidden; transition: max-height .5s cubic-bezier(.2,.7,.2,1); color: var(--text-2); }
+  .tl-body p { padding: 14px 22px 6px; font-size: 16px; }
+  .tl-item.open .tl-body { max-height: 220px; }
+
+  /* callout card */
+  .card { background: var(--card); border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow); }
+  .principle { background: linear-gradient(145deg, #1d1d1f, #3a3a3c); color: #f5f5f7; border-radius: var(--radius); padding: 36px; margin-bottom: 36px; }
+  .principle .label { font-size: 13px; font-weight: 600; color: #ff9f0a; margin-bottom: 8px; }
+  .principle p { font-size: clamp(20px, 3vw, 28px); line-height: 1.4; font-weight: 600; letter-spacing: -0.03em; }
+  .principle p em { font-style: normal; color: #64d2ff; }
+
+  /* prayer tabs */
+  .tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
+  .tab { padding: 10px 18px; border-radius: 980px; background: var(--card); box-shadow: var(--shadow); font-size: 15px; font-weight: 500; transition: .25s; position: relative; overflow: hidden; }
+  .tab.on { background: var(--blue); color: #fff; }
+  .tab .fill { position: absolute; left: 0; bottom: 0; height: 100%; width: 0; background: rgba(255,255,255,.28); }
+  .pane { min-height: 190px; display: flex; flex-direction: column; justify-content: center; }
+  .pane .big { font-size: 56px; line-height: 1; margin-bottom: 10px; }
+  .pane h3 { font-size: 26px; letter-spacing: -0.03em; margin-bottom: 8px; }
+  .pane p { font-size: 18px; color: var(--text-2); }
+  .pane.swap { animation: pop .45s cubic-bezier(.2,.7,.2,1); }
+  @keyframes pop { from { opacity: 0; transform: translateY(10px) scale(.98); } }
+  .timer-row { display: flex; align-items: center; gap: 16px; margin-top: 22px; flex-wrap: wrap; }
+  #timer-text { font-size: 15px; color: var(--text-2); font-variant-numeric: tabular-nums; }
+
+  /* fill in the blank */
+  .verse { margin-bottom: 18px; }
+  .verse .ref { font-size: 13px; font-weight: 600; color: var(--blue); margin-bottom: 6px; }
+  .verse .txt { font-size: 21px; line-height: 2; letter-spacing: -0.02em; }
+  .blank { border: 0; border-bottom: 2px solid var(--blue); background: var(--blue-soft); border-radius: 8px 8px 0 0; text-align: center; padding: 0 6px; font-size: 20px; outline: none; transition: .2s; }
+  .blank.ok { border-color: var(--green); background: var(--green-soft); color: var(--green); font-weight: 600; }
+  .blank.no { border-color: var(--red); background: var(--red-soft); animation: shake .4s; }
+  @keyframes shake { 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+  .verse .acts { margin-top: 10px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .small-btn { font-size: 14px; padding: 7px 16px; border-radius: 980px; background: var(--blue-soft); color: var(--blue); font-weight: 500; transition: .2s; }
+  .small-btn:hover { filter: brightness(.95); transform: scale(1.03); }
+  .verse .res { font-size: 14px; font-weight: 600; }
+
+  /* quote card */
+  .quote { border-left: 4px solid var(--orange); padding: 4px 0 4px 18px; margin: 22px 0 0; color: var(--text-2); font-size: 16.5px; }
+  .quote b { color: var(--text); }
+
+  /* chips */
+  .chips { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-top: 28px; }
+  .chip { background: var(--card); border-radius: 18px; padding: 22px; box-shadow: var(--shadow); text-align: left; transition: transform .25s; }
+  .chip:hover { transform: translateY(-4px); }
+  .chip .ic { font-size: 30px; }
+  .chip h4 { font-size: 18px; margin: 8px 0 4px; letter-spacing: -0.02em; }
+  .chip p { font-size: 14.5px; color: var(--text-2); }
+
+  /* seesaw */
+  .seesaw { text-align: center; }
+  .beam-box { height: 190px; position: relative; margin: 8px 0 24px; }
+  .beam { position: absolute; left: 50%; bottom: 52px; width: 86%; height: 12px; margin-left: -43%; background: linear-gradient(90deg, #0a84ff, #ff9f0a); border-radius: 6px; transform-origin: 50% 50%; transition: transform .25s ease-out; }
+  .beam .w { position: absolute; bottom: 14px; font-size: 42px; line-height: 1; }
+  .beam .w.l { left: 4%; } .beam .w.r { right: 4%; }
+  .beam .cap { position: absolute; top: 18px; font-size: 13px; font-weight: 600; white-space: nowrap; }
+  .beam .cap.l { left: 2%; color: var(--blue); } .beam .cap.r { right: 2%; color: var(--orange); }
+  .pivot { position: absolute; left: 50%; bottom: 0; margin-left: -34px; width: 0; height: 0; border-left: 34px solid transparent; border-right: 34px solid transparent; border-bottom: 56px solid var(--text-2); opacity: .5; }
+  input[type=range] { -webkit-appearance: none; appearance: none; width: min(560px, 100%); height: 6px; border-radius: 3px; background: var(--line); outline: none; }
+  input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 28px; height: 28px; border-radius: 50%; background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,.3); cursor: grab; }
+  input[type=range]::-moz-range-thumb { width: 28px; height: 28px; border: 0; border-radius: 50%; background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,.3); }
+  #seesaw-msg { margin: 26px auto 0; max-width: 620px; min-height: 96px; }
+  #seesaw-msg h3 { font-size: 24px; letter-spacing: -0.03em; margin-bottom: 6px; }
+  #seesaw-msg p { font-size: 17px; color: var(--text-2); }
+  #seesaw-msg.balanced h3 { color: var(--green); }
+  #seesaw-msg.off h3 { color: var(--red); }
+
+  /* quiz */
+  .quiz { max-width: 720px; margin: 0 auto; }
+  .dots { display: flex; gap: 6px; margin-bottom: 22px; }
+  .dot { flex: 1; height: 5px; border-radius: 3px; background: var(--line); transition: .3s; }
+  .dot.cur { background: var(--blue); } .dot.ok { background: var(--green); } .dot.no { background: var(--red); }
+  .qno { font-size: 13px; font-weight: 600; color: var(--blue); }
+  .q { font-size: clamp(21px, 3.2vw, 28px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.3; margin: 6px 0 22px; }
+  .opt { display: block; width: 100%; text-align: left; padding: 16px 20px; margin-bottom: 10px; background: var(--bg-alt); border-radius: 16px; font-size: 17px; border: 2px solid transparent; transition: .2s; }
+  section.alt .opt { background: var(--bg); }
+  .opt:hover:not(:disabled) { border-color: var(--blue); }
+  .opt.ok { background: var(--green-soft); border-color: var(--green); }
+  .opt.no { background: var(--red-soft); border-color: var(--red); animation: shake .4s; }
+  .explain { margin-top: 14px; padding: 16px 20px; border-radius: 16px; background: var(--blue-soft); font-size: 15.5px; animation: pop .4s; }
+  .quiz-end { text-align: center; }
+  .ring { width: 180px; height: 180px; margin: 0 auto 18px; position: relative; }
+  .ring svg { transform: rotate(-90deg); }
+  .ring .score { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 44px; font-weight: 800; letter-spacing: -0.04em; }
+  .ring .score small { font-size: 13px; font-weight: 500; color: var(--text-2); }
+
+  /* reflection */
+  .qcard { margin-bottom: 18px; }
+  .qcard .qn { font-size: 13px; font-weight: 600; color: var(--blue); }
+  .qcard p { font-size: 19px; font-weight: 600; letter-spacing: -0.02em; margin: 6px 0 14px; }
+  textarea { width: 100%; min-height: 96px; resize: vertical; background: var(--bg-alt); border: 2px solid transparent; border-radius: 14px; padding: 14px 16px; font-size: 16px; outline: none; transition: .2s; }
+  textarea:focus { border-color: var(--blue); }
+  .note-small { font-size: 13px; color: var(--text-2); margin-top: 6px; }
+
+  /* checklist */
+  .todo { display: flex; gap: 14px; align-items: flex-start; width: 100%; text-align: left; padding: 18px 20px; background: var(--card); border-radius: 18px; box-shadow: var(--shadow); margin-bottom: 12px; font-size: 17px; transition: .25s; }
+  .todo .box { flex: none; width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--text-2); display: flex; align-items: center; justify-content: center; color: transparent; font-weight: 700; transition: .3s; margin-top: 1px; }
+  .todo.done .box { background: var(--green); border-color: var(--green); color: #fff; transform: scale(1.1); }
+  .todo.done span.t { color: var(--text-2); text-decoration: line-through; }
+  .bar { height: 10px; background: var(--line); border-radius: 5px; overflow: hidden; margin: 24px 0 8px; }
+  .bar i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #0a84ff, #30d158); border-radius: 5px; transition: width .6s cubic-bezier(.2,.7,.2,1); }
+  #bar-text { font-size: 14px; color: var(--text-2); }
+
+  /* closing */
+  #closing { text-align: center; }
+  #closing .pray { font-size: clamp(22px, 3.4vw, 32px); line-height: 1.5; font-weight: 600; letter-spacing: -0.03em; max-width: 760px; margin: 0 auto; }
+  footer { text-align: center; padding: 40px 22px 70px; font-size: 13px; color: var(--text-2); }
+
+  .confetti { position: fixed; top: -20px; font-size: 24px; z-index: 300; pointer-events: none; animation: fall 2.6s ease-in forwards; }
+  @keyframes fall { to { transform: translateY(105vh) rotate(540deg); opacity: .6; } }
+
+  @media (max-width: 640px) {
+    section { padding: 64px 18px; }
+    .principle { padding: 26px; }
+    .beam .cap { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<nav id="nav">
+  <a href="#hero">시작</a>
+  <a href="#review">1·2강 리뷰</a>
+  <a href="#pray">기도하는 목자</a>
+  <a href="#diligent">부지런한 목자</a>
+  <a href="#connect">하나로 연결</a>
+  <a href="#quiz">퀴즈</a>
+  <a href="#share">나눔</a>
+  <a href="#action">실천</a>
+  <button id="theme" aria-label="화면 모드 전환">🌓</button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="wrap">
+    <span class="tag">목장 리더교육 · 3강 복습</span>
+    <h1>기도하는 목자,<br><span>부지런한 목자</span></h1>
+    <p>목자의 영적 상태가 곧 목장의 영적 상태를 결정한다.<br>카드를 뒤집고, 퀴즈를 풀며 오늘 말씀을 다시 만나요.</p>
+    <a class="btn" href="#review">복습 시작하기</a>
+  </div>
+</section>
+
+<!-- REVIEW -->
+<section id="review" class="alt">
+  <div class="wrap">
+    <div class="eyebrow reveal">PART 0 · 1, 2강 리뷰</div>
+    <h2 class="reveal">지난 두 강의, 기억나나요?</h2>
+    <p class="lead reveal">카드를 눌러 <b>뒤집어</b> 보세요. 그리고 오늘 강의가 왜 필요한지 확인합니다.</p>
+    <div class="grid g3">
+      <div class="flip reveal" tabindex="0" role="button">
+        <div class="flip-in">
+          <div class="face"><span class="num">1강</span><h3>교회는 무엇인가?</h3><span class="hint">👆 눌러서 뒤집기</span></div>
+          <div class="face back">"교회는 건물이 아니라 사람, 그 사람은 예수님을 구주와 주님으로 고백한 사람, 그 사람들이 모여 그리스도의 몸을 이룬 것이 교회"<br><br>교회의 존재 목적은 <b>예배·전도·양육(교제)</b> 세 방향의 균형.</div>
+        </div>
+      </div>
+      <div class="flip reveal" tabindex="0" role="button">
+        <div class="flip-in">
+          <div class="face"><span class="num">2강</span><h3>목자란 누구인가?</h3><span class="hint">👆 눌러서 뒤집기</span></div>
+          <div class="face back">삯꾼 목자와 선한 목자, 거짓 목자와 참 목자가 있다.<br><br>목자의 일은 관리가 아니라 <b>관계를 먼저 세우는 일</b>. 목자의 마음은 <b>긍휼</b>에서 시작된다(막6:34).</div>
+        </div>
+      </div>
+      <div class="flip reveal" tabindex="0" role="button">
+        <div class="flip-in">
+          <div class="face"><span class="num">3강 · 오늘</span><h3>그래서 무엇이 필요한가?</h3><span class="hint">👆 눌러서 뒤집기</span></div>
+          <div class="face back">관계를 형성하고, 긍휼의 마음이 실제 사역으로 이어지려면 두 가지 구체적인 습관이 필요하다.<br><br>바로 <b>기도</b>와 <b>부지런함</b>.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRAY -->
+<section id="pray">
+  <div class="wrap">
+    <div class="eyebrow reveal">PART 1 · 기도하는 목자</div>
+    <h2 class="reveal">목장의 영적 수준은<br>목자의 기도 수준을 넘지 못한다</h2>
+    <div class="principle reveal">
+      <div class="label">원리</div>
+      <p>목자가 먼저 하나님과의 관계에서 영적 갈급함이 채워지지 않으면, 목원에게 영적으로 채워줄 것이 없다. <em>목장의 영적 수준은 목자의 기도 수준을 넘지 못한다.</em></p>
+    </div>
+
+    <h3 class="reveal" style="font-size:24px;margin-bottom:6px;letter-spacing:-0.03em">예수님의 사역의 중심에는 기도가 있었다</h3>
+    <p class="lead reveal" style="margin-bottom:24px;font-size:16px">각 단계를 눌러 펼쳐 보세요. 사역을 시작하실때, 사역 중간 중간에, 그리고 사역을 마치실때에 언제나 기도하셨다.</p>
+    <div class="timeline reveal" id="timeline">
+      <div class="tl-item"><button class="tl-btn"><div><small>시작</small><br><strong>세례 → 40일 금식 → 공생애 사역</strong></div><span class="chev">›</span></button>
+        <div class="tl-body"><p>세례를 받으시고 40일 금식하시고 공생애 사역을 시작하셨다.</p></div></div>
+      <div class="tl-item"><button class="tl-btn"><div><small>막1:35</small><br><strong>새벽 미명의 한적한 곳</strong></div><span class="chev">›</span></button>
+        <div class="tl-body"><p>"새벽 오히려 미명에 예수께서 일어나 나가 한적한 곳으로 가사 거기서 기도하시더니"(막1:35)</p></div></div>
+      <div class="tl-item"><button class="tl-btn"><div><small>눅6:12</small><br><strong>12제자를 택하시기 전, 밤이 새도록</strong></div><span class="chev">›</span></button>
+        <div class="tl-body"><p>12제자를 택하시기 전에 밤이 새도록 하나님께 기도하셨다(눅6:12).</p></div></div>
+      <div class="tl-item"><button class="tl-btn"><div><small>십자가 앞</small><br><strong>겟세마네 동산</strong></div><span class="chev">›</span></button>
+        <div class="tl-body"><p>마지막 십자가를 앞두시고 겟세마네 동산에서 기도하셨다.</p></div></div>
+      <div class="tl-item"><button class="tl-btn"><div><small>십자가 위</small><br><strong>"아버지 저들의 죄를 용서하옵소서"</strong></div><span class="chev">›</span></button>
+        <div class="tl-body"><p>심지어 십자가 위에서도 아버지 저들의 죄를 용서하옵소서,,,기도하셨다.</p></div></div>
+    </div>
+
+    <div class="quote reveal"><b>사도 바울</b>도 자신이 개척한 교회들을 향해 쉬지 않고 기도했다 — "우리가... 너희를 위하여 기도하기를 그치지 아니하고"(골1:9).</div>
+
+    <h3 class="reveal" style="font-size:24px;margin:64px 0 6px;letter-spacing:-0.03em">기도의 5가지 대상</h3>
+    <p class="lead reveal" style="margin-bottom:22px;font-size:16px">Scheidler, <i>Prayerful &amp; Diligent Leader</i>의 틀. 탭을 눌러보거나, 아래 버튼으로 <b>5분 기도 가이드</b>를 시작해 보세요.</p>
+    <div class="tabs reveal" id="tabs"></div>
+    <div class="card reveal"><div class="pane" id="pane"></div>
+      <div class="timer-row">
+        <button class="btn" id="start-pray" style="font-size:15px;padding:10px 22px">▶ 5분 기도 시작 (대상당 1분)</button>
+        <button class="btn ghost" id="stop-pray" style="font-size:15px;padding:10px 22px;display:none">■ 멈추기</button>
+        <span id="timer-text"></span>
+      </div>
+    </div>
+    <p class="quote reveal"><b>적용:</b> 기도 노트나 스마트 폰에 목원 이름과 기도제목을 적어두고, 매일 짧게라도 이 5가지를 순서대로 기도하는 습관을 가지도록 노력한다.</p>
+  </div>
+</section>
+
+<!-- DILIGENT -->
+<section id="diligent" class="alt">
+  <div class="wrap">
+    <div class="eyebrow reveal">PART 2 · 부지런한 목자</div>
+    <h2 class="reveal">기도가 내면을 채운다면,<br>부지런함은 사랑을 행동으로</h2>
+    <div class="principle reveal">
+      <div class="label">원리</div>
+      <p>기도가 목자의 내면을 채운다면, 부지런함은 그 사랑을 실제 행동으로 옮기는 것이다. <em>마음만 있고 행동이 없으면 목원은 사랑받고 있음을 알 수 없다.</em></p>
+    </div>
+
+    <h3 class="reveal" style="font-size:24px;margin-bottom:6px;letter-spacing:-0.03em">✍️ 말씀 빈칸 채우기</h3>
+    <p class="lead reveal" style="margin-bottom:22px;font-size:16px">빈칸에 들어갈 말을 적고 확인을 눌러보세요.</p>
+    <div class="card reveal" id="verses"></div>
+
+    <div class="quote reveal"><b>달란트 비유(마25:14-30)</b> — 주인이 칭찬한 것은 "결과의 크기"가 아니라 "맡은 것에 착하고 충성됨"(마25:21,23)이었다. 반면 한 달란트 받은 종은 두려움 때문에 아무것도 하지 않았다. <b>게으름의 근본 원인은 두려움일 때가 많다.</b></div>
+
+    <h3 class="reveal" style="font-size:24px;margin:64px 0 6px;letter-spacing:-0.03em">목자의 부지런함이란 구체적으로</h3>
+    <div class="chips">
+      <div class="chip reveal"><div class="ic">📱</div><h4>정기적 연락</h4><p>목장모임이 없는 주에도 목원에게 최소한의 안부 연락</p></div>
+      <div class="chip reveal"><div class="ic">📖</div><h4>준비된 나눔</h4><p>목장 모임전에 그날 나눌 문제들을 먼저 확인하고, 설교시간에 집중해서 말씀을 듣고 인도함</p></div>
+      <div class="chip reveal"><div class="ic">🔁</div><h4>신실한 후속조치</h4><p>지난주 나눈 기도제목/필요를 잊지 않고 다시 물어보는 것</p></div>
+      <div class="chip reveal"><div class="ic">🌱</div><h4>작은 것에 성실함</h4><p>큰 심방·큰 행사보다, 매주 반복되는 작은 섬김을 빠뜨리지 않는 것</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONNECT -->
+<section id="connect">
+  <div class="wrap seesaw">
+    <div class="eyebrow reveal">PART 3 · 하나로 연결</div>
+    <h2 class="reveal">기도와 부지런함의 균형</h2>
+    <p class="lead reveal" style="margin-left:auto;margin-right:auto">슬라이더를 움직여 한쪽으로 치우쳐 보세요. 가운데에 맞추면 어떻게 될까요?</p>
+    <div class="beam-box reveal">
+      <div class="beam" id="beam"><span class="cap l">🙏 기도</span><span class="cap r">🏃 부지런함</span><span class="w l">🙏</span><span class="w r">🏃</span></div>
+      <div class="pivot"></div>
+    </div>
+    <input type="range" id="seesaw" min="0" max="100" value="50" aria-label="기도와 부지런함의 균형">
+    <div id="seesaw-msg" class="balanced"></div>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section id="quiz" class="alt">
+  <div class="wrap">
+    <div class="eyebrow reveal">QUIZ</div>
+    <h2 class="reveal">얼마나 기억하고 있나요?</h2>
+    <p class="lead reveal">7문제로 오늘 강의를 점검해 봅니다.</p>
+    <div class="quiz card reveal" id="quiz-box"></div>
+  </div>
+</section>
+
+<!-- SHARE -->
+<section id="share">
+  <div class="wrap">
+    <div class="eyebrow reveal">토의 / 나눔 질문</div>
+    <h2 class="reveal">나의 이야기로 돌아보기</h2>
+    <p class="lead reveal">생각을 적어두세요. 입력한 내용은 <b>이 기기의 브라우저에만</b> 저장되며 어디로도 전송되지 않습니다.</p>
+    <div id="reflect"></div>
+  </div>
+</section>
+
+<!-- ACTION -->
+<section id="action" class="alt">
+  <div class="wrap" style="max-width:720px">
+    <div class="eyebrow reveal">실천 과제</div>
+    <h2 class="reveal">다음 모임까지</h2>
+    <p class="lead reveal">하나씩 눌러 체크해 보세요.</p>
+    <div id="todos"></div>
+    <div class="bar reveal"><i id="bar-fill"></i></div>
+    <div id="bar-text">0 / 3 완료</div>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section id="closing">
+  <div class="wrap">
+    <div class="eyebrow reveal">마무리 기도</div>
+    <p class="pray reveal">목자 되신 주님께서 우리에게 지치지 않는 기도의 습관과, 사랑을 행동으로 옮기는 부지런함을 함께 주시기를 기도한다.</p>
+    <div class="reveal" style="margin-top:36px;font-size:40px">🙏</div>
+  </div>
+</section>
+
+<footer>목장 리더교육 3강 · 기도하는 목자, 부지런한 목자 — 복습 자료<br>9월 17일 목장 리더 모임</footer>
+
+<script>
+(function () {
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+
+  /* storage (file:// 에서도 안전하게) */
+  var store = {
+    get: function (k) { try { return localStorage.getItem('mokja3_' + k); } catch (e) { return null; } },
+    set: function (k, v) { try { localStorage.setItem('mokja3_' + k, v); } catch (e) {} }
+  };
+
+  /* theme */
+  var root = document.documentElement;
+  var saved = store.get('theme');
+  if (saved) root.setAttribute('data-theme', saved);
+  else if (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) root.setAttribute('data-theme', 'dark');
+  $('#theme').onclick = function () {
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next); store.set('theme', next);
+  };
+
+  /* progress bar + nav highlight */
+  var links = $$('#nav a');
+  var secs = links.map(function (a) { return $(a.getAttribute('href')); });
+  function onScroll() {
+    var h = document.documentElement;
+    var p = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
+    $('#progress').style.width = p + '%';
+    var y = h.scrollTop + 120, cur = 0;
+    secs.forEach(function (s, i) { if (s && s.offsetTop <= y) cur = i; });
+    links.forEach(function (a, i) { a.classList.toggle('on', i === cur); });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+  /* reveal */
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: .12 });
+  function observe() { $$('.reveal:not(.in)').forEach(function (el) { io.observe(el); }); }
+
+  /* flip cards */
+  $$('.flip').forEach(function (c) {
+    c.onclick = function () { c.classList.toggle('on'); };
+    c.onkeydown = function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); c.classList.toggle('on'); } };
+  });
+
+  /* timeline */
+  $$('.tl-item').forEach(function (it) {
+    $('.tl-btn', it).onclick = function () { it.classList.toggle('open'); };
+  });
+
+  /* prayer tabs */
+  var targets = [
+    { ic: '🧎', t: '나 자신', d: '목자 자신의 경건, 죄, 소진 상태를 위해' },
+    { ic: '⛪', t: '교회 전체', d: '담임목사와 브리지교회 공동체를 위해' },
+    { ic: '🧭', t: '윗사람(리더십)', d: '나를 세우고 지도하는 분들을 위해' },
+    { ic: '👥', t: '맡은 자(목원들)', d: '목장 목원 한 사람 한 사람의 이름을 놓고' },
+    { ic: '📝', t: '구체적 필요', d: '막연히 "복 주세요"가 아니라, 이번 주 목원이 나눈 구체적 기도제목을 놓고' }
+  ];
+  var tabsEl = $('#tabs'), pane = $('#pane'), curTab = 0;
+  targets.forEach(function (t, i) {
+    var b = document.createElement('button');
+    b.className = 'tab'; b.innerHTML = '<span class="fill"></span>' + (i + 1) + '. ' + t.t;
+    b.onclick = function () { stopPray(); showTab(i); };
+    tabsEl.appendChild(b);
+  });
+  function showTab(i) {
+    curTab = i;
+    $$('.tab', tabsEl).forEach(function (b, k) { b.classList.toggle('on', k === i); });
+    var t = targets[i];
+    pane.classList.remove('swap'); void pane.offsetWidth; pane.classList.add('swap');
+    pane.innerHTML = '<div class="big">' + t.ic + '</div><h3>' + (i + 1) + '. ' + t.t + '</h3><p>' + t.d + '</p>';
+  }
+  showTab(0);
+
+  var prayTimer = null;
+  function stopPray() {
+    if (prayTimer) { clearInterval(prayTimer); prayTimer = null; }
+    $('#start-pray').style.display = ''; $('#stop-pray').style.display = 'none';
+    $('#timer-text').textContent = '';
+    $$('.tab .fill').forEach(function (f) { f.style.width = '0'; });
+  }
+  $('#start-pray').onclick = function () {
+    var step = 0, sec = 60;
+    $('#start-pray').style.display = 'none'; $('#stop-pray').style.display = '';
+    showTab(0);
+    function render() {
+      $('#timer-text').textContent = (step + 1) + '/5 · ' + targets[step].t + ' · ' + Math.floor(sec / 60) + ':' + ('0' + (sec % 60)).slice(-2);
+      var f = $$('.tab .fill')[step]; if (f) f.style.width = ((60 - sec) / 60 * 100) + '%';
+    }
+    render();
+    prayTimer = setInterval(function () {
+      sec--;
+      if (sec < 0) {
+        $$('.tab .fill')[step].style.width = '0';
+        step++; sec = 60;
+        if (step > 4) { stopPray(); $('#timer-text').textContent = '아멘 🙏 5분 기도를 마쳤어요.'; burst(['🙏', '✨', '💙']); return; }
+        showTab(step);
+      }
+      render();
+    }, 1000);
+  };
+  $('#stop-pray').onclick = stopPray;
+
+  /* verses */
+  var verses = [
+    { ref: '롬12:11', t: '[[부지런함]]으로 게으르지 말고 [[열심]]을 품고 주를 섬기라' },
+    { ref: '잠13:4', t: '게으른 자의 마음은 원하여도 얻지 못하나 [[부지런한]] 자의 마음은 [[풍족함]]을 얻느니라' },
+    { ref: '골1:9', t: '우리가... 너희를 위하여 [[기도하기]]를 그치지 아니하고' }
+  ];
+  var vbox = $('#verses');
+  verses.forEach(function (v, vi) {
+    var d = document.createElement('div'); d.className = 'verse';
+    var answers = [];
+    var html = v.t.replace(/\[\[(.+?)\]\]/g, function (_, a) {
+      answers.push(a);
+      return '<input class="blank" size="' + (a.length + 2) + '" data-a="' + a + '" aria-label="빈칸">';
+    });
+    d.innerHTML = '<div class="ref">' + v.ref + '</div><div class="txt">"' + html + '"</div>' +
+      '<div class="acts"><button class="small-btn chk">확인</button><button class="small-btn shw">정답 보기</button><span class="res"></span></div>';
+    vbox.appendChild(d);
+    if (vi < verses.length - 1) { var hr = document.createElement('hr'); hr.style.cssText = 'border:0;border-top:1px solid var(--line);margin:22px 0'; vbox.appendChild(hr); }
+    var inputs = $$('.blank', d), res = $('.res', d);
+    $('.chk', d).onclick = function () {
+      var ok = 0;
+      inputs.forEach(function (i) {
+        var good = i.value.replace(/\s/g, '') === i.dataset.a.replace(/\s/g, '');
+        i.classList.remove('ok', 'no'); void i.offsetWidth; i.classList.add(good ? 'ok' : 'no');
+        if (good) ok++;
+      });
+      if (ok === inputs.length) { res.textContent = '🎉 정답!'; res.style.color = 'var(--green)'; burst(['✨']); }
+      else { res.textContent = ok + ' / ' + inputs.length + ' 맞음'; res.style.color = 'var(--red)'; }
+    };
+    $('.shw', d).onclick = function () {
+      inputs.forEach(function (i) { i.value = i.dataset.a; i.classList.remove('no'); i.classList.add('ok'); });
+      res.textContent = '';
+    };
+  });
+
+  /* seesaw */
+  var seesaw = $('#seesaw'), beam = $('#beam'), smsg = $('#seesaw-msg');
+  function updSeesaw() {
+    var v = +seesaw.value;
+    beam.style.transform = 'rotate(' + ((v - 50) * 0.18) + 'deg)';
+    // v 낮음 = 기도 쪽 치우침(왼쪽이 아래로가 아니라 무게가 실림). 기울기: 오른쪽이 더 무거우면 시계방향
+    var html, cls;
+    if (v < 38) {
+      cls = 'off';
+      html = '<h3>🙏만 가득하면?</h3><p>부지런함 없는 기도는 마음만 있고 실천이 없는 <b>무기력 함</b>이 될 수 있다.</p>';
+    } else if (v > 62) {
+      cls = 'off';
+      html = '<h3>🏃만 가득하면?</h3><p>기도 없는 부지런함은 자기 힘으로 하는 봉사가 되어 쉽게 <b>소진</b>될 수 있다.</p>';
+    } else {
+      cls = 'balanced';
+      html = '<h3>⚖️ 균형!</h3><p>그러므로 이 두 가지가 함께 균형을 맞추어야 한다.</p>';
+    }
+    smsg.className = cls; smsg.innerHTML = html;
+  }
+  seesaw.oninput = updSeesaw; updSeesaw();
+
+  /* quiz */
+  var QZ = [
+    { q: '"목장의 영적 수준은 목자의 ___ 수준을 넘지 못한다."', o: ['열심', '기도', '지식', '경험'], a: 1, e: '목자가 먼저 하나님과의 관계에서 영적 갈급함이 채워지지 않으면, 목원에게 영적으로 채워줄 것이 없다.' },
+    { q: '막1:35에서 예수님이 기도하신 때와 장소는?', o: ['저녁, 산 위', '새벽 미명, 한적한 곳', '한낮, 회당', '밤, 바닷가'], a: 1, e: '"새벽 오히려 미명에 예수께서 일어나 나가 한적한 곳으로 가사 거기서 기도하시더니"(막1:35)' },
+    { q: '예수님이 밤이 새도록 기도하신 것은 언제였나요? (눅6:12)', o: ['세례를 받으시기 전', '12제자를 택하시기 전', '오병이어를 행하시기 전', '부활하신 후'], a: 1, e: '12제자를 택하시기 전에 밤이 새도록 하나님께 기도하셨다.' },
+    { q: '다음 중 "기도의 5가지 대상"에 해당하지 않는 것은?', o: ['나 자신', '교회 전체', '다른 교회의 목회자', '구체적 필요'], a: 2, e: '5가지 대상은 나 자신 · 교회 전체 · 윗사람(리더십) · 맡은 자(목원들) · 구체적 필요 입니다.' },
+    { q: '달란트 비유에서 주인이 칭찬한 것은?', o: ['결과의 크기', '가장 많이 남긴 것', '맡은 것에 착하고 충성됨', '빠른 속도'], a: 2, e: '"결과의 크기"가 아니라 "맡은 것에 착하고 충성됨"(마25:21,23)이었다.' },
+    { q: '한 달란트 받은 종이 아무것도 하지 않은 근본 원인으로 강의가 짚은 것은?', o: ['시간 부족', '두려움', '재능 부족', '주인의 무관심'], a: 1, e: '게으름의 근본 원인은 두려움일 때가 많다.' },
+    { q: '"기도 없는 부지런함"은 어떻게 될 수 있다고 했나요?', o: ['자기 힘으로 하는 봉사가 되어 쉽게 소진된다', '더욱 큰 열매를 맺는다', '목원이 더 빨리 성장한다', '문제가 되지 않는다'], a: 0, e: '반대로 부지런함 없는 기도는 마음만 있고 실천이 없는 무기력 함이 될 수 있다. 그래서 두 가지가 균형을 이루어야 한다.' }
+  ];
+  var qbox = $('#quiz-box'), qi = 0, score = 0, results = [];
+  function renderQ() {
+    var q = QZ[qi];
+    var dots = QZ.map(function (_, i) { return '<div class="dot ' + (results[i] === true ? 'ok' : results[i] === false ? 'no' : i === qi ? 'cur' : '') + '"></div>'; }).join('');
+    qbox.innerHTML = '<div class="dots">' + dots + '</div><div class="qno">문제 ' + (qi + 1) + ' / ' + QZ.length + '</div><div class="q">' + q.q + '</div>' +
+      q.o.map(function (t, i) { return '<button class="opt" data-i="' + i + '">' + t + '</button>'; }).join('') + '<div id="fb"></div>';
+    $$('.opt', qbox).forEach(function (b) {
+      b.onclick = function () {
+        var pick = +b.dataset.i, right = pick === q.a;
+        $$('.opt', qbox).forEach(function (x) { x.disabled = true; });
+        b.classList.add(right ? 'ok' : 'no');
+        if (!right) $$('.opt', qbox)[q.a].classList.add('ok');
+        results[qi] = right; if (right) score++;
+        $$('.dot', qbox)[qi].className = 'dot ' + (right ? 'ok' : 'no');
+        var last = qi === QZ.length - 1;
+        $('#fb').innerHTML = '<div class="explain"><b>' + (right ? '👏 정답!' : '😮 아쉬워요.') + '</b> ' + q.e + '</div>' +
+          '<div style="margin-top:18px;text-align:right"><button class="btn" id="nx" style="font-size:15px;padding:10px 24px">' + (last ? '결과 보기' : '다음 문제 →') + '</button></div>';
+        $('#nx').onclick = function () { if (last) endQuiz(); else { qi++; renderQ(); } };
+      };
+    });
+  }
+  function endQuiz() {
+    var pct = score / QZ.length, C = 2 * Math.PI * 76;
+    var msg = pct === 1 ? '완벽해요! 오늘 강의가 마음에 새겨졌네요 🎉' : pct >= .7 ? '아주 잘하셨어요! 틀린 부분만 다시 훑어보세요.' : '괜찮아요. 위의 카드와 타임라인을 다시 한번 살펴보고 도전해 보세요.';
+    qbox.innerHTML = '<div class="quiz-end"><div class="ring"><svg width="180" height="180"><circle cx="90" cy="90" r="76" fill="none" stroke="var(--line)" stroke-width="12"/>' +
+      '<circle id="arc" cx="90" cy="90" r="76" fill="none" stroke="var(--blue)" stroke-width="12" stroke-linecap="round" stroke-dasharray="' + C + '" stroke-dashoffset="' + C + '" style="transition:stroke-dashoffset 1.2s cubic-bezier(.2,.7,.2,1)"/></svg>' +
+      '<div class="score">' + score + '<small>/ ' + QZ.length + ' 정답</small></div></div>' +
+      '<h3 style="font-size:24px;letter-spacing:-0.03em;margin-bottom:6px">' + msg + '</h3>' +
+      '<button class="btn" id="retry" style="margin-top:18px;font-size:15px;padding:10px 24px">다시 풀기</button></div>';
+    setTimeout(function () { $('#arc').style.strokeDashoffset = C * (1 - pct); }, 50);
+    if (pct >= .7) burst(pct === 1 ? ['🎉', '✨', '🙏', '💙'] : ['✨', '💙']);
+    $('#retry').onclick = function () { qi = 0; score = 0; results = []; renderQ(); };
+  }
+  renderQ();
+
+  /* reflection */
+  var RQ = [
+    '최근 한 주간 나의 기도 시간을 돌아볼 때, 목원 한 사람 한 사람의 이름을 놓고 기도한 적이 있는가?',
+    '위 "기도의 5가지 대상" 중 내가 평소 가장 빠뜨리는 것은 무엇인가?',
+    '나는 요즘 목장 사역에서 "부지런함"과 "게으름" 중 어느 쪽에 더 가까운가? 구체적인 예를 나눠보자.'
+  ];
+  var rbox = $('#reflect');
+  RQ.forEach(function (q, i) {
+    var d = document.createElement('div'); d.className = 'card qcard reveal';
+    d.innerHTML = '<div class="qn">질문 ' + (i + 1) + '</div><p></p><textarea placeholder="여기에 나의 생각을 적어보세요…"></textarea><div class="note-small"></div>';
+    $('p', d).textContent = q;
+    var ta = $('textarea', d), ns = $('.note-small', d);
+    ta.value = store.get('r' + i) || '';
+    var tm;
+    ta.oninput = function () { store.set('r' + i, ta.value); ns.textContent = '✓ 저장됨'; clearTimeout(tm); tm = setTimeout(function () { ns.textContent = ''; }, 1500); };
+    rbox.appendChild(d);
+  });
+
+  /* todos */
+  var TD = [
+    '목원 이름과 기도제목을 적은 기도 노트(또는 앱)를 만든다.',
+    '이번 주 5가지 대상(나/교회/윗사람/목원/구체적 필요)으로 하루 한 번, 5분이라도 순서대로 기도한다.',
+    '이번 주 목장모임 전, 나눔 질문을 미리 준비해서 온다.'
+  ];
+  var tbox = $('#todos'), state = JSON.parse(store.get('todos') || '[]');
+  function updBar() {
+    var n = TD.filter(function (_, i) { return state[i]; }).length;
+    $('#bar-fill').style.width = (n / TD.length * 100) + '%';
+    $('#bar-text').textContent = n + ' / ' + TD.length + ' 완료' + (n === TD.length ? ' — 🎉 모두 마쳤어요!' : '');
+  }
+  TD.forEach(function (t, i) {
+    var b = document.createElement('button'); b.className = 'todo reveal' + (state[i] ? ' done' : '');
+    b.innerHTML = '<span class="box">✓</span><span class="t"></span>';
+    $('.t', b).textContent = t;
+    b.onclick = function () {
+      state[i] = !state[i]; b.classList.toggle('done', !!state[i]); store.set('todos', JSON.stringify(state)); updBar();
+      if (state[i] && TD.every(function (_, k) { return state[k]; })) burst(['🎉', '✨', '🙏', '💙']);
+    };
+    tbox.appendChild(b);
+  });
+  updBar();
+
+  /* confetti */
+  function burst(icons) {
+    for (var i = 0; i < 26; i++) {
+      var s = document.createElement('span'); s.className = 'confetti';
+      s.textContent = icons[i % icons.length];
+      s.style.left = Math.random() * 100 + 'vw';
+      s.style.animationDelay = Math.random() * .6 + 's';
+      s.style.fontSize = (18 + Math.random() * 18) + 'px';
+      document.body.appendChild(s);
+      setTimeout((function (el) { return function () { el.remove(); }; })(s), 3500);
+    }
+  }
+
+  observe();
+})();
+</script>
+</body>
+</html>
