@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>5강 복습 · 왜 목장으로 모이는가?</title>
+<style>
+:root{
+  --bg:#f5f5f7; --card:#ffffff; --ink:#1d1d1f; --ink2:#6e6e73; --ink3:#86868b;
+  --line:rgba(0,0,0,.08); --accent:#0071e3; --accent-soft:rgba(0,113,227,.10);
+  --green:#30a46c; --green-soft:rgba(48,164,108,.12); --red:#e5484d; --red-soft:rgba(229,72,77,.10);
+  --orange:#f5a524; --orange-soft:rgba(245,165,36,.16); --purple:#8e4ec6; --purple-soft:rgba(142,78,198,.12);
+  --glass:rgba(251,251,253,.72); --shadow:0 4px 24px rgba(0,0,0,.06); --shadow-lg:0 18px 50px rgba(0,0,0,.12);
+  --r:24px;
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#000; --card:#1c1c1e; --ink:#f5f5f7; --ink2:#a1a1a6; --ink3:#86868b;
+    --line:rgba(255,255,255,.12); --accent:#2997ff; --accent-soft:rgba(41,151,255,.16);
+    --green:#32d583; --green-soft:rgba(50,213,131,.16); --red:#ff6369; --red-soft:rgba(255,99,105,.16);
+    --orange:#ffb224; --orange-soft:rgba(255,178,36,.18); --purple:#bf7af0; --purple-soft:rgba(191,122,240,.18);
+    --glass:rgba(22,22,23,.72); --shadow:0 4px 24px rgba(0,0,0,.4); --shadow-lg:0 18px 50px rgba(0,0,0,.6);
+  }
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{font-family:var(--font);background:var(--bg);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased;word-break:keep-all;overflow-x:hidden}
+button{font:inherit;color:inherit;border:none;background:none;cursor:pointer}
+button:focus-visible,a:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:12px}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:50;background:var(--glass);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:1000px;margin:0 auto;padding:0 20px;height:52px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.nav-title{font-weight:600;font-size:15px;letter-spacing:-.01em;white-space:nowrap}
+.nav-links{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links a{color:var(--ink2);text-decoration:none;font-size:13px;padding:6px 11px;border-radius:980px;white-space:nowrap;transition:.2s}
+.nav-links a:hover,.nav-links a.on{background:var(--accent-soft);color:var(--accent)}
+#bar{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:var(--accent);transition:width .1s}
+@media(max-width:700px){.nav-title{display:none}}
+
+/* LAYOUT */
+section{padding:96px 20px 24px}
+.wrap{max-width:1000px;margin:0 auto}
+.eyebrow{font-size:14px;font-weight:600;color:var(--accent);letter-spacing:.02em;margin-bottom:10px}
+h2{font-size:clamp(30px,5.2vw,48px);font-weight:700;letter-spacing:-.03em;line-height:1.15;margin-bottom:14px}
+.lead{font-size:clamp(17px,2.3vw,21px);color:var(--ink2);max-width:720px;margin-bottom:36px;letter-spacing:-.01em}
+.card{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);padding:32px}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}html{scroll-behavior:auto}}
+
+/* HERO */
+.hero{min-height:92vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:60px 20px 40px;position:relative;overflow:hidden}
+.hero::before,.hero::after{content:"";position:absolute;border-radius:50%;filter:blur(90px);opacity:.45;z-index:0}
+.hero::before{width:480px;height:480px;background:#6ea8ff;top:-120px;left:-100px;animation:float 14s ease-in-out infinite}
+.hero::after{width:420px;height:420px;background:#c79bff;bottom:-120px;right:-80px;animation:float 18s ease-in-out infinite reverse}
+@media(prefers-color-scheme:dark){.hero::before,.hero::after{opacity:.28}}
+@keyframes float{0%,100%{transform:translate(0,0)}50%{transform:translate(40px,30px)}}
+.hero-in{position:relative;z-index:1;max-width:820px}
+.hero .tag{display:inline-block;font-size:14px;font-weight:600;color:var(--accent);background:var(--accent-soft);padding:6px 14px;border-radius:980px;margin-bottom:26px}
+.hero h1{font-size:clamp(40px,9vw,92px);font-weight:800;letter-spacing:-.04em;line-height:1.05;margin-bottom:22px;background:linear-gradient(135deg,var(--ink) 30%,var(--accent) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{font-size:clamp(18px,2.6vw,24px);color:var(--ink2);margin-bottom:36px}
+.btn{display:inline-flex;align-items:center;gap:6px;background:var(--accent);color:#fff;padding:13px 26px;border-radius:980px;font-size:17px;font-weight:500;text-decoration:none;transition:.25s}
+.btn:hover{transform:scale(1.04);filter:brightness(1.08)}
+.btn.ghost{background:var(--accent-soft);color:var(--accent)}
+.btn.sm{padding:9px 18px;font-size:15px}
+.scroll-hint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);color:var(--ink3);font-size:13px;animation:bob 2s infinite;z-index:1}
+@keyframes bob{50%{transform:translate(-50%,6px)}}
+
+/* FLIP CARDS */
+.flips{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.flip{perspective:1000px;height:260px;text-align:left}
+.flip-in{position:relative;width:100%;height:100%;transition:transform .7s cubic-bezier(.3,.7,.2,1);transform-style:preserve-3d}
+.flip.on .flip-in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:var(--r);padding:26px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:var(--shadow)}
+.face.f{background:var(--card)}
+.face.b{background:linear-gradient(160deg,#0a84ff,#5e5ce6);color:#fff;transform:rotateY(180deg)}
+.face .n{font-size:13px;font-weight:700;letter-spacing:.06em;color:var(--accent)}
+.face.b .n{color:rgba(255,255,255,.75)}
+.face h3{font-size:22px;letter-spacing:-.02em;line-height:1.3}
+.face .hint{font-size:13px;color:var(--ink3)}
+.face.b p{font-size:16px;line-height:1.6}
+.counter{margin-top:20px;color:var(--ink3);font-size:14px;text-align:center}
+
+/* VERSES */
+.verses{display:flex;flex-direction:column;gap:2px}
+.v{display:flex;gap:14px;padding:12px 8px;border-radius:14px;font-size:clamp(17px,2.2vw,20px);line-height:1.7;transition:.2s}
+.v b{color:var(--accent);min-width:26px;font-size:14px;padding-top:4px;text-align:right;font-weight:700}
+.v.has{background:var(--accent-soft)}
+mark.k{background:none;color:inherit;border-bottom:2.5px solid var(--accent);cursor:pointer;font-weight:600;border-radius:2px;transition:.2s;padding:0 1px}
+mark.k:hover{background:var(--orange-soft)}
+mark.k.sel{background:var(--accent);color:#fff;border-radius:6px;border-color:transparent;padding:1px 5px}
+.kpanel{margin-top:22px;border-radius:20px;background:var(--accent-soft);padding:24px 26px;min-height:104px;transition:.3s}
+.kpanel .kt{font-weight:700;font-size:19px;margin-bottom:6px;letter-spacing:-.01em}
+.kpanel .kb{color:var(--ink2);font-size:16.5px}
+.kpanel.empty{display:flex;align-items:center;color:var(--ink3);font-size:16px}
+.pop{animation:pop .4s cubic-bezier(.2,.9,.3,1.3)}
+@keyframes pop{from{transform:scale(.96);opacity:.4}to{transform:none;opacity:1}}
+
+/* SEGMENTED */
+.seg{display:inline-flex;background:var(--line);padding:3px;border-radius:12px;margin-bottom:24px;flex-wrap:wrap}
+.seg button{padding:8px 18px;border-radius:10px;font-size:15px;font-weight:500;color:var(--ink2);transition:.25s}
+.seg button.on{background:var(--card);color:var(--ink);box-shadow:0 2px 8px rgba(0,0,0,.14)}
+
+/* COMPARE */
+.cmp{width:100%;border-collapse:separate;border-spacing:0 8px}
+.cmp th{font-size:15px;padding:12px 18px;text-align:left;letter-spacing:-.01em}
+.cmp td{padding:16px 18px;background:var(--bg);font-size:16px;transition:.4s}
+.cmp td:first-child{border-radius:14px 0 0 14px}.cmp td:last-child{border-radius:0 14px 14px 0}
+.cmp th.a{color:var(--accent)}.cmp th.b{color:var(--green)}
+.cmp.show-a td:nth-child(2){opacity:.28;filter:blur(2.5px)}
+.cmp.show-b td:nth-child(1){opacity:.28;filter:blur(2.5px)}
+.cmp.show-a td:nth-child(1){background:var(--accent-soft)}
+.cmp.show-b td:nth-child(2){background:var(--green-soft)}
+.scen{margin-top:28px;border-radius:20px;padding:24px 26px;font-size:17px;transition:.3s}
+.scen.r{background:var(--red-soft)}.scen.g{background:var(--green-soft)}.scen.n{background:var(--bg);color:var(--ink3)}
+.scen strong{display:block;margin-bottom:4px;font-size:15px;letter-spacing:.01em}
+@media(max-width:600px){.cmp td{padding:12px;font-size:14.5px}.cmp th{padding:8px 12px}}
+
+/* TABS */
+.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:22px}
+.tab{background:var(--card);border-radius:20px;padding:18px 10px;text-align:center;box-shadow:var(--shadow);transition:.25s;border:2px solid transparent}
+.tab:hover{transform:translateY(-3px)}
+.tab .ic{font-size:30px;display:block;margin-bottom:4px}
+.tab .nm{font-weight:700;font-size:16px}
+.tab .nu{font-size:12px;color:var(--ink3)}
+.tab.on{border-color:var(--accent);background:var(--accent-soft)}
+@media(max-width:560px){.tab{padding:12px 4px}.tab .ic{font-size:24px}.tab .nm{font-size:14px}}
+.panel{display:none}.panel.on{display:block;animation:pop .45s cubic-bezier(.2,.9,.3,1.2)}
+.panel h3{font-size:26px;letter-spacing:-.02em;margin-bottom:16px}
+.quote{border-left:4px solid var(--accent);padding:4px 0 4px 18px;margin:0 0 18px;color:var(--ink2);font-size:17px}
+.quote b{color:var(--ink)}
+.panel p,.panel li{font-size:16.5px;color:var(--ink2);margin-bottom:10px}
+.panel ul{padding-left:20px;margin-bottom:12px}
+.panel p b,.panel li b{color:var(--ink)}
+.qs{margin-top:20px;border-top:1px solid var(--line);padding-top:16px}
+.qs .qh{font-size:13px;font-weight:700;color:var(--ink3);letter-spacing:.04em;margin-bottom:8px}
+.q{display:flex;gap:12px;align-items:flex-start;width:100%;text-align:left;padding:10px 8px;border-radius:12px;font-size:16.5px;transition:.2s}
+.q:hover{background:var(--bg)}
+.q .ck{flex:0 0 24px;height:24px;border-radius:50%;border:2px solid var(--ink3);margin-top:2px;display:grid;place-items:center;color:#fff;font-size:14px;transition:.25s}
+.q.on .ck{background:var(--green);border-color:var(--green)}
+.q.on span.t{color:var(--ink3);text-decoration:line-through}
+.steps{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:14px 0}
+.step{padding:10px 18px;border-radius:980px;background:var(--bg);font-size:15px;font-weight:600;color:var(--ink3);transition:.4s}
+.step.on{background:var(--accent);color:#fff;transform:scale(1.05)}
+.arr{color:var(--ink3)}
+
+/* MATCH */
+.match{display:grid;grid-template-columns:1fr 1fr;gap:14px 28px}
+.col{display:flex;flex-direction:column;gap:10px}
+.m{padding:15px 18px;border-radius:16px;background:var(--bg);font-size:16.5px;text-align:left;transition:.25s;border:2px solid transparent}
+.m:hover{transform:translateY(-2px)}
+.m.sel{border-color:var(--accent);background:var(--accent-soft)}
+.m.done{background:var(--green-soft);color:var(--green);pointer-events:none;font-weight:600}
+.m.bad{animation:shake .45s;background:var(--red-soft)}
+@keyframes shake{20%,60%{transform:translateX(-7px)}40%,80%{transform:translateX(7px)}}
+.msg{margin-top:20px;text-align:center;font-size:17px;font-weight:600;min-height:28px;color:var(--ink2)}
+.col h4{font-size:13px;color:var(--ink3);letter-spacing:.04em;margin-bottom:2px}
+@media(max-width:560px){.match{gap:10px 12px}.m{padding:12px;font-size:14.5px}}
+
+/* QUIZ */
+.quiz{max-width:760px;margin:0 auto}
+.dots{display:flex;gap:6px;justify-content:center;margin-bottom:26px}
+.dot{width:26px;height:6px;border-radius:3px;background:var(--line);transition:.4s}
+.dot.cur{background:var(--accent)}.dot.ok{background:var(--green)}.dot.no{background:var(--red)}
+.qn{font-size:14px;font-weight:700;color:var(--accent);margin-bottom:8px}
+.qt{font-size:clamp(20px,3vw,26px);font-weight:700;letter-spacing:-.02em;line-height:1.4;margin-bottom:24px}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{text-align:left;padding:16px 20px;border-radius:16px;background:var(--bg);font-size:17px;border:2px solid transparent;transition:.2s;display:flex;gap:12px}
+.opt:hover:not(:disabled){border-color:var(--accent);transform:translateX(3px)}
+.opt .l{font-weight:700;color:var(--ink3)}
+.opt.ok{background:var(--green-soft);border-color:var(--green)}
+.opt.no{background:var(--red-soft);border-color:var(--red);animation:shake .45s}
+.opt:disabled{cursor:default}
+.fb{margin-top:20px;padding:18px 22px;border-radius:16px;font-size:16.5px;display:none;color:var(--ink2)}
+.fb.show{display:block;animation:pop .4s}
+.fb.ok{background:var(--green-soft)}.fb.no{background:var(--red-soft)}
+.fb strong{color:var(--ink)}
+.qa{margin-top:22px;text-align:center;min-height:48px}
+.ring{width:170px;height:170px;margin:0 auto 20px;position:relative}
+.ring svg{transform:rotate(-90deg)}
+.ring .num{position:absolute;inset:0;display:grid;place-items:center;font-size:44px;font-weight:800;letter-spacing:-.03em}
+.ring circle{fill:none;stroke-width:12;stroke-linecap:round}
+.res{text-align:center}
+.res h3{font-size:28px;margin-bottom:8px;letter-spacing:-.02em}
+.res p{color:var(--ink2);margin-bottom:22px;font-size:17px}
+
+/* FILL */
+.fill p.s{font-size:clamp(17px,2.3vw,20px);line-height:2.3;margin-bottom:14px;color:var(--ink)}
+.blank{display:inline-block;min-width:92px;padding:1px 14px;margin:0 3px;border-radius:10px;border:2px dashed var(--ink3);color:var(--accent);font-weight:700;text-align:center;line-height:1.7;vertical-align:baseline;transition:.25s}
+.blank:hover{border-color:var(--accent)}
+.blank.fill{border-style:solid;border-color:var(--accent);background:var(--accent-soft)}
+.blank.ok{border-color:var(--green);background:var(--green-soft);color:var(--green)}
+.blank.no{border-color:var(--red);background:var(--red-soft);color:var(--red);animation:shake .45s}
+.bank{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 8px;padding:20px;background:var(--bg);border-radius:20px;min-height:76px}
+.chip{padding:9px 18px;border-radius:980px;background:var(--card);box-shadow:var(--shadow);font-size:16px;font-weight:600;transition:.2s}
+.chip:hover{transform:translateY(-2px)}
+.chip.sel{background:var(--accent);color:#fff;transform:scale(1.07)}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+
+/* CHECK */
+.chk{padding:26px 0;border-bottom:1px solid var(--line)}
+.chk:last-of-type{border-bottom:none}
+.chk .ct{font-size:clamp(17px,2.3vw,20px);font-weight:600;letter-spacing:-.01em;margin-bottom:14px}
+.chk .ct span{color:var(--accent);margin-right:6px}
+.rate{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.rate button{padding:12px 4px;border-radius:14px;background:var(--bg);font-size:14.5px;transition:.2s;border:2px solid transparent}
+.rate button:hover{border-color:var(--accent)}
+.rate button.on{background:var(--accent);color:#fff;font-weight:600}
+@media(max-width:560px){.rate button{font-size:12.5px;padding:10px 2px}}
+.cres{margin-top:22px;border-radius:20px;padding:24px 26px;background:var(--accent-soft);display:none}
+.cres.show{display:block;animation:pop .45s}
+.cres h4{font-size:20px;margin-bottom:6px;letter-spacing:-.01em}
+.cres p{color:var(--ink2);font-size:16.5px}
+.meter{height:10px;border-radius:5px;background:var(--line);margin:14px 0;overflow:hidden}
+.meter i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--green));border-radius:5px;transition:width 1s cubic-bezier(.2,.8,.2,1)}
+
+/* END */
+.end{text-align:center;padding:110px 20px 120px}
+.end .big{font-size:clamp(26px,4.6vw,46px);font-weight:700;letter-spacing:-.03em;line-height:1.35;max-width:860px;margin:0 auto 34px}
+.end .big em{font-style:normal;background:linear-gradient(135deg,#0a84ff,#bf5af2);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.end .sub{max-width:700px;margin:0 auto 36px;color:var(--ink2);font-size:clamp(16px,2vw,19px)}
+footer{text-align:center;color:var(--ink3);font-size:13px;padding:0 20px 50px}
+canvas#cf{position:fixed;inset:0;pointer-events:none;z-index:99}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-in">
+    <div class="nav-title">5강 복습</div>
+    <div class="nav-links" id="links">
+      <a href="#review">리뷰</a><a href="#text">본문</a><a href="#compare">비교</a><a href="#four">네 가지</a><a href="#seoro">서로</a><a href="#quiz">퀴즈</a><a href="#fill">빈칸</a><a href="#check">점검</a>
+    </div>
+  </div>
+  <div id="bar"></div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-in">
+    <span class="tag">목장 리더 교육 · 10월 1일</span>
+    <h1>왜 목장으로<br>모이는가?</h1>
+    <p>사도행전 2:42–47<br>눌러 보고, 뒤집어 보고, 맞춰 보면서 복습해요.</p>
+    <a class="btn" href="#review">복습 시작하기</a>
+  </div>
+  <div class="scroll-hint">아래로 스크롤 ↓</div>
+</header>
+
+<!-- 1. REVIEW -->
+<section id="review"><div class="wrap">
+  <div class="eyebrow reveal">STEP 1 · 워밍업</div>
+  <h2 class="reveal">1–4강, 기억나시나요?</h2>
+  <p class="lead reveal">카드를 보고 먼저 떠올려 본 다음, 눌러서 확인해 보세요.</p>
+  <div class="flips reveal" id="flips"></div>
+  <div class="counter" id="flipcount">0 / 4 확인</div>
+</div></section>
+
+<!-- 2. TEXT -->
+<section id="text"><div class="wrap">
+  <div class="eyebrow reveal">STEP 2 · 본문</div>
+  <h2 class="reveal">사도행전 2:42–47</h2>
+  <p class="lead reveal">밑줄 친 단어를 눌러 보세요. 강의에서 짚어 준 의미가 나타납니다.</p>
+  <div class="card reveal">
+    <div class="verses" id="verses"></div>
+    <div class="kpanel empty" id="kpanel">↑ 밑줄 친 단어를 눌러 보세요</div>
+  </div>
+  <p class="lead reveal" style="margin-top:30px;margin-bottom:0">오순절 성령 강림 이후 교회가 공식적으로 시작되었을 때, 교회는 처음부터 <b style="color:var(--ink)">대그룹 모임과 소그룹 모임이 함께 공존</b>했습니다. (46절)</p>
+</div></section>
+
+<!-- 3. COMPARE -->
+<section id="compare"><div class="wrap">
+  <div class="eyebrow reveal">STEP 3 · 대그룹과 소그룹</div>
+  <h2 class="reveal">둘 중 하나를 고르는 문제가 아닙니다</h2>
+  <p class="lead reveal">보고 싶은 쪽을 선택해 서로의 역할을 비교해 보세요.</p>
+  <div class="card reveal">
+    <div class="seg" id="cmpseg">
+      <button data-m="both" class="on">함께 보기</button>
+      <button data-m="a">대그룹 예배</button>
+      <button data-m="b">소그룹 목장</button>
+    </div>
+    <table class="cmp" id="cmp">
+      <thead><tr><th class="a">대그룹 예배</th><th class="b">소그룹 목장</th></tr></thead>
+      <tbody></tbody>
+    </table>
+    <div style="height:28px"></div>
+    <div class="seg" id="scseg">
+      <button data-s="a">대그룹만 있다면?</button>
+      <button data-s="b">소그룹만 있다면?</button>
+      <button data-s="c">둘 다 있다면?</button>
+    </div>
+    <div class="scen n" id="scen">위 버튼을 눌러 보세요.</div>
+  </div>
+</div></section>
+
+<!-- 4. FOUR -->
+<section id="four"><div class="wrap">
+  <div class="eyebrow reveal">STEP 4 · 소그룹의 네 가지</div>
+  <h2 class="reveal">말씀 · 교제 · 떡을 뗌 · 기도</h2>
+  <p class="lead reveal">사도행전 2:42에 아주 좋은 틀이 있습니다. 하나씩 열어 보세요.</p>
+  <div class="tabs reveal" id="tabs"></div>
+  <div class="card reveal" id="panels"></div>
+</div></section>
+
+<!-- 5. SEORO -->
+<section id="seoro"><div class="wrap">
+  <div class="eyebrow reveal">STEP 5 · 짝 맞추기</div>
+  <h2 class="reveal">신약의 "서로" 명령</h2>
+  <p class="lead reveal">구절을 하나 누르고, 그 구절의 명령을 오른쪽에서 찾아 눌러 보세요.</p>
+  <div class="card reveal">
+    <div class="match">
+      <div class="col" id="mL"><h4>구절</h4></div>
+      <div class="col" id="mR"><h4>명령</h4></div>
+    </div>
+    <div class="msg" id="mmsg">0 / 5 맞춤</div>
+    <p style="text-align:center;color:var(--ink3);font-size:14.5px;margin-top:6px">100명, 200명, 500명이 모이는 주일예배에서는 이 "서로"를 구체적으로 실천하는 데 현실적인 한계가 있습니다.</p>
+  </div>
+</div></section>
+
+<!-- 6. QUIZ -->
+<section id="quiz"><div class="wrap">
+  <div class="eyebrow reveal">STEP 6 · 퀴즈</div>
+  <h2 class="reveal">10문제로 확인해 볼까요?</h2>
+  <p class="lead reveal">답을 고르면 바로 해설이 나옵니다.</p>
+  <div class="card quiz reveal" id="quizbox"></div>
+</div></section>
+
+<!-- 7. FILL -->
+<section id="fill"><div class="wrap">
+  <div class="eyebrow reveal">STEP 7 · 빈칸 채우기</div>
+  <h2 class="reveal">핵심 문장을 완성하세요</h2>
+  <p class="lead reveal">아래 단어를 누르고, 들어갈 빈칸을 눌러 넣어 보세요. 정답에 쓰이지 않는 단어도 섞여 있어요.</p>
+  <div class="card fill reveal">
+    <div id="fillS"></div>
+    <div class="bank" id="bank"></div>
+    <div class="row">
+      <button class="btn sm" id="fcheck">정답 확인</button>
+      <button class="btn sm ghost" id="freset">처음부터</button>
+    </div>
+    <div class="msg" id="fmsg"></div>
+  </div>
+</div></section>
+
+<!-- 8. CHECK -->
+<section id="check"><div class="wrap">
+  <div class="eyebrow reveal">STEP 8 · 리더 자기 점검</div>
+  <h2 class="reveal">우리 목장은 지금 어떤가요?</h2>
+  <p class="lead reveal">리더들에게 던진 세 가지 질문입니다. 솔직하게 골라 보세요. 결과는 이 화면에서만 보이며 저장되지 않습니다.</p>
+  <div class="card reveal" id="chkbox"></div>
+</div></section>
+
+<!-- END -->
+<div class="end">
+  <div class="big reveal">“주일예배가 우리를 <em>하나님의 백성</em>으로 함께 세운다면, 목장은 우리가 서로 <em>그리스도의 몸</em>으로 살아가게 하는 자리입니다.”</div>
+  <p class="sub reveal">“목장의 성공은 몇 명이 모였느냐보다, 그 사람들이 얼마나 서로 사랑하고 돌보며 그리스도를 닮아가고 있느냐에 있다”</p>
+  <a class="btn ghost reveal" href="#review">처음부터 다시 복습하기</a>
+</div>
+<footer>5강. 왜 목장으로 모이는가? · 목장 리더 교육 복습 자료</footer>
+<canvas id="cf"></canvas>
+
+<script>
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const el=(t,c,h)=>{const e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e};
+
+/* ---------- 스크롤 진행바 · 섹션 하이라이트 · 등장 효과 ---------- */
+const bar=$('#bar');
+addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  bar.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
+},{passive:true});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+$$('.reveal').forEach(e=>io.observe(e));
+const secs=$$('section[id]'), links=$$('#links a');
+const so=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id))}}),{rootMargin:'-40% 0px -55% 0px'});
+secs.forEach(s=>so.observe(s));
+
+/* ---------- 1. 플립 카드 ---------- */
+const reviews=[
+ ['1강','교회란 무엇인가?','교회는 건물이 아니라 그리스도의 몸이며, 성도들의 언약 공동체다.'],
+ ['2강','목자의 소명','목자의 일은 관리가 아니라 관계이며, 긍휼에서 시작되는 섬김이다(막 6:34).'],
+ ['3강','기도하는 목자, 부지런한 목자','기도는 목자의 내면을 채우고, 부지런함은 사랑을 실제 행동으로 옮긴다.'],
+ ['4강','말씀을 사모하는 목자, 말씀을 나누는 목자','목자는 먼저 말씀을 사모하고, 목원들이 말씀을 깨닫고 순종하도록 돕는 레위인과 같다.']
+];
+const seen=new Set(), fl=$('#flips');
+reviews.forEach((r,i)=>{
+  const b=el('button','flip',`<div class="flip-in">
+    <div class="face f"><div class="n">${r[0]}</div><h3>${r[1]}</h3><div class="hint">눌러서 뒤집기</div></div>
+    <div class="face b"><div class="n">${r[0]} 핵심</div><p>${r[2]}</p><div class="hint" style="color:rgba(255,255,255,.7)">다시 누르면 앞면</div></div></div>`);
+  b.setAttribute('aria-label',r[0]+' '+r[1]);
+  b.onclick=()=>{b.classList.toggle('on');seen.add(i);$('#flipcount').textContent=seen.size+' / 4 확인'+(seen.size===4?' ✓ 모두 확인했어요!':'')};
+  fl.append(b);
+});
+
+/* ---------- 2. 본문 ---------- */
+const K={
+ gospel:['말씀 · 사도의 가르침','소그룹은 단순한 친목모임이 아닙니다. 말씀이 중심에 있어야 합니다.'],
+ koin:['교제 · 코이노니아(κοινωνία)','같이 밥 먹고 이야기하는 정도가 아닙니다. 그리스도 안에서 생명과 은혜를 함께 나누는 공동체적 참여를 뜻합니다.'],
+ bread:['떡을 뗌','42절은 "그 떡 떼기"로, 교회의 정규적인(대그룹) 모임 가운데 하나이며 성찬적 의미가 더 강합니다. 46절은 집에서 이루어진(소그룹) 식탁 교제의 모습입니다. 누가는 이 둘을 따로 떼지 않고 한 흐름으로 그립니다.'],
+ pray:['기도하기를 힘쓰니라','소그룹의 강력한 장점 가운데 하나는 구체적인 기도입니다. 서로의 기도제목을 알고 함께 기도합니다.'],
+ temple:['성전에 모이기를 힘쓰고 → 대그룹','대그룹 모임의 중심은 예배이며, 예배의 중심은 무엇보다 하나님입니다.'],
+ home:['집에서 떡을 떼며 → 소그룹','집에서 이루어진 소그룹 식탁 교제입니다. 식탁에서 먹고 나누는 일 자체가 예배였고, 그 중심에 주님을 기억함이 있었습니다.']
+};
+const V=[
+ [42,'그들이 <mark class="k" data-k="gospel">사도의 가르침</mark>을 받아 서로 <mark class="k" data-k="koin">교제</mark>하고 <mark class="k" data-k="bread">떡을 떼며</mark> 오로지 <mark class="k" data-k="pray">기도하기를 힘쓰니라</mark>'],
+ [43,'사람마다 두려워하는데 사도들로 말미암아 기사와 표적이 많이 나타나니'],
+ [44,'믿는 사람이 다 함께 있어 모든 물건을 서로 통용하고'],
+ [45,'또 재산과 소유를 팔아 각 사람의 필요를 따라 나눠 주며'],
+ [46,'날마다 마음을 같이하여 <mark class="k" data-k="temple">성전에 모이기를 힘쓰고</mark> <mark class="k" data-k="home">집에서 떡을 떼며</mark> 기쁨과 순전한 마음으로 음식을 먹고'],
+ [47,'하나님을 찬미하며 또 온 백성에게 칭송을 받으니 주께서 구원 받는 사람을 날마다 더하게 하시니라']
+];
+const vb=$('#verses');
+V.forEach(v=>vb.append(el('div','v'+(v[1].includes('<mark')?' has':''),`<b>${v[0]}</b><span>${v[1]}</span>`)));
+const kp=$('#kpanel');
+vb.addEventListener('click',e=>{
+  const m=e.target.closest('mark.k'); if(!m)return;
+  $$('mark.k').forEach(x=>x.classList.remove('sel')); m.classList.add('sel');
+  const d=K[m.dataset.k]; kp.className='kpanel pop'; kp.style.display='block';
+  kp.innerHTML=`<div class="kt">${d[0]}</div><div class="kb">${d[1]}</div>`;
+  kp.classList.remove('pop'); void kp.offsetWidth; kp.classList.add('pop');
+});
+
+/* ---------- 3. 비교 ---------- */
+const rows=[
+ ['함께 하나님께 예배','함께 그리스도의 삶을 나눔'],
+ ['말씀의 공적 선포','말씀의 나눔과 적용'],
+ ['성례와 공동체적 신앙고백','개인적인 돌봄과 교제'],
+ ['교회 전체의 하나 됨','지체 간의 깊은 관계'],
+ ['공동체 전체의 기도와 찬양','구체적인 기도와 돌봄'],
+ ['“우리는 하나님의 백성이다”','“우리는 서로에게 지체다”']
+];
+const cb=$('#cmp tbody'); rows.forEach(r=>cb.append(el('tr','',`<td>${r[0]}</td><td>${r[1]}</td>`)));
+$('#cmpseg').onclick=e=>{const b=e.target.closest('button');if(!b)return;
+  $$('#cmpseg button').forEach(x=>x.classList.toggle('on',x===b));
+  $('#cmp').className='cmp'+(b.dataset.m==='both'?'':' show-'+b.dataset.m)};
+const SC={
+ a:['r','<strong>대그룹만 있고 소그룹이 약하면</strong>성도들이 군중 속에서 고립될 수 있습니다.'],
+ b:['r','<strong>소그룹만 강조하고 공예배가 약해지면</strong>교회 전체의 하나 됨과 공적 말씀·성례의 중심성이 약해질 수 있습니다.'],
+ c:['g','<strong>건강한 교회는</strong>함께 모여 하나님을 예배하고, 작은 공동체에서 서로의 삶을 돌봅니다.']
+};
+$('#scseg').onclick=e=>{const b=e.target.closest('button');if(!b)return;
+  $$('#scseg button').forEach(x=>x.classList.toggle('on',x===b));
+  const s=$('#scen'),d=SC[b.dataset.s]; s.className='scen '+d[0]; s.innerHTML=d[1];
+  s.classList.remove('pop'); void s.offsetWidth; s.classList.add('pop');
+  if(b.dataset.s==='c')confetti(60)};
+
+/* ---------- 4. 네 가지 탭 ---------- */
+const FOUR=[
+ {ic:'📖',nm:'말씀',nu:'1',h:'말씀을 삶에 연결해야 합니다',
+  body:`<div class="quote">“그들이 <b>사도의 가르침을 받아</b>…” (행 2:42)</div>
+  <p>소그룹은 단순한 친목모임이 아닙니다. <b>말씀이 중심에 있어야 합니다.</b></p>
+  <p>그런데 소그룹은 또 하나의 작은 설교 시간이 될 필요는 없습니다. 주일예배에서 말씀을 <b>선포</b>했다면, 목장에서는 그 말씀을 가지고 서로 질문할 수 있습니다.</p>
+  <p><b>대그룹에서는 말씀을 듣고 → 소그룹에서는 말씀을 삶으로 가져가는 것입니다.</b></p>
+  <p>야고보서 1:22 “말씀을 행하는 자가 되고 듣기만 하여 자신을 속이는 자가 되지 말라”</p>`,
+  qs:['오늘 말씀에서 하나님께서 나에게 깨닫게 하신 것은 무엇입니까?','이번 주 내 삶에서 순종해야 할 것은 무엇입니까?','말씀대로 살려고 할 때 가장 어려운 것은 무엇입니까?']},
+ {ic:'🤝',nm:'교제',nu:'2',h:'서로의 삶을 나누어야 합니다',
+  body:`<div class="quote">“서로 <b>교제하고</b>…” (행 2:42)</div>
+  <p>신약의 <b>코이노니아(κοινωνία)</b>는 그리스도 안에서 생명과 은혜를 함께 나누는 공동체적 참여를 뜻합니다.</p>
+  <div class="quote">갈라디아서 6:2 “너희가 짐을 서로 지라 그리하여 그리스도의 법을 성취하라.”</div>
+  <p><b>소그룹은 혼자 지고 있던 짐을 공동체가 함께 지는 곳</b>이어야 합니다.</p>
+  <p>특히 이민생활에서는 언어, 직장, 자녀교육, 경제적 문제, 문화적 고립 등 삶의 무게가 있을 수 있기 때문에 이러한 관계적 돌봄이 매우 중요합니다.</p>`,
+  qs:['이번 주 가장 감사했던 일이 무엇입니까?','지금 가장 힘든 것이 무엇입니까?','우리가 무엇을 위해 기도해 드리면 좋겠습니까?']},
+ {ic:'🍞',nm:'떡을 뗌',nu:'3',h:'떡을 뗌으로 주님을 기억해야 합니다',
+  body:`<ul>
+  <li><b>42절</b>은 "그 떡 떼기"로, 교회의 정규적인(대그룹으로) 모임 중 하나입니다. 성찬적 의미가 더 강하게 느껴집니다.</li>
+  <li><b>46절</b>은 "집에서 떡을 떼며 기쁨과 순전한 마음으로 음식을 먹고" 집에서 이루어진(소그룹으로) 식탁 교제의 모습입니다.</li>
+  <li>누가는 이 둘을 따로 떼지 않고 한 흐름으로 그립니다. 식탁에서 먹고 나누는 일 자체가 예배였고, 그 중심에 주님을 기억함이 있었습니다.</li></ul>
+  <p>그러므로 소그룹 모임이라고 해서 <b>사적 모임으로 흘러가지 않도록</b> 주의해야 합니다. 소그룹 모임을 통해서 <b>개인적으로 주님을 만난 기억을 나누는 자리</b>가 되어야 합니다.</p>`,
+  qs:[]},
+ {ic:'🙏',nm:'기도',nu:'4',h:'서로를 위해 기도해야 합니다',
+  body:`<div class="quote">“오로지 <b>기도하기를 힘쓰니라</b>.” (행 2:42)</div>
+  <p>대그룹에서는 “우리 성도들의 가정을 위해 기도합시다”라고 할 수 있습니다. 그러나 소그룹에서는 “김 집사님의 아들이 이번 주에 중요한 결정을 앞두고 있습니다.” “이 가정이 직장 문제로 어려움을 겪고 있습니다.” 라고 <b>구체적으로 알고 기도</b>할 수 있습니다.</p>
+  <p><b>목장은 서로의 기도제목을 알고, 함께 기도하고, 다음 모임에서 하나님께서 어떻게 인도하셨는지를 다시 확인하는 공동체</b>가 되어야 합니다.</p>
+  <div class="steps" id="steps"><button class="step">① 기도제목을 안다</button><span class="arr">→</span><button class="step">② 함께 기도한다</button><span class="arr">→</span><button class="step">③ 다음 모임에서 확인한다</button></div>
+  <p style="font-size:14px;color:var(--ink3)">단계를 눌러 보세요.</p>`,
+  qs:[]}
+];
+const tabs=$('#tabs'),panels=$('#panels');
+FOUR.forEach((f,i)=>{
+  const t=el('button','tab'+(i===0?' on':''),`<span class="ic">${f.ic}</span><span class="nm">${f.nm}</span><span class="nu">${f.nu} / 4</span>`);
+  const p=el('div','panel'+(i===0?' on':''),`<h3>${f.h}</h3>${f.body}`);
+  if(f.qs.length){
+    const q=el('div','qs','<div class="qh">목장에서 나눌 수 있는 질문 · 눌러서 체크</div>');
+    f.qs.forEach(x=>{const b=el('button','q',`<span class="ck">✓</span><span class="t">${x}</span>`);b.onclick=()=>b.classList.toggle('on');q.append(b)});
+    p.append(q);
+  }
+  t.onclick=()=>{$$('.tab').forEach(x=>x.classList.remove('on'));t.classList.add('on');$$('.panel').forEach(x=>x.classList.remove('on'));p.classList.add('on')};
+  tabs.append(t);panels.append(p);
+});
+(()=>{const st=$$('#steps .step');st.forEach((b,i)=>b.onclick=()=>st.forEach((x,j)=>x.classList.toggle('on',j<=i)))})();
+
+/* ---------- 5. 서로 짝 맞추기 ---------- */
+const PAIRS=[['요 13:34','서로 사랑하고'],['갈 6:2','서로 짐을 지고'],['히 3:13','서로 권면하고'],['약 5:16','서로 죄를 고백하며 기도하고'],['갈 5:13','서로 섬기라']];
+const shuf=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
+let selL=null,matched=0;
+PAIRS.forEach((p,i)=>{const b=el('button','m',p[0]);b.dataset.i=i;b.dataset.side='L';$('#mL').append(b)});
+shuf(PAIRS.map((p,i)=>[p[1],i])).forEach(p=>{const b=el('button','m',p[0]);b.dataset.i=p[1];b.dataset.side='R';$('#mR').append(b)});
+$('.match').addEventListener('click',e=>{
+  const b=e.target.closest('.m');if(!b)return;
+  if(b.dataset.side==='L'){$$('#mL .m').forEach(x=>x.classList.remove('sel'));b.classList.add('sel');selL=b;return}
+  if(!selL){$('#mmsg').textContent='먼저 왼쪽 구절을 눌러 주세요';return}
+  if(selL.dataset.i===b.dataset.i){
+    selL.classList.remove('sel');selL.classList.add('done');b.classList.add('done');selL=null;matched++;
+    $('#mmsg').textContent=matched+' / 5 맞춤';
+    if(matched===5){$('#mmsg').textContent='🎉 모두 맞췄어요! 신약은 “서로”를 반복해서 명령합니다.';confetti(100)}
+  }else{b.classList.add('bad');setTimeout(()=>b.classList.remove('bad'),500);$('#mmsg').textContent='앗, 다시 한번 생각해 볼까요?'}
+});
+
+/* ---------- 6. 퀴즈 ---------- */
+const Q=[
+ ['사도행전 2:42에서 강의가 짚은 소그룹의 네 가지 틀은?',['말씀 — 교제 — 떡을 뗌 — 기도','찬양 — 헌금 — 설교 — 축도','전도 — 훈련 — 봉사 — 선교','예배 — 교육 — 친교 — 봉사'],0,'42절의 <strong>말씀 — 교제 — 떡을 뗌 — 기도</strong>가 소그룹의 아주 좋은 틀입니다.'],
+ ['오순절 이후 초대교회 모임의 모습으로 알맞은 것은?',['대그룹 모임만 있었다','소그룹 모임만 있었다','처음부터 대그룹과 소그룹이 함께 공존했다','성전 모임이 끝난 뒤에 소그룹이 생겼다'],2,'46절 “날마다 마음을 같이하여 성전에 모이기를 힘쓰고, 집에서 떡을 떼며” — 교회는 <strong>처음부터 대그룹과 소그룹이 공존</strong>했습니다.'],
+ ['대그룹 모임(공예배)의 중심은 누구입니까?',['목회자','성도들의 교제','하나님','소그룹 리더'],2,'대그룹 모임의 중심은 예배이며, 예배의 중심은 무엇보다 <strong>하나님</strong>입니다.'],
+ ['주일 대그룹 예배를 소그룹 모임으로 대체할 수 있을까요?',['예, 소그룹이 더 깊으니까요','예, 규모가 작을 때만요','아니요, 대체할 수 없습니다','교회 상황에 따라 다릅니다'],2,'“주일 대그룹 예배는 <strong>소그룹으로 대체할 수 없습니다.</strong>” 대그룹은 하나님을 바라보며 한 몸으로 서게 합니다.'],
+ ['소그룹이 꼭 필요한 이유로 강의가 든 것은?',['행정 업무를 나누기 위해','신약의 “서로” 명령을 구체적으로 실천하는 현장이기 때문에','예배 시간이 부족해서','교회 성장을 위해서'],1,'100명, 200명, 500명이 모이는 주일예배에서는 “서로”의 명령을 실천하기에 현실적인 한계가 있고, <strong>6–10명 정도의 작은 공동체</strong>에서는 가능합니다.'],
+ ['‘코이노니아(κοινωνία)’의 의미로 강의가 설명한 것은?',['같이 밥 먹고 이야기하는 친목','그리스도 안에서 생명과 은혜를 함께 나누는 공동체적 참여','목회자와 성도의 관계','주일 예배 후 식사'],1,'교제는 단순한 친목이 아니라 <strong>그리스도 안에서 생명과 은혜를 함께 나누는 공동체적 참여</strong>입니다.'],
+ ['소그룹에서 말씀을 다루는 방법으로 알맞은 것은?',['리더가 또 하나의 작은 설교를 한다','말씀은 대그룹에서만 다루고 소그룹에서는 다루지 않는다','주일 말씀을 가지고 서로 질문하며 삶에 적용한다','성경 지식을 시험한다'],2,'소그룹은 또 하나의 작은 설교 시간이 될 필요가 없습니다. 대그룹에서 듣고 → <strong>소그룹에서는 말씀을 삶으로 가져갑니다.</strong>'],
+ ['“너희가 짐을 서로 지라 그리하여 그리스도의 법을 성취하라”는 어느 구절입니까?',['요한복음 13:34','갈라디아서 6:2','히브리서 3:13','야고보서 5:16'],1,'<strong>갈라디아서 6:2</strong> — 소그룹은 혼자 지고 있던 짐을 공동체가 함께 지는 곳이어야 합니다.'],
+ ['대그룹만 있고 소그룹이 약하면 어떤 일이 생길 수 있습니까?',['공적 말씀과 성례의 중심성이 약해진다','성도들이 군중 속에서 고립될 수 있다','예배가 더 깊어진다','교회 전체의 하나 됨이 강해진다'],1,'대그룹만 있고 소그룹이 약하면 <strong>군중 속에서 고립</strong>될 수 있고, 소그룹만 강조하고 공예배가 약해지면 교회 전체의 하나 됨과 공적 말씀·성례의 중심성이 약해질 수 있습니다.'],
+ ['강의가 말한 “목장의 성공”의 기준은?',['모인 인원수','얼마나 서로 사랑하고 돌보며 그리스도를 닮아가고 있는가','모임의 횟수','프로그램의 다양함'],1,'“목장의 성공은 몇 명이 모였느냐보다, 그 사람들이 <strong>얼마나 서로 사랑하고 돌보며 그리스도를 닮아가고 있느냐</strong>에 있다”']
+];
+const qb=$('#quizbox');let qi=0,score=0,res=[];
+const LET=['A','B','C','D'];
+function renderQ(){
+  const q=Q[qi];
+  qb.innerHTML=`<div class="dots">${Q.map((_,i)=>`<div class="dot ${i===qi?'cur':res[i]===true?'ok':res[i]===false?'no':''}"></div>`).join('')}</div>
+  <div class="qn">문제 ${qi+1} / ${Q.length}</div><div class="qt">${q[0]}</div>
+  <div class="opts">${q[1].map((o,i)=>`<button class="opt" data-i="${i}"><span class="l">${LET[i]}</span><span>${o}</span></button>`).join('')}</div>
+  <div class="fb" id="fb"></div><div class="qa" id="qa"></div>`;
+  $$('.opt',qb).forEach(b=>b.onclick=()=>answer(+b.dataset.i));
+}
+function answer(i){
+  const q=Q[qi],ok=i===q[2];
+  $$('.opt',qb).forEach((b,j)=>{b.disabled=true;if(j===q[2])b.classList.add('ok');else if(j===i)b.classList.add('no')});
+  res[qi]=ok;if(ok)score++;
+  const fb=$('#fb');fb.className='fb show '+(ok?'ok':'no');fb.innerHTML=(ok?'👏 <strong>정답!</strong> ':'💡 <strong>아쉬워요.</strong> ')+q[3];
+  $$('.dot',qb)[qi].className='dot '+(ok?'ok':'no');
+  const last=qi===Q.length-1;
+  $('#qa').innerHTML=`<button class="btn" id="nx">${last?'결과 보기':'다음 문제'}</button>`;
+  $('#nx').onclick=()=>{if(last)showRes();else{qi++;renderQ()}};
+}
+function showRes(){
+  const p=score/Q.length,C=2*Math.PI*72;
+  const msg=p===1?['완벽해요! 🎉','5강의 핵심을 모두 기억하고 계시네요.']:p>=.8?['아주 좋아요 👍','핵심을 잘 붙들고 계십니다. 틀린 문제만 한 번 더 살펴보세요.']:p>=.5?['좋은 출발이에요','본문 → 비교 → 네 가지 순서로 한 번 더 훑어보면 금방 기억나요.']:['다시 한번 천천히','위의 카드와 탭을 다시 눌러 보고 퀴즈에 재도전해 보세요.'];
+  qb.innerHTML=`<div class="res"><div class="ring"><svg width="170" height="170"><circle cx="85" cy="85" r="72" stroke="var(--line)"/><circle id="rc" cx="85" cy="85" r="72" stroke="var(--accent)" stroke-dasharray="${C}" stroke-dashoffset="${C}" style="transition:stroke-dashoffset 1.2s cubic-bezier(.2,.8,.2,1)"/></svg><div class="num">${score}/${Q.length}</div></div>
+  <h3>${msg[0]}</h3><p>${msg[1]}</p><button class="btn" id="rt">다시 풀기</button></div>`;
+  requestAnimationFrame(()=>requestAnimationFrame(()=>$('#rc').style.strokeDashoffset=C*(1-p)));
+  if(p>=.8)confetti(140);
+  $('#rt').onclick=()=>{qi=0;score=0;res=[];renderQ()};
+}
+renderQ();
+
+/* ---------- 7. 빈칸 채우기 ---------- */
+const FS=[
+ ['<b>대그룹에서는 말씀을 듣고 → 소그룹에서는 말씀을</b> {0}<b>으로 가져가는 것입니다.</b>',['삶']],
+ ['<b>소그룹은 혼자 지고 있던</b> {0}<b>을 공동체가 함께 지는 곳이어야 합니다.</b>',['짐']],
+ ['신약의 코이노니아는 그리스도 안에서 {0}과 은혜를 함께 나누는 공동체적 참여를 뜻합니다.',['생명']],
+ ['<b>목장은 서로의</b> {0}<b>을 알고, 함께 기도하고, 다음 모임에서 하나님께서 어떻게 인도하셨는지를 다시 확인하는 공동체</b>가 되어야 합니다.',['기도제목']],
+ ['<b>“주일예배가 우리를</b> {0}<b>으로 함께 세운다면, 목장은 우리가 서로 그리스도의</b> {1}<b>으로 살아가게 하는 자리입니다.”</b>',['하나님의 백성','몸']]
+];
+const WORDS=['삶','짐','생명','기도제목','하나님의 백성','몸','친목','설교'];
+let sel=null,bi=0;
+function buildFill(){
+  sel=null;bi=0;$('#fmsg').textContent='';
+  const box=$('#fillS');box.innerHTML='';
+  FS.forEach(s=>{
+    const p=el('p','s',s[0].replace(/\{(\d)\}/g,(_,n)=>`<span class="blank" role="button" tabindex="0" data-a="${s[1][n]}">&nbsp;</span>`));
+    box.append(p);
+  });
+  const bank=$('#bank');bank.innerHTML='';
+  shuf(WORDS).forEach(w=>{const c=el('button','chip',w);c.dataset.w=w;bank.append(c)});
+}
+$('#bank').addEventListener('click',e=>{
+  const c=e.target.closest('.chip');if(!c)return;
+  $$('.chip').forEach(x=>x.classList.remove('sel'));
+  if(sel===c){sel=null;return}
+  sel=c;c.classList.add('sel');
+});
+function clearBlank(b){
+  if(!b.dataset.w)return;
+  const c=$(`.chip[data-w="${b.dataset.w}"]`);if(c)c.style.display='';
+  delete b.dataset.w;b.innerHTML='&nbsp;';b.className='blank';
+}
+$('#fillS').addEventListener('click',e=>{
+  const b=e.target.closest('.blank');if(!b)return;
+  if(sel){
+    clearBlank(b);
+    b.dataset.w=sel.dataset.w;b.textContent=sel.dataset.w;b.className='blank fill';
+    sel.style.display='none';sel.classList.remove('sel');sel=null;
+  }else clearBlank(b);
+});
+$('#fcheck').onclick=()=>{
+  const bs=$$('.blank');let ok=0,filled=0;
+  bs.forEach(b=>{
+    if(!b.dataset.w)return;filled++;
+    if(b.dataset.w===b.dataset.a){b.className='blank ok';ok++}
+    else{b.className='blank no';setTimeout(()=>clearBlank(b),900)}
+  });
+  const m=$('#fmsg');
+  if(filled<bs.length&&ok===filled&&ok<bs.length)m.textContent='빈칸이 아직 남았어요. 맞은 것은 초록색으로 고정됩니다.';
+  else if(ok===bs.length){m.textContent='🎉 모두 완성했어요!';confetti(120)}
+  else m.textContent=`${ok}개 맞았어요. 틀린 칸은 비워졌으니 다시 시도해 보세요.`;
+};
+$('#freset').onclick=buildFill;
+buildFill();
+
+/* ---------- 8. 자기 점검 ---------- */
+const CQ=[
+ ['우리 목장에서는 말씀을 듣는 데서 끝나지 않고 삶에 적용하도록 서로 돕고 있는가?','말씀 적용','이번 모임에서 “이번 주 내 삶에서 순종해야 할 것은 무엇입니까?”를 먼저 나누어 보세요.'],
+ ['우리 목장 식구들은 서로의 실제적인 어려움과 기도제목을 알고 있는가?','기도제목 나눔','“지금 가장 힘든 것이 무엇입니까?”, “무엇을 위해 기도해 드리면 좋겠습니까?”로 시작해 보세요. 다음 모임에서 하나님의 인도하심을 다시 확인하는 것도 잊지 마세요.'],
+ ['우리 목장에 어려움을 겪는 사람이 생겼을 때 말뿐 아니라 실제적인 돌봄이 일어나고 있는가?','실제적 돌봄','갈 6:2 — 혼자 지고 있던 짐을 공동체가 함께 지도록, 말로 그치지 않는 구체적인 한 가지를 정해 보세요.']
+];
+const RL=['아직 멀었어요','조금 하고 있어요','어느 정도 해요','잘하고 있어요'];
+const cbx=$('#chkbox'),cv=[null,null,null];
+CQ.forEach((q,i)=>{
+  const d=el('div','chk',`<div class="ct"><span>${i+1}.</span>${q[0]}</div><div class="rate">${RL.map((r,j)=>`<button data-j="${j}">${r}</button>`).join('')}</div>`);
+  d.querySelector('.rate').onclick=e=>{const b=e.target.closest('button');if(!b)return;
+    $$('button',d).forEach(x=>x.classList.toggle('on',x===b));cv[i]=+b.dataset.j;evalChk()};
+  cbx.append(d);
+});
+const cr=el('div','cres');cbx.append(cr);
+function evalChk(){
+  if(cv.some(v=>v===null))return;
+  const tot=cv.reduce((a,b)=>a+b,0),pct=Math.round(tot/9*100);
+  const min=Math.min(...cv),idx=cv.indexOf(min);
+  const head=pct>=75?'든든한 목장이네요 🌿':pct>=45?'잘 자라고 있는 목장이에요 🌱':'이제 시작하는 목장이에요 ✨';
+  cr.className='cres show';
+  cr.innerHTML=`<h4>${head}</h4><div class="meter"><i></i></div>
+  ${cv.every(v=>v===cv[0])?`<p>세 영역이 고르게 나왔어요. 다음 모임에서 한 가지씩 더 깊이 나누어 보세요.</p>`:`<p><b style="color:var(--ink)">먼저 살펴볼 영역: ${CQ[idx][1]}</b><br>${CQ[idx][2]}</p>`}`;
+  requestAnimationFrame(()=>requestAnimationFrame(()=>$('.meter i',cr).style.width=pct+'%'));
+}
+
+/* ---------- 컨페티 ---------- */
+const cvs=$('#cf'),ctx=cvs.getContext('2d');let parts=[],raf=null;
+function sz(){cvs.width=innerWidth*devicePixelRatio;cvs.height=innerHeight*devicePixelRatio}
+sz();addEventListener('resize',sz);
+function confetti(n){
+  if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  const cols=['#0a84ff','#30d158','#ff9f0a','#ff453a','#bf5af2','#64d2ff'],d=devicePixelRatio;
+  for(let i=0;i<n;i++)parts.push({x:cvs.width/2+(Math.random()-.5)*cvs.width*.3,y:cvs.height*.6,vx:(Math.random()-.5)*16*d,vy:(-Math.random()*16-6)*d,s:(Math.random()*7+4)*d,c:cols[Math.random()*cols.length|0],r:Math.random()*6,vr:(Math.random()-.5)*.4,l:1});
+  if(!raf)raf=requestAnimationFrame(tick);
+}
+function tick(){
+  ctx.clearRect(0,0,cvs.width,cvs.height);
+  parts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.45*devicePixelRatio;p.vx*=.99;p.r+=p.vr;p.l-=.011;
+    ctx.save();ctx.globalAlpha=Math.max(p.l,0);ctx.translate(p.x,p.y);ctx.rotate(p.r);ctx.fillStyle=p.c;ctx.fillRect(-p.s/2,-p.s/3,p.s,p.s*.6);ctx.restore()});
+  parts=parts.filter(p=>p.l>0&&p.y<cvs.height+40);
+  if(parts.length)raf=requestAnimationFrame(tick);else{raf=null;ctx.clearRect(0,0,cvs.width,cvs.height)}
+}
+</script>
+</body>
+</html>
