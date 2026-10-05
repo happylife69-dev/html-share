@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>믿음으로 모세 부모는 · 히브리서 11:23 복습</title>
+<style>
+:root{
+  --bg:#fbfbfd; --bg2:#f5f5f7; --card:#ffffff; --text:#1d1d1f; --sub:#6e6e73; --line:rgba(0,0,0,.08);
+  --blue:#0071e3; --blue-soft:rgba(0,113,227,.10); --green:#30a14e; --green-soft:rgba(48,161,78,.12);
+  --red:#e5484d; --red-soft:rgba(229,72,77,.12); --orange:#ff9f0a;
+  --glass:rgba(251,251,253,.72); --shadow:0 4px 30px rgba(0,0,0,.06);
+  --radius:22px;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#000; --bg2:#111113; --card:#1c1c1e; --text:#f5f5f7; --sub:#a1a1a6; --line:rgba(255,255,255,.12);
+    --blue:#2997ff; --blue-soft:rgba(41,151,255,.16); --green:#32d74b; --green-soft:rgba(50,215,75,.16);
+    --red:#ff6961; --red-soft:rgba(255,105,97,.16);
+    --glass:rgba(0,0,0,.65); --shadow:0 4px 30px rgba(0,0,0,.5);
+  }
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro KR","Apple SD Gothic Neo","Pretendard","Noto Sans KR",system-ui,sans-serif;
+  line-height:1.6;letter-spacing:-.01em;-webkit-font-smoothing:antialiased;
+}
+button{font:inherit;color:inherit;cursor:pointer}
+.progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,#0071e3,#5e5ce6,#bf5af2);z-index:100;transition:width .1s}
+nav{
+  position:sticky;top:0;z-index:50;background:var(--glass);
+  -webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);
+  border-bottom:1px solid var(--line);
+}
+nav .in{max-width:980px;margin:0 auto;padding:0 20px;height:48px;display:flex;align-items:center;gap:22px;overflow-x:auto;scrollbar-width:none}
+nav .in::-webkit-scrollbar{display:none}
+nav strong{font-size:15px;white-space:nowrap}
+nav a{font-size:13px;color:var(--sub);text-decoration:none;white-space:nowrap;transition:color .2s}
+nav a:hover{color:var(--text)}
+section{padding:96px 20px;max-width:980px;margin:0 auto}
+section.alt{max-width:none;background:var(--bg2)}
+section.alt>.wrap{max-width:980px;margin:0 auto}
+.eyebrow{font-size:15px;font-weight:600;color:var(--blue);margin:0 0 8px}
+h2{font-size:clamp(30px,5vw,48px);line-height:1.12;letter-spacing:-.03em;margin:0 0 14px;font-weight:700}
+.lead{font-size:clamp(17px,2.2vw,21px);color:var(--sub);margin:0 0 40px;max-width:640px}
+.hero{min-height:92vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:80px 20px}
+.hero .ref{font-size:17px;color:var(--blue);font-weight:600;margin-bottom:14px}
+.hero h1{font-size:clamp(44px,9vw,92px);line-height:1.04;letter-spacing:-.045em;margin:0 0 20px;font-weight:800;
+  background:linear-gradient(120deg,#1d1d1f 20%,#0071e3 60%,#bf5af2);-webkit-background-clip:text;background-clip:text;color:transparent}
+@media (prefers-color-scheme:dark){.hero h1{background:linear-gradient(120deg,#f5f5f7 20%,#2997ff 60%,#bf5af2);-webkit-background-clip:text;background-clip:text}}
+.hero p{font-size:clamp(18px,2.6vw,26px);color:var(--sub);max-width:680px;margin:0 0 34px}
+.btn{display:inline-block;background:var(--blue);color:#fff;border:0;border-radius:980px;padding:12px 26px;font-size:17px;text-decoration:none;transition:transform .15s,opacity .2s}
+.btn:hover{opacity:.9}.btn:active{transform:scale(.97)}
+.btn.ghost{background:var(--blue-soft);color:var(--blue)}
+.scroll-hint{margin-top:50px;color:var(--sub);font-size:13px;animation:bob 2s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(6px)}}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.reveal.on{opacity:1;transform:none}
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:26px}
+.verse{border-left:3px solid var(--blue);padding:4px 0 4px 16px;color:var(--text);font-size:17px;margin:14px 0}
+.verse small{display:block;color:var(--blue);font-weight:600;font-size:13px;margin-bottom:2px}
+
+/* timeline */
+.tl{position:relative;padding-left:34px}
+.tl:before{content:"";position:absolute;left:11px;top:6px;bottom:6px;width:2px;background:var(--line)}
+.tl-item{position:relative;margin-bottom:14px}
+.tl-item:before{content:"";position:absolute;left:-30px;top:22px;width:12px;height:12px;border-radius:50%;background:var(--card);border:3px solid var(--blue)}
+.tl-item.open:before{background:var(--blue)}
+.tl-head{width:100%;text-align:left;background:var(--card);border:0;border-radius:18px;padding:18px 22px;display:flex;justify-content:space-between;align-items:center;gap:12px;box-shadow:var(--shadow)}
+.tl-head b{font-size:18px}
+.tl-head span.r{color:var(--blue);font-size:13px;font-weight:600;display:block}
+.chev{transition:transform .3s;color:var(--sub)}
+.tl-item.open .chev{transform:rotate(90deg)}
+.tl-body{max-height:0;overflow:hidden;transition:max-height .45s ease}
+.tl-body>div{padding:14px 22px 6px}
+
+/* flip cards */
+.flips{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.flip{perspective:1200px;border:0;background:none;padding:0;text-align:left;height:340px}
+.flip .inner{position:relative;width:100%;height:100%;transition:transform .7s cubic-bezier(.2,.7,.2,1);transform-style:preserve-3d}
+.flip.on .inner{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;border-radius:var(--radius);padding:28px;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;flex-direction:column;justify-content:space-between;box-shadow:var(--shadow);overflow:auto}
+.face.f{background:var(--card)}
+.face.b{background:linear-gradient(160deg,#0071e3,#5e5ce6);color:#fff;transform:rotateY(180deg)}
+.face .num{font-size:56px;font-weight:800;letter-spacing:-.04em;color:var(--blue);line-height:1}
+.face h3{font-size:24px;line-height:1.25;margin:0;letter-spacing:-.03em}
+.face .tap{font-size:13px;color:var(--sub)}
+.face.b .v{font-size:15px;opacity:.85;margin-bottom:10px}
+.face.b p{margin:0;font-size:18px;line-height:1.55}
+.face.b .tap{color:rgba(255,255,255,.7)}
+
+/* think & reveal */
+.think{display:grid;gap:16px}
+.reveal-box{background:var(--blue-soft);border-radius:16px;padding:0 20px;max-height:0;overflow:hidden;transition:max-height .5s ease,padding .5s ease}
+.reveal-box.open{padding:18px 20px;max-height:700px}
+.hedgehog{font-size:64px;line-height:1;margin-bottom:6px}
+.opts{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.pill{border:1px solid var(--line);background:var(--card);border-radius:980px;padding:10px 18px;font-size:16px;transition:all .2s}
+.pill:hover{border-color:var(--blue)}
+.pill.right{background:var(--green-soft);border-color:var(--green);color:var(--green)}
+.pill.wrong{background:var(--red-soft);border-color:var(--red);color:var(--red);animation:shake .4s}
+@keyframes shake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+
+/* order game */
+.order-pool,.order-done{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.order-done{flex-direction:column;counter-reset:o}
+.order-done .item{counter-increment:o;background:var(--green-soft);border-radius:14px;padding:12px 16px;display:flex;gap:12px;align-items:center;animation:pop .35s}
+.order-done .item:before{content:counter(o);background:var(--green);color:#fff;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:700;flex:none}
+@keyframes pop{from{transform:scale(.9);opacity:0}}
+.msg{min-height:26px;font-size:15px;color:var(--sub);margin-top:6px}
+
+/* blanks */
+.blank-q{font-size:19px;line-height:2.2}
+.blank-q input{
+  font:inherit;width:6.2em;text-align:center;border:0;border-bottom:2px solid var(--blue);background:var(--blue-soft);
+  color:var(--text);border-radius:8px 8px 0 0;padding:2px 6px;outline:none;transition:background .2s
+}
+.blank-q input.ok{border-color:var(--green);background:var(--green-soft);color:var(--green);font-weight:600}
+.blank-q input.no{border-color:var(--red);background:var(--red-soft);animation:shake .4s}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.tab{border:0;background:var(--card);border-radius:980px;padding:8px 18px;font-size:15px;box-shadow:var(--shadow)}
+.tab.on{background:var(--blue);color:#fff}
+
+/* quiz */
+.qwrap{max-width:720px;margin:0 auto}
+.dots{display:flex;gap:6px;justify-content:center;margin-bottom:22px}
+.dot{width:26px;height:6px;border-radius:3px;background:var(--line);transition:background .3s}
+.dot.cur{background:var(--blue)}.dot.ok{background:var(--green)}.dot.no{background:var(--red)}
+.qnum{color:var(--blue);font-weight:600;font-size:14px}
+.q{font-size:clamp(21px,3vw,27px);font-weight:700;letter-spacing:-.03em;margin:6px 0 20px;line-height:1.35}
+.choice{display:block;width:100%;text-align:left;border:1.5px solid var(--line);background:var(--card);border-radius:16px;padding:15px 18px;margin-bottom:10px;font-size:17px;transition:all .2s}
+.choice:hover:not(:disabled){border-color:var(--blue);transform:translateX(3px)}
+.choice.right{background:var(--green-soft);border-color:var(--green)}
+.choice.wrong{background:var(--red-soft);border-color:var(--red);animation:shake .4s}
+.choice:disabled{cursor:default}
+.explain{background:var(--blue-soft);border-radius:16px;padding:16px 18px;margin:14px 0;font-size:16px;display:none}
+.explain.show{display:block;animation:pop .35s}
+.score{text-align:center}
+.score .big{font-size:clamp(70px,16vw,130px);font-weight:800;letter-spacing:-.05em;line-height:1;
+  background:linear-gradient(120deg,#0071e3,#bf5af2);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* checklist */
+.check{display:flex;gap:14px;align-items:flex-start;padding:16px 0;border-bottom:1px solid var(--line);cursor:pointer}
+.check:last-of-type{border-bottom:0}
+.check input{appearance:none;-webkit-appearance:none;flex:none;width:26px;height:26px;border-radius:50%;border:2px solid var(--line);margin-top:2px;display:grid;place-items:center;transition:all .25s;cursor:pointer}
+.check input:checked{background:var(--blue);border-color:var(--blue)}
+.check input:checked:after{content:"✓";color:#fff;font-size:15px;font-weight:700}
+.check input:checked+span{color:var(--sub);text-decoration:line-through}
+.check b{display:block;font-size:13px;color:var(--blue)}
+textarea{width:100%;min-height:110px;border:1.5px solid var(--line);background:var(--card);color:var(--text);border-radius:16px;padding:14px 16px;font:inherit;font-size:16px;resize:vertical;outline:none}
+textarea:focus{border-color:var(--blue)}
+.finale{text-align:center;padding:120px 20px}
+.finale blockquote{font-size:clamp(24px,4vw,40px);font-weight:700;letter-spacing:-.035em;line-height:1.35;margin:0 auto 18px;max-width:760px}
+footer{text-align:center;color:var(--sub);font-size:13px;padding:30px 20px 60px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="progress" id="bar"></div>
+<nav><div class="in">
+  <strong>믿음으로 모세 부모는</strong>
+  <a href="#bg">배경</a><a href="#three">세 가지 믿음</a><a href="#think">생각해 보기</a>
+  <a href="#order">순서 게임</a><a href="#verses">말씀 암송</a><a href="#quiz">퀴즈</a><a href="#apply">적용</a>
+</div></nav>
+
+<header class="hero" id="top">
+  <div class="ref reveal">히브리서 강해 (44) · 히브리서 11장 23절</div>
+  <h1 class="reveal">믿음으로<br>모세 부모는</h1>
+  <p class="reveal">하나님은 역사의 결정적인 순간에 믿음으로 반응하는 사람들을 사용하십니다.</p>
+  <a class="btn reveal" href="#bg">복습 시작하기</a>
+  <div class="scroll-hint">아래로 스크롤 ↓</div>
+</header>
+
+<!-- 1. 배경 -->
+<section id="bg">
+  <p class="eyebrow reveal">PART 1 · 역사적 배경</p>
+  <h2 class="reveal">위기의 순간,<br>모세가 태어났습니다</h2>
+  <p class="lead reveal">카드를 눌러 하나씩 펼쳐 보세요.</p>
+  <div class="tl reveal">
+    <div class="tl-item">
+      <button class="tl-head"><div><span class="r">출애굽기 1:8</span><b>요셉을 알지 못하는 새 왕</b></div><span class="chev">›</span></button>
+      <div class="tl-body"><div>이스라엘 자손이 번성하고 매우 강해진 것을 새 왕이 두려워하여 그때부터 그들을 억압하기 시작합니다. 고된 노동을 가하고, 학대를 하면서 이스라엘의 번성을 막으려고 했습니다. 그런데 그것이 무용지물이 됩니다.</div></div>
+    </div>
+    <div class="tl-item">
+      <button class="tl-head"><div><span class="r">출애굽기 1:17</span><b>하나님을 두려워한 산파들</b></div><span class="chev">›</span></button>
+      <div class="tl-body"><div>
+        <div class="verse"><small>출 1:17</small>“그러나 산파들이 하나님을 두려워하여 애굽 왕의 명령을 어기고 남자 아기들을 살린지라”</div>
+        왕이 무서운 줄 몰라서가 아니라, 왕보다 하나님을 더 두려워했기에 바로의 명령에 순종할 수 없었던 것입니다.
+      </div></div>
+    </div>
+    <div class="tl-item">
+      <button class="tl-head"><div><span class="r">출애굽기 1:22</span><b>더 끔찍한 마지막 명령</b></div><span class="chev">›</span></button>
+      <div class="tl-body"><div>
+        <div class="verse"><small>출 1:22</small>“그러므로 바로가 그의 모든 신하에게 명령하여 이르되 히브리인의 아들이 태어나거든 너희는 그를 나일 강에 던지고 딸이거든 살려두라 하였더라”</div>
+        당시 왕의 명령은 절대 권력의 명령입니다. 그래서 그 명령을 어기면 죽음입니다.
+      </div></div>
+    </div>
+    <div class="tl-item">
+      <button class="tl-head"><div><span class="r">바로 그때</span><b>모세가 태어났습니다</b></div><span class="chev">›</span></button>
+      <div class="tl-body"><div>만약 이 아이가 죽으면 이스라엘의 구원이 요원해집니다. 하나님의 구속 계획이 위기에 처한 것입니다. 그런데 하나님은 이 위기를 한 가정의 믿음을 통해 돌파하십니다. 모세의 부모를 통해서입니다.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. 세 가지 믿음 -->
+<section class="alt" id="three"><div class="wrap">
+  <p class="eyebrow reveal">PART 2 · 모세 부모의 믿음</p>
+  <h2 class="reveal">세 가지 믿음</h2>
+  <p class="lead reveal">카드를 눌러 뒤집어 보세요. 뒷면에 핵심이 있습니다.</p>
+  <div class="flips reveal">
+    <button class="flip" aria-label="첫째 믿음 카드 뒤집기">
+      <div class="inner">
+        <div class="face f"><div class="num">1</div><h3>믿음으로<br>이 아이를<br>무엇의 눈으로 보았을까?</h3><div class="tap">눌러서 뒤집기 ↻</div></div>
+        <div class="face b"><div><div class="v">히 11:23 · 행 7:20</div><p>하나님의 눈으로 보았습니다. “하나님 보시기에 아름다운” 아이. 외모가 아니라, 이 아이에게서 하나님의 특별한 뜻을 본 것입니다.</p></div><div class="tap">다시 눌러 돌아가기</div></div>
+      </div>
+    </button>
+    <button class="flip" aria-label="둘째 믿음 카드 뒤집기">
+      <div class="inner">
+        <div class="face f"><div class="num">2</div><h3>믿음으로<br>왕의 명령보다<br>누구를 더 두려워했을까?</h3><div class="tap">눌러서 뒤집기 ↻</div></div>
+        <div class="face b"><div><div class="v">히 11:23 · 눅 12:4-5</div><p>하나님을 더 두려워했습니다. 믿음은 모든 두려움이 사라지는 것이 아니라, 더 두려워할 분을 알고 그분을 두려워하는 것입니다.</p></div><div class="tap">다시 눌러 돌아가기</div></div>
+      </div>
+    </button>
+    <button class="flip" aria-label="셋째 믿음 카드 뒤집기">
+      <div class="inner">
+        <div class="face f"><div class="num">3</div><h3>믿음으로<br>마지막에는<br>아이를 어디에 두었을까?</h3><div class="tap">눌러서 뒤집기 ↻</div></div>
+        <div class="face b"><div><div class="v">출 2:3, 9 · 신 6:6-7</div><p>하나님의 손에 맡겼습니다. 숨기는 데서 끝나지 않고 맡기는 데까지 나아갔고, 하나님은 아이를 다시 어머니 품에 안겨 주셨습니다.</p></div><div class="tap">다시 눌러 돌아가기</div></div>
+      </div>
+    </button>
+  </div>
+</div></section>
+
+<!-- 3. 생각해 보기 -->
+<section id="think">
+  <p class="eyebrow reveal">PART 3 · 생각해 보기</p>
+  <h2 class="reveal">정말 예뻐서<br>숨긴 걸까요?</h2>
+  <div class="think">
+    <div class="card reveal">
+      <div class="hedgehog">🦔</div>
+      <h3 style="margin:0 0 8px;font-size:22px">고슴도치도 자기 새끼는 함함하다</h3>
+      <p style="color:var(--sub);margin:0 0 12px">가시투성이인 고슴도치도 자기 새끼는 부드러운 털을 가지고 있다고 곱다고 여긴다는 뜻입니다.</p>
+      <p style="margin:0 0 6px"><b>질문.</b> 모세의 부모가 아이를 숨긴 이유가 “아름다운 아이였기 때문”이라면 어떤 일이 벌어졌을까요?</p>
+      <div class="opts" id="hedgeOpts">
+        <button class="pill" data-ok="0">모세의 부모만 숨겼을 것이다</button>
+        <button class="pill" data-ok="1">모든 이스라엘 부모가 자식을 숨겼을 것이다</button>
+        <button class="pill" data-ok="0">아무도 숨기지 않았을 것이다</button>
+      </div>
+      <div class="reveal-box" id="hedgeAns">
+        맞습니다. 만약 아름다움이 이유였다면 모든 이스라엘 백성들의 부모가 다 자식을 숨겼을 것입니다. 그러므로 여기서 “아름다운”이라는 단어는 단순히 외모가 예쁘다는 뜻이 아닙니다.
+        <div class="verse"><small>행 7:20</small>스데반이 모세를 묘사할 때 같은 단어를 사용합니다. “하나님 보시기에 아름다운”</div>
+      </div>
+    </div>
+
+    <div class="card reveal">
+      <h3 style="margin:0 0 8px;font-size:22px">📜 요세푸스의 기록</h3>
+      <p style="margin:0 0 12px;color:var(--sub)">힌트를 눌러 보세요.</p>
+      <div class="row" style="margin-top:0"><button class="btn ghost" id="hintBtn">힌트 보기</button></div>
+      <div class="reveal-box" id="hintAns">
+        유대 역사학자 요세푸스에 따르면, 모세의 아버지 아므람이 꿈에 이 아이가 이스라엘을 구원할 것이라는 계시를 받았다고 기록합니다. 이 말은 부모가 이 아이를 통해 일하실 하나님의 계획을 어느 정도 알았고, 그 부모는 모세에게 그것을 가르쳤다는 것입니다.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. 순서 게임 -->
+<section class="alt" id="order"><div class="wrap">
+  <p class="eyebrow reveal">PART 4 · 순서 게임</p>
+  <h2 class="reveal">일어난 순서대로<br>눌러 보세요</h2>
+  <p class="lead reveal">아래 카드 중 가장 먼저 일어난 일부터 차례로 눌러 보세요.</p>
+  <div class="card reveal">
+    <div class="order-done" id="orderDone"></div>
+    <div class="order-pool" id="orderPool"></div>
+    <div class="msg" id="orderMsg"></div>
+    <div class="row"><button class="btn ghost" id="orderReset">다시 하기</button></div>
+  </div>
+</div></section>
+
+<!-- 5. 말씀 암송 -->
+<section id="verses">
+  <p class="eyebrow reveal">PART 5 · 말씀 빈칸 채우기</p>
+  <h2 class="reveal">말씀을<br>내 것으로</h2>
+  <p class="lead reveal">빈칸에 알맞은 말을 적고 확인을 눌러 보세요. 힌트는 첫 글자를 알려줍니다.</p>
+  <div class="tabs reveal" id="vtabs">
+    <button class="tab on" data-i="0">히 11:23</button>
+    <button class="tab" data-i="1">눅 12:4-5</button>
+    <button class="tab" data-i="2">히 13:6</button>
+  </div>
+  <div class="card reveal">
+    <div class="blank-q" id="blankQ"></div>
+    <div class="row">
+      <button class="btn" id="blankCheck">확인</button>
+      <button class="btn ghost" id="blankHint">힌트</button>
+      <button class="btn ghost" id="blankShow">정답 보기</button>
+    </div>
+    <div class="msg" id="blankMsg"></div>
+  </div>
+</section>
+
+<!-- 6. 퀴즈 -->
+<section class="alt" id="quiz"><div class="wrap">
+  <p class="eyebrow reveal">PART 6 · 퀴즈</p>
+  <h2 class="reveal">얼마나 기억하나요?</h2>
+  <p class="lead reveal">10문제입니다. 답을 고르면 바로 해설이 나옵니다.</p>
+  <div class="qwrap card reveal" id="quizBox"></div>
+</div></section>
+
+<!-- 7. 적용 -->
+<section id="apply">
+  <p class="eyebrow reveal">PART 7 · 적용</p>
+  <h2 class="reveal">한 주간,<br>이렇게 살아 보겠습니다</h2>
+  <p class="lead reveal">실천 제안입니다. 체크한 내용과 적은 글은 이 기기의 브라우저에만 저장됩니다.</p>
+  <div class="card reveal">
+    <label class="check"><input type="checkbox" data-k="a1"><span><b>첫째 · 자녀를 하나님의 눈으로</b>자녀를 세상의 기준이 아니라 “하나님 보시기에 아름다운” 존재로 바라봅니다.</span></label>
+    <label class="check"><input type="checkbox" data-k="a2"><span><b>첫째 · 말씀으로 기르기 (신 6:6-7)</b>세상의 스펙이 아닌 하나님의 말씀으로 자녀를 키웁니다.</span></label>
+    <label class="check"><input type="checkbox" data-k="a3"><span><b>둘째 · 하나님의 손에 맡기기</b>맡김은 포기가 아니라 내 손에서 하나님의 손으로 옮기는 것임을 기억하고, 내가 붙들고 있던 것 하나를 하나님께 맡깁니다.</span></label>
+    <label class="check"><input type="checkbox" data-k="a4"><span><b>셋째 · 더 두려워할 분을 알기</b>내 앞의 두려움을 마주하며, 그것보다 더 크신 하나님을 바라봅니다.</span></label>
+    <label class="check"><input type="checkbox" data-k="a5"><span><b>셋째 · 히 13:6 붙들기</b>“주는 나를 돕는 이시니 내가 무서워하지 아니하겠노라”를 이번 주 내내 입으로 고백합니다.</span></label>
+    <div style="margin-top:20px">
+      <p style="margin:0 0 8px;font-weight:600">내가 지금 맞닥뜨린 두려움, 그리고 맡기고 싶은 것</p>
+      <textarea id="note" placeholder="여기에 적어 보세요…"></textarea>
+      <div class="msg" id="noteMsg"></div>
+    </div>
+    <div class="msg" id="checkSum" style="margin-top:14px;font-weight:600;color:var(--blue)"></div>
+  </div>
+</section>
+
+<div class="finale">
+  <blockquote class="reveal">“주는 나를 돕는 이시니<br>내가 무서워하지 아니하겠노라<br>사람이 내게 어찌하리요”</blockquote>
+  <p class="reveal" style="color:var(--blue);font-weight:600;margin:0 0 6px">히브리서 13:6</p>
+  <p class="reveal" style="color:var(--sub);max-width:560px;margin:0 auto">죽음까지 이기신 예수 그리스도가 우리 편이십니다. 오늘도 우리를 도우시는 주님이 우리의 편이 되어 주십니다.</p>
+</div>
+<footer>히브리서 강해 (44) · 히브리서 11장 23절 · 설교 복습 자료</footer>
+
+<script>
+(function(){
+  var $=function(s,r){return (r||document).querySelector(s)}, $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+  var store={get:function(k){try{return localStorage.getItem('h44_'+k)}catch(e){return null}},set:function(k,v){try{localStorage.setItem('h44_'+k,v)}catch(e){}}};
+
+  /* progress bar + reveal */
+  var bar=$('#bar');
+  function onScroll(){var h=document.documentElement;bar.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%'}
+  addEventListener('scroll',onScroll,{passive:true});onScroll();
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{threshold:.12});
+  $$('.reveal').forEach(function(el){io.observe(el)});
+
+  /* timeline accordion */
+  $$('.tl-item').forEach(function(it){
+    var head=$('.tl-head',it),body=$('.tl-body',it);
+    head.addEventListener('click',function(){
+      var open=it.classList.toggle('open');
+      body.style.maxHeight=open?body.scrollHeight+'px':'0';
+    });
+  });
+
+  /* flip cards */
+  $$('.flip').forEach(function(f){f.addEventListener('click',function(){f.classList.toggle('on')})});
+
+  /* hedgehog */
+  $$('#hedgeOpts .pill').forEach(function(p){
+    p.addEventListener('click',function(){
+      if(p.dataset.ok==='1'){p.classList.add('right');$('#hedgeAns').classList.add('open')}
+      else{p.classList.remove('wrong');void p.offsetWidth;p.classList.add('wrong')}
+    });
+  });
+  $('#hintBtn').addEventListener('click',function(){var b=$('#hintAns');var o=b.classList.toggle('open');this.textContent=o?'접기':'힌트 보기'});
+
+  /* order game */
+  var events=[
+    '요셉을 알지 못하는 새 왕이 일어나 이스라엘을 억압함',
+    '히브리 산파들에게 남자 아기를 죽이라고 명령함',
+    '산파들이 하나님을 두려워하여 명령을 어기고 아기들을 살림',
+    '바로가 “히브리인의 아들이 태어나거든 나일 강에 던지라” 명령함',
+    '모세가 태어나고 부모가 석 달 동안 숨김',
+    '갈대 상자에 담아 나일 강가에 두고, 바로의 딸의 손을 거쳐 어머니 품으로 돌아옴'
+  ];
+  var next=0;
+  function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+  function buildOrder(){
+    next=0;$('#orderDone').innerHTML='';$('#orderMsg').textContent='';
+    var pool=$('#orderPool');pool.innerHTML='';
+    shuffle(events.map(function(t,i){return {t:t,i:i}})).forEach(function(o){
+      var b=document.createElement('button');b.className='pill';b.textContent=o.t;
+      b.addEventListener('click',function(){
+        if(o.i===next){
+          var d=document.createElement('div');d.className='item';d.textContent=o.t;$('#orderDone').appendChild(d);
+          b.remove();next++;
+          $('#orderMsg').textContent=next===events.length?'🎉 모두 맞췄습니다. 하나님은 이 위기를 한 가정의 믿음을 통해 돌파하셨습니다.':'좋아요! 다음은 무엇일까요?';
+        }else{
+          b.classList.remove('wrong');void b.offsetWidth;b.classList.add('wrong');
+          $('#orderMsg').textContent='앗, 그 일이 먼저 일어난 건 아니에요. 다시 생각해 보세요.';
+        }
+      });
+      pool.appendChild(b);
+    });
+  }
+  $('#orderReset').addEventListener('click',buildOrder);buildOrder();
+
+  /* verse blanks */
+  var verses=[
+    {ref:'히브리서 11:23',parts:['“믿음으로 모세가 났을 때에 그 부모가 ',0,' 아이임을 보고 ',1,' 동안 숨겨 왕의 명령을 ',2,' 아니하였으며”'],ans:['아름다운','석달','무서워']},
+    {ref:'누가복음 12:4-5',parts:['“몸을 죽이고 그 후에는 능히 더 못하는 자들을 ',0,' 말라 마땅히 두려워할 자를 내가 너희에게 보이리니 곧 죽인 후에 또한 ',1,'에 던져 넣는 ',2,' 있는 그를 두려워 하라”'],ans:['두려워하지','지옥','권세']},
+    {ref:'히브리서 13:6',parts:['“그러므로 우리가 담대히 말하되 주는 나를 ',0,' 이시니 내가 ',1,' 아니하겠노라 사람이 내게 ',2,' 하노라”'],ans:['돕는','무서워하지','어찌하리요']}
+  ];
+  var vi=0;
+  function buildBlank(){
+    var v=verses[vi],h='<div style="color:var(--blue);font-weight:600;font-size:14px;margin-bottom:6px">'+v.ref+'</div>';
+    v.parts.forEach(function(p){h+=(typeof p==='number')?'<input type="text" data-i="'+p+'" autocomplete="off" autocapitalize="off" spellcheck="false">':p});
+    $('#blankQ').innerHTML=h;$('#blankMsg').textContent='';
+  }
+  function norm(s){return s.replace(/\s+/g,'')}
+  $$('#vtabs .tab').forEach(function(t){t.addEventListener('click',function(){
+    $$('#vtabs .tab').forEach(function(x){x.classList.remove('on')});t.classList.add('on');vi=+t.dataset.i;buildBlank();
+  })});
+  $('#blankCheck').addEventListener('click',function(){
+    var ok=0,v=verses[vi],ins=$$('#blankQ input');
+    ins.forEach(function(inp){
+      var good=norm(inp.value)===norm(v.ans[+inp.dataset.i]);
+      inp.classList.remove('ok','no');void inp.offsetWidth;inp.classList.add(good?'ok':'no');if(good)ok++;
+    });
+    $('#blankMsg').textContent=ok===ins.length?'🎉 완벽합니다!':ok+' / '+ins.length+' 정답입니다. 힌트를 써 보세요.';
+  });
+  $('#blankHint').addEventListener('click',function(){
+    var v=verses[vi];
+    $$('#blankQ input').forEach(function(inp){if(!inp.classList.contains('ok')){inp.placeholder=v.ans[+inp.dataset.i].charAt(0)+' …'}});
+    $('#blankMsg').textContent='첫 글자를 힌트로 표시했습니다.';
+  });
+  $('#blankShow').addEventListener('click',function(){
+    var v=verses[vi];
+    $$('#blankQ input').forEach(function(inp){inp.value=v.ans[+inp.dataset.i];inp.classList.remove('no');inp.classList.add('ok')});
+    $('#blankMsg').textContent='정답을 표시했습니다. 소리 내어 읽어 보세요.';
+  });
+  buildBlank();
+
+  /* quiz */
+  var Q=[
+    {q:'새 왕이 이스라엘을 억압하기 시작한 이유는 무엇입니까?',o:['이스라엘이 반란을 일으켜서','이스라엘 자손이 번성하고 매우 강해진 것을 두려워해서','이스라엘이 세금을 내지 않아서','요셉이 죽어서'],a:1,e:'새 왕은 이스라엘 자손이 번성하고 매우 강해진 것을 두려워하여 억압하기 시작했습니다. (출 1:8)'},
+    {q:'히브리 산파들이 바로의 명령을 따르지 않은 진짜 이유는?',o:['히브리 여인들이 건장하여 먼저 아이를 낳아서','왕의 힘이 약해서','하나님을 두려워해서','보상을 받아서'],a:2,e:'산파들이 대답한 말은 그랬지만, 출애굽기 1장 17절이 밝히는 진짜 이유는 “하나님을 두려워하여”입니다. 왕보다 하나님을 더 두려워했기 때문입니다.'},
+    {q:'바로가 마지막으로 내린 가장 끔찍한 명령은?',o:['모든 히브리인을 추방하라','히브리인의 아들이 태어나거든 나일 강에 던지라','산파들을 처벌하라','딸도 모두 죽이라'],a:1,e:'출애굽기 1장 22절입니다. 아들은 나일 강에 던지고 딸은 살려두라는 명령이었고, 어기면 곧 죽음을 의미했습니다.'},
+    {q:'“고슴도치도 자기 새끼는 함함하다”는 속담을 설교에서 쓴 이유는?',o:['고슴도치가 성경에 나오기 때문에','모세의 외모가 특별했음을 보이려고','부모가 아이를 숨긴 이유가 단순한 외모의 아름다움이 아님을 보이려고','부모의 사랑이 약했음을 보이려고'],a:2,e:'모든 부모의 눈에는 자기 자식이 예쁩니다. 아름다움이 이유였다면 모든 이스라엘 부모가 자식을 숨겼을 것입니다.'},
+    {q:'스데반이 모세를 묘사한 표현(행 7:20)으로 설교에서 소개한 것은?',o:['“하나님 보시기에 아름다운”','“애굽의 모든 지혜를 배운”','“말과 행동에 능한”','“온유함이 지극한”'],a:0,e:'스데반도 같은 단어를 써서 모세를 “하나님 보시기에 아름다운” 아이로 묘사했습니다. 모세의 부모는 이 아이에게서 하나님의 특별한 뜻을 본 것입니다.'},
+    {q:'설교에서 소개한 요세푸스의 기록으로 맞는 것은?',o:['어머니 요게벳이 천사를 만났다','아버지 아므람이 꿈에 이 아이가 이스라엘을 구원할 것이라는 계시를 받았다','바로의 딸이 꿈을 꾸었다','미리암이 예언했다'],a:1,e:'유대 역사학자 요세푸스는 아므람이 꿈에 계시를 받았다고 기록합니다. 그래서 부모가 하나님의 계획을 어느 정도 알고 모세에게 가르쳤을 것이라고 이해할 수 있습니다.'},
+    {q:'사람을 두려워하는 것과 하나님을 두려워하는 것이 충돌할 때, 믿음은?',o:['사람 편에 서는 것','중립을 지키는 것','하나님 편에 서는 것','두려움이 완전히 사라지는 것'],a:2,e:'믿음은 하나님 편에 서는 것입니다. 다만 모든 두려움이 사라지는 것은 아닙니다. 믿음은 더 두려워할 분을 알고 그분을 두려워하는 것입니다.'},
+    {q:'모세를 담은 ‘상자’는 성경의 어떤 단어와 같은 단어입니까?',o:['노아의 방주','언약궤','솔로몬의 성전','광야의 성막'],a:0,e:'‘상자’는 노아의 ‘방주’와 같은 단어입니다. 생명을 지키시는 하나님의 방식을 보여 줍니다.'},
+    {q:'설교에서 말한 “맡긴다는 것”의 의미는?',o:['자녀를 포기하는 것','자녀에게서 손을 떼는 것','내 손에서 하나님의 손으로 옮기는 것','자녀를 남에게 넘기는 것'],a:2,e:'맡긴다는 것은 포기가 아닙니다. 내 손에서 하나님의 손으로 옮기는 것이며, 하나님의 손이 부모의 손보다 더 크다는 것을 믿는 것입니다.'},
+    {q:'히브리서 기자가 모세의 믿음보다 부모의 믿음을 먼저 소개한 이유는?',o:['부모가 더 중요한 인물이어서','박해받는 수신자들과 오늘 우리에게도 두려움을 이기는 믿음이 필요해서','모세의 이야기가 짧아서','이름을 알리려고'],a:1,e:'고난과 박해, 죽음의 위협 앞에서도 하나님을 신뢰하는 믿음, 이것이 모세 부모의 믿음이며 오늘 우리에게도 필요한 믿음입니다.'}
+  ];
+  var qi=0,score=0,res=[],answered=false,box=$('#quizBox');
+  function renderQ(){
+    answered=false;
+    var d='<div class="dots">'+Q.map(function(_,i){return '<div class="dot '+(i<qi?(res[i]?'ok':'no'):(i===qi?'cur':''))+'"></div>'}).join('')+'</div>';
+    var q=Q[qi];
+    d+='<div class="qnum">문제 '+(qi+1)+' / '+Q.length+'</div><div class="q">'+q.q+'</div>';
+    q.o.forEach(function(t,i){d+='<button class="choice" data-i="'+i+'">'+t+'</button>'});
+    d+='<div class="explain" id="exp"></div><div class="row" style="justify-content:flex-end"><button class="btn" id="nextQ" style="display:none">'+(qi===Q.length-1?'결과 보기':'다음 문제')+'</button></div>';
+    box.innerHTML=d;
+    $$('.choice',box).forEach(function(c){c.addEventListener('click',function(){pick(+c.dataset.i)})});
+    $('#nextQ').addEventListener('click',function(){qi++;qi<Q.length?renderQ():renderResult()});
+  }
+  function pick(i){
+    if(answered)return;answered=true;
+    var q=Q[qi],ok=i===q.a;res[qi]=ok;if(ok)score++;
+    $$('.choice',box).forEach(function(c,k){c.disabled=true;if(k===q.a)c.classList.add('right');else if(k===i)c.classList.add('wrong')});
+    var e=$('#exp');e.innerHTML=(ok?'<b>정답입니다! 👏</b><br>':'<b>아쉬워요.</b><br>')+q.e;e.classList.add('show');
+    $('#nextQ').style.display='inline-block';
+  }
+  function renderResult(){
+    var msg=score===Q.length?'완벽합니다! 말씀이 마음에 새겨졌네요.':score>=7?'아주 잘하셨어요. 틀린 문제는 위의 해당 부분을 다시 보세요.':score>=4?'좋은 출발이에요. 카드와 타임라인을 다시 한번 훑어보세요.':'괜찮아요. 위에서부터 천천히 다시 복습해 보세요.';
+    box.innerHTML='<div class="score"><div class="qnum">내 점수</div><div class="big">'+score+'<span style="font-size:.35em;color:var(--sub)"> / '+Q.length+'</span></div><p style="font-size:19px;margin:14px 0 22px">'+msg+'</p><button class="btn" id="retry">다시 도전</button></div>';
+    $('#retry').addEventListener('click',function(){qi=0;score=0;res=[];renderQ()});
+  }
+  renderQ();
+
+  /* checklist + note */
+  var cks=$$('.check input');
+  function sum(){var n=cks.filter(function(c){return c.checked}).length;$('#checkSum').textContent=n+' / '+cks.length+' 실천 중';}
+  cks.forEach(function(c){c.checked=store.get(c.dataset.k)==='1';c.addEventListener('change',function(){store.set(c.dataset.k,c.checked?'1':'0');sum()})});
+  sum();
+  var note=$('#note');note.value=store.get('note')||'';
+  var tm;note.addEventListener('input',function(){clearTimeout(tm);tm=setTimeout(function(){store.set('note',note.value);$('#noteMsg').textContent='이 기기에 저장됨'},400)});
+})();
+</script>
+</body>
+</html>
