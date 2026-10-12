@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>믿음으로 모세는 · 히브리서 11:24-26 복습</title>
+<style>
+:root{
+  --bg:#fbfbfd; --bg2:#f5f5f7; --card:#ffffff; --text:#1d1d1f; --sub:#6e6e73; --line:rgba(0,0,0,.08);
+  --blue:#0071e3; --blue-soft:rgba(0,113,227,.10); --green:#1d9b4a; --green-soft:rgba(48,209,88,.14);
+  --red:#d70015; --red-soft:rgba(255,59,48,.10); --gold:#b8860b; --gold-soft:rgba(255,159,10,.14);
+  --glass:rgba(251,251,253,.72); --shadow:0 2px 12px rgba(0,0,0,.05),0 12px 40px rgba(0,0,0,.06);
+  --radius:22px;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#000; --bg2:#0b0b0d; --card:#1c1c1e; --text:#f5f5f7; --sub:#98989d; --line:rgba(255,255,255,.12);
+    --blue:#2997ff; --blue-soft:rgba(41,151,255,.16); --green:#32d74b; --green-soft:rgba(50,215,75,.16);
+    --red:#ff453a; --red-soft:rgba(255,69,58,.16); --gold:#ffd60a; --gold-soft:rgba(255,214,10,.14);
+    --glass:rgba(22,22,24,.72); --shadow:0 2px 12px rgba(0,0,0,.4),0 12px 40px rgba(0,0,0,.4);
+  }
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.6;letter-spacing:-.011em;
+  -webkit-font-smoothing:antialiased;word-break:keep-all;
+}
+button{font:inherit;color:inherit;cursor:pointer;border:none;background:none}
+.wrap{max-width:860px;margin:0 auto;padding:0 22px}
+
+/* progress + nav */
+#bar{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,#0071e3,#5ac8fa);z-index:100;transition:width .1s}
+nav{position:sticky;top:0;z-index:50;background:var(--glass);backdrop-filter:saturate(180%) blur(22px);-webkit-backdrop-filter:saturate(180%) blur(22px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;gap:4px;overflow-x:auto;padding-top:10px;padding-bottom:10px;scrollbar-width:none}
+nav .wrap::-webkit-scrollbar{display:none}
+nav a{flex:none;font-size:13px;color:var(--sub);text-decoration:none;padding:5px 12px;border-radius:99px;transition:.2s}
+nav a:hover{color:var(--text)}
+nav a.on{background:var(--text);color:var(--bg)}
+
+/* hero */
+.hero{text-align:center;padding:96px 0 72px;background:radial-gradient(ellipse at 50% 0%,var(--blue-soft),transparent 65%)}
+.eyebrow{font-size:15px;font-weight:600;color:var(--blue);letter-spacing:.02em;margin-bottom:14px}
+.hero h1{font-size:clamp(44px,9vw,84px);font-weight:700;line-height:1.05;letter-spacing:-.035em;
+  background:linear-gradient(135deg,var(--text) 30%,var(--blue));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.lead{font-size:clamp(18px,3vw,24px);color:var(--sub);margin:22px auto 0;max-width:620px;font-weight:500}
+.verbs-chip{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:36px}
+.verbs-chip span{background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow);padding:8px 18px;border-radius:99px;font-weight:600;font-size:15px}
+.cta{display:inline-block;margin-top:40px;background:var(--blue);color:#fff;padding:13px 28px;border-radius:99px;font-size:17px;font-weight:500;text-decoration:none;transition:.25s}
+.cta:hover{transform:scale(1.04);filter:brightness(1.08)}
+
+/* sections */
+section{padding:84px 0 20px}
+.sec-head{text-align:center;margin-bottom:40px}
+.sec-head .num{font-size:14px;font-weight:600;color:var(--blue)}
+.sec-head h2{font-size:clamp(30px,6vw,48px);font-weight:700;letter-spacing:-.03em;line-height:1.12;margin:6px 0 12px}
+.sec-head p{color:var(--sub);font-size:18px;max-width:560px;margin:0 auto}
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid var(--line)}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* flip cards */
+.flips{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px}
+.flip{perspective:1000px;height:300px}
+.flip-in{position:relative;width:100%;height:100%;transition:transform .7s cubic-bezier(.2,.7,.2,1);transform-style:preserve-3d}
+.flip.on .flip-in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;border-radius:var(--radius);backface-visibility:hidden;-webkit-backface-visibility:hidden;padding:22px 18px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;border:1px solid var(--line);box-shadow:var(--shadow)}
+.face.front{background:var(--card)}
+.face.back{background:var(--card);transform:rotateY(180deg);justify-content:flex-start;padding-top:24px;gap:8px}
+.flip .no{font-size:13px;font-weight:600;color:var(--sub)}
+.flip .vb{font-size:34px;font-weight:700;letter-spacing:-.03em;margin:8px 0 6px}
+.flip .ref{font-size:14px;color:var(--blue);font-weight:600}
+.flip .tap{margin-top:18px;font-size:12px;color:var(--sub)}
+.face.back .gr{font-size:12px;font-weight:600;color:var(--blue);background:var(--blue-soft);padding:3px 10px;border-radius:99px}
+.face.back h4{font-size:17px;line-height:1.35}
+.face.back p{font-size:14px;color:var(--sub);line-height:1.5}
+.f1 .vb{color:#ff453a}.f2 .vb{color:#0071e3}.f3 .vb{color:#bf5af2}.f4 .vb{color:#30a46c}
+
+/* verse reader */
+.verse{padding:28px 28px 24px;margin-bottom:16px}
+.verse .vn{font-size:13px;font-weight:700;color:var(--blue);margin-bottom:8px}
+.verse .vt{font-size:clamp(19px,3.4vw,24px);font-weight:600;line-height:1.7;letter-spacing:-.02em}
+.kw{display:inline;font:inherit;font-weight:700;color:var(--blue);background:var(--blue-soft);padding:1px 8px;border-radius:8px;transition:.2s;border-bottom:2px solid transparent}
+.kw:hover{filter:brightness(1.1)}
+.kw.on{background:var(--blue);color:#fff;transform:scale(1.04)}
+#kwBox{position:sticky;bottom:16px;margin-top:20px;padding:20px 24px;min-height:92px;background:var(--glass);backdrop-filter:saturate(180%) blur(22px);-webkit-backdrop-filter:saturate(180%) blur(22px);border-radius:var(--radius);border:1px solid var(--line);box-shadow:var(--shadow);transition:.3s}
+#kwBox b{display:block;font-size:17px;margin-bottom:4px}
+#kwBox span{color:var(--sub);font-size:15px}
+.hint{font-size:13px;color:var(--sub);text-align:center;margin-bottom:18px}
+
+/* scale */
+.scale-card{padding:36px 22px 28px;text-align:center;overflow:hidden}
+.stage{position:relative;height:290px;max-width:560px;margin:0 auto}
+.stand{position:absolute;left:50%;top:78px;width:6px;height:180px;margin-left:-3px;background:linear-gradient(var(--sub),var(--line));border-radius:3px}
+.base{position:absolute;left:50%;bottom:10px;width:130px;height:10px;margin-left:-65px;background:var(--sub);border-radius:8px;opacity:.5}
+.beam{position:absolute;left:50%;top:78px;width:80%;height:8px;margin-left:-40%;margin-top:-4px;background:var(--text);border-radius:6px;transform:rotate(var(--a,0deg));transition:transform 1.1s cubic-bezier(.34,1.4,.5,1)}
+.pivot{position:absolute;left:50%;top:78px;width:22px;height:22px;margin:-11px 0 0 -11px;background:var(--blue);border-radius:50%;z-index:3;box-shadow:0 0 0 5px var(--blue-soft)}
+.pan{position:absolute;top:4px;width:34%;transform-origin:top center;transform:translateX(-50%) rotate(calc(var(--a,0deg) * -1));transition:transform 1.1s cubic-bezier(.34,1.4,.5,1)}
+.pan.l{left:0}.pan.r{left:100%}
+.pan::before{content:"";display:block;width:1.5px;height:62px;background:var(--sub);margin:0 auto;opacity:.6}
+.dish{min-height:92px;background:var(--bg2);border:1px solid var(--line);border-radius:0 0 40px 40px/0 0 30px 30px;padding:10px 6px 14px;display:flex;flex-wrap:wrap;justify-content:center;align-content:flex-end;gap:2px;font-size:26px}
+.dish small{display:block;width:100%;font-size:11px;color:var(--sub);margin-top:4px;line-height:1.3}
+.tok{animation:drop .6s cubic-bezier(.3,1.6,.5,1)}
+@keyframes drop{from{transform:translateY(-60px);opacity:0}to{transform:none;opacity:1}}
+.weights{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+.wbtn{padding:11px 18px;border-radius:99px;background:var(--bg2);border:1px solid var(--line);font-size:15px;font-weight:600;transition:.25s}
+.wbtn:hover{transform:translateY(-2px)}
+.wbtn.used{background:var(--blue);color:#fff;border-color:var(--blue)}
+.verdict{margin-top:22px;padding:16px 20px;border-radius:16px;font-size:16px;font-weight:600;transition:.4s;background:var(--red-soft);color:var(--red)}
+.verdict.win{background:var(--green-soft);color:var(--green)}
+.reset{margin-top:12px;font-size:14px;color:var(--blue)}
+
+/* jamsi */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.path{padding:26px 22px;text-align:center;cursor:pointer;transition:.3s;border:2px solid transparent}
+.path:hover{transform:translateY(-3px)}
+.path.sel{border-color:var(--blue)}
+.path .em{font-size:44px}
+.path h3{font-size:21px;margin:8px 0 4px}
+.path p{font-size:14px;color:var(--sub)}
+.track{margin:26px auto 0;padding:26px 22px}
+.tl{position:relative;height:14px;background:var(--bg2);border-radius:99px;overflow:hidden;border:1px solid var(--line)}
+.tl i{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:99px;transition:width 1.6s cubic-bezier(.3,.7,.2,1)}
+.tl-lab{display:flex;justify-content:space-between;font-size:14px;color:var(--sub);margin-top:10px;font-weight:600}
+.endbox{margin-top:22px;text-align:center;min-height:130px}
+.askbtn{background:var(--blue);color:#fff;padding:12px 24px;border-radius:99px;font-weight:600;font-size:16px}
+.endres{display:none;margin-top:14px;animation:pop .6s cubic-bezier(.3,1.5,.5,1)}
+.endres.show{display:block}
+@keyframes pop{from{transform:scale(.7);opacity:0}to{transform:none;opacity:1}}
+.endres .big{font-size:40px;font-weight:700;letter-spacing:-.03em}
+.endres .big.bad{color:var(--red)}.endres .big.good{color:var(--green)}
+.endres p{color:var(--sub);font-size:15px;margin-top:6px}
+.quote{margin-top:22px;padding:18px 22px;border-left:4px solid var(--blue);background:var(--blue-soft);border-radius:0 16px 16px 0;font-size:16px}
+.quote small{display:block;color:var(--sub);margin-top:6px;font-size:13px;font-weight:600}
+
+/* match */
+.match{display:grid;grid-template-columns:1fr 1fr;gap:12px 22px}
+.mcol{display:flex;flex-direction:column;gap:10px}
+.mi{padding:16px 16px;border-radius:16px;background:var(--card);border:2px solid var(--line);text-align:left;font-weight:600;font-size:15px;transition:.25s;box-shadow:var(--shadow)}
+.mi.sel{border-color:var(--blue);background:var(--blue-soft)}
+.mi.ok{border-color:var(--green);background:var(--green-soft);color:var(--green);pointer-events:none}
+.mi.no{animation:shake .4s;border-color:var(--red)}
+@keyframes shake{25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
+.status{text-align:center;margin-top:18px;color:var(--sub);font-weight:600}
+
+/* quiz */
+.qwrap{padding:30px 26px}
+.qtop{display:flex;justify-content:space-between;align-items:center;font-size:14px;color:var(--sub);font-weight:600;margin-bottom:14px}
+.dots{display:flex;gap:6px}
+.dots i{width:9px;height:9px;border-radius:50%;background:var(--line);transition:.3s}
+.dots i.cur{background:var(--blue);transform:scale(1.3)}
+.dots i.ok{background:var(--green)}.dots i.bad{background:var(--red)}
+.q{font-size:clamp(20px,3.6vw,26px);font-weight:700;letter-spacing:-.02em;line-height:1.4;margin-bottom:20px}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{text-align:left;padding:15px 18px;border-radius:14px;border:2px solid var(--line);background:var(--bg2);font-size:16px;font-weight:500;transition:.2s}
+.opt:hover{border-color:var(--blue)}
+.opt.ok{border-color:var(--green);background:var(--green-soft);color:var(--green)}
+.opt.bad{border-color:var(--red);background:var(--red-soft);color:var(--red)}
+.opts.done .opt{pointer-events:none}
+.ox{flex-direction:row}
+.ox .opt{flex:1;text-align:center;font-size:34px;font-weight:700;padding:22px}
+.expl{display:none;margin-top:18px;padding:16px 18px;border-radius:14px;background:var(--bg2);font-size:15px;color:var(--sub)}
+.expl.show{display:block;animation:pop .45s}
+.expl b{color:var(--text)}
+.next{margin-top:18px;float:right;background:var(--blue);color:#fff;padding:11px 26px;border-radius:99px;font-weight:600;display:none}
+.next.show{display:inline-block}
+.clear{clear:both}
+.result{text-align:center;padding:20px 0 6px}
+.ring{width:170px;height:170px;margin:0 auto 14px;position:relative}
+.ring svg{transform:rotate(-90deg)}
+.ring .sc{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:44px;font-weight:700;letter-spacing:-.03em}
+.ring .sc small{font-size:14px;color:var(--sub);font-weight:500}
+.result h3{font-size:24px}.result p{color:var(--sub);margin-top:6px}
+
+/* fill */
+.fills{display:flex;flex-direction:column;gap:14px}
+.fill{padding:22px 24px}
+.fill .sent{font-size:clamp(17px,2.8vw,21px);font-weight:600;line-height:1.9}
+.blank{display:inline-block;min-width:92px;border-bottom:3px solid var(--blue);text-align:center;color:var(--blue);padding:0 8px;margin:0 3px;transition:.3s}
+.blank.ok{color:var(--green);border-color:var(--green)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.chip{padding:8px 16px;border-radius:99px;background:var(--bg2);border:1px solid var(--line);font-size:15px;font-weight:600;transition:.2s}
+.chip:hover{border-color:var(--blue)}
+.chip.no{animation:shake .4s;background:var(--red-soft);color:var(--red)}
+.chip.ok{background:var(--green);color:#fff;border-color:var(--green)}
+.fills .done .chips{opacity:.35;pointer-events:none}
+
+/* apply */
+.apply{padding:28px 26px}
+.chk{display:flex;gap:14px;align-items:flex-start;padding:16px 0;border-bottom:1px solid var(--line);cursor:pointer}
+.chk:last-of-type{border-bottom:none}
+.box{flex:none;width:28px;height:28px;border-radius:50%;border:2px solid var(--sub);display:flex;align-items:center;justify-content:center;color:transparent;font-weight:700;transition:.3s;margin-top:2px}
+.chk.on .box{background:var(--green);border-color:var(--green);color:#fff;transform:scale(1.1)}
+.chk b{display:block;font-size:17px}
+.chk span.d{color:var(--sub);font-size:15px}
+.chk.on b{color:var(--green)}
+.apply h3{font-size:19px;margin:26px 0 6px}
+textarea{width:100%;min-height:110px;resize:vertical;border-radius:14px;border:1px solid var(--line);background:var(--bg2);color:var(--text);padding:14px 16px;font:inherit;font-size:16px;outline:none;transition:.2s}
+textarea:focus{border-color:var(--blue);box-shadow:0 0 0 4px var(--blue-soft)}
+.note{font-size:12px;color:var(--sub);margin-top:6px}
+.prog{margin-top:18px;height:8px;border-radius:99px;background:var(--bg2);overflow:hidden}
+.prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,#30d158,#0071e3);transition:width .6s}
+
+/* ending */
+.ending{text-align:center;padding:110px 0 120px}
+.ending .conf{font-size:clamp(30px,7vw,60px);font-weight:700;letter-spacing:-.035em;line-height:1.2}
+.ending .conf em{font-style:normal;background:linear-gradient(135deg,#0071e3,#bf5af2);-webkit-background-clip:text;background-clip:text;color:transparent}
+.ending p{color:var(--sub);margin-top:22px;font-size:16px}
+footer{text-align:center;color:var(--sub);font-size:12px;padding:0 0 40px}
+.cf{position:fixed;top:-20px;width:10px;height:14px;z-index:200;pointer-events:none;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:.8}}
+
+@media (max-width:620px){
+  .two,.match{grid-template-columns:1fr}
+  .match{gap:10px}
+  .flip{height:280px}
+  .verse{padding:22px 20px}
+  .stage{height:270px}
+  .dish{font-size:22px}
+  .ox .opt{padding:18px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<nav><div class="wrap" id="nav">
+  <a href="#top" class="on">시작</a><a href="#verbs">네 동사</a><a href="#read">말씀 읽기</a><a href="#scale">믿음의 저울</a>
+  <a href="#jamsi">두 개의 잠시</a><a href="#match">짝 맞추기</a><a href="#quiz">퀴즈</a><a href="#fill">빈칸</a><a href="#apply">적용</a>
+</div></nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="eyebrow">히브리서 강해 (45) · 히브리서 11장 24-26절</div>
+    <h1>믿음으로 모세는</h1>
+    <p class="lead">선택의 순간에 선 장성한 모세.<br>그의 믿음을 네 개의 동사로 다시 만나 봅니다.</p>
+    <div class="verbs-chip"><span>거절했다</span><span>선택했다</span><span>여겼다</span><span>바라보았다</span></div>
+    <a class="cta" href="#verbs">복습 시작하기</a>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- 1 -->
+<section id="verbs">
+  <div class="sec-head reveal"><div class="num">01</div><h2>모세의 네 동사</h2><p>카드를 눌러 뒤집어 보세요.</p></div>
+  <div class="flips reveal">
+    <div class="flip f1" tabindex="0"><div class="flip-in">
+      <div class="face front"><div class="no">첫 번째</div><div class="vb">거절했다</div><div class="ref">히 11:24</div><div class="tap">눌러서 뒤집기</div></div>
+      <div class="face back"><h4>믿음은 거절할 것을 거절한다</h4><p>바로의 공주의 아들이라 칭함 받기를 거절했습니다.</p><p>믿음은 모든 것을 다 가지려는 것이 아니라, 하나님 때문에 붙잡을 수 있는 것을 내려놓는 것입니다.</p></div>
+    </div></div>
+    <div class="flip f2" tabindex="0"><div class="flip-in">
+      <div class="face front"><div class="no">두 번째</div><div class="vb">선택했다</div><div class="ref">히 11:25</div><div class="tap">눌러서 뒤집기</div></div>
+      <div class="face back"><span class="gr">헬로메노스</span><h4>믿음은 바른 선택을 한다</h4><p>의식적으로 “선택한다”는 뜻입니다. 하나님의 백성과 함께 고난 받기를 택했습니다.</p></div>
+    </div></div>
+    <div class="flip f3" tabindex="0"><div class="flip-in">
+      <div class="face front"><div class="no">세 번째</div><div class="vb">여겼다</div><div class="ref">히 11:26 상</div><div class="tap">눌러서 뒤집기</div></div>
+      <div class="face back"><span class="gr">헤게오마이</span><h4>믿음은 바르게 여긴다</h4><p>평가하고 판단하고 계산한다는 뜻입니다. 그리스도를 위한 수모를 애굽의 모든 보화보다 더 큰 재물로 여겼습니다.</p></div>
+    </div></div>
+    <div class="flip f4" tabindex="0"><div class="flip-in">
+      <div class="face front"><div class="no">네 번째</div><div class="vb">바라보았다</div><div class="ref">히 11:26 하</div><div class="tap">눌러서 뒤집기</div></div>
+      <div class="face back"><h4>믿음은 상 주심을 바라본다</h4><p>상 자체와 그 상을 주시는 하나님을 함께 바라봅니다. 하나님께서 은혜로 약속하신 영원한 기업입니다.</p></div>
+    </div></div>
+  </div>
+</section>
+
+<!-- 2 -->
+<section id="read">
+  <div class="sec-head reveal"><div class="num">02</div><h2>말씀 따라 읽기</h2><p>파란 단어를 눌러 보세요. 설교에서 짚은 뜻이 나옵니다.</p></div>
+  <div class="card verse reveal"><div class="vn">히브리서 11:24</div>
+    <div class="vt">“믿음으로 모세는 <button class="kw" data-k="jangsung">장성하여</button> 바로의 공주의 아들이라 칭함 받기를 <button class="kw" data-k="reject">거절하고</button>”</div></div>
+  <div class="card verse reveal"><div class="vn">히브리서 11:25</div>
+    <div class="vt">“도리어 <button class="kw" data-k="people">하나님의 백성</button>과 함께 고난 받기를 <button class="kw" data-k="jamsi">잠시</button> 죄악의 낙을 누리는 것보다 <button class="kw" data-k="helo">더 좋아하고</button>”</div></div>
+  <div class="card verse reveal"><div class="vn">히브리서 11:26</div>
+    <div class="vt">“그리스도를 위하여 받는 수모를 애굽의 모든 보화보다 더 큰 재물로 <button class="kw" data-k="hege">여겼으니</button> 이는 <button class="kw" data-k="reward">상 주심을 바라봄</button>이라”</div></div>
+  <div id="kwBox"><b>단어를 눌러 보세요</b><span>눌러 보면 이곳에 풀이가 나타납니다.</span></div>
+</section>
+
+<!-- 3 -->
+<section id="scale">
+  <div class="sec-head reveal"><div class="num">03</div><h2>믿음의 저울</h2><p>세상의 저울에서는 애굽의 보화가 더 무겁습니다.<br>모세의 계산법에 무엇이 들어 있었을까요?</p></div>
+  <div class="card scale-card reveal">
+    <div class="stage">
+      <div class="stand"></div><div class="base"></div>
+      <div class="beam" id="beam">
+        <div class="pan l"><div class="dish" id="dishL"></div></div>
+        <div class="pan r"><div class="dish" id="dishR"></div></div>
+      </div>
+      <div class="pivot"></div>
+    </div>
+    <div class="weights" id="weights">
+      <button class="wbtn" data-w="3" data-e="🙏" data-n="하나님">+ 하나님</button>
+      <button class="wbtn" data-w="3" data-e="📜" data-n="하나님의 약속">+ 하나님의 약속</button>
+      <button class="wbtn" data-w="4" data-e="👑" data-n="영원한 기업">+ 영원한 기업</button>
+    </div>
+    <div class="verdict" id="verdict">세상의 저울: 애굽의 보화가 더 무겁습니다.</div>
+    <button class="reset" id="scaleReset">처음으로</button>
+  </div>
+</section>
+
+<!-- 4 -->
+<section id="jamsi">
+  <div class="sec-head reveal"><div class="num">04</div><h2>두 개의 “잠시”</h2><p>하나를 골라 그 길을 따라가 보세요.</p></div>
+  <div class="two reveal">
+    <div class="card path" data-p="sin"><div class="em">🍷</div><h3>잠시 죄악의 낙</h3><p>애굽의 영광·부·권력</p></div>
+    <div class="card path" data-p="suf"><div class="em">🕊️</div><h3>잠시 성도의 고난</h3><p>하나님의 백성과 함께</p></div>
+  </div>
+  <div class="card track reveal">
+    <div class="tl"><i id="tlFill"></i></div>
+    <div class="tl-lab"><span>지금</span><span>잠시</span><span>끝</span></div>
+    <div class="endbox">
+      <button class="askbtn" id="askEnd">“이것의 끝이 어디인가?”</button>
+      <div class="endres" id="endRes"><div class="big" id="endBig"></div><p id="endTxt"></p></div>
+    </div>
+    <div class="quote">“우리가 잠시 받는 환난의 경한 것이 지극히 크고 영원한 영광의 중한 것을 우리에게 이루게 함이니”<small>고린도후서 4:17</small></div>
+  </div>
+</section>
+
+<!-- 5 -->
+<section id="match">
+  <div class="sec-head reveal"><div class="num">05</div><h2>동사 짝 맞추기</h2><p>왼쪽 동사를 고른 다음, 어울리는 본문 표현을 눌러 보세요.</p></div>
+  <div class="match reveal" id="matchBox">
+    <div class="mcol" id="mL"></div><div class="mcol" id="mR"></div>
+  </div>
+  <div class="status" id="mStatus">0 / 4</div>
+</section>
+
+<!-- 6 -->
+<section id="quiz">
+  <div class="sec-head reveal"><div class="num">06</div><h2>복습 퀴즈</h2><p>8문항. 틀려도 괜찮아요, 해설이 바로 나옵니다.</p></div>
+  <div class="card qwrap reveal" id="quizBox"></div>
+</section>
+
+<!-- 7 -->
+<section id="fill">
+  <div class="sec-head reveal"><div class="num">07</div><h2>빈칸 채우기</h2><p>설교의 핵심 문장을 완성해 보세요.</p></div>
+  <div class="fills reveal" id="fills"></div>
+</section>
+
+<!-- 8 -->
+<section id="apply">
+  <div class="sec-head reveal"><div class="num">08</div><h2>이번 한 주간</h2><p>네 동사를 삶에 적용해 봅니다.</p></div>
+  <div class="card apply reveal">
+    <div id="chks">
+      <div class="chk" data-i="0"><div class="box">✓</div><div><b>거절해야 할 것을 믿음으로 거절하십시오</b><span class="d">하나님께 순종하기 위해 내려놓아야 할 것은 무엇입니까?</span></div></div>
+      <div class="chk" data-i="1"><div class="box">✓</div><div><b>선택해야 할 것을 믿음으로 선택하십시오</b><span class="d">세상이 아니라 하나님께서 귀하게 여기시는 것을 따라 선택합니다.</span></div></div>
+      <div class="chk" data-i="2"><div class="box">✓</div><div><b>무엇이 정말 귀한지를 믿음으로 계산해서 여기십시오</b><span class="d">내 계산법에 하나님과 영원한 기업이 들어 있습니까?</span></div></div>
+      <div class="chk" data-i="3"><div class="box">✓</div><div><b>영원한 하나님 나라를 믿음으로 바라보십시오</b><span class="d">눈앞의 현실을 넘어 하나님께서 약속하신 것을 바라봅니다.</span></div></div>
+    </div>
+    <div class="prog"><i id="pg"></i></div>
+    <h3>나의 “애굽”은 무엇입니까?</h3>
+    <p style="color:var(--sub);font-size:15px;margin-bottom:10px">하나님보다 더 의지하고 싶은 것, 예수 그리스도보다 더 귀하게 여기는 것을 적어 보세요.</p>
+    <textarea id="egypt" placeholder="예: 물질, 직장·커리어, 세상적인 성공, 명예, 사람들의 인정…"></textarea>
+    <div class="note">적은 내용은 이 기기의 브라우저에만 저장되고 외부로 전송되지 않습니다.</div>
+  </div>
+</section>
+
+<div class="ending reveal">
+  <div class="conf">그렇게 결정하게 된 것은 예수님 때문입니다.<br>왜냐하면,<br><em>“주 예수보다 더 귀한 것은 없습니다.”</em></div>
+  <p>히브리서 강해 (45) · 믿음으로 모세는</p>
+</div>
+</main>
+<footer>이 복습 자료는 설교 원고를 바탕으로 만들었습니다.</footer>
+
+<script>
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const store={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+const KEY='heb11-24-26-';
+
+/* progress + nav + reveal */
+const bar=$('#bar');
+addEventListener('scroll',()=>{const h=document.documentElement;bar.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%'},{passive:true});
+const navLinks=$$('#nav a');
+const secIO=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){navLinks.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id))}}),{rootMargin:'-45% 0px -50% 0px'});
+$$('header.hero,section').forEach(s=>secIO.observe(s));
+const revIO=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');revIO.unobserve(e.target)}}),{threshold:.12});
+$$('.reveal').forEach(r=>revIO.observe(r));
+
+/* confetti */
+function confetti(n=60){
+  const cols=['#0071e3','#5ac8fa','#30d158','#ff9f0a','#ff453a','#bf5af2'];
+  for(let i=0;i<n;i++){
+    const c=document.createElement('div');c.className='cf';
+    c.style.left=Math.random()*100+'vw';c.style.background=cols[i%cols.length];
+    c.style.borderRadius=Math.random()>.5?'50%':'2px';
+    c.style.animationDuration=(1.8+Math.random()*1.8)+'s';c.style.animationDelay=Math.random()*.5+'s';
+    document.body.appendChild(c);setTimeout(()=>c.remove(),4500);
+  }
+}
+
+/* flip cards */
+$$('.flip').forEach(f=>{
+  const t=()=>f.classList.toggle('on');
+  f.addEventListener('click',t);
+  f.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();t()}});
+});
+
+/* keyword reader */
+const KW={
+  jangsung:['장성하여','세월이 흘러 성인이 되었다는 뜻입니다. 더 이상 부모의 믿음 뒤에 숨을 수 없고, 자신이 누구에게 속한 사람인지 결정해야 할 때가 왔다는 뜻입니다.'],
+  reject:['거절하고','모세는 “바로의 공주의 아들이라 칭함 받기”를 거절했습니다. 사도행전 7:22 “모세가 애굽 사람의 모든 지혜를 배워 그의 말과 하는 일들이 능하더라” — 최고의 교육과 지위를 가졌음에도 거절했습니다.'],
+  people:['하나님의 백성','세상적으로 이스라엘은 노예였고 가난했고 힘이 없었습니다. 그러나 누구의 백성입니까? 하나님의 백성입니다. 애굽에는 보화가 있었지만 하나님의 언약이 없었고, 이스라엘에게는 고난이 있었지만 하나님의 약속이 있었습니다.'],
+  jamsi:['잠시','죄에도 즐거움이 있지만 그것은 “잠시”입니다. 하나님의 백성과 함께 받는 고난도 “잠시”입니다. 믿음은 두 개의 “잠시” 중에 하나를 선택하는 것입니다.'],
+  helo:['더 좋아하고 (헬로메노스)','원어적으로 무엇인가를 의식적으로 “선택한다”는 의미입니다. 한쪽을 거절하고, 다른 한쪽 더 좋은 것을 선택했습니다.'],
+  hege:['여겼으니 (헤게오마이)','평가하고 판단하고 계산한다는 의미입니다. 대충 눈대중으로 좋아 보이는 것이 아니라, 철저하게 평가하고 따져서 그렇게 여긴 것입니다.'],
+  reward:['상 주심을 바라봄','상 자체와 그 상을 주시는 하나님을 함께 바라본다는 뜻입니다. 히브리서 11:6 “그가 자기를 찾는 자들에게 상주시는 이심을 믿어야 할지니라”. 구원은 공로의 대가가 아니라 처음부터 은혜로 주어지는 것입니다.']
+};
+const kwBox=$('#kwBox');
+$$('.kw').forEach(b=>b.addEventListener('click',()=>{
+  $$('.kw').forEach(x=>x.classList.remove('on'));b.classList.add('on');
+  const [t,d]=KW[b.dataset.k];kwBox.innerHTML='<b></b><span></span>';$('b',kwBox).textContent=t;$('span',kwBox).textContent=d;
+}));
+
+/* scale */
+const L=6,base=2;let R=base;
+const beam=$('#beam'),dL=$('#dishL'),dR=$('#dishR'),verdict=$('#verdict');
+function drawScale(){
+  const a=Math.max(-16,Math.min(16,(R-L)*3));
+  beam.style.setProperty('--a',a+'deg');
+  $('.pan.l',beam).style.setProperty('--a',a+'deg');$('.pan.r',beam).style.setProperty('--a',a+'deg');
+  const win=R>L;verdict.classList.toggle('win',win);
+  const used=$$('.wbtn.used').length;
+  verdict.textContent=win?'믿음의 저울: 잠시 있는 애굽의 보화보다, 하나님께서 약속하신 영원한 기업이 더 무겁습니다.'
+    :used===0?'세상의 저울: 애굽의 보화가 더 무겁습니다.':'아직 기울지 않았습니다. 더 올려 보세요.';
+}
+function initDishes(){
+  dL.innerHTML='<span class="tok">🏛️</span><span class="tok">💰</span><span class="tok">👑</span><small>애굽의 모든 보화<br>(잠시)</small>';
+  dR.innerHTML='<span class="tok">✝️</span><small>그리스도를 위하여<br>받는 수모</small>';
+}
+initDishes();drawScale();
+$$('.wbtn').forEach(b=>b.addEventListener('click',()=>{
+  if(b.classList.contains('used'))return;
+  b.classList.add('used');R+=+b.dataset.w;
+  const s=document.createElement('span');s.className='tok';s.textContent=b.dataset.e;
+  dR.insertBefore(s,$('small',dR));
+  drawScale();
+  if(R>L)confetti(30);
+}));
+$('#scaleReset').addEventListener('click',()=>{R=base;$$('.wbtn').forEach(b=>b.classList.remove('used'));initDishes();drawScale()});
+
+/* jamsi */
+let path=null;
+const P={
+  sin:{c:'linear-gradient(90deg,#ff9f0a,#ff453a)',big:'심판',cls:'bad',txt:'죄의 즐거움은 잠시이지만 그 끝에는 심판이 있습니다.'},
+  suf:{c:'linear-gradient(90deg,#5ac8fa,#0071e3)',big:'영광',cls:'good',txt:'성도의 고난도 잠시이지만 그 끝에는 영광이 있습니다.'}
+};
+$$('.path').forEach(p=>p.addEventListener('click',()=>{
+  $$('.path').forEach(x=>x.classList.remove('sel'));p.classList.add('sel');path=p.dataset.p;
+  const f=$('#tlFill');f.style.transition='none';f.style.width='0';f.style.background=P[path].c;
+  $('#endRes').classList.remove('show');
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{f.style.transition='';f.style.width='55%'}));
+}));
+$('#askEnd').addEventListener('click',()=>{
+  if(!path){$('#tlFill').style.width='0';alert('먼저 위에서 하나의 길을 골라 주세요.');return}
+  $('#tlFill').style.width='100%';
+  const r=P[path];$('#endBig').textContent=r.big;$('#endBig').className='big '+r.cls;$('#endTxt').textContent=r.txt;
+  const e=$('#endRes');e.classList.remove('show');void e.offsetWidth;e.classList.add('show');
+});
+
+/* match */
+const pairs=[['거절했다','바로의 공주의 아들이라 칭함 받기'],['선택했다','하나님의 백성과 함께 고난 받기'],['여겼다','그리스도를 위하여 받는 수모를 더 큰 재물로'],['바라보았다','상 주심']];
+let selV=null,matched=0;
+const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
+function buildMatch(){
+  matched=0;selV=null;$('#mStatus').textContent='0 / 4';
+  const mL=$('#mL'),mR=$('#mR');mL.innerHTML='';mR.innerHTML='';
+  pairs.forEach((p,i)=>{const b=document.createElement('button');b.className='mi';b.textContent=p[0];b.dataset.i=i;mL.appendChild(b)});
+  shuffle(pairs.map((p,i)=>i)).forEach(i=>{const b=document.createElement('button');b.className='mi';b.textContent=pairs[i][1];b.dataset.i=i;mR.appendChild(b)});
+  $$('.mi',mL).forEach(b=>b.addEventListener('click',()=>{$$('.mi',mL).forEach(x=>x.classList.remove('sel'));b.classList.add('sel');selV=b}));
+  $$('.mi',mR).forEach(b=>b.addEventListener('click',()=>{
+    if(!selV)return;
+    if(selV.dataset.i===b.dataset.i){
+      selV.classList.remove('sel');selV.classList.add('ok');b.classList.add('ok');selV=null;matched++;
+      $('#mStatus').textContent=matched+' / 4'+(matched===4?' · 모두 맞혔어요! 🎉':'');
+      if(matched===4)confetti(50);
+    }else{b.classList.add('no');setTimeout(()=>b.classList.remove('no'),450)}
+  }));
+}
+buildMatch();
+
+/* quiz */
+const QZ=[
+ {t:'mc',q:'“믿음으로 모세는 장성하여”에서 “장성하여”가 뜻하는 것은?',o:['모세가 힘이 세졌다는 것','더 이상 부모의 믿음 뒤에 숨을 수 없고, 스스로 선택해야 할 때가 왔다는 것','모세가 왕이 되었다는 것','모세가 이스라엘 백성을 떠났다는 것'],a:1,e:'세월이 흘러 성인이 되었다는 뜻이며, 자신이 누구에게 속한 사람인지 결정해야 할 때가 왔다는 의미입니다. 부모의 믿음이 자녀의 믿음을 대신할 수 없습니다.'},
+ {t:'ox',q:'좋은 교육을 받고, 높은 지위에 오르고, 많은 재물을 갖는 것 자체가 죄이다.',a:1,e:'그런 것들 자체가 죄는 아닙니다. 그것을 지키기 위해 하나님의 백성이라는 정체성을 포기해야 할 때 문제가 됩니다.'},
+ {t:'mc',q:'25절 “더 좋아하고”의 헬라어 “헬로메노스”가 담고 있는 의미는?',o:['우연히 만난다','의식적으로 선택한다','어쩔 수 없이 따른다','남에게 맡긴다'],a:1,e:'모세는 한쪽을 거절하고, 다른 한쪽 더 좋은 것을 의식적으로 선택했습니다.'},
+ {t:'mc',q:'두 개의 “잠시” — 죄의 즐거움과 성도의 고난, 각각의 끝은?',o:['둘 다 영광','죄의 즐거움은 심판, 성도의 고난은 영광','죄의 즐거움은 영광, 성도의 고난은 심판','둘 다 끝이 없다'],a:1,e:'죄의 즐거움은 잠시이지만 끝에는 심판이 있고, 성도의 고난도 잠시이지만 끝에는 영광이 있습니다. (고후 4:17)'},
+ {t:'mc',q:'26절 “여겼으니”의 헬라어 “헤게오마이”의 의미는?',o:['대충 좋아 보인다','철저히 평가하고 판단하고 계산한다','꿈꾼다','부러워한다'],a:1,e:'눈대중이 아니라 철저히 평가하고 따져서 계산한다는 뜻입니다. 다만 세상 사람들과 계산법이 다릅니다.'},
+ {t:'ox',q:'모세가 수모를 선택한 것은 고난 자체가 좋고, 가난 자체가 복이기 때문이다.',a:1,e:'아닙니다. 고난은 고통이고 박해는 아픔입니다. 성경도 고난 자체를 미화하지 않습니다. 모세의 계산법에는 하나님과 약속, 영원한 기업이 들어 있었습니다.'},
+ {t:'ox',q:'모세가 고난을 선택했기 때문에 하나님께서 그 공로의 대가로 구원을 주셨다.',a:1,e:'구원은 언제나 처음부터 마지막까지 하나님의 은혜로 주어지는 것입니다. 상은 하나님께서 자기 백성에게 은혜로 약속하신 영원한 기업입니다.'},
+ {t:'mc',q:'히브리서 10:34에서 유대 그리스도인들이 소유를 빼앗기고도 기뻐한 이유는?',o:['고난을 즐겼기 때문에','빼앗긴 것이 중요하지 않았기 때문에','더 낫고 영구한 소유가 있는 줄 알았기 때문에','다시 돌려받을 것을 알았기 때문에'],a:2,e:'“더 낫고 영구한 소유가 있는 줄 앎이라” — 그들도 하나님이 계획하시고 지으실 터가 있는 성, 영원한 하나님의 나라를 알고 있었습니다.'}
+];
+let qi=0,score=0,res=[];
+const qb=$('#quizBox');
+function renderQ(){
+  const q=QZ[qi];
+  qb.innerHTML=`<div class="qtop"><span>문제 ${qi+1} / ${QZ.length}</span><div class="dots">${QZ.map((_,i)=>`<i class="${i<qi?(res[i]?'ok':'bad'):i===qi?'cur':''}"></i>`).join('')}</div></div>
+  <div class="q"></div><div class="opts ${q.t==='ox'?'ox':''}" id="opts"></div><div class="expl" id="expl"></div><button class="next" id="nx">${qi===QZ.length-1?'결과 보기':'다음'}</button><div class="clear"></div>`;
+  $('.q',qb).textContent=q.q;
+  const opts=q.t==='ox'?['O','X']:q.o;
+  opts.forEach((t,i)=>{
+    const b=document.createElement('button');b.className='opt';b.textContent=t;
+    const ans=q.t==='ox'?(q.a===0?0:1):q.a; // ox: a=0 => O, a=1 => X
+    b.addEventListener('click',()=>{
+      const ok=i===ans;
+      $('#opts').classList.add('done');
+      b.classList.add(ok?'ok':'bad');
+      if(!ok)$$('.opt',qb)[ans].classList.add('ok');
+      res[qi]=ok;if(ok)score++;
+      const ex=$('#expl');ex.innerHTML='<b>'+(ok?'정답입니다 👏':'아쉬워요')+'</b> ';
+      ex.appendChild(document.createTextNode(q.e));ex.classList.add('show');
+      $('#nx').classList.add('show');
+    });
+    $('#opts').appendChild(b);
+  });
+  $('#nx').addEventListener('click',()=>{qi++;qi<QZ.length?renderQ():showResult()});
+}
+function showResult(){
+  const pct=score/QZ.length,C=2*Math.PI*70;
+  const msg=pct===1?['완벽해요!','모세의 네 동사를 온전히 기억하고 계시네요.']:pct>=.75?['아주 잘했어요','핵심을 잘 붙잡고 계십니다.']:pct>=.5?['좋은 출발이에요','틀린 문제는 위의 카드와 본문 읽기로 다시 살펴보세요.']:['한 번 더 복습해 볼까요?','위쪽 섹션을 천천히 다시 살펴본 뒤 도전해 보세요.'];
+  qb.innerHTML=`<div class="result"><div class="ring"><svg width="170" height="170"><circle cx="85" cy="85" r="70" fill="none" stroke="var(--bg2)" stroke-width="12"/><circle id="rc" cx="85" cy="85" r="70" fill="none" stroke="var(--blue)" stroke-width="12" stroke-linecap="round" stroke-dasharray="${C}" stroke-dashoffset="${C}" style="transition:stroke-dashoffset 1.4s cubic-bezier(.3,.7,.2,1)"/></svg><div class="sc">${score}<small>/ ${QZ.length}</small></div></div><h3>${msg[0]}</h3><p>${msg[1]}</p><button class="askbtn" id="retry" style="margin-top:20px">다시 풀기</button></div>`;
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{$('#rc').style.strokeDashoffset=C*(1-pct)}));
+  if(pct>=.75)confetti(70);
+  $('#retry').addEventListener('click',()=>{qi=0;score=0;res=[];renderQ()});
+}
+renderQ();
+
+/* fill */
+const FILLS=[
+ {pre:'믿음은 ',post:' 것을 거절한다.',ans:'거절할',opts:['거절할','가질','기다릴','숨길']},
+ {pre:'때로는 ',post:' 때문에 붙잡을 수 있는 것을 내려놓는 것, 그것이 믿음입니다.',ans:'하나님',opts:['세상','하나님','사람','시간']},
+ {pre:'믿음은 현재를 ',post:'의 관점에서 바라보는 것입니다.',ans:'영원',opts:['영원','과거','미래의 걱정','세상']},
+ {pre:'지금 현재만 좋은가 묻는 것이 아닙니다. “이것의 ',post:'이 어디인가?”를 묻는 것입니다.',ans:'끝',opts:['시작','끝','이유','값']}
+];
+const fl=$('#fills');
+FILLS.forEach((f,idx)=>{
+  const d=document.createElement('div');d.className='card fill';
+  d.innerHTML=`<div class="sent"></div><div class="chips"></div>`;
+  const s=$('.sent',d);
+  s.append(document.createTextNode(f.pre));
+  const bl=document.createElement('span');bl.className='blank';bl.textContent='    ';s.appendChild(bl);
+  s.append(document.createTextNode(f.post));
+  shuffle(f.opts).forEach(o=>{
+    const c=document.createElement('button');c.className='chip';c.textContent=o;
+    c.addEventListener('click',()=>{
+      if(o===f.ans){bl.textContent=o;bl.classList.add('ok');c.classList.add('ok');d.classList.add('done');
+        if($$('.fill.done').length===FILLS.length)confetti(50)}
+      else{c.classList.add('no');setTimeout(()=>c.classList.remove('no'),450)}
+    });
+    $('.chips',d).appendChild(c);
+  });
+  fl.appendChild(d);
+});
+
+/* apply */
+let chk=JSON.parse(store.get(KEY+'chk')||'[false,false,false,false]');
+function drawChk(){
+  $$('.chk').forEach((c,i)=>c.classList.toggle('on',!!chk[i]));
+  $('#pg').style.width=(chk.filter(Boolean).length/4*100)+'%';
+}
+$$('.chk').forEach(c=>c.addEventListener('click',()=>{
+  const i=+c.dataset.i;chk[i]=!chk[i];store.set(KEY+'chk',JSON.stringify(chk));drawChk();
+  if(chk.every(Boolean))confetti(60);
+}));
+drawChk();
+const ta=$('#egypt');ta.value=store.get(KEY+'egypt')||'';
+ta.addEventListener('input',()=>store.set(KEY+'egypt',ta.value));
+</script>
+</body>
+</html>
