@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>하나님은 성경을 통해서 말씀하신다 · 복습</title>
+<style>
+:root{
+  --bg:#fbfbfd; --bg2:#f5f5f7; --card:#ffffff; --text:#1d1d1f; --sub:#6e6e73; --line:rgba(0,0,0,.08);
+  --blue:#0071e3; --blue-soft:rgba(0,113,227,.10); --green:#30a14e; --green-soft:rgba(48,161,78,.12);
+  --red:#e5484d; --red-soft:rgba(229,72,77,.10); --orange:#f5a623; --orange-soft:rgba(245,166,35,.14); --purple:#8e5af7;
+  --shadow:0 2px 12px rgba(0,0,0,.05), 0 12px 40px rgba(0,0,0,.06);
+  --glass:rgba(251,251,253,.72);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#000; --bg2:#0d0d0f; --card:#1c1c1e; --text:#f5f5f7; --sub:#a1a1a6; --line:rgba(255,255,255,.12);
+    --blue:#2997ff; --blue-soft:rgba(41,151,255,.16); --green:#32d74b; --green-soft:rgba(50,215,75,.16);
+    --red:#ff6369; --red-soft:rgba(255,99,105,.16); --orange:#ffb340; --orange-soft:rgba(255,179,64,.16);
+    --shadow:0 2px 12px rgba(0,0,0,.4); --glass:rgba(0,0,0,.66);
+  }
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;
+  line-height:1.6;letter-spacing:-.011em;-webkit-font-smoothing:antialiased;word-break:keep-all;
+}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+textarea{font:inherit;color:inherit}
+.bar{position:fixed;top:0;left:0;right:0;z-index:50;height:48px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 max(20px,env(safe-area-inset-left));background:var(--glass);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);
+  border-bottom:1px solid var(--line);font-size:13px}
+.bar b{font-weight:600}
+.bar span{color:var(--sub)}
+.prog{position:fixed;top:48px;left:0;height:2px;width:0;background:var(--blue);z-index:51;transition:width .15s}
+section{padding:96px 22px;max-width:980px;margin:0 auto}
+section.alt{max-width:none;background:var(--bg2)}
+section.alt>.in{max-width:980px;margin:0 auto}
+.eyebrow{color:var(--blue);font-weight:600;font-size:15px;margin:0 0 6px}
+h2{font-size:clamp(30px,5.2vw,48px);line-height:1.12;font-weight:700;letter-spacing:-.03em;margin:0 0 14px}
+h3{font-size:20px;margin:0 0 8px;letter-spacing:-.02em}
+.lead{font-size:clamp(17px,2.2vw,21px);color:var(--sub);margin:0 0 36px;max-width:680px}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding-top:120px}
+.hero h1{font-size:clamp(38px,8vw,80px);line-height:1.06;letter-spacing:-.04em;font-weight:800;margin:0 0 18px;
+  background:linear-gradient(120deg,#0071e3 0%,#8e5af7 55%,#e5484d 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{font-size:clamp(18px,2.6vw,24px);color:var(--sub);max-width:620px;margin:0 auto 34px}
+.pill{display:inline-block;background:var(--blue);color:#fff;font-weight:600;padding:13px 28px;border-radius:999px;font-size:17px;text-decoration:none;transition:transform .2s,opacity .2s}
+.pill:hover{opacity:.9;transform:scale(1.03)}
+.meta{margin-top:26px;font-size:14px;color:var(--sub)}
+.card{background:var(--card);border-radius:22px;padding:26px;box-shadow:var(--shadow);border:1px solid var(--line)}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.btn{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:12px 20px;font-weight:600;transition:transform .15s,background .15s}
+.btn:hover{transform:scale(1.02)}
+.btn.primary{background:var(--blue);color:#fff;border-color:transparent}
+.sm{font-size:14px;color:var(--sub)}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+.callout{background:var(--blue-soft);border-radius:18px;padding:18px 22px;margin-top:22px}
+.callout b{color:var(--blue)}
+.good{background:var(--green-soft)!important;border-color:var(--green)!important}
+.bad{background:var(--red-soft)!important;border-color:var(--red)!important}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.shake{animation:shake .3s}
+
+/* question openers */
+.q{cursor:pointer;text-align:left;width:100%;display:block}
+.q .a{max-height:0;overflow:hidden;opacity:0;transition:max-height .45s ease,opacity .4s ease;color:var(--sub)}
+.q.open .a{max-height:320px;opacity:1;margin-top:10px}
+.q .tap{font-size:13px;color:var(--blue);font-weight:600}
+
+/* ox */
+.ox{display:grid;gap:14px}
+.oxi{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between}
+.oxi p{flex:1 1 320px;margin:0;font-weight:600}
+.oxb{display:flex;gap:10px}
+.oxb button{width:64px;height:64px;border-radius:50%;font-size:28px;font-weight:700;background:var(--bg2);border:2px solid var(--line);transition:transform .15s}
+.oxb button:hover{transform:scale(1.08)}
+.oxb button.pick{border-color:var(--blue);background:var(--blue-soft)}
+.fb{flex-basis:100%;display:none;font-size:15px;padding:12px 16px;border-radius:14px;background:var(--bg2)}
+.fb.show{display:block}
+.score{font-size:15px;color:var(--sub);margin-top:14px;text-align:right}
+.score b{color:var(--blue);font-size:20px}
+
+/* tiles */
+.tile{text-align:left;width:100%;border-radius:22px;padding:22px;background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow);transition:transform .2s}
+.tile:hover{transform:translateY(-3px)}
+.tile.on{border-color:var(--blue);background:var(--blue-soft)}
+.tile .ico{font-size:30px}
+.tile h3{margin:8px 0 2px}
+.panel{margin-top:18px;min-height:84px}
+
+/* steps */
+.flow{display:flex;gap:10px;flex-wrap:wrap}
+.step{flex:1 1 130px;border-radius:18px;padding:16px 12px;text-align:center;background:var(--card);border:2px solid var(--line);transition:all .2s;font-weight:600}
+.step small{display:block;color:var(--sub);font-weight:500;margin-bottom:2px}
+.step.on{border-color:var(--blue);background:var(--blue-soft);transform:translateY(-3px)}
+.detail{margin-top:16px}
+.order{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.order button{padding:12px 16px;border-radius:14px;background:var(--bg2);border:1px solid var(--line);text-align:left;font-size:15px}
+.order button.done{background:var(--green-soft);border-color:var(--green);cursor:default}
+.order button .n{display:inline-block;width:22px;height:22px;line-height:22px;text-align:center;border-radius:50%;background:var(--green);color:#fff;font-size:12px;margin-right:6px}
+.blk{display:inline-block;min-width:96px;padding:3px 14px;margin:0 4px;border-radius:12px;border:2px dashed var(--sub);text-align:center;font-weight:700;color:var(--blue);vertical-align:middle;background:var(--bg2)}
+.blk.act{border-color:var(--blue)}
+.blk.ok{border-style:solid;border-color:var(--green);background:var(--green-soft);color:var(--green)}
+.blk.no{border-style:solid;border-color:var(--red);background:var(--red-soft);color:var(--red)}
+.bank{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
+.bank button{padding:9px 18px;border-radius:999px;background:var(--blue-soft);color:var(--blue);font-weight:700}
+.bank button:disabled{opacity:.3;cursor:default}
+.fill li{margin:12px 0;list-style:none}
+.fill{padding:0;margin:0}
+
+/* spirit toggle */
+.tg{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.sw{width:62px;height:36px;border-radius:999px;background:#c7c7cc;position:relative;transition:background .25s;flex:none}
+.sw::after{content:"";position:absolute;top:3px;left:3px;width:30px;height:30px;border-radius:50%;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.3);transition:transform .25s}
+.sw.on{background:var(--green)}
+.sw.on::after{transform:translateX(26px)}
+.verse{font-size:clamp(17px,2.2vw,20px);line-height:1.75}
+.verse mark{background:transparent;color:var(--blue);font-weight:700;transition:all .3s}
+.verse.dim mark{color:var(--sub);font-weight:400}
+.mood{margin-top:16px;padding:16px 20px;border-radius:16px;font-weight:600}
+
+/* scenario */
+.dots{display:flex;gap:8px;margin-bottom:16px}
+.dots i{flex:1;height:5px;border-radius:3px;background:var(--line)}
+.dots i.on{background:var(--blue)}
+.ch{display:grid;gap:10px;margin-top:16px}
+.ch button{text-align:left;padding:14px 18px;border-radius:16px;background:var(--bg2);border:1px solid var(--line);font-size:16px;transition:transform .15s}
+.ch button:hover{transform:scale(1.01)}
+.sf{margin-top:14px;padding:14px 18px;border-radius:14px;font-size:15px;display:none}
+.sf.show{display:block}
+.chk{display:grid;gap:10px;margin-top:8px}
+.chk button{display:flex;gap:12px;align-items:center;text-align:left;padding:14px 18px;border-radius:16px;background:var(--card);border:1px solid var(--line)}
+.chk .box{width:26px;height:26px;border-radius:50%;border:2px solid var(--sub);flex:none;display:grid;place-items:center;color:#fff;font-size:14px;transition:all .2s}
+.chk button.on .box{background:var(--green);border-color:var(--green)}
+.chk button.on span:last-child{color:var(--sub);text-decoration:line-through}
+.bigbar{height:8px;border-radius:4px;background:var(--line);overflow:hidden;margin:16px 0 4px}
+.bigbar i{display:block;height:100%;width:0;background:var(--green);transition:width .35s}
+
+/* flip cards */
+.flip{perspective:900px;height:200px;cursor:pointer;width:100%}
+.flip .in2{position:relative;width:100%;height:100%;transition:transform .6s;transform-style:preserve-3d}
+.flip.on .in2{transform:rotateY(180deg)}
+.flip .f,.flip .b{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:22px;padding:22px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;box-shadow:var(--shadow);border:1px solid var(--line)}
+.flip .f{background:var(--card);font-weight:700;font-size:19px}
+.flip .f small{color:var(--blue);margin-top:10px;font-weight:600}
+.flip .b{background:var(--blue);color:#fff;transform:rotateY(180deg);font-weight:600;font-size:17px}
+
+/* final quiz */
+.qz .stem{font-size:clamp(19px,2.6vw,24px);font-weight:700;margin:6px 0 4px;line-height:1.35}
+.opts{display:grid;gap:10px;margin-top:16px}
+.opts button{text-align:left;padding:15px 18px;border-radius:16px;background:var(--bg2);border:1px solid var(--line);font-size:16px}
+.opts button:disabled{cursor:default}
+.res{text-align:center;padding:10px 0}
+.res .big{font-size:64px;font-weight:800;letter-spacing:-.04em;color:var(--blue)}
+textarea{width:100%;min-height:90px;border-radius:14px;border:1px solid var(--line);background:var(--bg2);padding:12px 14px;resize:vertical}
+label.l{display:block;font-weight:600;margin:16px 0 6px}
+footer{padding:60px 22px 90px;text-align:center;color:var(--sub);font-size:13px}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="bar"><b>하나님을 경험하는 삶</b><span>5단원 제4과 · 복습</span></div>
+<div class="prog" id="prog"></div>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="eyebrow">5단원 · 제4과 복습</p>
+  <h1>하나님은<br>성경을 통해서<br>말씀하신다</h1>
+  <p>눌러 보고, 맞춰 보고, 골라 보면서<br>오늘 배운 내용을 내 것으로 만들어 봅시다.</p>
+  <a class="pill" href="#s1">시작하기</a>
+  <div class="meta">교재 151~156쪽 · 약 10분</div>
+</section>
+
+<!-- 1 OPENING -->
+<section id="s1">
+  <div class="reveal">
+    <p class="eyebrow">1 · 열어 보기</p>
+    <h2>사람들이 가장 많이<br>묻는 세 가지 질문</h2>
+    <p class="lead">카드를 눌러 교재가 주는 답을 확인해 보세요.</p>
+    <div class="grid g2" style="grid-template-columns:1fr">
+      <button class="card q" data-q>
+        <h3>① 하나님은 어떻게 나에게 말씀하실까?</h3><span class="tap">눌러서 답 보기</span>
+        <div class="a">하나님은 <b>자신이 정하신 방법대로 개개인에게 독특하게</b> 말씀하십니다. 오늘날에는 성령님에 의해 <b>성경, 기도, 환경, 교회</b>를 통해 말씀하십니다.</div>
+      </button>
+      <button class="card q" data-q>
+        <h3>② 하나님이 언제 말씀하시는지 어떻게 알 수 있을까?</h3><span class="tap">눌러서 답 보기</span>
+        <div class="a">하나님과의 <b>밀접한 사랑의 관계 안에서 동행</b>하면 음성을 가려낼 수 있고, 언제 말씀하시는지 알게 됩니다. “양들이 그의 음성을 아는 고로…”(요 10:2-4)</div>
+      </button>
+      <button class="card q" data-q>
+        <h3>③ 내 인생에서 하나님이 더 실제적이고 개인적이 되실 수 있을까?</h3><span class="tap">눌러서 답 보기</span>
+        <div class="a">이 과가 그 길을 보여 줍니다. 성령님이 성경으로 진리를 계시하시고 그것을 내 삶에 적용시키시는 그 순간이 곧 <b>하나님과의 만남</b>입니다(152쪽).</div>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- 2 OX -->
+<section class="alt" id="s2"><div class="in reveal">
+  <p class="eyebrow">2 · ○× 워밍업</p>
+  <h2>맞으면 ○, 틀리면 ×</h2>
+  <p class="lead">교재 첫 페이지의 네 문장입니다. 하나만 틀린 문장이 있어요.</p>
+  <div class="ox card" id="ox"></div>
+  <div class="score" id="oxscore">정답 <b>0</b> / 4</div>
+</div></section>
+
+<!-- 3 FOUR MEANS -->
+<section id="s3"><div class="reveal">
+  <p class="eyebrow">3 · 하나님이 쓰시는 수단</p>
+  <h2>성령님은 이 네 가지로<br>말씀하십니다</h2>
+  <p class="lead">네 개를 모두 눌러 보세요. 이 넷은 갈라놓기가 어렵습니다.</p>
+  <div class="grid g4" id="means"></div>
+  <div class="card panel" id="meanpanel"><span class="sm">위의 카드를 눌러 보세요.</span></div>
+  <div class="callout"><b>기억하기</b> 꿈과 환상이 우선이 아닙니다. 하나님은 자주 <b>기도와 성경을 함께</b> 사용하시고, 환경과 교회는 하나님이 하신 말씀을 <b>확인</b>시켜 줍니다.</div>
+</div></section>
+
+<!-- 4 FIVE STEPS -->
+<section class="alt" id="s4"><div class="in reveal">
+  <p class="eyebrow">4 · 성경으로 말씀하시는 5단계</p>
+  <h2>읽는다 → 계시하신다 →<br>조정 → 순종 → 이루신다</h2>
+  <p class="lead">단계를 눌러 내용을 확인한 뒤, 아래 두 가지 게임으로 익혀 봅시다.</p>
+  <div class="flow" id="flow"></div>
+  <div class="card detail" id="stepdetail"><span class="sm">단계를 눌러 보세요.</span></div>
+  <div class="callout"><b>핵심</b> 성령님과 계시된 진리는 교재 도표에서 모두 <b>“한 인격체”</b>로 표현됩니다. 영적인 진리를 깨닫는 것 자체가 하나님과의 만남입니다.</div>
+
+  <div class="card" style="margin-top:28px">
+    <h3>게임 A · 순서 맞추기</h3>
+    <p class="sm">1번부터 차례대로 눌러 보세요.</p>
+    <div class="order" id="order"></div>
+    <p class="sm" id="orderfb" style="margin-top:12px"></p>
+    <button class="btn" id="orderreset">다시 하기</button>
+  </div>
+
+  <div class="card" style="margin-top:20px">
+    <h3>게임 B · 빈칸 채우기</h3>
+    <p class="sm">빈칸을 누른 뒤 아래 단어를 눌러 채우세요. (읽는다 · 계시하신다 · 조정 · 순종)</p>
+    <ul class="fill" id="fill"></ul>
+    <div class="bank" id="bank"></div>
+    <button class="btn primary" id="fillcheck">확인</button>
+    <button class="btn" id="fillreset">다시 하기</button>
+    <p class="sm" id="fillfb" style="margin-top:12px"></p>
+  </div>
+</div></section>
+
+<!-- 5 SPIRIT -->
+<section id="s5"><div class="reveal">
+  <p class="eyebrow">5 · 고린도전서 2:14-15</p>
+  <h2>성령님이 계실 때와<br>안 계실 때</h2>
+  <p class="lead">스위치를 켜고 꺼 보세요. 말씀이 어떻게 달라 보일까요?</p>
+  <div class="card">
+    <div class="tg"><button class="sw" id="sw" aria-label="성령님의 도움 켜기/끄기"></button><b id="swlabel">성령님의 도움 없음</b></div>
+    <p class="verse dim" id="verse">“육에 속한 사람은 하나님의 성령의 일들을 받지 아니하나니 이는 그것들이 그에게는 <mark>어리석게 보임</mark>이요 또 그는 그것들을 <mark>알 수도 없나니</mark> 그러한 일은 영적으로 분별되기 때문이라 <mark>신령한 자는 모든 것을 판단하나</mark> 자기는 아무에게도 판단을 받지 아니하느니라.” (고전 2:14-15)</p>
+    <div class="mood bad" id="mood">하나님의 영의 도움이 없으면 말씀은 <b>미련한 것</b>으로 보입니다.</div>
+  </div>
+  <div class="callout"><b>정리</b> 성령님은 하나님과 그분의 목적을 계시하시려고 하나님의 말씀(성령의 검, 엡 6:17)을 사용하십니다. 우리는 스스로 진리를 이해할 수 없습니다.</div>
+</div></section>
+
+<!-- 6 SCENARIO -->
+<section class="alt" id="s6"><div class="in reveal">
+  <p class="eyebrow">6 · 교재 속 이야기</p>
+  <h2>시편 37:21,<br>“악인은 꾸고 갚지 아니하나…”</h2>
+  <p class="lead">내가 이 상황이라면 어떻게 할까요? 알맞은 선택을 골라 이야기를 끝까지 따라가 봅시다.</p>
+  <div class="card" id="scn"></div>
+
+  <div class="card" style="margin-top:28px">
+    <h3>하나님이 신선한 이해를 주셨을 때 · 7가지 행동</h3>
+    <p class="sm">교재 155쪽의 목록입니다. 눌러서 체크해 보세요.</p>
+    <div class="chk" id="chk"></div>
+    <div class="bigbar"><i id="chkbar"></i></div>
+    <div class="sm" id="chkcount">0 / 7</div>
+  </div>
+</div></section>
+
+<!-- 7 FLASH CARDS -->
+<section id="s7"><div class="reveal">
+  <p class="eyebrow">7 · 이 과의 요점</p>
+  <h2>카드를 뒤집어<br>핵심 네 가지를 확인하세요</h2>
+  <p class="lead">먼저 뒷면을 속으로 답해 본 다음, 눌러서 확인합니다.</p>
+  <div class="grid g4" id="cards"></div>
+</div></section>
+
+<!-- 8 QUIZ -->
+<section class="alt" id="s8"><div class="in reveal">
+  <p class="eyebrow">8 · 종합 퀴즈</p>
+  <h2>마지막 점검, 10문제</h2>
+  <p class="lead">보기는 매번 순서가 섞입니다. 틀려도 해설을 보고 넘어가면 됩니다.</p>
+  <div class="card qz" id="qz"></div>
+</div></section>
+
+<!-- 9 MY APPLICATION -->
+<section id="s9"><div class="reveal">
+  <p class="eyebrow">9 · 나의 적용</p>
+  <h2>이번 주, 나는</h2>
+  <p class="lead">교재 실습 질문을 바탕으로 짧게 적어 보세요. 적은 내용은 <b>이 기기의 브라우저에만 저장</b>되고 어디로도 전송되지 않습니다.</p>
+  <div class="card">
+    <label class="l" for="m1">하나님이 내 관심을 붙잡으신 구절은?</label>
+    <textarea id="m1" data-k="verse" placeholder="예) 시편 37:21"></textarea>
+    <label class="l" for="m2">그 구절이 하나님에 대해 무엇을 알려 줍니까?</label>
+    <textarea id="m2" data-k="god"></textarea>
+    <label class="l" for="m3">이 진리에 맞추려고 내가 조정할 한 가지는?</label>
+    <textarea id="m3" data-k="adjust"></textarea>
+    <label class="l" for="m4">이번 주에 순종으로 실천할 일은?</label>
+    <textarea id="m4" data-k="obey"></textarea>
+    <div style="margin-top:18px;display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+      <button class="btn primary" id="msave">저장</button>
+      <button class="btn" id="mclear">모두 지우기</button>
+      <span class="sm" id="mfb"></span>
+    </div>
+  </div>
+  <div class="callout"><b>기억하세요</b> 하나님은 내가 <b>무엇을 하는가</b>보다 <b>어떤 사람이 되는가</b>에 더 관심을 기울이십니다.</div>
+</div></section>
+
+<footer>출처: 《하나님을 경험하는 삶》 5단원 제4과 “하나님은 성경을 통해서 말씀하신다”, 151~156쪽을 바탕으로 정리한 복습 자료입니다.</footer>
+
+<script>
+(function(){
+const $=s=>document.querySelector(s);
+const $$=s=>Array.from(document.querySelectorAll(s));
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+
+/* progress bar + reveal */
+addEventListener('scroll',()=>{const h=document.documentElement;const p=h.scrollTop/(h.scrollHeight-h.clientHeight||1);$('#prog').style.width=(p*100)+'%'},{passive:true});
+if('IntersectionObserver' in window){
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.08});
+  $$('.reveal').forEach(el=>io.observe(el));
+}else{$$('.reveal').forEach(el=>el.classList.add('in'))}
+
+/* 1 opening */
+$$('[data-q]').forEach(b=>b.addEventListener('click',()=>b.classList.toggle('open')));
+
+/* 2 OX */
+const OX=[
+ {t:'하나님은 한 개인에게 자신이 정하신 방법대로 독특하게 말씀하실 수 있다.',a:true,e:'하나님은 주권자이십니다. 자신이 정하신 바를 무엇이든 하실 수 있습니다.'},
+ {t:'요즘 하나님은 우선적으로 꿈과 환상을 통해 말씀하신다.',a:false,e:'요즘은 우선적으로 성령님에 의해 성경, 기도, 환경, 교회를 통해 말씀하십니다. 이 문장만 틀립니다.'},
+ {t:'하나님과 올바른 관계를 가진 사람들은 하나님의 음성을 듣고 구별할 수 있다.',a:true,e:'하나님의 사람들은 그분의 음성을 듣고 알아차립니다(요 10:2-4).'},
+ {t:'하나님은 자주 성령님으로 기도와 성경을 통해 말씀하신다.',a:true,e:'하나님은 기도와 성경을 함께 사용하십니다.'}
+];
+let oxScore=0;const oxDone=new Set();
+const oxBox=$('#ox');
+OX.forEach((q,i)=>{
+  const d=document.createElement('div');d.className='oxi';
+  d.innerHTML=`<p>${i+1}. ${q.t}</p><div class="oxb"><button data-v="1" aria-label="맞다">○</button><button data-v="0" aria-label="틀리다">×</button></div><div class="fb"></div>`;
+  d.querySelectorAll('.oxb button').forEach(b=>b.addEventListener('click',()=>{
+    if(oxDone.has(i))return;oxDone.add(i);
+    const pick=b.dataset.v==='1';const ok=pick===q.a;
+    b.classList.add('pick');
+    const fb=d.querySelector('.fb');fb.classList.add('show',ok?'good':'bad');
+    fb.innerHTML=(ok?'정답입니다. ':'아쉬워요. 정답은 '+(q.a?'○':'×')+'입니다. ')+q.e;
+    if(ok){oxScore++;$('#oxscore').innerHTML='정답 <b>'+oxScore+'</b> / 4'}
+    else{d.classList.add('shake')}
+  }));
+  oxBox.appendChild(d);
+  if(i<OX.length-1){const hr=document.createElement('hr');hr.style.cssText='border:0;border-top:1px solid var(--line);width:100%;margin:6px 0';oxBox.appendChild(hr)}
+});
+
+/* 3 four means */
+const MEANS=[
+ {i:'📖',n:'성경',d:'하나님 자신의 완전한 계시입니다. 이 과의 주제입니다. 하나님은 성경으로도 말씀하시고, 기도와 함께도 말씀하십니다.'},
+ {i:'🙏',n:'기도',d:'하나님은 기도와 성경을 함께 사용하십니다. 기도를 통한 말씀은 다음 과(제5과)에서 다룹니다.'},
+ {i:'🌤',n:'환경',d:'하나님이 하신 말씀을 확인시켜 줍니다. 자주 하나님의 시기를 가르쳐 주는 수단으로도 쓰입니다.'},
+ {i:'⛪',n:'교회',d:'교회와 다른 성도들도 하나님이 하신 말씀을 확인시켜 주고, 시기를 가르쳐 줍니다. 다음 단원에서 더 자세히 공부합니다.'}
+];
+const mWrap=$('#means');let seen=new Set();
+MEANS.forEach((m,i)=>{
+  const b=document.createElement('button');b.className='tile';
+  b.innerHTML=`<div class="ico">${m.i}</div><h3>${m.n}</h3><span class="sm">눌러 보기</span>`;
+  b.addEventListener('click',()=>{
+    $$('#means .tile').forEach(x=>x.classList.remove('on'));b.classList.add('on');
+    $('#meanpanel').innerHTML=`<h3>${m.n}</h3><div>${m.d}</div>`;
+    seen.add(i);if(seen.size===MEANS.length){$('#meanpanel').innerHTML+=`<p class="sm" style="margin-top:10px">네 가지를 모두 확인했어요. 이 넷은 따로따로가 아니라 함께 움직입니다.</p>`}
+  });
+  mWrap.appendChild(b);
+});
+
+/* 4 five steps */
+const STEPS=[
+ {k:'읽는다',t:'하나님의 말씀, 즉 성경을 읽는다.',d:'성경은 하나님의 말씀이며 인류를 향한 하나님 자신의 완전한 계시입니다. 하나님은 성경을 통해 나에게 말씀하십니다.'},
+ {k:'계시하신다',t:'진리의 영이 그 말씀을 가지고 진리를 계시하신다.',d:'성령님은 “진리의 영”(요 14:17)이십니다. 성령님이 가르쳐 주시기 전에는 아무도 영적인 진리를 이해할 수 없습니다. 성령님이 성경으로 진리를 계시하고 내 삶에 적용시키시는 것이 하나님과의 만남입니다.'},
+ {k:'조정',t:'하나님의 진리에 나의 인생을 조정한다.',d:'하나님과 동의하기 위해 내가 이해하고 있던 것을 하나님의 뜻에 합치하도록 바꾸는 것입니다.'},
+ {k:'순종',t:'그분께 순종한다.',d:'하나님과 동의하는 것만으로는 부족합니다. 시편 37:21의 예에서는 빚을 갚음으로 하나님의 뜻에 순종합니다.'},
+ {k:'이루신다',t:'하나님이 내 안에서, 나를 통해서 그분의 목적을 이루신다.',d:'순종할 때 하나님이 내 안에서, 나를 통해서 일하십니다. 그리고 하나님과 더 온전한 관계를 경험합니다.'}
+];
+const flow=$('#flow');
+STEPS.forEach((s,i)=>{
+  const b=document.createElement('button');b.className='step';
+  b.innerHTML=`<small>${i+1}단계</small>${s.k}`;
+  b.addEventListener('click',()=>{
+    $$('#flow .step').forEach(x=>x.classList.remove('on'));b.classList.add('on');
+    $('#stepdetail').innerHTML=`<h3>${i+1}. ${s.t}</h3><div>${s.d}</div>`;
+  });
+  flow.appendChild(b);
+});
+
+/* game A order */
+let orderNext=0;
+function buildOrder(){
+  orderNext=0;$('#orderfb').textContent='';
+  const box=$('#order');box.innerHTML='';
+  shuffle(STEPS.map((s,i)=>({s,i}))).forEach(o=>{
+    const b=document.createElement('button');b.textContent=o.s.t;
+    b.addEventListener('click',()=>{
+      if(b.classList.contains('done'))return;
+      if(o.i===orderNext){
+        orderNext++;b.classList.add('done');b.innerHTML=`<span class="n">${orderNext}</span>${o.s.t}`;
+        $('#orderfb').textContent=orderNext===STEPS.length?'완성! 5단계를 순서대로 모두 맞췄어요.':orderNext+'단계까지 맞았어요. 다음은 몇 번일까요?';
+      }else{b.classList.add('shake');setTimeout(()=>b.classList.remove('shake'),350);$('#orderfb').textContent='지금은 '+(orderNext+1)+'번째 단계를 찾아 보세요.'}
+    });
+    box.appendChild(b);
+  });
+}
+buildOrder();$('#orderreset').addEventListener('click',buildOrder);
+
+/* game B fill */
+const FILL=[
+ {pre:'1. 나는 하나님의 말씀, 즉 성경을',ans:'읽는다',post:''},
+ {pre:'2. 진리의 영이 그 말씀을 가지고 진리를',ans:'계시하신다',post:''},
+ {pre:'3. 하나님의 진리에 나의 인생을',ans:'조정',post:'한다.'},
+ {pre:'4. 그분께',ans:'순종',post:'한다.'}
+];
+const WORDS=['읽는다','계시하신다','조정','순종'];
+let fillVals,fillAct;
+function buildFill(){
+  fillVals=[null,null,null,null];fillAct=null;$('#fillfb').textContent='';renderFill();
+}
+function renderFill(){
+  const ul=$('#fill');ul.innerHTML='';
+  FILL.forEach((f,i)=>{
+    const li=document.createElement('li');
+    li.innerHTML=`${f.pre} <button class="blk ${fillAct===i?'act':''}" data-i="${i}">${fillVals[i]||'　?　'}</button> ${f.post}`;
+    ul.appendChild(li);
+  });
+  const extra=document.createElement('li');extra.textContent='5. 하나님이 내 안에서, 나를 통해서 그분의 목적을 이루신다.';ul.appendChild(extra);
+  ul.querySelectorAll('.blk').forEach(b=>b.addEventListener('click',()=>{
+    const i=+b.dataset.i;
+    if(fillVals[i]){fillVals[i]=null;fillAct=i}else{fillAct=i}
+    renderFill();
+  }));
+  const bank=$('#bank');bank.innerHTML='';
+  shuffle(WORDS).forEach(w=>{
+    const c=document.createElement('button');c.textContent=w;c.disabled=fillVals.includes(w);
+    c.addEventListener('click',()=>{
+      let i=(fillAct!==null&&!fillVals[fillAct])?fillAct:fillVals.indexOf(null);
+      if(i<0)return;fillVals[i]=w;fillAct=null;renderFill();
+    });
+    bank.appendChild(c);
+  });
+}
+$('#fillcheck').addEventListener('click',()=>{
+  if(fillVals.includes(null)){$('#fillfb').textContent='빈칸을 모두 채운 뒤 확인해 보세요.';return}
+  let ok=0;$$('#fill .blk').forEach((b,i)=>{const r=fillVals[i]===FILL[i].ans;b.classList.remove('act');b.classList.add(r?'ok':'no');if(r)ok++});
+  $('#fillfb').textContent=ok===4?'모두 맞았어요!':ok+'개 맞았어요. 빨간 칸을 눌러 다시 채워 보세요.';
+});
+$('#fillreset').addEventListener('click',buildFill);
+buildFill();
+
+/* 5 spirit toggle */
+$('#sw').addEventListener('click',function(){
+  const on=this.classList.toggle('on');
+  $('#swlabel').textContent=on?'성령님의 도움 있음':'성령님의 도움 없음';
+  $('#verse').classList.toggle('dim',!on);
+  const m=$('#mood');m.className='mood '+(on?'good':'bad');
+  m.innerHTML=on?'성령님의 도움을 받으면 우리는 <b>모든 것을 이해</b>할 수 있습니다(고전 2:15).':'하나님의 영의 도움이 없으면 말씀은 <b>미련한 것</b>으로 보입니다.';
+});
+
+/* 6 scenario */
+const SCN=[
+ {p:'매일 읽는 말씀이 시편 37편에 이르렀습니다. 21절 “악인은 꾸고 갚지 아니하나…”에 마음이 쏠립니다. 어떻게 하시겠습니까?',
+  c:[{t:'별일 아니라고 생각하고 다음 구절로 넘어간다.',ok:false,f:'마음이 쏠린 데는 이유가 있습니다. 교재에서는 그 구절에 마음이 쏠려 다시 읽습니다. 성령님이 내 관심을 한 진리로 집중시키신 것입니다.'},
+     {t:'그 구절을 다시 읽는다.',ok:true,f:'맞아요. 마음이 쏠린 그 구절을 다시 읽으니, 갚지 못한 빚이 기억납니다.'}]},
+ {p:'갚지 못한 빚이 떠올랐고, 그 말씀이 나에게 해당된다는 것을 깨닫습니다. 이것은 무엇입니까?',
+  c:[{t:'우연히 떠오른 생각이다.',ok:false,f:'교재는 성령님이 이 구절이 적용되는 내 삶의 특정한 사건에 관심을 집중시키신 것이라고 말합니다.'},
+     {t:'성령님이 성경을 통해 말씀하시며 죄를 깨닫게 해 주신 것이다.',ok:true,f:'맞아요. 하나님이 방금 성령님으로 그분의 말씀을 통해 나에게 말씀하신 것입니다. 그분만이 이렇게 하실 수 있습니다.'}]},
+ {p:'이제 진리에 내 인생을 “조정”해야 합니다. 조정은 무엇입니까?',
+  c:[{t:'내 사정이 있으니 이 경우는 예외라고 생각한다.',ok:false,f:'조정은 내 이해를 하나님의 뜻에 맞추는 것입니다. 하나님의 말씀을 내 사정에 맞추는 것이 아닙니다.'},
+     {t:'진리에 동의하고, 그것이 내 특정 사건에 적용된다는 것도 인정한다. 곧 죄를 고백한다.',ok:true,f:'맞아요. 하나님의 뜻에 합치하도록 내 이해를 바꾸는 것이 조정입니다.'}]},
+ {p:'하나님과 동의했습니다. 이것으로 내가 할 일은 모두 끝났습니까?',
+  c:[{t:'네, 마음으로 동의했으니 충분하다.',ok:false,f:'아니요. 하나님과 동의하는 것만으로는 부족합니다. 빚을 갚기 전까지는 하나님의 눈에 악인으로 머물러 있게 됩니다.'},
+     {t:'아니요, 빚을 갚음으로 순종한다.',ok:true,f:'맞아요. 빚을 갚음으로 하나님의 뜻에 순종합니다. 이제 하나님과 보다 온전한 관계를 경험할 수 있습니다.'}]}
+];
+let scnI=0;
+function renderScn(){
+  const box=$('#scn');
+  if(scnI>=SCN.length){
+    box.innerHTML=`<div class="dots">${SCN.map(()=>'<i class="on"></i>').join('')}</div>
+    <h3>이야기가 완성되었습니다</h3>
+    <p>말씀을 <b>읽고</b> → 성령님이 진리를 <b>계시</b>하시고 → 내 이해를 하나님께 <b>조정</b>하고 → 빚을 갚으며 <b>순종</b>하니 → 하나님과 더 온전한 관계를 경험합니다.</p>
+    <div class="callout" style="margin-top:12px"><b>교재의 당부</b> 항상 계시된 진리를 하나님에 대한 나의 이해와 하나님과 나의 관계에 묶어 놓으세요.</div>
+    <button class="btn" id="scnreset" style="margin-top:14px">처음부터 다시</button>`;
+    $('#scnreset').addEventListener('click',()=>{scnI=0;renderScn()});return;
+  }
+  const s=SCN[scnI];
+  box.innerHTML=`<div class="dots">${SCN.map((_,i)=>`<i class="${i<=scnI?'on':''}"></i>`).join('')}</div>
+  <h3>${scnI+1} / ${SCN.length}</h3><p style="font-size:18px;margin:0">${s.p}</p>
+  <div class="ch" id="scnch"></div><div class="sf" id="scnfb"></div>`;
+  const ch=$('#scnch');
+  shuffle(s.c).forEach(c=>{
+    const b=document.createElement('button');b.textContent=c.t;
+    b.addEventListener('click',()=>{
+      const fb=$('#scnfb');fb.className='sf show '+(c.ok?'good':'bad');fb.innerHTML=c.f;
+      if(c.ok){$$('#scnch button').forEach(x=>x.disabled=true);
+        const n=document.createElement('button');n.className='btn primary';n.style.marginTop='12px';n.textContent=scnI===SCN.length-1?'결과 보기':'다음';
+        n.addEventListener('click',()=>{scnI++;renderScn()});fb.appendChild(document.createElement('br'));fb.appendChild(n)}
+      else{b.classList.add('shake');setTimeout(()=>b.classList.remove('shake'),350)}
+    });
+    ch.appendChild(b);
+  });
+}
+renderScn();
+
+/* seven actions checklist */
+const ACT=[
+ '그 진리를 경건일기나 공책에 적는다.',
+ '그 구절을 놓고 묵상한다.',
+ '그 말씀의 뜻 가운데 폭 빠지도록 공부한다. 하나님이 자신이나 목적이나 길에 대해 무엇을 제시하시는지 본다.',
+ '하나님이 일하시도록 개인, 가정, 교회, 직장생활에서 어떤 조정이 필요한지 알아본다.',
+ '하나님께 응답하는 기도를 적는다.',
+ '하나님께로 내 인생을 조정한다.',
+ '하나님이 하루 종일 그 진리를 일상생활에서 어떻게 사용하시는지 주목한다.'
+];
+const chk=$('#chk');
+ACT.forEach(t=>{
+  const b=document.createElement('button');b.innerHTML=`<span class="box">✓</span><span>${t}</span>`;
+  b.addEventListener('click',()=>{
+    b.classList.toggle('on');const n=$$('#chk .on').length;
+    $('#chkbar').style.width=(n/ACT.length*100)+'%';
+    $('#chkcount').textContent=n===ACT.length?'7 / 7 · 모두 체크했어요. 이번 주에 하나씩 실천해 봅시다.':n+' / 7';
+  });
+  chk.appendChild(b);
+});
+
+/* 7 flip cards */
+const CARDS=[
+ {q:'하나님이 말씀하시는 방법은?',a:'자신이 정하신 방법대로 개개인에게 독특하게 말씀하신다.'},
+ {q:'하나님이 내게 말씀하실 때 나는?',a:'그분의 목소리를 알아듣고 따를 것이다.'},
+ {q:'영적 진리를 깨달으려면?',a:'성령님이 가르쳐 주셔야 한다. 그렇지 않으면 깨달을 수 없다.'},
+ {q:'하나님이 더 관심을 기울이시는 것은?',a:'내가 무엇을 하는가보다 어떤 사람이 되는가.'}
+];
+const cw=$('#cards');
+CARDS.forEach(c=>{
+  const d=document.createElement('button');d.className='flip';
+  d.innerHTML=`<div class="in2"><div class="f">${c.q}<small>눌러서 뒤집기</small></div><div class="b">${c.a}</div></div>`;
+  d.addEventListener('click',()=>d.classList.toggle('on'));cw.appendChild(d);
+});
+
+/* 8 final quiz */
+const QZ=[
+ {q:'오늘날 하나님이 성령님에 의해 말씀하시는 수단으로 교재가 든 것은?',o:['성경, 기도, 환경, 교회','꿈, 환상, 천사, 예언','성경, 꿈, 음악, 자연','교회, 전통, 이성, 경험'],a:0,e:'오늘날에는 성령님에 의해 성경, 기도, 환경, 교회를 통해 말씀하십니다.'},
+ {q:'양들이 목자를 따라오는 이유로 요한복음 10장이 말하는 것은?',o:['목자가 앞서 가기 때문에','목자의 음성을 알기 때문에','양들이 길을 알기 때문에','목자가 먹이를 주기 때문에'],a:1,e:'“양들이 그의 음성을 아는 고로 따라오되”(요 10:4). 하나님이 말씀하실 때 나도 그분의 음성을 알아차리고 따릅니다.'},
+ {q:'성령님을 부르는 이름으로 요한복음 14:17이 쓰는 표현은?',o:['위로의 영','지혜의 영','진리의 영','능력의 영'],a:2,e:'성령님은 “진리의 영”이십니다.'},
+ {q:'성령님이 가르쳐 주시기 전에 영적인 진리를 이해할 수 있는 사람은?',o:['성경을 오래 공부한 사람','신학을 전공한 사람','아무도 없다','나이가 많은 사람'],a:2,e:'성령님이 가르쳐 주시기 전에는 아무도 영적인 진리를 이해할 수 없습니다.'},
+ {q:'성경으로 말씀하시는 5단계 중 둘째 단계는?',o:['하나님의 진리에 나의 인생을 조정한다','그분께 순종한다','진리의 영이 그 말씀을 가지고 진리를 계시하신다','하나님의 말씀, 즉 성경을 읽는다'],a:2,e:'1 읽는다 → 2 진리의 영이 진리를 계시하신다 → 3 조정 → 4 순종 → 5 하나님이 목적을 이루신다.'},
+ {q:'교재가 말하는 “하나님과의 만남”은 무엇입니까?',o:['성경 지식을 많이 쌓는 것','성령님이 성경으로 영적 진리를 계시하시고 그것을 내 삶에 개인적으로 적용시키시는 것','특별한 환상을 보는 것','교회 행사에 참석하는 것'],a:1,e:'영적인 진리를 깨닫는 것 자체가 하나님과의 만남입니다.'},
+ {q:'고린도전서 2:14에서 육에 속한 사람에게 성령의 일들은 어떻게 보입니까?',o:['어리석게 보이고 알 수도 없다','조금 어렵지만 이해할 만하다','당연하고 쉽게 보인다','아무 의미가 없다고 느낀다'],a:0,e:'“그것들이 그에게는 어리석게 보임이요 또 그는 그것들을 알 수도 없나니”.'},
+ {q:'시편 37:21 예에서 “조정”에 해당하는 것은?',o:['빚을 갚는다','진리와 내 구체적 사건에 동의하고 죄를 고백한다. 내 이해를 하나님의 뜻에 맞춘다','그 구절을 다시 읽는다','다른 사람에게 빚을 빌려 준다'],a:1,e:'동의, 곧 죄 고백이 조정입니다. 빚을 갚는 것은 순종입니다.'},
+ {q:'시편 37:21 예에서 “순종”에 해당하는 것은?',o:['그 구절을 묵상한다','마음으로 동의한다','빚을 갚는다','하나님께 기도한다'],a:2,e:'하나님과 동의하는 것만으로는 부족합니다. 빚을 갚음으로 하나님의 뜻에 순종합니다.'},
+ {q:'하나님이 더 관심을 기울이시는 것은?',o:['내가 얼마나 많은 일을 하는가','내가 어떤 사람이 되는가','내가 얼마나 많이 아는가','내가 얼마나 오래 기도하는가'],a:1,e:'하나님은 내가 무엇을 하는가보다 어떤 사람이 되는가에 더 관심을 기울이십니다.'}
+];
+let qi=0,qs=0;
+function renderQz(){
+  const box=$('#qz');
+  if(qi>=QZ.length){
+    const msg=qs>=9?'훌륭해요! 이 과의 핵심을 거의 완벽히 잡았어요.':qs>=7?'잘했어요! 틀린 문제는 해당 섹션을 다시 눌러 보세요.':'조금 더 복습해 봐요. 위쪽 5단계와 시편 37:21 이야기를 다시 따라가 보세요.';
+    box.innerHTML=`<div class="res"><div class="big">${qs} / ${QZ.length}</div><p>${msg}</p><button class="btn primary" id="qzreset">다시 풀기</button></div>`;
+    $('#qzreset').addEventListener('click',()=>{qi=0;qs=0;renderQz()});return;
+  }
+  const q=QZ[qi];
+  box.innerHTML=`<div class="dots">${QZ.map((_,i)=>`<i class="${i<=qi?'on':''}"></i>`).join('')}</div>
+  <div class="sm">문제 ${qi+1} / ${QZ.length} · 현재 ${qs}점</div><div class="stem">${q.q}</div><div class="opts" id="qzo"></div><div class="sf" id="qzfb"></div>`;
+  const wrap=$('#qzo');
+  shuffle(q.o.map((t,i)=>({t,i}))).forEach(o=>{
+    const b=document.createElement('button');b.textContent=o.t;
+    b.addEventListener('click',()=>{
+      const ok=o.i===q.a;if(ok)qs++;
+      $$('#qzo button').forEach(x=>{x.disabled=true;if(x.textContent===q.o[q.a])x.classList.add('good')});
+      if(!ok)b.classList.add('bad');
+      const fb=$('#qzfb');fb.className='sf show '+(ok?'good':'bad');fb.innerHTML=(ok?'정답입니다. ':'아쉬워요. ')+q.e;
+      const n=document.createElement('button');n.className='btn primary';n.style.marginTop='12px';n.textContent=qi===QZ.length-1?'결과 보기':'다음 문제';
+      n.addEventListener('click',()=>{qi++;renderQz()});fb.appendChild(document.createElement('br'));fb.appendChild(n);
+    });
+    wrap.appendChild(b);
+  });
+}
+renderQz();
+
+/* 9 my notes (browser only) */
+const KEY='gec-5-4-notes';
+function lsGet(){try{return JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){return {}}}
+const saved=lsGet();$$('textarea[data-k]').forEach(t=>{if(saved[t.dataset.k])t.value=saved[t.dataset.k]});
+$('#msave').addEventListener('click',()=>{
+  const o={};$$('textarea[data-k]').forEach(t=>o[t.dataset.k]=t.value);
+  try{localStorage.setItem(KEY,JSON.stringify(o));$('#mfb').textContent='이 기기에 저장했어요.'}catch(e){$('#mfb').textContent='이 환경에서는 저장할 수 없어요.'}
+});
+$('#mclear').addEventListener('click',()=>{
+  $$('textarea[data-k]').forEach(t=>t.value='');
+  try{localStorage.removeItem(KEY)}catch(e){}
+  $('#mfb').textContent='모두 지웠어요.';
+});
+})();
+</script>
+</body>
+</html>
