@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>믿음으로 기생 라합은 · 히브리서 11:30–31 복습</title>
+<style>
+:root{
+  --bg:#fbfbfd; --bg2:#f5f5f7; --card:#ffffff; --text:#1d1d1f; --sub:#6e6e73; --line:rgba(0,0,0,.08);
+  --blue:#0071e3; --blue-d:#0058b0; --green:#30a14e; --red:#e5484d; --orange:#ff9f0a;
+  --shadow:0 4px 24px rgba(0,0,0,.06); --shadow-l:0 18px 50px rgba(0,0,0,.12);
+  --nav:rgba(251,251,253,.72);
+  --grad:linear-gradient(120deg,#ff375f 0%,#ff9f0a 45%,#bf5af2 100%);
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#000; --bg2:#111113; --card:#1c1c1e; --text:#f5f5f7; --sub:#a1a1a6; --line:rgba(255,255,255,.12);
+    --blue:#2997ff; --blue-d:#0a84ff; --green:#32d74b; --red:#ff6369; --orange:#ffb340;
+    --shadow:0 4px 24px rgba(0,0,0,.5); --shadow-l:0 18px 50px rgba(0,0,0,.6);
+    --nav:rgba(0,0,0,.65);
+  }
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Apple SD Gothic Neo","Pretendard","Noto Sans KR",system-ui,sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.6;letter-spacing:-.01em;
+  -webkit-font-smoothing:antialiased;word-break:keep-all;
+}
+button{font:inherit;color:inherit;cursor:pointer;border:none;background:none}
+textarea,input{font:inherit;color:inherit}
+
+/* top progress + nav */
+#bar{position:fixed;top:0;left:0;height:3px;width:0;background:var(--blue);z-index:200;transition:width .15s}
+nav{
+  position:sticky;top:0;z-index:100;height:52px;display:flex;align-items:center;justify-content:center;
+  background:var(--nav);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);
+  border-bottom:1px solid var(--line);
+}
+nav .in{max-width:980px;width:100%;padding:0 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+nav b{font-size:15px;font-weight:600;white-space:nowrap}
+nav ul{list-style:none;display:flex;gap:20px;overflow-x:auto;scrollbar-width:none}
+nav ul::-webkit-scrollbar{display:none}
+nav a{font-size:12px;color:var(--sub);text-decoration:none;white-space:nowrap;transition:color .2s}
+nav a:hover{color:var(--text)}
+@media(max-width:640px){nav b{display:none}nav ul{gap:16px}}
+
+section{padding:96px 20px}
+section.alt{background:var(--bg2)}
+.wrap{max-width:980px;margin:0 auto}
+.eyebrow{font-size:14px;font-weight:600;color:var(--orange);margin-bottom:8px;letter-spacing:.02em}
+h2{font-size:clamp(30px,5vw,48px);font-weight:700;letter-spacing:-.03em;line-height:1.15;margin-bottom:14px}
+.lead{font-size:clamp(17px,2.2vw,21px);color:var(--sub);max-width:680px;margin-bottom:44px}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.rv.on{opacity:1;transform:none}
+
+/* hero */
+.hero{min-height:calc(100vh - 52px);display:flex;align-items:center;text-align:center;padding:80px 20px;
+  background:radial-gradient(1200px 500px at 50% -10%,rgba(255,159,10,.16),transparent 70%),var(--bg)}
+.hero .wrap{display:flex;flex-direction:column;align-items:center}
+.pill{display:inline-block;font-size:13px;font-weight:600;padding:6px 14px;border-radius:99px;background:var(--bg2);color:var(--sub);border:1px solid var(--line);margin-bottom:26px}
+.hero h1{font-size:clamp(46px,9vw,104px);font-weight:800;letter-spacing:-.045em;line-height:1.04;margin-bottom:22px}
+.grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+.hero p{font-size:clamp(18px,2.4vw,24px);color:var(--sub);max-width:640px}
+.verse-hero{margin-top:40px;padding:22px 26px;border-radius:22px;background:var(--card);box-shadow:var(--shadow);max-width:640px;text-align:left}
+.verse-hero small{display:block;color:var(--blue);font-weight:600;font-size:13px;margin-bottom:6px}
+.verse-hero q{quotes:none;font-size:17px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:99px;background:var(--blue);color:#fff;font-weight:600;font-size:17px;text-decoration:none;margin-top:36px;transition:transform .2s,background .2s}
+.btn:hover{background:var(--blue-d);transform:scale(1.03)}
+.btn.ghost{background:transparent;color:var(--blue);border:1.5px solid var(--blue);margin-top:0;padding:9px 20px;font-size:15px}
+.btn.ghost:hover{background:var(--blue);color:#fff}
+
+/* cards */
+.grid{display:grid;gap:18px}
+.g3{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.card{background:var(--card);border-radius:26px;padding:30px;box-shadow:var(--shadow);transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s}
+.card:hover{transform:translateY(-4px);box-shadow:var(--shadow-l)}
+.num{width:38px;height:38px;border-radius:50%;background:var(--text);color:var(--bg);display:grid;place-items:center;font-weight:700;margin-bottom:16px}
+.card h3{font-size:22px;letter-spacing:-.02em;margin-bottom:8px;line-height:1.3}
+.card p,.card li{color:var(--sub);font-size:16px}
+.card ul{padding-left:18px;margin-top:8px}
+.ref{display:inline-block;font-size:13px;font-weight:600;color:var(--blue);background:rgba(0,113,227,.1);padding:2px 10px;border-radius:99px;margin:2px 2px 2px 0}
+.quote{margin-top:12px;padding:14px 16px;border-radius:16px;background:var(--bg2);font-size:15px;color:var(--text)}
+.quote cite{display:block;margin-top:6px;font-style:normal;font-size:13px;color:var(--sub)}
+
+/* story steps (accordion) */
+.story{display:grid;gap:14px}
+.step{background:var(--card);border-radius:24px;box-shadow:var(--shadow);overflow:hidden}
+.step>button{width:100%;display:flex;align-items:center;gap:16px;padding:22px 26px;text-align:left}
+.step .tag{font-size:12px;font-weight:700;color:#fff;background:var(--blue);padding:4px 10px;border-radius:99px;white-space:nowrap}
+.step .tt{font-size:clamp(18px,2.4vw,23px);font-weight:650;letter-spacing:-.02em;flex:1;line-height:1.3}
+.step .chev{transition:transform .35s;color:var(--sub);font-size:20px}
+.step.open .chev{transform:rotate(90deg)}
+.step .body{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.2,.7,.2,1)}
+.step .inner{padding:0 26px 26px 26px;color:var(--sub);font-size:16.5px}
+.step .inner p+p{margin-top:10px}
+.step .inner strong{color:var(--text)}
+
+/* flashcards */
+.fc-wrap{perspective:1200px}
+.fc{height:230px;position:relative;cursor:pointer}
+.fc .face{position:absolute;inset:0;border-radius:26px;padding:26px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;
+  backface-visibility:hidden;-webkit-backface-visibility:hidden;transition:transform .7s cubic-bezier(.2,.7,.2,1);box-shadow:var(--shadow)}
+.fc .front{background:var(--card);transform:rotateY(0)}
+.fc .back{background:linear-gradient(145deg,#0a84ff,#5e5ce6);color:#fff;transform:rotateY(180deg)}
+.fc.flip .front{transform:rotateY(-180deg)}
+.fc.flip .back{transform:rotateY(0)}
+.fc .face small{font-size:12px;font-weight:700;letter-spacing:.06em;opacity:.65;margin-bottom:10px}
+.fc .face div{font-size:19px;font-weight:600;line-height:1.45}
+.fc .back div{font-size:17px;font-weight:500}
+
+/* cloze */
+.cloze{background:var(--card);border-radius:24px;padding:26px 28px;box-shadow:var(--shadow);margin-bottom:16px}
+.cloze .s{font-size:clamp(17px,2.2vw,20px);line-height:1.9}
+.blank{display:inline-block;min-width:92px;padding:0 10px;margin:0 3px;border-bottom:2.5px solid var(--blue);text-align:center;color:var(--blue);font-weight:700;transition:all .3s}
+.blank.ok{border-color:var(--green);color:var(--green)}
+.blank.no{border-color:var(--red);color:var(--red);animation:shake .4s}
+@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.chip{padding:8px 18px;border-radius:99px;background:var(--bg2);border:1px solid var(--line);font-size:15px;font-weight:600;transition:all .2s}
+.chip:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
+.chip:disabled{opacity:.35;pointer-events:none}
+.src{font-size:13px;color:var(--sub);margin-top:10px}
+
+/* quiz */
+.quiz{background:var(--card);border-radius:30px;box-shadow:var(--shadow);padding:clamp(24px,4vw,44px);max-width:760px;margin:0 auto}
+.qmeta{display:flex;justify-content:space-between;font-size:14px;color:var(--sub);font-weight:600;margin-bottom:12px}
+.qprog{height:6px;border-radius:99px;background:var(--bg2);overflow:hidden;margin-bottom:26px}
+.qprog i{display:block;height:100%;width:0;background:var(--blue);transition:width .5s}
+.q{font-size:clamp(21px,3vw,28px);font-weight:700;letter-spacing:-.02em;line-height:1.35;margin-bottom:22px}
+.opts{display:grid;gap:12px}
+.opt{text-align:left;padding:16px 20px;border-radius:18px;background:var(--bg2);border:2px solid transparent;font-size:17px;font-weight:500;transition:all .2s}
+.opt:hover:not(:disabled){border-color:var(--blue)}
+.opt.ok{background:rgba(48,161,78,.14);border-color:var(--green)}
+.opt.no{background:rgba(229,72,77,.12);border-color:var(--red);animation:shake .4s}
+.opt:disabled{cursor:default}
+.fb{margin-top:18px;padding:16px 18px;border-radius:16px;background:var(--bg2);font-size:15.5px;color:var(--sub);display:none}
+.fb.show{display:block;animation:fade .4s}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.qnav{display:flex;justify-content:flex-end;margin-top:20px}
+.result{text-align:center;padding:10px 0}
+.result .big{font-size:84px;font-weight:800;letter-spacing:-.04em;line-height:1}
+.result p{color:var(--sub);margin:12px 0 24px;font-size:18px}
+
+/* timeline */
+.tl{position:relative;display:flex;justify-content:space-between;margin:10px 0 30px}
+.tl::before{content:"";position:absolute;left:8%;right:8%;top:26px;height:3px;background:var(--line);border-radius:3px}
+.tl::after{content:"";position:absolute;left:8%;top:26px;height:3px;background:var(--blue);border-radius:3px;width:calc(var(--p,0)*84%/3);transition:width .5s}
+.tn{position:relative;z-index:1;flex:1;display:flex;flex-direction:column;align-items:center;gap:10px}
+.dot{width:54px;height:54px;border-radius:50%;background:var(--card);border:3px solid var(--line);display:grid;place-items:center;font-size:22px;box-shadow:var(--shadow);transition:all .3s}
+.tn.done .dot{border-color:var(--blue)}
+.tn.cur .dot{background:var(--blue);border-color:var(--blue);transform:scale(1.15);color:#fff}
+.tn span{font-size:13px;font-weight:600;color:var(--sub);text-align:center}
+.tn.cur span{color:var(--text)}
+.tpanel{background:var(--card);border-radius:26px;padding:30px;box-shadow:var(--shadow);min-height:210px}
+.tpanel h3{font-size:24px;letter-spacing:-.02em;margin-bottom:8px}
+.tpanel p{color:var(--sub);font-size:17px}
+.tctl{display:flex;justify-content:space-between;margin-top:18px}
+.redline{display:inline-block;width:46px;height:5px;background:#ff3b30;border-radius:5px;vertical-align:middle;margin:0 6px}
+
+/* compare */
+.seg{display:inline-flex;padding:4px;border-radius:99px;background:var(--bg2);border:1px solid var(--line);margin-bottom:26px}
+.seg button{padding:10px 24px;border-radius:99px;font-weight:600;font-size:16px;color:var(--sub);transition:all .3s}
+.seg button.on{background:var(--card);color:var(--text);box-shadow:0 2px 10px rgba(0,0,0,.12)}
+.cmp{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.cmp .c{background:var(--card);border-radius:24px;padding:26px;box-shadow:var(--shadow);transition:opacity .4s,transform .4s}
+.cmp .c small{color:var(--sub);font-weight:600;font-size:13px}
+.cmp .c div{font-size:22px;font-weight:700;letter-spacing:-.02em;margin-top:6px;line-height:1.35}
+.cmp .hl div{color:var(--blue)}
+.cmp.swap .c{animation:fade .5s}
+.cmp-note{margin-top:20px;color:var(--sub);font-size:17px;max-width:720px}
+
+/* flow */
+.flow{display:flex;flex-wrap:wrap;gap:12px;align-items:stretch}
+.fl{flex:1;min-width:190px;background:var(--card);border-radius:22px;padding:22px;box-shadow:var(--shadow);text-align:left;transition:all .3s;border:2px solid transparent}
+.fl:hover{transform:translateY(-3px)}
+.fl.on{border-color:var(--blue)}
+.fl b{display:block;font-size:20px;margin-bottom:4px}
+.fl span{font-size:14px;color:var(--sub)}
+#flowDetail{margin-top:18px;padding:22px 26px;background:var(--card);border-radius:22px;box-shadow:var(--shadow);color:var(--sub);font-size:17px;min-height:96px}
+#flowDetail strong{color:var(--text)}
+
+/* apply */
+.chk{display:flex;gap:14px;align-items:flex-start;padding:16px 0;border-bottom:1px solid var(--line);cursor:pointer;font-size:17px}
+.chk:last-of-type{border-bottom:none}
+.chk input{appearance:none;-webkit-appearance:none;flex:none;width:26px;height:26px;border-radius:50%;border:2px solid var(--line);margin-top:1px;display:grid;place-items:center;cursor:pointer;transition:all .25s}
+.chk input:checked{background:var(--green);border-color:var(--green)}
+.chk input:checked::after{content:"✓";color:#fff;font-size:15px;font-weight:700}
+.chk input:checked+span{color:var(--sub);text-decoration:line-through}
+.note{width:100%;min-height:120px;border-radius:18px;border:1.5px solid var(--line);background:var(--bg2);padding:16px;resize:vertical;font-size:16px;margin-top:10px}
+.note:focus{outline:none;border-color:var(--blue)}
+.saved{font-size:13px;color:var(--green);height:18px;margin-top:6px;opacity:0;transition:opacity .3s}
+.saved.show{opacity:1}
+
+/* memory verse */
+.mem-card{max-width:820px;margin:0 auto;background:var(--card);border-radius:30px;box-shadow:var(--shadow);padding:clamp(24px,4vw,44px);text-align:center}
+.mem-words{display:flex;flex-wrap:wrap;gap:8px 4px;justify-content:center;padding:26px 0 8px;font-size:clamp(19px,3.24vw,29px);font-weight:700;letter-spacing:-.03em;line-height:1.35}
+.mem-words .w{padding:2px 9px;border-radius:12px;transition:background .3s,color .3s}
+.mem-words .w.hide{color:transparent;background:rgba(0,113,227,.14);cursor:pointer;user-select:none;min-width:2.2em}
+.mem-words .w.hide:hover{background:rgba(0,113,227,.28)}
+.mem-words .vn{align-self:flex-start;font-size:.5em;font-weight:700;color:var(--blue);padding:.5em 2px 0 8px}
+.mem-ref{color:var(--blue);font-weight:700;font-size:17px;margin-top:10px}
+.mem-note{color:var(--sub);font-size:13px;margin-top:2px}
+.mem-ctl{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:22px}
+.mem-ctl .btn{margin-top:0}
+.mem-msg{min-height:26px;margin-top:16px;color:var(--sub);font-size:15px}
+.confetti{position:fixed;top:-20px;font-size:22px;z-index:300;pointer-events:none;animation:fall 2.6s ease-in forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(540deg);opacity:.9}}
+
+footer{padding:60px 20px 80px;text-align:center;color:var(--sub);font-size:14px}
+footer .amen{font-size:clamp(22px,3.4vw,32px);font-weight:700;color:var(--text);letter-spacing:-.02em;max-width:640px;margin:0 auto 18px;line-height:1.4}
+
+@media(max-width:640px){
+  section{padding:70px 18px}
+  .tn span{font-size:11px}
+  .dot{width:44px;height:44px;font-size:18px}
+  .tl::before,.tl::after{top:21px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<nav>
+  <div class="in">
+    <b>라합 복습</b>
+    <ul>
+      <li><a href="#flow">한눈에</a></li>
+      <li><a href="#story">3가지 질문</a></li>
+      <li><a href="#cards">카드</a></li>
+      <li><a href="#cloze">빈칸</a></li>
+      <li><a href="#compare">두 반응</a></li>
+      <li><a href="#timeline">타임라인</a></li>
+      <li><a href="#quiz">퀴즈</a></li>
+      <li><a href="#apply">적용</a></li>
+      <li><a href="#memory">암송구절</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="pill rv">히브리서 강해 (47) · 히브리서 11장 30–31절</span>
+    <h1 class="rv">믿음으로<br><span class="grad">기생 라합은</span></h1>
+    <p class="rv">하나님의 은혜와, 그 은혜에 반응하는 믿음. 설교를 다시 한 번, 눌러 보고 맞춰 보면서 복습해 보세요.</p>
+    <div class="verse-hero rv">
+      <small>히브리서 11:31</small>
+      <q>“믿음으로 기생 라합은 정탐군을 평안히 영접하였으므로 순종하지 아니한 자와 함께 멸망하지 아니하였도다”</q>
+    </div>
+    <a class="btn rv" href="#flow">복습 시작하기 ↓</a>
+  </div>
+</header>
+
+<!-- 한눈에 -->
+<section id="flow" class="alt">
+  <div class="wrap">
+    <div class="eyebrow rv">OVERVIEW</div>
+    <h2 class="rv">한눈에 보는 흐름</h2>
+    <p class="lead rv">네 장의 카드를 눌러 보세요. 라합의 믿음이 어떻게 시작되어 어디까지 이르렀는지 이어집니다.</p>
+    <div class="flow rv" id="flowBtns"></div>
+    <div id="flowDetail" class="rv">위의 카드를 눌러 보세요.</div>
+  </div>
+</section>
+
+<!-- 서론 + 세 가지 질문 -->
+<section id="story">
+  <div class="wrap">
+    <div class="eyebrow rv">THE SERMON</div>
+    <h2 class="rv">설교의 세 가지 질문</h2>
+    <p class="lead rv">서론에서 결론까지, 한 줄씩 펼쳐서 읽어 보세요.</p>
+    <div class="story" id="storyList"></div>
+  </div>
+</section>
+
+<!-- 플래시카드 -->
+<section id="cards" class="alt">
+  <div class="wrap">
+    <div class="eyebrow rv">FLASHCARDS</div>
+    <h2 class="rv">카드를 뒤집어 보세요</h2>
+    <p class="lead rv">먼저 답을 떠올려 보고, 카드를 눌러 확인합니다.</p>
+    <div class="grid g3 fc-wrap" id="fcGrid"></div>
+  </div>
+</section>
+
+<!-- 빈칸 -->
+<section id="cloze">
+  <div class="wrap">
+    <div class="eyebrow rv">FILL IN THE BLANK</div>
+    <h2 class="rv">말씀 빈칸 채우기</h2>
+    <p class="lead rv">설교 속에 인용된 말씀입니다. 알맞은 말을 골라 빈칸을 채워 보세요.</p>
+    <div id="clozeList"></div>
+    <p class="src rv" id="clozeScore"></p>
+  </div>
+</section>
+
+<!-- 두 반응 -->
+<section id="compare" class="alt">
+  <div class="wrap">
+    <div class="eyebrow rv">SAME NEWS, DIFFERENT RESPONSE</div>
+    <h2 class="rv">같은 소문, 다른 반응</h2>
+    <p class="lead rv">“우리가 들었음이니라” — 여리고 사람들도, 라합도 같은 소문을 들었습니다. 위의 버튼으로 두 반응을 바꿔 보세요.</p>
+    <div class="seg rv" id="seg">
+      <button class="on" data-k="city">여리고 사람들</button>
+      <button data-k="rahab">라합</button>
+    </div>
+    <div class="cmp rv" id="cmp"></div>
+    <p class="cmp-note rv" id="cmpNote"></p>
+  </div>
+</section>
+
+<!-- 타임라인 -->
+<section id="timeline">
+  <div class="wrap">
+    <div class="eyebrow rv">TIMELINE</div>
+    <h2 class="rv">붉은 줄에서 예수님의 족보까지</h2>
+    <p class="lead rv">라합의 이야기는 여기서 끝나지 않습니다. 다음 단계로 넘겨 보세요.</p>
+    <div class="tl rv" id="tl"></div>
+    <div class="tpanel rv" id="tpanel"></div>
+    <div class="tctl rv">
+      <button class="btn ghost" id="tPrev">← 이전</button>
+      <button class="btn ghost" id="tNext">다음 →</button>
+    </div>
+  </div>
+</section>
+
+<!-- 퀴즈 -->
+<section id="quiz" class="alt">
+  <div class="wrap">
+    <div class="eyebrow rv" style="text-align:center">QUIZ</div>
+    <h2 class="rv" style="text-align:center">얼마나 기억나세요?</h2>
+    <p class="lead rv" style="text-align:center;margin-left:auto;margin-right:auto">7문제입니다. 고르면 바로 설명이 나옵니다.</p>
+    <div class="quiz rv" id="quizBox"></div>
+  </div>
+</section>
+
+<!-- 적용 -->
+<section id="apply">
+  <div class="wrap">
+    <div class="eyebrow rv">THIS WEEK</div>
+    <h2 class="rv">이번 한 주, 믿음의 삶으로</h2>
+    <p class="lead rv">적은 내용은 이 기기의 브라우저에만 저장되고, 어디로도 전송되지 않습니다.</p>
+    <div class="card rv" style="max-width:760px">
+      <h3>점검해 보세요</h3>
+      <label class="chk"><input type="checkbox" data-i="0"><span>“나는 평신도라서, 과거가 있어서”라는 핑계를 하나님 앞에 내려놓았다.</span></label>
+      <label class="chk"><input type="checkbox" data-i="1"><span>이번 주, 하나님이 행하신 일을 말씀으로 들었다(읽었다).</span></label>
+      <label class="chk"><input type="checkbox" data-i="2"><span>들은 것을 두려움이 아니라 믿음으로 바꾸어 고백했다.</span></label>
+      <label class="chk"><input type="checkbox" data-i="3"><span>믿음을 삶으로 증명하는 작은 순종 하나를 실행했다.</span></label>
+      <label class="chk"><input type="checkbox" data-i="4"><span>은혜를 받은 사람으로서 누군가를 하나님의 가족으로 환영했다.</span></label>
+      <div class="src" id="chkSum" style="margin-top:14px"></div>
+    </div>
+    <div class="card rv" style="max-width:760px;margin-top:18px">
+      <h3>나의 묵상 노트</h3>
+      <p>라합에게서 가장 마음에 남은 장면은 무엇인가요? 이번 주 내가 할 수 있는 믿음의 한 걸음은 무엇인가요?</p>
+      <textarea class="note" id="note" placeholder="여기에 적어 보세요…"></textarea>
+      <div class="saved" id="saved">저장되었습니다</div>
+    </div>
+  </div>
+</section>
+
+<!-- 이번 주 암송구절 -->
+<section id="memory" class="alt">
+  <div class="wrap">
+    <div class="eyebrow rv" style="text-align:center;font-size:26px">이번 주 암송구절</div>
+    <h2 class="rv" style="text-align:center">히브리서 10장 24–25절</h2>
+    <p class="lead rv" style="text-align:center;margin-left:auto;margin-right:auto">설교 본문과는 별개로, 교회가 매주 함께 외우는 암송구절입니다.</p>
+    <div class="mem-card rv">
+      <div class="seg" id="memSeg">
+        <button class="on" data-m="0">① 읽기</button>
+        <button data-m="1">② 빈칸</button>
+        <button data-m="2">③ 가리기</button>
+      </div>
+      <div class="mem-words" id="memWords" aria-live="polite"></div>
+      <div class="mem-ref">히브리서 10:24–25</div>
+      <div class="mem-note">개역개정</div>
+      <div class="mem-msg" id="memMsg"></div>
+      <div class="mem-ctl">
+        <button class="btn" id="memRead">소리 내어 읽었어요</button>
+        <button class="btn ghost" id="memReset">다시 가리기</button>
+        <button class="btn ghost" id="memAll">모두 보기</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="amen rv">“이 자리에 계신 여러분 한 사람 한 사람의 이름이 믿음의 전당에 기록되어 있는줄 믿습니다.”</div>
+  <div>히브리서 강해(47) · 복습 자료</div>
+</footer>
+
+<script>
+(function(){
+  const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+
+  /* ---------- progress bar ---------- */
+  const bar=$('#bar');
+  function prog(){const h=document.documentElement;const p=h.scrollTop/(h.scrollHeight-h.clientHeight||1);bar.style.width=(p*100)+'%'}
+  addEventListener('scroll',prog,{passive:true});prog();
+
+  /* ---------- 한눈에 flow ---------- */
+  const flow=[
+    {t:'① 듣다', s:'롬 10:17', d:'<strong>믿음은 들음에서 납니다.</strong> 라합은 “여호와께서 너희 앞에서 홍해 물을 마르게 하신 일”을 들었습니다. 막연한 감정이 아니라, 하나님이 행하신 일에 근거한 믿음이었습니다.'},
+    {t:'② 은혜', s:'엡 2:8', d:'<strong>은혜가 먼저입니다.</strong> 같은 소문을 들은 수많은 사람 가운데 라합의 마음을 여신 분이 하나님이십니다. 하나님의 은혜가 먼저 주어질 때, 우리는 믿음으로 반응합니다.'},
+    {t:'③ 믿음과 행함', s:'약 2:25–26', d:'<strong>믿음은 말로 끝나지 않습니다.</strong> 라합은 정탐꾼을 지붕 위에 숨기고 다른 길로 피하게 했습니다. “의롭게 하는 것은 오직 믿음이다. 그러나 의롭게 하는 믿음은 홀로 있지 않다”'},
+    {t:'④ 구원과 가족', s:'수 6:25 · 마 1:5', d:'<strong>라합 한 사람이 아니라 온 가족이 구원받았습니다.</strong> 언약 공동체 안에 들어왔고, 다윗 왕의 고조 할머니, 예수 그리스도의 족보에까지 이름이 올랐습니다.'}
+  ];
+  const fb=$('#flowBtns'), fd=$('#flowDetail');
+  flow.forEach((f,i)=>{
+    const b=document.createElement('button');b.className='fl';
+    b.innerHTML='<b>'+f.t+'</b><span>'+f.s+'</span>';
+    b.onclick=()=>{$$('.fl',fb).forEach(x=>x.classList.remove('on'));b.classList.add('on');fd.innerHTML=f.d};
+    fb.appendChild(b);
+  });
+
+  /* ---------- 설교 3가지 질문 ---------- */
+  const story=[
+    {tag:'서론',t:'믿음의 영웅들 때문에 믿음을 포기하지 말라',h:`
+      <p>아벨, 에녹, 노아, 아브라함, 이삭, 야곱, 요셉, 모세… 기라성 같은 믿음의 사람들을 보며 “아브라함이니까, 모세니까 저렇게 믿음으로 살았겠지” 하고 우리 자신을 합리화하기 쉽습니다.</p>
+      <p>그런데 히브리서 기자는 여리고 성 이야기에서 <strong>여호수아가 아니라 이방 여인, 기생 라합</strong>을 소개합니다. 32절에서는 다윗과 사무엘도 이름만 간단히 언급되는데, 라합은 굳이 따로 기록되었습니다.</p>
+      <div class="quote">“믿음으로 칠 일 동안 여리고를 도니 성이 무너졌으며”<cite>히브리서 11:30</cite></div>
+      <p style="margin-top:12px">→ <strong>“내가 무슨 이런 믿음의 삶을 살 수 있을까” 하는 사람들을 위한 말씀</strong>입니다.</p>`},
+    {tag:'1',t:'라합은 어떤 사람이었는가',h:`
+      <p>헬라어 본문은 <strong>포르네(πόρνη)</strong>, 곧 매춘부라는 단어를 씁니다. 이스라엘의 눈으로 보면 절대로 믿음의 전당에 들어올 수 없는 사람입니다.</p>
+      <p>그러나 하나님은 여리고 성의 수많은 사람들 가운데 <strong>한 사람, 라합을 주목하셨고</strong> 모두가 멸망하는 자리에서 구원해 주셨습니다.</p>
+      <p>→ “과거가 있어서, 내세울 것이 없어서”라고 핑계할 수 없습니다. <strong>자격 없는 자에게 임하는 은혜</strong>가 핵심입니다.</p>`},
+    {tag:'2',t:'라합의 믿음은 어떤 믿음이었는가',h:`
+      <p><strong>① 들음에서 난 믿음</strong> — 하나님이 행하신 일을 들은 데서 시작되었습니다. (롬 10:17)</p>
+      <p><strong>② 바라는 것들의 실상</strong> — 요단강도 건너지 않았고 성도 무너지지 않았는데, 라합은 “이 땅을 너희에게 주신 줄을 내가 아노라”고 이미 이루어진 것처럼 고백합니다. (히 11:1)</p>
+      <p><strong>③ 하나님을 고백한 믿음</strong> — “위로는 하늘에서도 아래로는 땅에서도 하나님이시니라.” 신명기 4장 39절에서 모세가 가르친 신앙고백과 같습니다.</p>
+      <p><strong>④ 은혜로 주어진 믿음</strong> — 영리해서가 아니라, 하나님이 마음을 여셨기 때문입니다. (엡 2:8)</p>
+      <p><strong>⑤ 행함의 열매를 맺는 믿음</strong> — 발각되면 극형에 처해질 것을 알면서도 정탐꾼을 숨겼습니다. (약 2:25–26) “의인은 믿음으로 말미암아 살리라” — ‘살리라’에도 강조점이 있습니다.</p>`},
+    {tag:'3',t:'라합의 믿음의 결과는 무엇인가',h:`
+      <p>결과는 <strong>구원</strong>입니다. 라합은 정탐꾼에게 자기와 가족을 살려 달라고 청했고(수 2:12), 정탐꾼들은 <strong>붉은 줄이 매여 있는 집 안의 사람들</strong>을 살려 주겠다고 약속했습니다(수 2:18–19).</p>
+      <p>여호수아는 약속을 지켰고(수 6:25), 라합과 온 가족이 <strong>“오늘날까지 이스라엘 중에”</strong> 거하게 되었습니다. 성과 함께 멸망할 기생이 언약 공동체 안으로 들어온 것입니다.</p>
+      <p>그리고 룻기 4장과 마태복음 1장 5절 — <strong>다윗 왕의 고조 할머니, 예수 그리스도의 족보</strong>에 이름이 올랐습니다.</p>`},
+    {tag:'결론',t:'은혜에 반응하는 믿음이면 누구든 하나님의 가족이 된다',h:`
+      <p>보잘것없는 이방 기생, 멸망할 성의 주민이 믿음의 전당에 이름을 올렸습니다. 하나님의 은혜가 죄인의 인생을 역전시킨 증거입니다.</p>
+      <div class="quote">“너희는 유대인이나 헬라인이나 종이나 자유인이나 남자나 여자나 다 그리스도 예수 안에서 하나이니라”<cite>갈라디아서 3:28</cite></div>
+      <div class="quote">“그러므로 이제부터 너희는 외인도 아니요 나그네도 아니요 오직 성도들과 동일한 시민이요 하나님의 권속이라”<cite>에베소서 2:19</cite></div>
+      <p style="margin-top:12px">→ 믿음의 삶은 특별한 사람들의 것이 아니라, <strong>은혜를 받은 사람들이 그 은혜에 믿음으로 반응할 때</strong> 살 수 있는 삶입니다.</p>`}
+  ];
+  const sl=$('#storyList');
+  story.forEach((s,i)=>{
+    const d=document.createElement('div');d.className='step rv';
+    d.innerHTML='<button aria-expanded="false"><span class="tag">'+s.tag+'</span><span class="tt">'+s.t+'</span><span class="chev">›</span></button><div class="body"><div class="inner">'+s.h+'</div></div>';
+    const body=$('.body',d);
+    $('button',d).onclick=function(){
+      const open=d.classList.toggle('open');
+      this.setAttribute('aria-expanded',open);
+      body.style.maxHeight=open?body.scrollHeight+'px':'0';
+    };
+    sl.appendChild(d);
+  });
+  addEventListener('resize',()=>$$('.step.open .body').forEach(b=>b.style.maxHeight=b.scrollHeight+'px'));
+
+  /* ---------- flashcards ---------- */
+  const cards=[
+    ['히브리서 기자는 여리고 성 이야기에서 여호수아 대신 누구를 소개했나요?','한 이방 여인, 기생 라합'],
+    ['“기생”으로 번역된 헬라어 단어는?','포르네(πόρνη) — 영어로는 prostitute, 매춘부'],
+    ['라합의 믿음은 어디서 시작되었나요?','들음 — 하나님이 행하신 일에 대한 소문을 들은 데서 (롬 10:17)'],
+    ['같은 소문을 들은 여리고 사람들과 라합의 차이는?','여리고 사람들은 성문을 굳게 닫았고, 라합은 그 소문을 믿음으로 바꾸었습니다.'],
+    ['믿음과 행함에 대한 칼뱅의 말은?','“의롭게 하는 것은 오직 믿음이다. 그러나 의롭게 하는 믿음은 홀로 있지 않다”'],
+    ['붉은 줄은 무슨 약속의 표였나요?','붉은 줄이 매여 있는 집 안에 있는 사람들은 살려 주겠다는 약속 (수 2:18–19)'],
+    ['라합은 다윗 왕과 어떤 관계인가요?','다윗 왕의 고조 할머니 (살몬은 라합에게서 보아스를 낳고, 마 1:5)'],
+    ['“의인은 믿음으로 말미암아 살리라”에서 설교가 강조한 단어는?','“살리라” — 믿음을 삶으로 증명해 내는 것']
+  ];
+  const fg=$('#fcGrid');
+  cards.forEach((c,i)=>{
+    const w=document.createElement('div');w.className='fc rv';
+    w.innerHTML='<div class="face front"><small>Q'+(i+1)+'</small><div>'+c[0]+'</div></div><div class="face back"><small>ANSWER</small><div>'+c[1]+'</div></div>';
+    w.onclick=()=>w.classList.toggle('flip');
+    fg.appendChild(w);
+  });
+
+  /* ---------- cloze ---------- */
+  const clz=[
+    {pre:'“그러므로 믿음은 ',ans:'들음',post:'에서 나며 들음은 그리스도의 말씀으로 말미암았느니라”',opts:['들음','행함','보음'],src:'로마서 10:17'},
+    {pre:'“의롭게 하는 것은 오직 ',ans:'믿음',post:'이다. 그러나 의롭게 하는 믿음은 홀로 있지 않다”',opts:['행위','믿음','열심'],src:'칼뱅'},
+    {pre:'“의인은 믿음으로 말미암아 ',ans:'살리라',post:'”',opts:['복을 받으리라','구원받으리라','살리라'],src:'하박국 2:4 · 로마서 1:17'},
+    {pre:'“살몬은 ',ans:'라합',post:'에게서 보아스를 낳고”',opts:['룻','다말','라합'],src:'마태복음 1:5'},
+    {pre:'“…오직 성도들과 동일한 시민이요 ',ans:'하나님의 권속',post:'이라”',opts:['하나님의 종','하나님의 권속','하나님의 손님'],src:'에베소서 2:19'},
+    {pre:'“…행함이 없는 믿음은 ',ans:'죽은 것',post:'이니라”',opts:['약한 것','죽은 것','작은 것'],src:'야고보서 2:26'}
+  ];
+  const cl=$('#clozeList'); let cScore=0, cDone=0;
+  clz.forEach((c,i)=>{
+    const d=document.createElement('div');d.className='cloze rv';
+    d.innerHTML='<div class="s">'+c.pre+'<span class="blank">&nbsp;?&nbsp;</span>'+c.post+'</div><div class="chips"></div><div class="src">'+c.src+'</div>';
+    const bl=$('.blank',d), ch=$('.chips',d); let first=true;
+    c.opts.forEach(o=>{
+      const b=document.createElement('button');b.className='chip';b.textContent=o;
+      b.onclick=()=>{
+        bl.textContent=o;
+        if(o===c.ans){
+          bl.className='blank ok';$$('.chip',ch).forEach(x=>x.disabled=true);
+          cDone++; if(first)cScore++;
+          $('#clozeScore').textContent='첫 시도에 맞힌 문제: '+cScore+' / '+clz.length+(cDone===clz.length?' — 모두 완성했습니다 🎉':'');
+        }else{
+          first=false;bl.className='blank no';b.disabled=true;
+        }
+      };
+      ch.appendChild(b);
+    });
+    cl.appendChild(d);
+  });
+  $('#clozeScore').textContent='첫 시도에 맞힌 문제: 0 / '+clz.length;
+
+  /* ---------- compare ---------- */
+  const cmpData={
+    city:{c:[['들은 것','출애굽과 홍해, 시혼과 옥에 대한 소문'],['반응','두려움에 떨며 여리고 성문을 굳게 닫음'],['의지한 것','성벽']],
+      n:'여리고 사람들도 같은 소문을 들었습니다. 그러나 두려움 속에서 성문을 닫았습니다.'},
+    rahab:{c:[['들은 것','출애굽과 홍해, 시혼과 옥에 대한 소문'],['반응','소문을 믿음으로 바꾸어 정탐꾼을 영접하고 숨김'],['의지한 것','하나님']],
+      n:'여리고 성이 가장 강력한 요새라는 것을 알면서도, 라합은 성벽이 아니라 하나님을 믿었습니다. 이것이 은혜 안에서 반응한 믿음입니다.'}
+  };
+  const cmp=$('#cmp'), cn=$('#cmpNote');
+  function showCmp(k){
+    const d=cmpData[k];
+    cmp.classList.remove('swap');void cmp.offsetWidth;cmp.classList.add('swap');
+    cmp.innerHTML=d.c.map((x,i)=>'<div class="c'+(i>0&&k==='rahab'?' hl':'')+'"><small>'+x[0]+'</small><div>'+x[1]+'</div></div>').join('');
+    cn.textContent=d.n;
+    $$('#seg button').forEach(b=>b.classList.toggle('on',b.dataset.k===k));
+  }
+  $$('#seg button').forEach(b=>b.onclick=()=>showCmp(b.dataset.k));
+  showCmp('city');
+
+  /* ---------- timeline ---------- */
+  const tlData=[
+    {i:'🏚️',s:'여호수아 2장',t:'정탐꾼을 숨긴 라합',d:'라합은 정탐꾼들을 지붕 위에 숨기고 군사들을 다른 길로 보냈습니다. 그리고 “이 땅을 너희에게 주신 줄을 내가 아노라”라고 고백했습니다. 발각되면 민족의 배신자로 극형에 처해질 수 있는 일이었습니다.'},
+    {i:'🧵',s:'여호수아 2:18–19',t:'붉은 줄의 약속',d:'정탐꾼들은 창에 <span class="redline"></span>붉은 줄을 매고 부모와 형제와 아비의 가족을 다 집에 모으라고 일렀습니다. 붉은 줄이 매여 있는 집 안에 있는 사람들은 살려 주겠다는 약속입니다.'},
+    {i:'🏛️',s:'여호수아 6:25',t:'온 가족의 구원, 언약 공동체로',d:'여리고 성이 무너지고 불에 탈 때 여호수아는 약속을 지켰습니다. 라합의 믿음은 라합 자신만이 아니라 온 가족을 살렸고, 그는 “오늘날까지 이스라엘 중에 거하였”습니다.'},
+    {i:'👑',s:'룻기 4:21–22 · 마태복음 1:5',t:'다윗의 고조 할머니, 예수님의 족보',d:'“살몬은 보아스를 낳았고 보아스는 오벳을 낳았고 오벳은 이새를 낳고 이새는 다윗을 낳았더라” 그리고 마태복음 1장 5절은 말합니다. “살몬은 라합에게서 보아스를 낳고” — 가나안 족속의 기생이 다윗 왕의 고조 할머니가 되었고, 예수 그리스도의 족보에 이름을 올렸습니다.'}
+  ];
+  let ti=0; const tl=$('#tl'), tp=$('#tpanel');
+  tlData.forEach((x,i)=>{
+    const n=document.createElement('div');n.className='tn';
+    n.innerHTML='<button class="dot" aria-label="'+x.s+'">'+x.i+'</button><span>'+x.s.replace(' · ','<br>')+'</span>';
+    $('button',n).onclick=()=>setT(i);
+    tl.appendChild(n);
+  });
+  function setT(i){
+    ti=Math.max(0,Math.min(tlData.length-1,i));
+    $$('.tn',tl).forEach((n,k)=>{n.classList.toggle('cur',k===ti);n.classList.toggle('done',k<ti)});
+    tl.style.setProperty('--p',ti);
+    const x=tlData[ti];
+    tp.style.animation='none';void tp.offsetWidth;tp.style.animation='fade .4s';
+    tp.innerHTML='<div class="ref">'+x.s+'</div><h3 style="margin-top:8px">'+x.t+'</h3><p>'+x.d+'</p>';
+    $('#tPrev').style.visibility=ti===0?'hidden':'visible';
+    $('#tNext').style.visibility=ti===tlData.length-1?'hidden':'visible';
+  }
+  $('#tPrev').onclick=()=>setT(ti-1);
+  $('#tNext').onclick=()=>setT(ti+1);
+  setT(0);
+
+  /* ---------- quiz ---------- */
+  const quiz=[
+    {q:'히브리서 기자가 여리고 성 이야기에서 여호수아 대신 소개한 사람은?',o:['모세','기생 라합','다윗','살몬'],a:1,e:'히브리서 기자는 여호수아가 아니라 이방 여인, 기생 라합을 소개합니다. “내가 무슨 이런 믿음의 삶을 살 수 있을까” 하는 사람들을 위해서입니다.'},
+    {q:'“기생”으로 번역된 헬라어 단어는?',o:['포르네(πόρνη)','아가페(ἀγάπη)','카리스(χάρις)','피스티스(πίστις)'],a:0,e:'헬라어 본문은 포르네를 사용하고, 영어 성경은 prostitute, 곧 매춘부로 번역합니다.'},
+    {q:'라합의 믿음은 어디에서 난 믿음이었나요?',o:['뛰어난 정세 판단','들음','오랜 율법 공부','이스라엘 혈통'],a:1,e:'“믿음은 들음에서 나며” (롬 10:17). 영리해서 이스라엘의 승리를 점친 것이 아니라, 하나님이 행하신 일을 들은 것에 근거한 믿음이며, 하나님의 은혜로 주어진 것입니다.'},
+    {q:'라합과 같은 소문을 들은 여리고 사람들의 반응은?',o:['함께 하나님을 고백했다','성문을 굳게 닫았다','이스라엘에 항복했다','소문을 못 들었다'],a:1,e:'“우리가 들었음이니라” — 같은 소문을 듣고 한쪽은 두려움에 성문을 닫았고, 라합은 그 소문을 믿음으로 바꾸었습니다.'},
+    {q:'히브리서(믿음)와 야고보서(행함)가 상충되지 않는다는 칼뱅의 설명은?',o:['행함이 믿음보다 중요하다','믿음은 행함 없이도 열매를 맺는다','의롭게 하는 것은 오직 믿음이나, 그 믿음은 홀로 있지 않다','둘 중 하나만 선택해야 한다'],a:2,e:'의롭다 함에는 사람의 행위가 조금도 들어가지 않지만, 참 믿음은 반드시 순종과 행함의 열매를 맺습니다.'},
+    {q:'붉은 줄이 의미하는 약속은?',o:['성 안의 모든 사람을 살려 준다','줄이 매여 있는 집 안의 사람들을 살려 준다','라합에게 땅을 준다','여리고 성을 무너뜨린다'],a:1,e:'수 2:18–19. 붉은 줄이 매여 있는 집 안에 모인 부모와 형제와 온 가족이 함께 구원을 받았습니다.'},
+    {q:'마태복음 1장 5절에 따르면 라합은 누구의 어머니(아내)로 족보에 기록되었나요?',o:['살몬의 아내, 보아스의 어머니','보아스의 아내, 오벳의 어머니','이새의 아내','다윗의 아내'],a:0,e:'“살몬은 라합에게서 보아스를 낳고” — 가나안 족속의 기생 라합이 다윗 왕의 고조 할머니가 되었고, 예수 그리스도의 족보에 이름을 올렸습니다.'}
+  ];
+  const qb=$('#quizBox'); let qi=0, qs=0;
+  function renderQ(){
+    if(qi>=quiz.length){
+      const pct=Math.round(qs/quiz.length*100);
+      let msg=qs===quiz.length?'완벽합니다! 라합의 이야기가 마음에 새겨졌네요.':qs>=5?'아주 잘 기억하고 계세요. 틀린 부분은 카드로 다시 복습해 보세요.':'괜찮습니다. 위의 “설교의 세 가지 질문”을 다시 펼쳐 보고 한 번 더 도전해 보세요.';
+      qb.innerHTML='<div class="result"><div class="big grad">'+qs+' / '+quiz.length+'</div><p>'+msg+'</p><button class="btn" style="margin-top:0" id="retry">다시 풀기</button></div>';
+      $('#retry').onclick=()=>{qi=0;qs=0;renderQ()};
+      return;
+    }
+    const x=quiz[qi];
+    qb.innerHTML='<div class="qmeta"><span>문제 '+(qi+1)+' / '+quiz.length+'</span><span>맞힌 개수 '+qs+'</span></div><div class="qprog"><i style="width:'+(qi/quiz.length*100)+'%"></i></div><div class="q">'+x.q+'</div><div class="opts"></div><div class="fb"></div><div class="qnav"></div>';
+    const os=$('.opts',qb);
+    x.o.forEach((t,k)=>{
+      const b=document.createElement('button');b.className='opt';b.textContent=t;
+      b.onclick=()=>{
+        $$('.opt',os).forEach(z=>z.disabled=true);
+        const ok=k===x.a;
+        if(ok){qs++;b.classList.add('ok')}else{b.classList.add('no');$$('.opt',os)[x.a].classList.add('ok')}
+        const f=$('.fb',qb);f.innerHTML='<strong style="color:var(--text)">'+(ok?'정답입니다 ✓':'아쉽네요')+'</strong><br>'+x.e;f.classList.add('show');
+        const nv=$('.qnav',qb);nv.innerHTML='<button class="btn" style="margin-top:0;padding:10px 24px;font-size:16px">'+(qi===quiz.length-1?'결과 보기':'다음 문제')+'</button>';
+        $('button',nv).onclick=()=>{qi++;renderQ()};
+      };
+      os.appendChild(b);
+    });
+  }
+  renderQ();
+
+  /* ---------- apply (localStorage, 이 기기에만 저장) ---------- */
+  const KEY='rahab-review-47';
+  let st={}; try{st=JSON.parse(localStorage.getItem(KEY))||{}}catch(e){}
+  const chks=$$('.chk input'), note=$('#note'), saved=$('#saved');
+  function sum(){const n=chks.filter(c=>c.checked).length;$('#chkSum').textContent=n+' / '+chks.length+' 실천 중'+(n===chks.length?' 🙌':'')}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){} saved.classList.add('show');clearTimeout(save.t);save.t=setTimeout(()=>saved.classList.remove('show'),1200)}
+  chks.forEach(c=>{c.checked=!!(st.c&&st.c[c.dataset.i]);c.onchange=()=>{st.c=st.c||{};st.c[c.dataset.i]=c.checked;save();sum()}});
+  note.value=st.n||'';
+  note.oninput=()=>{st.n=note.value;clearTimeout(note.t);note.t=setTimeout(save,400)};
+  sum();
+
+  /* ---------- 이번 주 암송구절: 히브리서 10:24–25 (개역개정) ---------- */
+  function confetti(){
+    const e=['✨','🎉','🕊️','💙','⭐'];
+    for(let i=0;i<28;i++){
+      const s=document.createElement('span');s.className='confetti';s.textContent=e[i%e.length];
+      s.style.left=Math.random()*100+'vw';s.style.animationDelay=(Math.random()*.8)+'s';s.style.fontSize=(16+Math.random()*16)+'px';
+      document.body.appendChild(s);setTimeout(()=>s.remove(),4000);
+    }
+  }
+  (function(){
+    const MKEY='rahab-review-47-mem';
+    const TOK=['^24','서로','돌아보아','사랑과','선행을','격려하며','^25','모이기를','폐하는','어떤','사람들의','습관과','같이','하지','말고','오직','권하여','그','날이','가까움을','볼수록','더욱','그리하자'];
+    const BLANKS=[1,3,6,9,12,14,17,19]; /* 단어 순번(절 번호 제외) */
+    const box=$('#memWords'), msg=$('#memMsg'), bRead=$('#memRead'), bReset=$('#memReset'), bAll=$('#memAll');
+    const segB=$$('#memSeg button');
+    let mode=0, shown=new Set(), celebrated=false, reads=0;
+    try{reads=JSON.parse(localStorage.getItem(MKEY))||0}catch(e){}
+    let wi=0; const spans=[];
+    TOK.forEach(t=>{
+      const s=document.createElement('span');
+      if(t[0]==='^'){s.className='vn';s.textContent=t.slice(1);box.appendChild(s);return}
+      const idx=wi++; s.className='w'; s.textContent=t;
+      const reveal=()=>{if(s.classList.contains('hide')){shown.add(idx);update(true)}};
+      s.addEventListener('click',reveal);
+      s.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();reveal()}});
+      box.appendChild(s);spans.push(s);
+    });
+    const total=spans.length;
+    function targets(){return mode===1?BLANKS:mode===2?spans.map((_,i)=>i):[]}
+    function update(fromTap){
+      const t=targets();
+      spans.forEach((s,i)=>{
+        const hide=t.includes(i)&&!shown.has(i);
+        s.classList.toggle('hide',hide);
+        if(hide){s.setAttribute('role','button');s.tabIndex=0;s.setAttribute('aria-label','가려진 단어, 눌러서 보기')}
+        else{s.removeAttribute('role');s.removeAttribute('tabindex');s.removeAttribute('aria-label')}
+      });
+      bRead.style.display=mode===0?'':'none';
+      bReset.style.display=mode===0?'none':'';
+      bAll.style.display=mode===0?'none':'';
+      if(mode===0){msg.textContent=reads?'이 기기에서 '+reads+'번 읽었어요.':'구절 전체를 소리 내어 읽어 보세요.'}
+      else{
+        const done=t.filter(i=>shown.has(i)).length;
+        if(done===t.length){
+          msg.textContent='모두 확인했어요. 이제 보지 않고 소리 내어 말해 보세요.';
+          if(fromTap&&!celebrated){celebrated=true;confetti()}
+        }else msg.textContent='가려진 단어 '+t.length+'개 중 '+done+'개 확인 · 눌러서 한 단어씩 확인하세요.';
+      }
+    }
+    segB.forEach(b=>b.addEventListener('click',()=>{
+      mode=+b.dataset.m;shown=new Set();celebrated=false;
+      segB.forEach(x=>x.classList.toggle('on',x===b));update(false);
+    }));
+    bRead.addEventListener('click',()=>{reads++;try{localStorage.setItem(MKEY,JSON.stringify(reads))}catch(e){}update(false)});
+    bReset.addEventListener('click',()=>{shown=new Set();celebrated=false;update(false)});
+    bAll.addEventListener('click',()=>{targets().forEach(i=>shown.add(i));celebrated=true;update(false)});
+    update(false);
+  })();
+
+  /* ---------- reveal on scroll ---------- */
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.12});
+  $$('.rv').forEach((el,i)=>{el.style.transitionDelay=(i%3)*70+'ms';io.observe(el)});
+})();
+</script>
+</body>
+</html>
