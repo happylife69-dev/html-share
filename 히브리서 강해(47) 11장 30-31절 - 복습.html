@@ -174,14 +174,18 @@ h2{font-size:clamp(30px,5vw,48px);font-weight:700;letter-spacing:-.03em;line-hei
 .cmp-note{margin-top:20px;color:var(--sub);font-size:17px;max-width:720px}
 
 /* flow */
-.flow{display:flex;flex-wrap:wrap;gap:12px;align-items:stretch}
-.fl{flex:1;min-width:190px;background:var(--card);border-radius:22px;padding:22px;box-shadow:var(--shadow);text-align:left;transition:all .3s;border:2px solid transparent}
-.fl:hover{transform:translateY(-3px)}
-.fl.on{border-color:var(--blue)}
-.fl b{display:block;font-size:20px;margin-bottom:4px}
-.fl span{font-size:14px;color:var(--sub)}
-#flowDetail{margin-top:18px;padding:22px 26px;background:var(--card);border-radius:22px;box-shadow:var(--shadow);color:var(--sub);font-size:17px;min-height:96px}
-#flowDetail strong{color:var(--text)}
+.flow{display:grid;gap:12px;max-width:760px}
+.fl-item{background:var(--card);border-radius:22px;box-shadow:var(--shadow);border:2px solid transparent;overflow:hidden;transition:border-color .3s}
+.fl-item.on{border-color:var(--blue)}
+.fl{width:100%;display:flex;align-items:center;gap:14px;padding:20px 22px;text-align:left}
+.fl .ft{flex:1}
+.fl b{display:block;font-size:20px;margin-bottom:2px}
+.fl span.fs{font-size:14px;color:var(--sub)}
+.fl .chev{font-size:22px;color:var(--sub);transition:transform .35s}
+.fl-item.on .chev{transform:rotate(90deg);color:var(--blue)}
+.fl-d{max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.2,.7,.2,1)}
+.fl-d .in{padding:0 22px 22px;color:var(--sub);font-size:17px}
+.fl-d strong{color:var(--text)}
 
 /* apply */
 .chk{display:flex;gap:14px;align-items:flex-start;padding:16px 0;border-bottom:1px solid var(--line);cursor:pointer;font-size:17px}
@@ -261,7 +265,6 @@ footer .amen{font-size:clamp(22px,3.4vw,32px);font-weight:700;color:var(--text);
     <h2 class="rv">한눈에 보는 흐름</h2>
     <p class="lead rv">네 장의 카드를 눌러 보세요. 라합의 믿음이 어떻게 시작되어 어디까지 이르렀는지 이어집니다.</p>
     <div class="flow rv" id="flowBtns"></div>
-    <div id="flowDetail" class="rv">위의 카드를 눌러 보세요.</div>
   </div>
 </section>
 
@@ -406,13 +409,20 @@ footer .amen{font-size:clamp(22px,3.4vw,32px);font-weight:700;color:var(--text);
     {t:'③ 믿음과 행함', s:'약 2:25–26', d:'<strong>믿음은 말로 끝나지 않습니다.</strong> 라합은 정탐꾼을 지붕 위에 숨기고 다른 길로 피하게 했습니다. “의롭게 하는 것은 오직 믿음이다. 그러나 의롭게 하는 믿음은 홀로 있지 않다”'},
     {t:'④ 구원과 가족', s:'수 6:25 · 마 1:5', d:'<strong>라합 한 사람이 아니라 온 가족이 구원받았습니다.</strong> 언약 공동체 안에 들어왔고, 다윗 왕의 고조 할머니, 예수 그리스도의 족보에까지 이름이 올랐습니다.'}
   ];
-  const fb=$('#flowBtns'), fd=$('#flowDetail');
+  const fb=$('#flowBtns');
+  function closeFlow(it){it.classList.remove('on');$('.fl',it).setAttribute('aria-expanded','false');$('.fl-d',it).style.maxHeight='0'}
   flow.forEach((f,i)=>{
-    const b=document.createElement('button');b.className='fl';
-    b.innerHTML='<b>'+f.t+'</b><span>'+f.s+'</span>';
-    b.onclick=()=>{$$('.fl',fb).forEach(x=>x.classList.remove('on'));b.classList.add('on');fd.innerHTML=f.d};
-    fb.appendChild(b);
+    const it=document.createElement('div');it.className='fl-item';
+    it.innerHTML='<button class="fl" aria-expanded="false"><span class="ft"><b>'+f.t+'</b><span class="fs">'+f.s+'</span></span><span class="chev">›</span></button><div class="fl-d"><div class="in">'+f.d+'</div></div>';
+    const d=$('.fl-d',it);
+    $('.fl',it).onclick=function(){
+      const wasOn=it.classList.contains('on');
+      $$('.fl-item.on',fb).forEach(closeFlow);   /* 한 번에 하나만 */
+      if(!wasOn){it.classList.add('on');this.setAttribute('aria-expanded','true');d.style.maxHeight=d.scrollHeight+'px'}
+    };
+    fb.appendChild(it);
   });
+  addEventListener('resize',()=>$$('.fl-item.on .fl-d').forEach(d=>d.style.maxHeight=d.scrollHeight+'px'));
 
   /* ---------- 설교 3가지 질문 ---------- */
   const story=[
