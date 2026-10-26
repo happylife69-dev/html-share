@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>제2과 코이노니아의 본질 · 복습</title>
+<style>
+:root{
+  --bg:#fbfbfd; --bg2:#f5f5f7; --card:#ffffff; --text:#1d1d1f; --sub:#6e6e73; --line:rgba(0,0,0,.08);
+  --blue:#0071e3; --blue-soft:rgba(0,113,227,.10); --green:#1f9d55; --green-soft:rgba(48,209,88,.14);
+  --red:#d70015; --red-soft:rgba(255,59,48,.12); --orange:#c93400; --orange-soft:rgba(255,149,0,.14);
+  --shadow:0 2px 6px rgba(0,0,0,.04),0 12px 32px rgba(0,0,0,.06);
+  --nav:rgba(251,251,253,.72);
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#000; --bg2:#111113; --card:#1c1c1e; --text:#f5f5f7; --sub:#a1a1a6; --line:rgba(255,255,255,.12);
+    --blue:#2997ff; --blue-soft:rgba(41,151,255,.16); --green:#32d74b; --green-soft:rgba(50,215,75,.16);
+    --red:#ff453a; --red-soft:rgba(255,69,58,.16); --orange:#ff9f0a; --orange-soft:rgba(255,159,10,.16);
+    --shadow:0 0 0 1px rgba(255,255,255,.04); --nav:rgba(0,0,0,.72);
+  }
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+body{margin:0;background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;
+  line-height:1.65;-webkit-font-smoothing:antialiased;word-break:keep-all;letter-spacing:-.01em}
+button,input{font:inherit;color:inherit;letter-spacing:inherit}
+button{cursor:pointer}
+
+/* nav */
+nav{position:sticky;top:0;z-index:50;background:var(--nav);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:980px;margin:0 auto;padding:0 16px;height:48px;display:flex;align-items:center;gap:20px;overflow-x:auto;scrollbar-width:none}
+.nav-in::-webkit-scrollbar{display:none}
+.nav-in b{font-weight:600;font-size:14px;white-space:nowrap}
+.nav-in a{font-size:12.5px;color:var(--sub);text-decoration:none;white-space:nowrap;transition:color .2s}
+.nav-in a:hover{color:var(--text)}
+#bar{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:var(--blue);transition:width .1s}
+
+/* layout */
+main{max-width:980px;margin:0 auto;padding:0 20px}
+section{padding:88px 0 24px}
+.eyebrow{font-size:14px;font-weight:600;color:var(--blue);margin:0 0 8px}
+h2{font-size:clamp(28px,5vw,44px);line-height:1.15;font-weight:700;letter-spacing:-.03em;margin:0 0 12px}
+.lead{font-size:clamp(16px,2.2vw,19px);color:var(--sub);margin:0 0 32px;max-width:660px}
+.ref{font-size:12px;color:var(--sub);font-weight:400}
+
+/* hero */
+.hero{text-align:center;padding:96px 0 40px}
+.hero .eyebrow{font-size:15px}
+.hero h1{font-size:clamp(34px,7vw,64px);line-height:1.1;font-weight:700;letter-spacing:-.04em;margin:0 0 20px;
+  background:linear-gradient(135deg,var(--text) 30%,var(--blue));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.sub{font-size:clamp(17px,2.6vw,24px);color:var(--sub);margin:0 auto 36px;max-width:640px}
+.quote{background:var(--card);border-radius:28px;padding:36px 28px;box-shadow:var(--shadow);max-width:700px;margin:0 auto}
+.quote q{display:block;font-size:clamp(20px,3.4vw,28px);font-weight:600;line-height:1.4;quotes:none;letter-spacing:-.025em}
+.quote small{display:block;margin-top:12px;color:var(--sub)}
+.cta{display:inline-block;margin-top:32px;background:var(--blue);color:#fff;text-decoration:none;padding:12px 26px;border-radius:980px;font-size:17px;transition:transform .2s,opacity .2s}
+.cta:hover{transform:scale(1.03);opacity:.92}
+
+/* cards & grids */
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.card{background:var(--card);border-radius:22px;padding:24px;box-shadow:var(--shadow)}
+.card h3{margin:0 0 6px;font-size:19px;letter-spacing:-.02em}
+.card p{margin:0;color:var(--sub);font-size:15.5px}
+.tag{display:inline-block;font-size:12px;font-weight:600;padding:3px 10px;border-radius:980px;background:var(--blue-soft);color:var(--blue);margin-bottom:10px}
+.tag.g{background:var(--green-soft);color:var(--green)}
+.tag.o{background:var(--orange-soft);color:var(--orange)}
+.tag.gray{background:var(--bg2);color:var(--sub)}
+
+/* accordion-ish reveal */
+.reveal-btn{width:100%;text-align:left;background:var(--card);border:0;border-radius:22px;padding:22px 24px;box-shadow:var(--shadow);display:flex;gap:14px;align-items:flex-start;transition:transform .2s}
+.reveal-btn:active{transform:scale(.985)}
+.reveal-btn .ic{flex:none;width:36px;height:36px;border-radius:12px;background:var(--blue-soft);color:var(--blue);display:grid;place-items:center;font-weight:700}
+.reveal-btn h3{margin:0;font-size:18px}
+.reveal-btn .more{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s ease;color:var(--sub);font-size:15.5px}
+.reveal-btn .more>div{overflow:hidden}
+.reveal-btn[aria-expanded=true] .more{grid-template-rows:1fr}
+.reveal-btn .more>div>p{margin:8px 0 0}
+.chev{margin-left:auto;color:var(--sub);transition:transform .3s;flex:none}
+.reveal-btn[aria-expanded=true] .chev{transform:rotate(180deg)}
+
+/* tabs */
+.seg{display:flex;gap:4px;background:var(--bg2);border-radius:14px;padding:4px;margin-bottom:18px;overflow-x:auto}
+.seg button{flex:1;min-width:92px;border:0;background:transparent;border-radius:11px;padding:10px 8px;font-size:14.5px;color:var(--sub);transition:all .2s}
+.seg button[aria-selected=true]{background:var(--card);color:var(--text);font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.12)}
+.panel{animation:fade .35s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.big{font-size:clamp(22px,3.6vw,30px);font-weight:700;letter-spacing:-.03em;line-height:1.3;margin:6px 0 12px}
+
+/* blanks quiz */
+.q{background:var(--card);border-radius:22px;padding:20px 22px;box-shadow:var(--shadow);margin-bottom:12px}
+.q .num{font-size:13px;font-weight:600;color:var(--blue);margin-bottom:6px;display:flex;gap:8px;align-items:center}
+.q .stem{font-size:17px;font-weight:500;line-height:2.1}
+.q input{width:7.5em;border:0;border-bottom:2px solid var(--line);background:var(--bg2);border-radius:8px 8px 0 0;padding:2px 8px;text-align:center;outline:none;transition:border-color .2s,background .2s;margin:0 2px}
+.q input:focus{border-color:var(--blue)}
+.q input.ok{border-color:var(--green);background:var(--green-soft);color:var(--green)}
+.q input.bad{border-color:var(--red);background:var(--red-soft);animation:shake .35s}
+@keyframes shake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:8px}
+.btn{border:0;border-radius:980px;padding:8px 18px;background:var(--blue);color:#fff;font-size:14.5px;transition:opacity .2s,transform .2s}
+.btn:hover{opacity:.9}.btn:active{transform:scale(.96)}
+.btn.ghost{background:var(--bg2);color:var(--text)}
+.fb{font-size:14.5px;margin-top:6px;min-height:1.2em}
+.fb.ok{color:var(--green)}.fb.bad{color:var(--red)}
+
+/* OX */
+.ox{display:flex;gap:10px;margin-top:12px}
+.ox button{flex:1;border:0;border-radius:16px;padding:14px;font-size:22px;font-weight:700;background:var(--bg2);transition:all .2s}
+.ox button:hover:not(:disabled){background:var(--blue-soft);color:var(--blue)}
+.ox button.right{background:var(--green-soft);color:var(--green)}
+.ox button.wrong{background:var(--red-soft);color:var(--red)}
+.ox button:disabled{cursor:default}
+.explain{display:none;margin-top:12px;padding:12px 14px;border-radius:14px;background:var(--bg2);font-size:15px;color:var(--sub)}
+.explain.show{display:block;animation:fade .3s}
+
+/* threat chips */
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px}
+.chip{border:1px solid var(--line);background:var(--card);border-radius:980px;padding:10px 18px;font-size:15.5px;transition:all .2s;box-shadow:var(--shadow)}
+.chip[aria-pressed=true]{background:var(--blue);color:#fff;border-color:var(--blue)}
+.chip.shake{animation:shake .35s;border-color:var(--red)}
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0;font-size:15px}
+.flow span.s{background:var(--bg2);padding:8px 14px;border-radius:12px}
+.flow i{font-style:normal;color:var(--sub)}
+.callout{border-left:4px solid var(--blue);background:var(--blue-soft);border-radius:0 16px 16px 0;padding:14px 18px;margin:16px 0;font-size:15.5px}
+.callout.o{border-color:var(--orange);background:var(--orange-soft)}
+
+/* flashcards */
+.fc{perspective:1000px;height:200px;border:0;background:none;padding:0}
+.fc .in{position:relative;width:100%;height:100%;transition:transform .6s cubic-bezier(.2,.8,.2,1);transform-style:preserve-3d}
+.fc[aria-pressed=true] .in{transform:rotateY(180deg)}
+.fc .f,.fc .b{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:22px;padding:22px;display:flex;flex-direction:column;justify-content:center;box-shadow:var(--shadow);text-align:left;overflow:auto}
+.fc .f{background:var(--card)}
+.fc .b{background:var(--blue);color:#fff;transform:rotateY(180deg);font-weight:600;font-size:15.5px;line-height:1.5}
+.fc .f .n{font-size:13px;font-weight:600;color:var(--blue)}
+.fc .f .k{font-size:21px;font-weight:700;letter-spacing:-.025em;margin-top:6px}
+.fc .f .h{font-size:13px;color:var(--sub);margin-top:10px}
+
+/* self check */
+.opts{display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+.opt{border:2px solid transparent;background:var(--card);border-radius:16px;padding:14px;text-align:center;box-shadow:var(--shadow);transition:all .2s}
+.opt[aria-pressed=true]{border-color:var(--blue);background:var(--blue-soft)}
+.check{display:flex;gap:12px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--line);cursor:pointer}
+.check:last-child{border:0}
+.check input{width:22px;height:22px;accent-color:var(--blue);flex:none;margin-top:3px}
+.check input:checked+span{color:var(--sub);text-decoration:line-through}
+
+/* result */
+.result{text-align:center}
+.ring{width:180px;height:180px;margin:0 auto 12px;position:relative}
+.ring svg{transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:12;stroke-linecap:round}
+.ring .tr{stroke:var(--bg2)}
+.ring .pr{stroke:var(--blue);stroke-dasharray:471;stroke-dashoffset:471;transition:stroke-dashoffset 1s cubic-bezier(.2,.8,.2,1)}
+.ring .t{position:absolute;inset:0;display:grid;place-items:center;font-size:38px;font-weight:700;letter-spacing:-.03em}
+.ring .t small{font-size:14px;font-weight:400;color:var(--sub);display:block;text-align:center}
+
+/* reveal on scroll */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}html{scroll-behavior:auto}}
+footer{max-width:980px;margin:72px auto 0;padding:28px 20px 56px;border-top:1px solid var(--line);color:var(--sub);font-size:13px;text-align:center}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-in">
+    <b>제2과 복습</b>
+    <a href="#s1">코이노니아</a><a href="#s2">일곱 실체</a><a href="#s3">네 가지 본질</a>
+    <a href="#s4">첫째 본질</a><a href="#s5">둘째 본질</a><a href="#s6">OX 퀴즈</a>
+    <a href="#s7">요점 카드</a><a href="#s8">점검·기도</a><a href="#s9">결과</a>
+  </div>
+  <div id="bar"></div>
+</nav>
+
+<main>
+
+<!-- HERO -->
+<header class="hero rv">
+  <p class="eyebrow">하나님을 경험하는 삶 · 12단원 제2과 · p.366~371</p>
+  <h1>코이노니아의 본질<br>제1부</h1>
+  <p class="sub">전 존재로 사랑하고, 그분의 통치에 순복하는 교제</p>
+  <div class="quote">
+    <q>하나님과의 코이노니아는 그분의 임재를 경험하는 것이다.</q>
+    <small>핵심 문장 · p.366</small>
+  </div>
+  <a class="cta" href="#s1">복습 시작하기</a>
+</header>
+
+<!-- 1 -->
+<section id="s1" class="rv">
+  <p class="eyebrow">01 · 코이노니아란</p>
+  <h2>그분의 임재를 경험하는 것</h2>
+  <p class="lead">카드를 눌러 펼쳐 보세요. <span class="ref">(p.366)</span></p>
+  <div class="grid g2">
+    <button class="reveal-btn" aria-expanded="false">
+      <div class="ic">1</div>
+      <div style="flex:1"><h3>사랑의 관계</h3>
+        <div class="more"><div><p>코이노니아는 하나님과의 사랑의 관계, 곧 친밀한 교제입니다. 구원과 영생의 가장 기본 요소입니다. (요 17:3)</p></div></div></div>
+      <span class="chev">⌄</span>
+    </button>
+    <button class="reveal-btn" aria-expanded="false">
+      <div class="ic">2</div>
+      <div style="flex:1"><h3>하나님이 먼저</h3>
+        <div class="more"><div><p>하나님이 먼저 초청하시고 성령님을 우리 안에 두십니다. 어떤 인간적인 방법이나 단계도 이 교제를 지속시키지 못합니다.</p></div></div></div>
+      <span class="chev">⌄</span>
+    </button>
+    <button class="reveal-btn" aria-expanded="false">
+      <div class="ic">3</div>
+      <div style="flex:1"><h3>우리의 반응</h3>
+        <div class="more"><div><p>하나님이 주도하시지만, 임재를 충만히 경험하려면 우리도 반응해야 합니다.</p></div></div></div>
+      <span class="chev">⌄</span>
+    </button>
+    <button class="reveal-btn" aria-expanded="false">
+      <div class="ic">4</div>
+      <div style="flex:1"><h3>교제는 깨어질 수 있다 <span class="ref">p.367</span></h3>
+        <div class="more"><div><p>지속적인 교제는 갑자기 일어나는 사건이 아닙니다. 겉으로 좋아 보이는 동기도 하나님과의 교제, 형제자매와의 교제를 위협할 수 있습니다. 그래서 코이노니아의 본질을 알아야 합니다.</p></div></div></div>
+      <span class="chev">⌄</span>
+    </button>
+  </div>
+</section>
+
+<!-- 2 -->
+<section id="s2" class="rv">
+  <p class="eyebrow">02 · 일곱 가지 실체 복습</p>
+  <h2>빈칸을 채워 보세요</h2>
+  <p class="lead">정답을 입력하고 <b>확인</b>을 눌러 보세요. 막히면 <b>정답 보기</b>가 있습니다. 첫 시도에 맞힌 문제만 점수에 들어갑니다. <span class="ref">(p.366~367)</span></p>
+  <div id="blanks"></div>
+  <div class="callout">
+    <b>5·6·7번은 하나님의 주도하심에 대한 <u>우리의 반응</u>입니다.</b><br>
+    믿음으로 행함, 조정, 순종. 충성되게 순종하는 삶이 하나님의 임재를 경험하게 하며, 이것이 코이노니아입니다.
+  </div>
+</section>
+
+<!-- 3 -->
+<section id="s3" class="rv">
+  <p class="eyebrow">03 · 코이노니아의 본질 네 가지</p>
+  <h2>이번 과는 두 가지</h2>
+  <p class="lead">탭을 눌러 네 가지를 살펴보세요. <span class="ref">(p.367)</span></p>
+  <div class="seg" role="tablist" id="essTabs"></div>
+  <div class="card panel" id="essPanel"></div>
+</section>
+
+<!-- 4 -->
+<section id="s4" class="rv">
+  <p class="eyebrow">04 · 첫째 본질</p>
+  <h2>전 존재를 걸고<br>하나님을 사랑하라</h2>
+  <p class="lead">마 22:37-38 "크고 첫째 되는 계명" · 요일 2:15-16 세상을 사랑하지 말라 <span class="ref">(p.367~368)</span></p>
+
+  <div class="card" style="margin-bottom:16px">
+    <span class="tag g">하나님을 사랑하면</span>
+    <div class="chips" id="fruitChips" style="margin:6px 0 0"></div>
+    <p id="fruitText" style="margin-top:12px;min-height:1.6em">버튼을 눌러 보세요.</p>
+  </div>
+
+  <div class="card" style="margin-bottom:16px">
+    <span class="tag o">교제에 대한 위협 요소</span>
+    <p style="margin-bottom:12px">위협은 "첫사랑"을 잃게 합니다. 에베소교회가 그랬습니다. (계 2:1-7) 하나씩 눌러 보세요.</p>
+    <div class="chips" id="threatChips"></div>
+    <div id="threatPanel"></div>
+  </div>
+
+  <div class="callout o">
+    <b>하나님과의 교제가 깨어지면 다른 사람들과의 교제에도 그대로 나타납니다.</b><br>
+    교회도 이기적이고 욕심 많은 모습이 될 수 있습니다. 물질주의는 잃어버린 자와 불쌍한 사람을 돕기보다 자기를 우선하여 하나님의 것을 쓰게 만듭니다.
+  </div>
+</section>
+
+<!-- 5 -->
+<section id="s5" class="rv">
+  <p class="eyebrow">05 · 둘째 본질</p>
+  <h2>하나님의 통치권에<br>완전히 순복하라</h2>
+  <p class="lead">하나님은 우리의 주인이십니다. 완전한 사랑 때문에 절대적인 순종을 요구하십니다. <span class="ref">(p.368~370)</span></p>
+
+  <div class="grid g2" style="margin-bottom:16px">
+    <div class="card"><span class="tag o">영적 간음</span>
+      <p>그리스도 이외의 다른 사람에게 충성과 신의를 바치는 것입니다. 목사, 집사, 영향력 있는 사업가, 위원회가 교회를 다스려도 코이노니아는 위협받습니다.</p></div>
+    <div class="card"><span class="tag o">자기 눈에 보기 좋은 대로</span>
+      <p>자기가 자기 법이 되면 코이노니아를 경험할 수 없습니다. 자기를 주장하는 것은 <b>예수님의 머리 되심을 도둑질하는 것</b>입니다.</p></div>
+  </div>
+
+  <div class="card" style="margin-bottom:16px">
+    <h3>🎯 교회의 머리는 누구일까요?</h3>
+    <p style="margin-bottom:12px">하나를 골라 보세요.</p>
+    <div class="chips" id="headChips"></div>
+    <p id="headMsg" style="min-height:1.6em"></p>
+  </div>
+
+  <div class="card" style="margin-bottom:16px">
+    <h3>교제가 깨어지는 두 방향</h3>
+    <div class="grid g2" style="margin-top:12px">
+      <div class="card" style="background:var(--bg2);box-shadow:none"><b>① 한 개인이</b><br><span style="color:var(--sub)">교회의 머리가 되려 할 때</span></div>
+      <div class="card" style="background:var(--bg2);box-shadow:none"><b>② 교회가</b><br><span style="color:var(--sub)">목사님이나 다른 개인과 그룹에게 다스리기를 기대할 때</span></div>
+    </div>
+    <p style="margin-top:14px">어떤 개인이나 그룹이 머리 역할을 하면 교회는 건강할 수 없습니다. 겉으로는 건강해 보여도 하나님이 보시기에는 <b>그분의 아들의 통치에 대한 반란</b>이고, 하나님은 그것을 싫어하십니다.</p>
+  </div>
+
+  <div class="card" style="margin-bottom:16px">
+    <span class="tag">성경 사례 · 고전 1~3장</span>
+    <h3>고린도교회의 분열</h3>
+    <div class="chips" id="corChips" style="margin-top:12px"></div>
+    <p id="corMsg">셋을 차례로 눌러 보세요.</p>
+  </div>
+
+  <div class="quote" style="max-width:none;text-align:left">
+    <small style="margin:0 0 8px">교재 상자 글</small>
+    <q style="font-size:clamp(18px,2.8vw,23px)">"교회의 각 지체는 모두 그 자신의 인생 위에 있는 그리스도의 주권에 굴복해야 하며, 교회 위에 있는 그리스도의 머리 되심에 굴복해야 한다."</q>
+  </div>
+  <p class="ref" style="margin-top:14px">지방회나 교단 같은 더 큰 그리스도의 몸에서도 같습니다. 예수님의 주권에 순복하기를 거부하는 곳에서는 코이노니아가 불가능합니다.</p>
+</section>
+
+<!-- 6 -->
+<section id="s6" class="rv">
+  <p class="eyebrow">06 · OX 퀴즈</p>
+  <h2>이번 과, 얼마나 기억나나요?</h2>
+  <p class="lead">O 또는 X를 눌러 보세요. 한 번 고르면 해설이 열립니다.</p>
+  <div id="oxList"></div>
+</section>
+
+<!-- 7 -->
+<section id="s7" class="rv">
+  <p class="eyebrow">07 · 이 과의 요점</p>
+  <h2>카드를 뒤집어 보세요</h2>
+  <p class="lead">앞면의 주제를 보고 내용을 떠올린 뒤, 눌러서 확인하세요. <span class="ref">(교재 p.371, 원문 그대로)</span></p>
+  <div class="grid g3" id="cards"></div>
+</section>
+
+<!-- 8 -->
+<section id="s8" class="rv">
+  <p class="eyebrow">08 · 적용과 기도</p>
+  <h2>누가 당신 인생의<br>주인입니까?</h2>
+  <p class="lead">교재의 질문입니다. 선택은 이 화면에서만 보이고 어디에도 저장되지 않습니다. <span class="ref">(p.370)</span></p>
+  <div class="opts" id="lordOpts"></div>
+  <p id="lordMsg" style="margin:16px 4px 0;min-height:1.6em;color:var(--sub)"></p>
+
+  <div class="grid g2" style="margin-top:24px">
+    <div class="card">
+      <h3>모범 답이 없는 성찰 질문</h3>
+      <p>• 누가 당신 교회의 머리로 보입니까?<br>• 누가 당신 교단의 머리로 보입니까?</p>
+    </div>
+    <div class="card">
+      <h3>🙏 기도 안내</h3>
+      <label class="check"><input type="checkbox"><span>무엇이 하나님께 대한 첫사랑을 잃게 하는지 묻고, 보여 주시면 고백하고 첫사랑으로 돌아오기</span></label>
+      <label class="check"><input type="checkbox"><span>내 인생을 그분의 주권하에 전적으로 드렸는지 묻기</span></label>
+      <label class="check"><input type="checkbox"><span>그리스도께서 교회의 머리 역할을 하시도록 허락했는지 묻기</span></label>
+      <label class="check"><input type="checkbox"><span>배우자, 가족, 교회, 교단 모든 사람의 마음을 하나님이 통치하시도록 기도하기</span></label>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <span class="tag gray">교사 정리 · 교재 문장 아님</span>
+    <h3>소그룹 나눔 질문</h3>
+    <p>• 요즘 내가 하나님보다 더 마음을 쏟고 있는 것은 무엇인가요?<br>
+       • "내 인생의 주인"을 고르라면 솔직히 무엇을 고르게 되나요?<br>
+       • 교회 안에서 사람을 따르는 일(고린도교회의 분열)이 오늘 우리에게도 있을 수 있을까요?</p>
+  </div>
+</section>
+
+<!-- 9 -->
+<section id="s9" class="rv">
+  <p class="eyebrow">09 · 결과</p>
+  <h2>오늘의 복습 결과</h2>
+  <div class="card result">
+    <div class="ring">
+      <svg width="180" height="180" viewBox="0 0 180 180"><circle class="tr" cx="90" cy="90" r="75"/><circle class="pr" id="pr" cx="90" cy="90" r="75"/></svg>
+      <div class="t"><div id="scoreNum">0<small>/ 14</small></div></div>
+    </div>
+    <p id="scoreMsg" style="font-size:17px;color:var(--text);margin-bottom:6px">퀴즈를 풀면 점수가 올라갑니다.</p>
+    <p id="scoreDetail">빈칸 0 / 7 · OX 0 / 7</p>
+    <div class="row" style="justify-content:center;margin-top:16px">
+      <button class="btn" id="resetBtn">처음부터 다시</button>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <span class="tag gray">교사 정리 · 교재 문장 아님</span>
+    <h3>학생들이 꼭 알아야 할 핵심</h3>
+    <p>
+      1. <b>코이노니아 = 하나님의 임재를 경험하는 사랑의 관계.</b> 하나님이 먼저 부르시고, 우리는 믿음, 조정, 순종으로 반응합니다.<br>
+      2. <b>본질 ①: 전 존재로 하나님을 사랑한다.</b> 이 사랑이 식으면 순종과 이웃 사랑이 함께 무너집니다. 물질과 욕심이 대표적인 위협입니다.<br>
+      3. <b>본질 ②: 그리스도의 주권에 완전히 순복한다.</b> 내가 주인이 되어도, 교회에서 사람이 머리가 되어도 교제는 깨어집니다.<br>
+      4. <b>교제는 하나님과의 관계에서 먼저 깨어지고, 이어서 사람과의 관계에 나타납니다.</b> 문제가 생기면 먼저 하나님과 나의 관계를 돌아봅니다. (제1과와 연결)<br>
+      5. <b>자기 점검 질문:</b> "내 인생의 주인은 누구인가? 하나님보다 더 사랑하는 것이 있는가?"
+    </p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  하나님을 경험하는 삶 · 12단원 제2과 「코이노니아의 본질, 제1부」 복습 자료<br>
+  교재 범위 p.366~371 · 퀴즈 문항과 해설은 복습용으로 새로 작성했습니다.
+</footer>
+
+<script>
+(function(){
+  const $ = (s,r=document)=>r.querySelector(s);
+  const norm = s => (s||'').replace(/\s+/g,'');
+
+  /* ---------- 점수 상태 ---------- */
+  const score = {blank:{}, ox:{}};
+  const TOTAL_B = 7, TOTAL_O = 7;
+  function updateScore(){
+    const b = Object.values(score.blank).filter(Boolean).length;
+    const o = Object.values(score.ox).filter(Boolean).length;
+    const n = b+o, tot = TOTAL_B+TOTAL_O;
+    $('#scoreNum').firstChild.nodeValue = n;
+    $('#pr').style.strokeDashoffset = 471 - 471*(n/tot);
+    $('#scoreDetail').textContent = `빈칸 ${b} / ${TOTAL_B} · OX ${o} / ${TOTAL_O}`;
+    const done = Object.keys(score.blank).length + Object.keys(score.ox).length;
+    let m = '퀴즈를 풀면 점수가 올라갑니다.';
+    if(done>0) m = '좋은 시작입니다. 계속 풀어 보세요.';
+    if(done===tot){
+      const r = n/tot;
+      m = r===1 ? '완벽합니다! 🎉 이번 과의 핵심을 모두 기억하고 있어요.'
+        : r>=.7 ? '잘하셨어요! 틀린 부분만 위에서 한 번 더 확인해 보세요.'
+        : '괜찮아요. 위의 카드를 다시 훑어보고 한 번 더 도전해 보세요.';
+    }
+    $('#scoreMsg').textContent = m;
+  }
+
+  /* ---------- 상단 진행바 & 등장 효과 ---------- */
+  const bar = $('#bar');
+  addEventListener('scroll',()=>{
+    const h = document.documentElement;
+    bar.style.width = (h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
+  },{passive:true});
+  const io = new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.08});
+  document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+  /* ---------- 펼침 카드 ---------- */
+  document.querySelectorAll('.reveal-btn').forEach(b=>b.addEventListener('click',()=>{
+    b.setAttribute('aria-expanded', b.getAttribute('aria-expanded')==='true'?'false':'true');
+  }));
+
+  /* ---------- 일곱 가지 실체 빈칸 ---------- */
+  const blanks = [
+    {t:'{}은 항상 주위에서 일하고 계신다', a:[['하나님']]},
+    {t:'실제적이고, {}, 지속적인 사랑의 관계', a:[['개인적이며','개인적이고','개인적']]},
+    {t:'그분의 {}에 {} 초청', a:[['일에'],['참여하도록','참여하게','참여']]},
+    {t:'성경, {}, 환경과 {}', a:[['기도'],['교회']]},
+    {t:'{}의 갈등, {}과 행동', a:[['믿음'],['결단']], resp:true},
+    {t:'인생을 뜻에 맞게 {}', a:[['조정']], resp:true},
+    {t:'하나님께 {}, {} 하나님을 알게 됨', a:[['순종'],['경험으로','경험']], resp:true},
+  ];
+  const bWrap = $('#blanks');
+  blanks.forEach((q,i)=>{
+    const d = document.createElement('div'); d.className='q';
+    let k=0;
+    const stem = q.t.split('{}').map((p,idx,arr)=>p+(idx<arr.length-1?`<input type="text" data-k="${k++}" autocomplete="off" aria-label="빈칸 ${idx+1}">`:'')).join('');
+    d.innerHTML = `<div class="num">${i+1}번 ${q.resp?'<span class="tag" style="margin:0">우리의 반응</span>':''}</div>
+      <div class="stem">${stem}</div>
+      <div class="row"><button class="btn">확인</button><button class="btn ghost">정답 보기</button></div>
+      <div class="fb"></div>`;
+    const inputs = [...d.querySelectorAll('input')];
+    const fb = $('.fb',d);
+    const [bc,br] = d.querySelectorAll('button');
+    const check = ()=>{
+      let all = true;
+      inputs.forEach((inp,j)=>{
+        const ok = q.a[j].some(x=>norm(inp.value)===norm(x));
+        inp.classList.toggle('ok',ok); inp.classList.toggle('bad',!ok&&inp.value!=='');
+        if(!ok) all=false;
+      });
+      if(!(i in score.blank)){ score.blank[i] = all; updateScore(); }
+      fb.className = 'fb '+(all?'ok':'bad');
+      fb.textContent = all ? '정답입니다! ✓' : '아직이에요. 다시 생각해 보거나 정답을 확인해 보세요.';
+    };
+    bc.addEventListener('click',check);
+    inputs.forEach(x=>x.addEventListener('keydown',e=>{if(e.key==='Enter')check()}));
+    br.addEventListener('click',()=>{
+      inputs.forEach((inp,j)=>{inp.value=q.a[j][0];inp.classList.remove('bad');inp.classList.add('ok')});
+      if(!(i in score.blank)){ score.blank[i]=false; updateScore(); }
+      fb.className='fb'; fb.textContent='정답을 확인했습니다. 이 문제는 점수에 포함되지 않아요.';
+    });
+    bWrap.appendChild(d);
+  });
+
+  /* ---------- 본질 네 가지 탭 ---------- */
+  const ess = [
+    {t:'① 전 존재로 사랑', now:true, h:'우리는 우리의 전 존재를 걸고 하나님을 사랑해야만 한다.'},
+    {t:'② 통치권에 순복', now:true, h:'우리는 하나님의 통치권에 완전히 순복해야만 한다.'},
+    {t:'③ 실제적 경험', now:false, h:'우리는 하나님을 실제적이고 개인적으로 경험해야만 한다.'},
+    {t:'④ 완전히 의지', now:false, h:'우리는 하나님을 완전히 의지해야만 한다.'},
+  ];
+  const tabs = $('#essTabs'), panel = $('#essPanel');
+  function showEss(i){
+    [...tabs.children].forEach((b,j)=>b.setAttribute('aria-selected',j===i));
+    const e = ess[i];
+    panel.innerHTML = `<span class="tag ${e.now?'g':'gray'}">${e.now?'이번 과':'제3과에서 다룹니다'}</span>
+      <div class="big">${e.h}</div>
+      <p>${e.now?'아래 섹션에서 자세히 살펴봅니다.':'오늘은 이름만 기억해 두세요.'}</p>`;
+    panel.classList.remove('panel'); void panel.offsetWidth; panel.classList.add('panel');
+  }
+  ess.forEach((e,i)=>{
+    const b=document.createElement('button'); b.setAttribute('role','tab'); b.textContent=e.t;
+    b.addEventListener('click',()=>showEss(i)); tabs.appendChild(b);
+  });
+  showEss(0);
+
+  /* ---------- 첫째 본질: 사랑의 열매 ---------- */
+  const fruits = {
+    '순종':'순종합니다. (요 14:21-24)',
+    '형제 사랑':'형제를 사랑합니다. (요일 4:21)',
+    '원수 사랑':'원수까지 사랑할 수 있게 됩니다.'
+  };
+  const fc = $('#fruitChips');
+  Object.keys(fruits).forEach(k=>{
+    const b=document.createElement('button'); b.className='chip'; b.textContent=k; b.setAttribute('aria-pressed','false');
+    b.addEventListener('click',()=>{
+      [...fc.children].forEach(x=>x.setAttribute('aria-pressed',x===b));
+      $('#fruitText').textContent = fruits[k];
+    });
+    fc.appendChild(b);
+  });
+
+  /* ---------- 첫째 본질: 위협 요소 ---------- */
+  const threats = ['돈을 사랑함','피조물을 하나님보다 더 사랑함','죄악된 욕심과 정욕','가진 것과 능력에 대한 사랑'];
+  const tc = $('#threatChips'), tp = $('#threatPanel');
+  threats.forEach((k,i)=>{
+    const b=document.createElement('button'); b.className='chip'; b.textContent=k; b.setAttribute('aria-pressed','false');
+    b.addEventListener('click',()=>{
+      [...tc.children].forEach(x=>x.setAttribute('aria-pressed',x===b));
+      let html = `<div class="flow panel"><span class="s">${k}</span><i>→</i><span class="s">첫사랑을 잃음</span><i>→</i><span class="s">하나님과의 교제가 깨어짐</span><i>→</i><span class="s">사람과의 교제에도 나타남</span></div>`;
+      if(i===0) html += `<div class="callout panel"><b>예) 하나님보다 물질을 더 사랑하는 사람</b><br>구두쇠, 욕심꾸러기가 되어 궁핍한 형제를 봐도 나누지 않고, 십일조마저 자신을 위해 쓰기 시작합니다. (엡 5:5, 요일 3:17)</div>`;
+      else html += `<p class="panel" style="color:var(--sub);margin-top:8px">💭 나는 요즘 어디에 마음을 가장 많이 쏟고 있을까요?</p>`;
+      tp.innerHTML = html;
+    });
+    tc.appendChild(b);
+  });
+
+  /* ---------- 둘째 본질: 교회의 머리 ---------- */
+  const heads = ['바울','아볼로','게바(베드로)','목사님','집사님','위원회','영향력 있는 사업가','예수 그리스도'];
+  const hc = $('#headChips'), hm = $('#headMsg');
+  heads.forEach(k=>{
+    const b=document.createElement('button'); b.className='chip'; b.textContent=k; b.setAttribute('aria-pressed','false');
+    b.addEventListener('click',()=>{
+      if(k==='예수 그리스도'){
+        [...hc.children].forEach(x=>x.setAttribute('aria-pressed',x===b));
+        hm.style.color='var(--green)'; hm.textContent='맞습니다! 교회의 머리는 오직 그리스도이십니다.';
+      } else {
+        b.classList.remove('shake'); void b.offsetWidth; b.classList.add('shake');
+        hm.style.color='var(--red)'; hm.textContent=`${k}에게 충성과 신의를 바치면 영적 간음입니다. 다시 골라 보세요.`;
+      }
+    });
+    hc.appendChild(b);
+  });
+
+  /* ---------- 고린도교회 ---------- */
+  const cor = {
+    '바울':'바울을 따르는 무리',
+    '아볼로':'아볼로를 따르는 무리',
+    '게바(베드로)':'게바(베드로)를 따르는 무리'
+  };
+  const seen = new Set(), cc = $('#corChips');
+  Object.keys(cor).forEach(k=>{
+    const b=document.createElement('button'); b.className='chip'; b.textContent=k; b.setAttribute('aria-pressed','false');
+    b.addEventListener('click',()=>{
+      b.setAttribute('aria-pressed','true'); seen.add(k);
+      $('#corMsg').innerHTML = seen.size<3
+        ? `${cor[k]}으로 갈라졌습니다.`
+        : `세 갈래로 갈라졌습니다. 바울은 이를 <b>유치하고 세상적</b>이라고 책망했습니다. 교회는 <b>"그리스도의 마음"</b>(고전 2:16)으로 그리스도만 따라야 합니다.`;
+    });
+    cc.appendChild(b);
+  });
+
+  /* ---------- OX ---------- */
+  const oxs = [
+    {q:'하나님이 주도하시므로, 사람이 어떤 방법이나 단계를 잘 따르면 교제는 저절로 지속된다.', a:false,
+     e:'어떤 인간적인 방법이나 단계도 이 교제를 지속시키지 못합니다. 하나님이 먼저 초청하시고, 우리는 반응합니다.'},
+    {q:'하나님을 사랑하면 순종하고, 형제를 사랑하며, 원수까지 사랑할 수 있게 된다.', a:true,
+     e:'요 14:21-24, 요일 4:21. 하나님 사랑은 순종과 이웃 사랑으로 이어집니다.'},
+    {q:'겉으로 좋아 보이는 동기는 교제를 위협하지 않는다.', a:false,
+     e:'겉으로 좋아 보이는 동기도 하나님과의 교제, 형제자매와의 교제를 위협할 수 있습니다.'},
+    {q:'계 2:1-7의 에베소교회는 "첫사랑"을 잃은 교회의 예다.', a:true,
+     e:'교제에 대한 위협은 첫사랑을 잃게 합니다.'},
+    {q:'목사, 집사, 위원회가 교회를 다스려도 코이노니아는 위협받는다.', a:true,
+     e:'그리스도 이외의 다른 사람에게 충성과 신의를 바치는 것은 영적 간음입니다.'},
+    {q:'고린도교회는 바울, 아볼로, 게바를 따라 분열했다.', a:true,
+     e:'고전 1~3장. 바울은 이를 유치하고 세상적이라 책망했습니다.'},
+    {q:'"하나님을 완전히 의지해야 한다"는 이번 과(제2과)에서 다룬 두 가지 본질 중 하나다.', a:false,
+     e:'이번 과의 본질은 ① 전 존재로 사랑 ② 통치권에 완전히 순복입니다. 실제적 경험과 완전한 의지는 제3과에서 다룹니다.'},
+  ];
+  const ol = $('#oxList');
+  oxs.forEach((o,i)=>{
+    const d=document.createElement('div'); d.className='q';
+    d.innerHTML = `<div class="num">${i+1} / ${oxs.length}</div>
+      <div class="stem" style="line-height:1.55">${o.q}</div>
+      <div class="ox"><button data-v="true" aria-label="O">O</button><button data-v="false" aria-label="X">X</button></div>
+      <div class="explain"></div>`;
+    const bs=[...d.querySelectorAll('.ox button')], ex=$('.explain',d);
+    bs.forEach(b=>b.addEventListener('click',()=>{
+      const v = b.dataset.v==='true', ok = v===o.a;
+      score.ox[i]=ok; updateScore();
+      bs.forEach(x=>x.disabled=true);
+      b.classList.add(ok?'right':'wrong');
+      if(!ok) bs.find(x=>(x.dataset.v==='true')===o.a).classList.add('right');
+      ex.innerHTML = `<b>${ok?'정답! ✓':'아쉬워요. 정답은 '+(o.a?'O':'X')+'입니다.'}</b><br>${o.e}`;
+      ex.classList.add('show');
+    }));
+    ol.appendChild(d);
+  });
+
+  /* ---------- 요점 카드 ---------- */
+  const pts = [
+    ['코이노니아의 정의','하나님과의 코이노니아는 그분의 임재를 경험하는 것이다.'],
+    ['구원과 영생','하나님과의 코이노니아는 구원과 영생에 있어서 기본적인 요소이다.'],
+    ['첫째 본질','나는 나의 전 존재를 걸고 하나님을 사랑해야만 한다.'],
+    ['둘째 본질','나는 하나님의 통치권에 완전히 순복해야만 한다.'],
+    ['교회와 코이노니아','그리스도의 몸 안에서, 그분의 주권하에 완전히 순복하기 원하는 개인들이 모인 교회에서만 코이노니아가 가능하다.'],
+  ];
+  const cw = $('#cards');
+  pts.forEach((p,i)=>{
+    const b=document.createElement('button'); b.className='fc'; b.setAttribute('aria-pressed','false');
+    b.innerHTML = `<div class="in"><div class="f"><div class="n">요점 ${i+1}</div><div class="k">${p[0]}</div><div class="h">눌러서 뒤집기</div></div><div class="b">${p[1]}</div></div>`;
+    b.addEventListener('click',()=>b.setAttribute('aria-pressed',b.getAttribute('aria-pressed')!=='true'));
+    cw.appendChild(b);
+  });
+
+  /* ---------- 인생의 주인 ---------- */
+  const lords = ['예수 그리스도','나 자신','나의 배우자','나의 직업','돈 또는 다른 물질','그 외'];
+  const lc = $('#lordOpts');
+  lords.forEach((k,i)=>{
+    const b=document.createElement('button'); b.className='opt'; b.textContent=k; b.setAttribute('aria-pressed','false');
+    b.addEventListener('click',()=>{
+      [...lc.children].forEach(x=>x.setAttribute('aria-pressed',x===b));
+      $('#lordMsg').textContent = i===0
+        ? '감사한 고백입니다. 오늘 하루의 구체적인 선택 속에서도 그분이 주인이신지 한 번 더 물어보세요.'
+        : '솔직하게 고른 것 자체가 첫걸음입니다. 아래 기도 안내로 하나님 앞에 이 마음을 가져가 보세요.';
+    });
+    lc.appendChild(b);
+  });
+
+  /* ---------- 다시 시작 ---------- */
+  $('#resetBtn').addEventListener('click',()=>{
+    for(const k in score.blank) delete score.blank[k];
+    for(const k in score.ox) delete score.ox[k];
+    document.querySelectorAll('#blanks input').forEach(x=>{x.value='';x.className=''});
+    document.querySelectorAll('#blanks .fb').forEach(x=>{x.textContent='';x.className='fb'});
+    document.querySelectorAll('#oxList .ox button').forEach(x=>{x.disabled=false;x.className=''});
+    document.querySelectorAll('#oxList .explain').forEach(x=>x.classList.remove('show'));
+    updateScore();
+    document.getElementById('s2').scrollIntoView({behavior:'smooth'});
+  });
+  updateScore();
+})();
+</script>
+</body>
+</html>
