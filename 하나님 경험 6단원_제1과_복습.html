@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>제1과 복습 · 당신이 기도할 때 어떤 일이 일어납니까?</title>
+<style>
+:root{
+  --bg:#f5f5f7; --surface:#ffffff; --surface2:#f5f5f7; --text:#1d1d1f; --sub:#6e6e73;
+  --line:rgba(0,0,0,.09); --blue:#0071e3; --blue-soft:rgba(0,113,227,.10);
+  --green:#1f9d47; --green-soft:rgba(52,199,89,.15); --red:#d70015; --red-soft:rgba(255,59,48,.12);
+  --orange:#c93400; --orange-soft:rgba(255,149,0,.15);
+  --shadow:0 6px 30px rgba(0,0,0,.06); --r:22px;
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#000; --surface:#1c1c1e; --surface2:#2c2c2e; --text:#f5f5f7; --sub:#98989d;
+    --line:rgba(255,255,255,.14); --blue:#2997ff; --blue-soft:rgba(41,151,255,.16);
+    --green:#30d158; --green-soft:rgba(48,209,88,.16); --red:#ff6961; --red-soft:rgba(255,69,58,.18);
+    --orange:#ffb340; --orange-soft:rgba(255,159,10,.18);
+    --shadow:0 6px 30px rgba(0,0,0,.5);
+  }
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.6;-webkit-font-smoothing:antialiased;word-break:keep-all;overflow-wrap:break-word}
+button{font-family:inherit;color:inherit;cursor:pointer}
+textarea,input{font-family:inherit}
+.wrap{max-width:980px;margin:0 auto;padding:0 22px}
+
+/* progress + nav */
+#bar{position:fixed;top:0;left:0;height:3px;width:0;background:var(--blue);z-index:60;transition:width .15s}
+nav{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 78%,transparent);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:48px;font-size:14px}
+nav b{font-weight:600}
+nav span{color:var(--sub);font-size:13px}
+
+/* sections */
+section{padding:96px 0}
+section.alt{background:var(--surface)}
+.eyebrow{font-size:15px;font-weight:600;color:var(--blue);margin:0 0 8px;letter-spacing:.01em}
+h2{font-size:clamp(28px,5vw,44px);line-height:1.15;letter-spacing:-.025em;margin:0 0 14px;font-weight:700}
+.lead{font-size:clamp(17px,2.2vw,21px);color:var(--sub);margin:0 0 40px;max-width:680px}
+.sec-head{margin-bottom:8px}
+
+/* hero */
+.hero{padding:110px 0 90px;text-align:center;background:linear-gradient(180deg,var(--surface),var(--bg))}
+.hero .tag{display:inline-block;font-size:14px;font-weight:600;color:var(--blue);background:var(--blue-soft);padding:6px 14px;border-radius:980px;margin-bottom:22px}
+.hero h1{font-size:clamp(38px,8vw,80px);line-height:1.05;letter-spacing:-.035em;margin:0 0 20px;font-weight:700;
+  background:linear-gradient(135deg,var(--text) 30%,var(--blue));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{font-size:clamp(18px,2.6vw,24px);color:var(--sub);max-width:640px;margin:0 auto 34px}
+.hero .meta{font-size:14px;margin-top:26px;color:var(--sub)}
+
+/* buttons */
+.btn{appearance:none;border:0;background:var(--surface2);color:var(--text);font-size:16px;font-weight:500;padding:11px 22px;border-radius:980px;transition:transform .15s,background .2s,opacity .2s}
+.alt .btn{background:var(--bg)}
+.btn:hover{transform:scale(1.03)}
+.btn:active{transform:scale(.97)}
+.btn.primary{background:var(--blue);color:#fff}
+.btn:disabled{opacity:.4;cursor:default;transform:none}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.row.center{justify-content:center}
+
+/* cards */
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.card{background:var(--surface);border-radius:var(--r);padding:26px;box-shadow:var(--shadow)}
+.alt .card{background:var(--bg);box-shadow:none}
+.rcard{appearance:none;border:0;text-align:left;width:100%;background:var(--surface);border-radius:var(--r);padding:26px;box-shadow:var(--shadow);min-height:150px;display:flex;flex-direction:column;gap:12px;transition:transform .2s}
+.rcard:hover{transform:translateY(-3px)}
+.rcard .qq{font-size:19px;font-weight:600;line-height:1.4}
+.rcard .hint{font-size:13px;color:var(--blue);font-weight:500}
+.rcard .aa{display:none;color:var(--sub);font-size:16px;animation:fade .35s ease}
+.rcard.open .aa{display:block}
+.rcard.open .hint{display:none}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* OX */
+.ox{background:var(--bg);border-radius:var(--r);padding:22px 24px;margin-bottom:14px}
+.ox p{margin:0 0 14px;font-size:18px;font-weight:500}
+.ox .btns{display:flex;gap:10px}
+.ox .btns button{appearance:none;border:0;width:64px;height:48px;border-radius:14px;background:var(--surface);font-size:24px;font-weight:600;transition:transform .15s,background .2s}
+.ox .btns button:hover{transform:scale(1.06)}
+.ox .fb{display:none;margin-top:14px;font-size:15px;color:var(--sub);animation:fade .3s ease}
+.ox.done .fb{display:block}
+.ox.done .btns button{pointer-events:none;opacity:.45}
+.ox.done .btns button.sel{opacity:1}
+.ox.ok .btns button.sel{background:var(--green-soft);color:var(--green)}
+.ox.no .btns button.sel{background:var(--red-soft);color:var(--red)}
+.fb b.g{color:var(--green)} .fb b.r{color:var(--red)}
+.score{margin-top:18px;font-size:17px;font-weight:600;color:var(--blue);min-height:28px}
+
+/* flip */
+.flip{perspective:1000px;height:230px;cursor:pointer;background:none;border:0;padding:0;text-align:left}
+.flip .in{position:relative;width:100%;height:100%;transition:transform .7s cubic-bezier(.2,.8,.2,1);transform-style:preserve-3d}
+.flip.on .in{transform:rotateY(180deg)}
+.flip .f,.flip .b{position:absolute;inset:0;border-radius:var(--r);padding:24px;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;flex-direction:column;justify-content:center;gap:10px;overflow:auto}
+.flip .f{background:var(--surface);box-shadow:var(--shadow);font-size:20px;font-weight:600;line-height:1.4}
+.flip .f small{display:block;color:var(--blue);font-weight:500;font-size:13px}
+.flip .b{background:linear-gradient(145deg,#0071e3,#5e5ce6);color:#fff;transform:rotateY(180deg);font-size:16px;line-height:1.55}
+.flip .b em{font-style:normal;font-size:13px;opacity:.85}
+.flip .b strong{font-size:18px}
+
+/* order */
+.order{display:grid;gap:18px;grid-template-columns:1fr 1fr}
+@media(max-width:720px){.order{grid-template-columns:1fr}}
+.order h3{margin:0 0 10px;font-size:15px;color:var(--sub);font-weight:600}
+ol.slots{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+ol.slots li{display:flex;gap:12px;align-items:center;min-height:50px;padding:10px 14px;border-radius:14px;background:var(--bg);font-size:15px;border:1.5px dashed var(--line);color:var(--sub)}
+ol.slots li .n{flex:none;width:26px;height:26px;border-radius:50%;background:var(--surface);display:grid;place-items:center;font-size:13px;font-weight:600;color:var(--sub)}
+ol.slots li.on{border:1.5px solid transparent;background:var(--green-soft);color:var(--text);animation:pop .35s ease}
+ol.slots li.on .n{background:var(--green);color:#fff}
+@keyframes pop{0%{transform:scale(.96)}60%{transform:scale(1.02)}100%{transform:scale(1)}}
+.pool{display:grid;gap:8px}
+.pool button{appearance:none;border:0;text-align:left;background:var(--bg);border-radius:14px;padding:12px 14px;font-size:15px;transition:transform .15s,opacity .2s}
+.pool button:hover{transform:translateX(3px)}
+.pool button:disabled{opacity:.25;pointer-events:none}
+.shake{animation:shake .4s}
+@keyframes shake{20%,60%{transform:translateX(-7px)}40%,80%{transform:translateX(7px)}}
+.msg{margin-top:16px;min-height:26px;font-size:16px;font-weight:500;color:var(--sub)}
+.msg.good{color:var(--green)} .msg.bad{color:var(--orange)}
+
+/* fill */
+.fillbox{background:var(--bg);border-radius:var(--r);padding:26px}
+.fillbox ol{margin:0;padding-left:0;list-style:none;display:grid;gap:14px;font-size:18px}
+.fillbox li{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.fillbox .no{font-weight:600;color:var(--blue);margin-right:4px}
+.blank{appearance:none;border:0;min-width:84px;height:38px;border-radius:10px;background:var(--surface);border-bottom:2px solid var(--blue);font-size:17px;font-weight:600;padding:0 12px;transition:background .2s}
+.blank.filled{color:var(--blue)}
+.blank.ok{background:var(--green-soft);color:var(--green);border-color:var(--green)}
+.blank.bad{background:var(--red-soft);color:var(--red);border-color:var(--red)}
+.bank{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0}
+.chip{appearance:none;border:0;background:var(--surface);border-radius:980px;padding:10px 20px;font-size:16px;font-weight:600;box-shadow:var(--shadow);transition:transform .15s,opacity .2s,background .2s}
+.chip.sel{background:var(--blue);color:#fff;transform:scale(1.07)}
+.chip.used{opacity:.25;pointer-events:none}
+
+/* bicycle */
+.stage{background:var(--surface);border-radius:28px;padding:36px 30px;box-shadow:var(--shadow);text-align:center;min-height:260px;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.stage .ico{font-size:64px;line-height:1;margin-bottom:14px;animation:pop .5s ease}
+.stage h3{font-size:26px;margin:0 0 10px;letter-spacing:-.02em}
+.stage p{margin:0;font-size:18px;color:var(--sub);max-width:560px}
+.dots{display:flex;gap:8px;justify-content:center;margin:20px 0}
+.dots i{width:8px;height:8px;border-radius:50%;background:var(--line);transition:all .3s}
+.dots i.on{background:var(--blue);width:26px;border-radius:8px}
+.verse{background:var(--blue-soft);border-radius:var(--r);padding:22px 26px;margin-top:28px}
+.verse .ref{font-size:14px;font-weight:600;color:var(--blue);margin-bottom:6px}
+.verse p{margin:0;font-size:17px}
+.warn{background:var(--orange-soft);border-radius:var(--r);padding:20px 26px;margin-top:16px;font-size:16px}
+.warn b{color:var(--orange)}
+
+/* discern */
+.four{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));margin-bottom:34px}
+.four .rcard{min-height:130px;padding:22px}
+.four .rcard .qq{font-size:17px}
+.deny{background:linear-gradient(145deg,#1d1d1f,#3a3a3c);color:#fff;border-radius:var(--r);padding:26px 28px;margin-bottom:30px}
+.deny h3{margin:0 0 6px;font-size:20px}
+.deny p{margin:0;color:#d2d2d7;font-size:16px}
+.scn{background:var(--surface);border-radius:var(--r);padding:24px 26px;margin-bottom:14px;box-shadow:var(--shadow)}
+.scn p{margin:0 0 16px;font-size:17px}
+.scn .btns{display:flex;flex-wrap:wrap;gap:10px}
+.scn .btns button{appearance:none;border:0;background:var(--bg);padding:11px 18px;border-radius:980px;font-size:15px;font-weight:500;transition:background .2s,transform .15s}
+.scn .btns button:hover{transform:scale(1.03)}
+.scn .fb{display:none;margin-top:14px;font-size:15px;color:var(--sub);animation:fade .3s}
+.scn.done .fb{display:block}
+.scn.done .btns button{pointer-events:none;opacity:.4}
+.scn.done .btns button.sel{opacity:1}
+.scn.ok .btns button.sel{background:var(--green-soft);color:var(--green)}
+.scn.no .btns button.sel{background:var(--red-soft);color:var(--red)}
+
+/* journal */
+.field{margin-bottom:16px}
+.field label{display:block;font-size:14px;font-weight:600;color:var(--blue);margin-bottom:6px}
+.field textarea,.ta{width:100%;border:1.5px solid transparent;background:var(--bg);color:var(--text);border-radius:16px;padding:14px 16px;font-size:16px;line-height:1.6;resize:vertical;min-height:84px;outline:none;transition:border .2s,background .2s}
+.alt .field textarea,.alt .ta{background:var(--bg)}
+section:not(.alt) .field textarea,section:not(.alt) .ta{background:var(--surface)}
+.field textarea:focus,.ta:focus{border-color:var(--blue)}
+.note{font-size:13px;color:var(--sub);margin-top:6px}
+.saved{font-size:14px;color:var(--green);opacity:0;transition:opacity .3s}
+.saved.show{opacity:1}
+
+/* quiz */
+.qbox{background:var(--surface);border-radius:28px;padding:34px 30px;box-shadow:var(--shadow);max-width:720px;margin:0 auto}
+.qbox .cnt{font-size:14px;color:var(--blue);font-weight:600;margin-bottom:10px}
+.qbox h3{font-size:clamp(20px,3vw,26px);margin:0 0 22px;line-height:1.35;letter-spacing:-.01em}
+.opts{display:grid;gap:10px}
+.opts button{appearance:none;border:1.5px solid transparent;background:var(--bg);text-align:left;padding:15px 18px;border-radius:16px;font-size:16px;transition:background .2s,transform .15s}
+.opts button:hover{transform:translateX(3px)}
+.opts button.ok{background:var(--green-soft);border-color:var(--green)}
+.opts button.no{background:var(--red-soft);border-color:var(--red)}
+.opts.lock button{pointer-events:none}
+.qfb{margin-top:16px;font-size:15px;color:var(--sub);min-height:24px}
+.qprog{height:4px;border-radius:4px;background:var(--bg);margin-bottom:22px;overflow:hidden}
+.qprog i{display:block;height:100%;background:var(--blue);width:0;transition:width .4s}
+.result{text-align:center}
+.ring{width:170px;height:170px;border-radius:50%;margin:10px auto 20px;display:grid;place-items:center;background:conic-gradient(var(--blue) calc(var(--p)*1%),var(--bg) 0)}
+.ring div{width:134px;height:134px;border-radius:50%;background:var(--surface);display:grid;place-items:center;font-size:44px;font-weight:700;letter-spacing:-.03em}
+.ring small{font-size:18px;color:var(--sub);font-weight:500}
+
+/* memory verse */
+.mem{background:linear-gradient(150deg,#0b1f4d 0%,#1b3a8a 55%,#5e5ce6 100%);color:#fff;padding:110px 0}
+.mem .eyebrow{color:#9ecbff}
+.mem .lead{color:#c9d6ff}
+.mem .mem-title{font-size:clamp(44px,9vw,84px);line-height:1.05;letter-spacing:-.035em;font-weight:800;color:#fff;margin:0 0 18px;text-shadow:0 2px 24px rgba(0,0,0,.25)}
+.mem .eyebrow{font-size:clamp(18px,2.4vw,22px);color:#cfe3ff}
+.mem .verse-card{background:rgba(0,0,0,.28);-webkit-backdrop-filter:blur(24px);backdrop-filter:blur(24px);border:1.5px solid rgba(255,255,255,.4);border-radius:32px;padding:clamp(32px,6vw,64px) clamp(22px,5vw,56px);text-align:center;margin-bottom:26px;box-shadow:0 12px 50px rgba(0,0,0,.3)}
+.mem .vref{font-size:clamp(18px,2.6vw,24px);font-weight:700;color:#cfe3ff;margin-bottom:22px;letter-spacing:.02em}
+.mem .vtext{font-size:clamp(34px,7vw,64px);line-height:1.5;font-weight:800;letter-spacing:-.025em;color:#fff;text-shadow:0 2px 18px rgba(0,0,0,.35)}
+.mem .vtext .w{display:inline-block;margin:0 .12em;padding:0 .08em;border-radius:8px}
+.mem .vtext .w.hide{background:rgba(255,255,255,.22);color:transparent;cursor:pointer;min-width:2.2em;user-select:none}
+.mem .vtext .w.peek{background:rgba(255,255,255,.1);color:#fff}
+.mem .tabs{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-bottom:22px}
+.mem .tabs button{appearance:none;border:0;background:rgba(255,255,255,.12);color:#fff;padding:9px 18px;border-radius:980px;font-size:15px;font-weight:500;transition:background .2s}
+.mem .tabs button.on{background:#fff;color:#0b1f4d;font-weight:600}
+.mem .panel{display:none;animation:fade .35s}
+.mem .panel.on{display:block}
+.mem .box{background:rgba(255,255,255,.1);border-radius:22px;padding:24px;margin-bottom:16px}
+.mem .box h3{margin:0 0 6px;font-size:19px}
+.mem .box p{margin:0 0 14px;color:#c9d6ff;font-size:15px}
+.mem .btn{background:rgba(255,255,255,.16);color:#fff}
+.mem .btn.primary{background:#fff;color:#0b1f4d}
+.mem .chips{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0}
+.mem .chip{background:rgba(255,255,255,.16);color:#fff;box-shadow:none}
+.mem .built{min-height:62px;border:1.5px dashed rgba(255,255,255,.35);border-radius:16px;padding:14px 16px;font-size:20px;font-weight:600;display:flex;flex-wrap:wrap;gap:8px}
+.mem .built span{background:rgba(48,209,88,.3);padding:2px 12px;border-radius:10px;animation:pop .3s}
+.mem .ta{background:rgba(255,255,255,.14);color:#fff;min-height:100px}
+.mem .ta::placeholder{color:#a9b9e6}
+.mem .res{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.mem .res span{padding:4px 12px;border-radius:10px;font-weight:600}
+.mem .res .ok{background:rgba(48,209,88,.35)}
+.mem .res .no{background:rgba(255,69,58,.45)}
+.mem .msg{color:#d6e2ff}
+.mem .msg.good{color:#8ff0a4}
+.days{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin:14px 0}
+.days button{appearance:none;border:0;aspect-ratio:1;border-radius:50%;background:rgba(255,255,255,.14);color:#fff;font-size:16px;font-weight:600;transition:transform .15s,background .2s}
+.days button:hover{transform:scale(1.07)}
+.days button.on{background:#30d158;color:#06280f}
+.lvl{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px;justify-content:center}
+.lvl button{appearance:none;border:0;background:rgba(255,255,255,.12);color:#fff;padding:8px 16px;border-radius:980px;font-size:14px}
+.lvl button.on{background:#fff;color:#0b1f4d;font-weight:600}
+
+footer{padding:50px 0 70px;text-align:center;color:var(--sub);font-size:13px}
+
+/* scroll reveal */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+  .rv{opacity:1;transform:none}
+}
+
+/* ---- 6단원 1과 추가 스타일 ---- */
+.btn{display:inline-block;text-decoration:none}
+.mem .vtext{font-size:clamp(24px,4.8vw,42px);line-height:1.7}
+.cmp .card h3{margin:0 0 8px;font-size:20px;letter-spacing:-.01em}
+.cmp .card p{margin:0;color:var(--sub);font-size:16px}
+.cmp .a h3{color:var(--red)}
+.cmp .b h3{color:var(--green)}
+.cmp .card .big{font-size:40px;line-height:1;margin-bottom:10px}
+.pairs .scn .btns button{font-size:14px}
+
+/* ---- 본문 글자 확대: PC·폰 모두 1.5배 (제목류는 그대로) ---- */
+:root{--k:1.5}
+.wrap{max-width:1180px}
+.lead{font-size:calc(clamp(17px,2.2vw,21px)*var(--k));max-width:none}
+.grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,calc(260px*var(--k))),1fr))}
+.btn{font-size:calc(16px*var(--k));padding:calc(11px*var(--k)) calc(22px*var(--k))}
+.note{font-size:calc(13px*var(--k))}
+.field p.note{font-size:calc(15px*var(--k))!important}
+.saved{font-size:calc(14px*var(--k))}
+.score{font-size:calc(17px*var(--k))}
+.msg{font-size:calc(16px*var(--k))}
+.field label{font-size:calc(14px*var(--k))}
+.field textarea,.ta{font-size:calc(16px*var(--k));min-height:calc(84px*var(--k))}
+.ox p{font-size:calc(18px*var(--k))}
+.ox .btns button{width:calc(64px*var(--k));height:calc(48px*var(--k));font-size:calc(24px*var(--k))}
+.ox .fb,.scn .fb{font-size:calc(15px*var(--k))}
+.scn p{font-size:calc(17px*var(--k))}
+.scn .btns button,.pairs .scn .btns button{font-size:calc(15px*var(--k));padding:calc(11px*var(--k)) calc(18px*var(--k));border-radius:calc(20px*var(--k));text-align:left}
+.flip{height:calc(270px*var(--k))}
+.flip .f{font-size:calc(20px*var(--k));padding:calc(20px*var(--k))}
+.flip .f small{font-size:calc(13px*var(--k))}
+.flip .b{font-size:calc(16px*var(--k));padding:calc(20px*var(--k))}
+.flip .b strong{font-size:calc(18px*var(--k))}
+.flip .b em{font-size:calc(15px*var(--k))}
+.stage{padding:calc(30px*var(--k)) calc(24px*var(--k));min-height:calc(260px*var(--k))}
+.stage h3{font-size:calc(26px*var(--k))}
+.stage p{font-size:calc(18px*var(--k));max-width:none}
+.cmp .card{padding:calc(18px*var(--k))}
+.cmp .card h3{font-size:calc(20px*var(--k))}
+.cmp .card p{font-size:calc(16px*var(--k))}
+.verse{padding:calc(16px*var(--k)) calc(18px*var(--k))}
+.verse .ref{font-size:calc(14px*var(--k))}
+.verse p{font-size:calc(17px*var(--k))}
+.fillbox{padding:calc(18px*var(--k))}
+.fillbox ol{font-size:calc(18px*var(--k))}
+.blank{min-width:calc(84px*var(--k));height:calc(38px*var(--k));font-size:calc(17px*var(--k))}
+.chip{font-size:calc(16px*var(--k));padding:calc(10px*var(--k)) calc(20px*var(--k))}
+.qbox{max-width:1000px}
+.qbox .cnt{font-size:calc(14px*var(--k))}
+.qbox h3{font-size:calc(clamp(20px,3vw,26px)*var(--k))}
+.opts button{font-size:calc(16px*var(--k));padding:calc(15px*var(--k)) calc(18px*var(--k))}
+.qfb{font-size:calc(15px*var(--k))}
+.result h3{font-size:calc(24px*var(--k))}
+.result p{font-size:calc(18px*var(--k))}
+.mem .box h3{font-size:calc(19px*var(--k))}
+.mem .box p{font-size:calc(15px*var(--k))}
+.mem .tabs button{font-size:calc(15px*var(--k));padding:calc(9px*var(--k)) calc(18px*var(--k))}
+.mem .built{font-size:calc(20px*var(--k))}
+.mem .res span{font-size:calc(16px*var(--k))}
+.days button{font-size:calc(16px*var(--k))}
+.lvl button{font-size:calc(14px*var(--k));padding:calc(8px*var(--k)) calc(16px*var(--k))}
+#readCnt{font-size:calc(16px*var(--k))}
+footer{font-size:calc(13px*var(--k))}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<nav><div class="wrap"><b>제6단원 제1과 복습</b><span id="navpct">0%</span></div></nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap rv">
+    <span class="tag">제6단원 · 제1과</span>
+    <h1>당신이 기도할 때<br>어떤 일이 일어납니까?</h1>
+    <p>기도한 것과 다른 응답, 그리고 하나님의 침묵. 그 안에서 하나님은 무엇을 하고 계실까요?</p>
+    <div class="row center"><a class="btn primary" href="#s1">복습 시작하기</a></div>
+    <div class="meta">교재 166~171쪽 · 약 10분</div>
+  </div>
+</header>
+
+<!-- 1 KEY CARDS -->
+<section id="s1">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">1 · 핵심 5가지</p>
+      <h2>카드를 눌러 뒤집어 보세요.</h2>
+      <p class="lead">앞면의 질문에 먼저 답해 보고, 눌러서 확인합니다.</p>
+    </div>
+    <div class="grid rv" id="flipGrid"></div>
+    <div class="verse rv">
+      <div class="ref">이 단원의 암송구절 · 요한복음 5:19</div>
+      <p>그러므로 예수께서 그들에게 이르시되 내가 진실로 진실로 너희에게 이르노니 아들이 아버지께서 하시는 일을 보지 않고는 아무것도 스스로 할 수 없나니 아버지께서 행하시는 그것을 아들도 그와 같이 행하느니라.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 2 OX -->
+<section class="alt" id="s2">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">2 · ○ × 퀴즈</p>
+      <h2>맞으면 ○, 틀리면 ×.</h2>
+      <p class="lead">여섯 문제입니다. 답을 고르면 바로 설명이 나옵니다.</p>
+    </div>
+    <div class="rv" id="oxList"></div>
+    <div class="score" id="oxScore"></div>
+  </div>
+</section>
+
+<!-- 3 TWO STORIES -->
+<section id="s3">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">3 · 두 이야기</p>
+      <h2>중풍병자와 나사로.</h2>
+      <p class="lead">한 사람은 다른 응답을, 한 사람은 침묵을 만났습니다. 각 장면이 어느 이야기에 속하는지 골라 보세요.</p>
+    </div>
+    <div class="grid cmp rv" style="margin-bottom:30px">
+      <div class="card a"><div class="big">🛏️</div><h3>중풍병자 · 막 2장</h3><p>병 고침을 구했는데, 예수님은 “네 죄 사함을 받았느니라”고 하셨습니다. <b>구한 것과 다른 응답</b>이었습니다.</p></div>
+      <div class="card b"><div class="big">🪦</div><h3>나사로 · 요 11장</h3><p>살려 달라고 청했는데, 예수님은 가지 않으셨습니다. <b>침묵</b>이었습니다.</p></div>
+    </div>
+    <div class="pairs rv" id="pairList"></div>
+    <div class="score" id="pairScore"></div>
+  </div>
+</section>
+
+<!-- 4 SPIRITUAL FOCUS -->
+<section class="alt" id="s4">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">4 · 영적인 집중력</p>
+      <h2>기도한 뒤, 나는 어떻게 할까요?</h2>
+      <p class="lead">기도한 뒤에 일어나는 일을 내 기도와 연결해서 살펴봅니다. 상황마다 어떻게 반응할지 골라 보세요.</p>
+    </div>
+    <div class="rv" id="scnList"></div>
+  </div>
+</section>
+
+<!-- 5 SILENCE -->
+<section id="s5">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">5 · 하나님의 침묵</p>
+      <h2>침묵 앞에서 할 수 있는 일.</h2>
+      <p class="lead">다음 버튼을 눌러 저자가 걸은 순서를 따라가 보세요.</p>
+    </div>
+    <div class="rv">
+      <div class="stage" id="stage"></div>
+      <div class="dots" id="dots"></div>
+      <div class="row center"><button class="btn" id="bprev">이전</button><button class="btn primary" id="bnext">다음</button></div>
+    </div>
+    <div class="grid cmp rv" style="margin-top:44px">
+      <div class="card a"><h3>반응 ① 밤</h3><p>의기소침해지고, 죄책감을 느끼고, 버림받았다고 생각합니다.</p></div>
+      <div class="card b"><h3>반응 ② 낮</h3><p>하나님이 더 깊은 이해를 가져다 주시기를 기대합니다. 기대와 믿음과 신뢰의 자세로 삶을 조정합니다.</p></div>
+    </div>
+    <p class="note rv" style="text-align:center;margin-top:12px">교재는 이 두 반응이 “밤과 낮 같은 큰 차이”라고 말합니다.</p>
+  </div>
+</section>
+
+<!-- 6 FILL -->
+<section class="alt" id="s6">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">6 · 빈칸 채우기</p>
+      <h2>이 과의 요점을 완성해 보세요.</h2>
+      <p class="lead">아래 낱말을 먼저 누르고, 들어갈 빈칸을 누릅니다. 채운 칸을 다시 누르면 비워집니다.</p>
+    </div>
+    <div class="fillbox rv">
+      <ol id="fillList"></ol>
+      <div class="bank" id="bank"></div>
+      <div class="row"><button class="btn primary" id="fillCheck">정답 확인</button><button class="btn" id="fillReset">처음부터</button></div>
+      <div class="msg" id="fillMsg"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 SHARING -->
+<section id="s7">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">7 · 나눔 질문</p>
+      <h2>함께 나누고, 나에게 적어 보세요.</h2>
+      <p class="lead">소그룹에서 나눌 질문입니다. 적은 내용은 이 기기의 브라우저에만 저장됩니다.</p>
+    </div>
+    <div class="rv">
+      <div class="field"><label for="j1">① 기도와 다른 응답</label>
+        <p class="note" style="margin:0 0 8px;font-size:15px">한 가지를 계속 기도했는데 응답이 없었거나 전혀 다른 방향으로 응답받은 경험이 있나요? 지나고 보니 하나님이 무엇을 주신 것 같나요?</p>
+        <textarea id="j1" rows="3" placeholder="나의 경험…"></textarea></div>
+      <div class="field"><label for="j2">② 내 계획과 하나님의 일하심</label>
+        <p class="note" style="margin:0 0 8px;font-size:15px">지금 “이대로 되게 해 주세요”라고 붙들고 있는 기도가 있나요? 하나님이 다른 방향으로 일하고 계신다면, 내가 내려놓거나 조정해야 할 것은 무엇일까요?</p>
+        <textarea id="j2" rows="3" placeholder="나의 생각…"></textarea></div>
+      <div class="field"><label for="j3">③ 침묵을 대하는 태도</label>
+        <p class="note" style="margin:0 0 8px;font-size:15px">하나님의 침묵을 경험했을 때 나는 낙심·죄책감 쪽이었나요, 기대 쪽이었나요? 이번 주 침묵 중인 기도가 있다면 “이 침묵으로 제게 무엇을 보여주시려는지 알려 주세요”라고 기도해 보면 어떨까요?</p>
+        <textarea id="j3" rows="3" placeholder="나의 마음…"></textarea></div>
+      <div class="row"><button class="btn" id="jClear">모두 지우기</button><span class="saved" id="jSaved">저장됨</span></div>
+      <p class="note">부담스러운 질문은 말하지 않아도 괜찮습니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 8 FINAL QUIZ -->
+<section class="alt" id="s8">
+  <div class="wrap">
+    <div class="sec-head rv" style="text-align:center">
+      <p class="eyebrow">8 · 마무리 퀴즈</p>
+      <h2>얼마나 기억하고 있을까요?</h2>
+      <p class="lead" style="margin-left:auto;margin-right:auto">여덟 문제를 풀어 보세요.</p>
+    </div>
+    <div class="qbox rv" id="qbox"></div>
+  </div>
+</section>
+
+<!-- 9 MEMORY VERSE -->
+<section class="mem" id="s9">
+  <div class="wrap">
+    <div class="sec-head rv" style="text-align:center">
+      <p class="eyebrow">9</p>
+      <h2 class="mem-title">이번 주 암송구절</h2>
+      <p class="lead" style="margin-left:auto;margin-right:auto">읽고, 가리고, 맞추고, 써 보면서 단계별로 외워 보세요.</p>
+    </div>
+
+    <div class="verse-card rv">
+      <div class="vref">히브리서 10:24-25 · 개역개정</div>
+      <div class="vtext" id="vtext"></div>
+    </div>
+
+    <div class="lvl rv" id="lvl"></div>
+    <div class="row center rv" style="margin-bottom:34px">
+      <button class="btn" id="vShow">모두 보기</button>
+      <button class="btn" id="vSpeak">🔊 들어보기</button>
+    </div>
+
+    <div class="tabs rv" id="tabs">
+      <button class="on" data-p="p1">① 소리 내어 읽기</button>
+      <button data-p="p2">② 순서 맞추기</button>
+      <button data-p="p3">③ 써 보기</button>
+      <button data-p="p4">④ 일주일 기록</button>
+    </div>
+
+    <div class="panel on" id="p1">
+      <div class="box">
+        <h3>세 번 소리 내어 읽기</h3>
+        <p>눈으로만 읽지 말고, 입으로 소리 내어 읽습니다. 읽을 때마다 버튼을 눌러 주세요.</p>
+        <div class="row"><button class="btn primary" id="readBtn">읽었어요</button><span id="readCnt" style="font-weight:600">0 / 3</span></div>
+        <div class="msg" id="readMsg"></div>
+      </div>
+    </div>
+
+    <div class="panel" id="p2">
+      <div class="box">
+        <h3>말씀 순서 맞추기</h3>
+        <p>섞여 있는 말씀 조각을 순서대로 눌러서 구절을 완성하세요.</p>
+        <div class="built" id="built"></div>
+        <div class="chips" id="vchips"></div>
+        <div class="row"><button class="btn" id="vpReset">다시 섞기</button></div>
+        <div class="msg" id="vpMsg"></div>
+      </div>
+    </div>
+
+    <div class="panel" id="p3">
+      <div class="box">
+        <h3>보지 않고 써 보기</h3>
+        <p>구절을 가린 뒤에 기억나는 대로 적고 확인하세요. 띄어쓰기와 구두점은 달라도 괜찮습니다.</p>
+        <textarea class="ta" id="vType" rows="4" placeholder="여기에 말씀을 적어 보세요."></textarea>
+        <div class="row" style="margin-top:14px"><button class="btn primary" id="vCheck">확인</button><button class="btn" id="vTClear">지우기</button></div>
+        <div class="res" id="vRes"></div>
+        <div class="msg" id="vTMsg"></div>
+      </div>
+    </div>
+
+    <div class="panel" id="p4">
+      <div class="box">
+        <h3>이번 주 암송 기록</h3>
+        <p>그날 구절을 한 번이라도 외웠다면 해당 요일을 눌러 주세요.</p>
+        <div class="days" id="days"></div>
+        <div class="msg" id="dayMsg"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">제6단원 제1과 「당신이 기도할 때 어떤 일이 일어납니까?」 복습 · 교재 166~171쪽 · 암송구절 히브리서 10:24-25 (개역개정)</div>
+</footer>
+
+<script>
+(function(){
+"use strict";
+const $=(s,r=document)=>r.querySelector(s);
+const $$=(s,r=document)=>Array.from(r.querySelectorAll(s));
+const store={
+  get(k,d){try{const v=localStorage.getItem("g6s1_"+k);return v===null?d:JSON.parse(v)}catch(e){return d}},
+  set(k,v){try{localStorage.setItem("g6s1_"+k,JSON.stringify(v))}catch(e){}}
+};
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function el(tag,cls,text){const e=document.createElement(tag);if(cls)e.className=cls;if(text!=null)e.textContent=text;return e}
+function flash(node){node.classList.add("show");clearTimeout(node._t);node._t=setTimeout(()=>node.classList.remove("show"),1600)}
+
+/* ---------- progress bar ---------- */
+function onScroll(){
+  const h=document.documentElement;
+  const p=Math.min(100,Math.max(0,(h.scrollTop/(h.scrollHeight-h.clientHeight||1))*100));
+  $("#bar").style.width=p+"%";
+  $("#navpct").textContent=Math.round(p)+"%";
+}
+window.addEventListener("scroll",onScroll,{passive:true});onScroll();
+
+/* ---------- scroll reveal ---------- */
+if("IntersectionObserver" in window){
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.12});
+  $$(".rv").forEach(n=>io.observe(n));
+}else{$$(".rv").forEach(n=>n.classList.add("in"))}
+
+/* ---------- 1. flip cards ---------- */
+(function(){
+  const F=[
+    {f:"기도한 것과 다른 응답을 받았다면, 어떻게 볼 수 있을까요?",s:"핵심 ①",b:["하나님은 구한 것보다 더 많은 것을 주십니다.","<em>중풍병자는 병 고침을 구했지만, 예수님은 죄 사함을 주셨습니다(막 2:5). 하나님의 자녀가 되어 모든 것을 상속받게 하시려는 뜻이었습니다.</em>"]},
+    {f:"하나님이 내 인생에서 무엇을 하시는지 아는 분은?",s:"핵심 ②",b:["오직 하나님의 영, 성령님입니다.","<em>“성령은 모든 것 곧 하나님의 깊은 것까지도 통달하시느니라”(고전 2:10)</em>"]},
+    {f:"기도한 뒤에 가장 중요한 것은?",s:"핵심 ③",b:["영적인 집중력입니다.","<em>기도한 뒤에 일어나는 일을 내 기도와 연결해서 살피고, 하나님이 일하시는 쪽으로 내 삶을 조정합니다.</em>"]},
+    {f:"하나님이 침묵하실 때, 먼저 할 일은?",s:"핵심 ④",b:["죄의 문제가 없는지 점검하고, 있으면 고백합니다.","<em>그래도 침묵이 계속되면, 하나님이 더 깊은 만남을 준비하시는 중일 수 있습니다.</em>"]},
+    {f:"하나님의 침묵은 무엇일까요?",s:"핵심 ⑤",b:["버림이 아니라, 하나님을 더 깊이 알게 하시려는 기회일 수 있습니다.","<em>나사로를 위한 예수님의 침묵은 “내가 부활이요 생명”임을 보여주시려는 기회였습니다(요 11장).</em>"]}
+  ];
+  const g=$("#flipGrid");
+  F.forEach(c=>{
+    const b=el("button","flip");b.setAttribute("aria-label","카드 뒤집기");
+    const inn=el("div","in");
+    const f=el("div","f");f.appendChild(el("small",null,c.s));f.appendChild(document.createTextNode(c.f));
+    const bk=el("div","b");
+    c.b.forEach((t,i)=>{const p=el(i===0?"strong":"span");if(i===0)p.textContent=t;else p.innerHTML=t;bk.appendChild(p)});
+    inn.appendChild(f);inn.appendChild(bk);b.appendChild(inn);
+    b.addEventListener("click",()=>b.classList.toggle("on"));
+    g.appendChild(b);
+  });
+})();
+
+/* ---------- 2. OX ---------- */
+const OX=[
+  {q:"기도한 내용과 다른 응답을 받았다면, 하나님이 내 기도를 무시하신 것이다.",a:false,why:"중풍병자처럼, 하나님은 구한 것보다 더 큰 것을 주실 수 있습니다."},
+  {q:"하나님이 나에게 무엇을 주시려는지는 성령님만 아신다.",a:true,why:"하나님의 일은 하나님의 영 외에는 아무도 알지 못합니다(고전 2:10-12)."},
+  {q:"내 계획을 먼저 세웠다면, 하나님이 다른 방향으로 일하셔도 내 계획이 이뤄지게 해 달라고 계속 기도하는 것이 옳다.",a:false,why:"내 계획이 잘되게 해 달라고 부탁할지, 하나님이 일하시는 곳으로 가서 일할지 결정해야 합니다. 저자는 하나님이 시작하신 일에 계획을 조정했습니다."},
+  {q:"기도한 뒤 평소와 다른 일이 생기면, 먼저 방금 한 기도와 연결해서 살펴본다.",a:true,why:"문제는 기도한 뒤에 생기는 사건을 기도와 연관짓지 않는 데 있습니다."},
+  {q:"하나님의 침묵은 언제나 죄 때문이다.",a:false,why:"종종 죄 때문이기도 하지만 언제나는 아닙니다. 욥의 친구들은 틀렸고, 나사로 이야기에서도 침묵의 이유는 달랐습니다."},
+  {q:"하나님의 침묵 앞에서 낙심하는 것과 기대하는 것은 밤과 낮 같은 차이를 만든다.",a:true,why:"의기소침과 죄책감으로 갈 것인가, 하나님이 더 깊은 이해를 주실 것을 기대할 것인가에 따라 삶이 달라집니다."}
+];
+(function(){
+  const box=$("#oxList");let done=0,right=0;
+  OX.forEach((o,i)=>{
+    const d=el("div","ox");
+    d.appendChild(el("p",null,(i+1)+". "+o.q));
+    const b=el("div","btns");
+    const fb=el("div","fb");
+    [["○",true],["×",false]].forEach(([t,v])=>{
+      const btn=el("button",null,t);btn.setAttribute("aria-label",v?"맞다":"틀리다");
+      btn.addEventListener("click",()=>{
+        if(d.classList.contains("done"))return;
+        const ok=(v===o.a);
+        d.classList.add("done",ok?"ok":"no");btn.classList.add("sel");
+        fb.textContent="";
+        fb.appendChild(el("b",ok?"g":"r",ok?"정답입니다. ":"아쉬워요. 정답은 "+(o.a?"○":"×")+"입니다. "));
+        fb.appendChild(document.createTextNode(o.why));
+        done++;if(ok)right++;
+        if(done===OX.length)$("#oxScore").textContent=right===OX.length?"여섯 문제 모두 맞혔어요! 🎉":OX.length+"문제 중 "+right+"개를 맞혔어요.";
+      });
+      b.appendChild(btn);
+    });
+    d.appendChild(b);d.appendChild(fb);
+    box.appendChild(d);
+  });
+})();
+
+/* ---------- 3. two stories ---------- */
+(function(){
+  const P=[
+    {t:"병 고침을 구했는데, 예수님은 “네 죄 사함을 받았느니라”고 하셨다.",a:0,why:"구한 것과 다른 응답입니다(막 2:5)."},
+    {t:"사람들이 지붕에 구멍을 내고 환자를 달아 내렸다.",a:0,why:"무리 때문에 예수님께 다가갈 수 없어 네 사람이 한 일입니다(막 2장)."},
+    {t:"하나님의 자녀가 되어 모든 것을 상속받게 하시려는 뜻이 담겨 있었다.",a:0,why:"사람은 한 가지 선물을 원했지만, 예수님은 더 큰 것을 주려 하셨습니다."},
+    {t:"예수님이 그 마을에 가시는 것을 미루셨다.",a:1,why:"병든 나사로를 살려 달라는 청에 침묵하신 것입니다(요 11장)."},
+    {t:"예수님이 도착하셨을 때 이미 무덤에 나흘이 지나 있었다.",a:1,why:"마르다는 “주께서 여기 계셨더라면…”이라고 말했습니다(요 11:21)."},
+    {t:"“내가 부활이요 생명”임을 알게 하시려는 뜻이 담겨 있었다.",a:1,why:"침묵은 저버림이 아니라, 그들이 몰랐던 예수님 자신을 보여주시려는 기회였습니다."}
+  ];
+  const box=$("#pairList");let done=0,right=0;
+  P.forEach((p,i)=>{
+    const d=el("div","scn");d.appendChild(el("p",null,(i+1)+". "+p.t));
+    const b=el("div","btns");const fb=el("div","fb");
+    ["중풍병자 (막 2장)","나사로 (요 11장)"].forEach((t,k)=>{
+      const btn=el("button",null,t);
+      btn.addEventListener("click",()=>{
+        if(d.classList.contains("done"))return;
+        const ok=k===p.a;d.classList.add("done",ok?"ok":"no");btn.classList.add("sel");
+        fb.textContent="";fb.appendChild(el("b",null,ok?"정답! ":"아쉬워요. "));fb.appendChild(document.createTextNode(p.why));
+        done++;if(ok)right++;
+        if(done===P.length)$("#pairScore").textContent=right===P.length?"여섯 장면을 모두 맞혔어요! 🎉":P.length+"장면 중 "+right+"개를 맞혔어요.";
+      });
+      b.appendChild(btn);
+    });
+    d.appendChild(b);d.appendChild(fb);box.appendChild(d);
+  });
+})();
+
+/* ---------- 4. spiritual focus scenarios ---------- */
+(function(){
+  const SC=[
+    {t:"구역 교회를 세우려고 계획하고 기도했습니다. 그런데 그 구역에 살지 않는 소수민족 사람들이 교회에 찾아왔습니다.",o:["그들을 돌려보내고 처음 계획대로 한다","하나님이 하시는 일인지 하나님께 묻고, 계획을 조정할 수 있는지 살핀다"],a:1,why:"저자라면 곧바로 하나님께 나아가 무엇을 말씀하시는지 알아볼 것이라고 합니다. 밴쿠버 대학생 선교에서도 외국인 학생이 늘자 계획을 조정했습니다."},
+    {t:"아침에 기도했는데, 그날 평소에 없던 일이 이어서 생겨 마음이 불편합니다.",o:["거북하니 빨리 치워 버린다","방금 한 기도와 연결해서 살펴본다"],a:1,why:"교재는 이런 일을 거북하게 여겨 제거하려고만 하는 것이 문제라고 합니다. 다만 곧바로 단정하지 말고, 기도와 말씀 안에서 살펴보세요."},
+    {t:"여러 날 기도했는데 하나님이 완전히 침묵하시는 것 같습니다.",o:["버림받았다고 생각하고 기도를 그만둔다","죄를 점검하고, 말씀을 계속 읽으며 기대하고 기다린다"],a:1,why:"저자는 미친 듯이 응답을 찾아 나서지 않고 매일 말씀을 읽으며 기다렸고, 성경을 통해 말씀을 들었습니다."}
+  ];
+  const box=$("#scnList");
+  SC.forEach((s,i)=>{
+    const d=el("div","scn");d.appendChild(el("p",null,(i+1)+". "+s.t));
+    const b=el("div","btns");const fb=el("div","fb");
+    s.o.forEach((t,k)=>{
+      const btn=el("button",null,t);
+      btn.addEventListener("click",()=>{
+        if(d.classList.contains("done"))return;
+        const ok=k===s.a;d.classList.add("done",ok?"ok":"no");btn.classList.add("sel");
+        fb.textContent="";fb.appendChild(el("b",null,ok?"좋은 선택입니다. ":"다시 생각해 보세요. "));fb.appendChild(document.createTextNode(s.why));
+      });
+      b.appendChild(btn);
+    });
+    d.appendChild(b);d.appendChild(fb);box.appendChild(d);
+  });
+})();
+
+/* ---------- 5. silence stepper ---------- */
+(function(){
+  const B=[
+    {i:"🔍",t:"먼저 점검합니다",p:"“죄의 진단 목록”을 따라 회개하지 않은 죄가 없는지 살핍니다. 있으면 고백하고 정정합니다. 종종 하나님의 침묵은 죄 문제 때문이기도 합니다."},
+    {i:"🙏",t:"하나님께 돌아가 구합니다",p:"“저는 이 침묵의 의미를 이해하지 못합니다. 당신이 제 인생에서 무엇을 하고 계신지 제게 말씀해 주십시오.”"},
+    {i:"📖",t:"말씀을 계속 읽습니다",p:"미친 듯이 응답을 찾아나서지 않고 매일 말씀을 읽습니다. 성령님이 하나님이 하시는 일을 이해하도록 도우십니다."},
+    {i:"🌅",t:"기대하며 기다립니다",p:"하나님이 마지막으로 주신 말씀을 지키고, 하나님과의 신선한 만남을 주시하며 기다립니다. 내가 알아야 한다면 적절한 시간에 가르쳐 주십니다."}
+  ];
+  let n=0;const st=$("#stage"),dots=$("#dots");
+  function draw(){
+    st.innerHTML="";
+    st.appendChild(el("div","ico",B[n].i));st.appendChild(el("h3",null,(n+1)+". "+B[n].t));st.appendChild(el("p",null,B[n].p));
+    dots.innerHTML="";B.forEach((_,i)=>dots.appendChild(el("i",i===n?"on":"")));
+    $("#bprev").disabled=n===0;$("#bnext").disabled=n===B.length-1;
+  }
+  $("#bprev").addEventListener("click",()=>{if(n>0){n--;draw()}});
+  $("#bnext").addEventListener("click",()=>{if(n<B.length-1){n++;draw()}});
+  draw();
+})();
+
+/* ---------- 6. fill blanks ---------- */
+(function(){
+  const S=[
+    {pre:"오직 ",ans:"성령님",post:"만 하나님께서 나의 인생에서 무엇을 하고 계신지 아신다."},
+    {pre:"내가 알아야 한다면, 하나님이 ",ans:"적절한",post:" 시간에 알려주신다."},
+    {pre:"하나님의 ",ans:"침묵",post:"은 종종 죄 문제에서 비롯된다."},
+    {pre:"기도한 뒤 가장 중요한 것은 ",ans:"영적인 집중력",post:"을 발휘하는 것이다."},
+    {pre:"어떤 경우, 하나님은 나에게 그분에 대해서 좀더 깊이 ",ans:"이해",post:"시키려고 침묵을 지키신다."},
+    {pre:"중풍병자에게 예수님은 병 고침 대신 ",ans:"죄 사함",post:"을 주셨다."}
+  ];
+  const WORDS=["성령님","적절한","침묵","영적인 집중력","이해","죄 사함"];
+  const list=$("#fillList"),bank=$("#bank"),msg=$("#fillMsg");
+  let vals,sel,blanks,chips;
+  function used(w){return vals.indexOf(w)>=0}
+  function refresh(){
+    chips.forEach(c=>{c.classList.toggle("used",used(c.dataset.w));c.classList.toggle("sel",sel===c.dataset.w)});
+    blanks.forEach((b,i)=>{b.textContent=vals[i]||"　?　";b.classList.toggle("filled",!!vals[i]);b.classList.remove("ok","bad")});
+  }
+  function init(){
+    vals=S.map(()=>"");sel=null;list.innerHTML="";bank.innerHTML="";msg.textContent="";msg.className="msg";blanks=[];chips=[];
+    S.forEach((s,i)=>{
+      const li=el("li");li.appendChild(el("span","no",(i+1)+"."));
+      if(s.pre)li.appendChild(document.createTextNode(s.pre));
+      const b=el("button","blank","　?　");
+      b.addEventListener("click",()=>{
+        if(vals[i]){vals[i]="";sel=null}
+        else if(sel){vals[i]=sel;sel=null}
+        msg.textContent="";refresh();
+      });
+      blanks.push(b);li.appendChild(b);
+      if(s.post)li.appendChild(document.createTextNode(s.post));
+      list.appendChild(li);
+    });
+    shuffle(WORDS).forEach(w=>{
+      const c=el("button","chip",w);c.dataset.w=w;
+      c.addEventListener("click",()=>{if(used(w))return;sel=(sel===w)?null:w;refresh()});
+      chips.push(c);bank.appendChild(c);
+    });
+    refresh();
+  }
+  $("#fillCheck").addEventListener("click",()=>{
+    if(vals.some(v=>!v)){msg.className="msg bad";msg.textContent="아직 비어 있는 칸이 있어요.";return}
+    let ok=0;blanks.forEach((b,i)=>{const r=vals[i]===S[i].ans;b.classList.add(r?"ok":"bad");if(r)ok++});
+    if(ok===S.length){msg.className="msg good";msg.textContent="모두 맞았어요! 🎉"}
+    else{msg.className="msg bad";msg.textContent=S.length+"칸 중 "+ok+"칸이 맞았어요. 빨간 칸을 눌러 다시 채워 보세요."}
+  });
+  $("#fillReset").addEventListener("click",init);init();
+})();
+
+/* ---------- 7. journal ---------- */
+(function(){
+  const ids=["j1","j2","j3"],sv=$("#jSaved");
+  ids.forEach(id=>{
+    const t=$("#"+id);t.value=store.get(id,"");
+    t.addEventListener("input",()=>{store.set(id,t.value);flash(sv)});
+  });
+  $("#jClear").addEventListener("click",()=>{
+    if(!confirm("세 칸에 적은 내용을 모두 지울까요?"))return;
+    ids.forEach(id=>{$("#"+id).value="";store.set(id,"")});
+  });
+})();
+
+/* ---------- 8. final quiz ---------- */
+(function(){
+  const Q=[
+    {q:"중풍병자의 친구들이 구한 것과 예수님이 주신 것은?",o:["구한 것: 죄 사함 / 주신 것: 병 고침","구한 것: 병 고침 / 주신 것: 죄 사함","구한 것: 병 고침 / 주신 것: 병 고침","구한 것: 음식 / 주신 것: 돈"],a:1,e:"예수님은 구한 것과 다른, 더 큰 것을 주셨습니다(막 2:5)."},
+    {q:"하나님이 내 삶에서 무엇을 하시는지 아시는 분은?",o:["가장 가까운 친구","오직 성령님","경험이 많은 선배","내 마음의 느낌"],a:1,e:"하나님의 일은 하나님의 영 외에는 아무도 알지 못합니다(고전 2:11)."},
+    {q:"교재가 말하는 “영적인 집중력”은?",o:["기도 시간을 길게 하는 것","한 가지 기도제목만 붙드는 것","기도한 뒤에 일어나는 일을 내 기도와 연결해 살피는 것","주변의 방해를 모두 없애는 것"],a:2,e:"기도한 뒤 어떻게 응답하시는지 기대하며 살펴보는 것입니다."},
+    {q:"내 계획과 다른 방향으로 하나님이 일하실 때, 저자는 어떻게 했습니까?",o:["내 계획이 이뤄지도록 계속 기도했다","기도를 포기했다","하나님이 일하시는 쪽으로 계획을 조정했다","일을 모두 멈췄다"],a:2,e:"외국인 학생이 늘자 선교계획을 조정했습니다."},
+    {q:"욥의 친구들은 욥의 고난과 하나님의 침묵을 어떻게 설명했습니까?",o:["모두 죄 때문이라고 했다","시험이니 참으라고 했다","하나님의 때가 아니라고 했다","환경 탓이라고 했다"],a:0,e:"그러나 욥은 하나님과 올바른 관계에 있었고, 친구들의 설명은 틀렸습니다."},
+    {q:"나사로 이야기에서 예수님의 침묵이 보여주려 한 것은?",o:["예수님이 바쁘시다는 것","마리아와 마르다의 믿음이 부족하다는 것","예수님이 “부활이요 생명”이시라는 것","병은 기도로 고칠 수 없다는 것"],a:2,e:"침묵은 저버림이 아니라, 지금까지 몰랐던 예수님 자신을 보여주시려는 기회였습니다."},
+    {q:"하나님이 침묵하실 때 교재가 권하는 순서로 알맞은 것은?",o:["죄 점검과 회개 → 침묵이 계속되면 새로운 만남을 기대하며 준비","바로 포기 → 다른 기도제목으로 교체","더 큰 소리로 반복해서 기도","주변 사람들의 해석을 따르기"],a:0,e:"먼저 죄를 점검하되, 그 뒤에도 침묵이 계속되면 하나님과의 새로운 경험을 준비합니다."},
+    {q:"이 단원의 암송구절(요 5:19)의 핵심은?",o:["아들은 아버지께서 하시는 일을 보고 그대로 행한다","아들은 스스로 계획해서 일한다","아버지는 아들에게 일을 맡기고 떠나셨다","일은 사람이 먼저 시작해야 한다"],a:0,e:"내가 계획을 세우기 전에, 하나님이 하시는 일을 보고 거기에 맞추는 삶과 이어집니다."}
+  ];
+  const box=$("#qbox");let n=0,score=0;
+  function render(){
+    box.innerHTML="";
+    if(n>=Q.length){
+      const pct=Math.round(score/Q.length*100);
+      const r=el("div","result");
+      const ring=el("div","ring");ring.style.setProperty("--p",pct);
+      const inn=el("div");inn.appendChild(document.createTextNode(String(score)));inn.appendChild(el("small","","/"+Q.length));ring.appendChild(inn);
+      r.appendChild(ring);
+      r.appendChild(el("h3",null,pct===100?"완벽해요! 🎉":pct>=70?"아주 잘했어요!":"조금만 더 복습해 볼까요?"));
+      r.appendChild(el("p",null,pct===100?"이 과의 핵심을 모두 기억하고 있습니다.":"위의 섹션으로 돌아가 카드를 다시 열어 보세요."));
+      const rb=el("button","btn primary","다시 풀기");rb.addEventListener("click",()=>{n=0;score=0;render()});
+      r.appendChild(rb);box.appendChild(r);return;
+    }
+    const q=Q[n];
+    box.appendChild(el("div","cnt","문제 "+(n+1)+" / "+Q.length));
+    const pg=el("div","qprog");const bar=el("i");bar.style.width=(n/Q.length*100)+"%";pg.appendChild(bar);box.appendChild(pg);
+    box.appendChild(el("h3",null,q.q));
+    const o=el("div","opts");const fb=el("div","qfb");
+    const nx=el("button","btn primary",n===Q.length-1?"결과 보기":"다음 문제");nx.style.display="none";nx.style.marginTop="14px";
+    q.o.forEach((t,i)=>{
+      const b=el("button",null,t);
+      b.addEventListener("click",()=>{
+        o.classList.add("lock");
+        const ok=i===q.a;if(ok)score++;
+        b.classList.add(ok?"ok":"no");
+        if(!ok)o.children[q.a].classList.add("ok");
+        fb.textContent=(ok?"정답! ":"아쉬워요. ")+q.e;nx.style.display="inline-block";
+      });
+      o.appendChild(b);
+    });
+    nx.addEventListener("click",()=>{n++;render()});
+    box.appendChild(o);box.appendChild(fb);box.appendChild(nx);
+  }
+  render();
+})();
+
+/* ---------- 9. memory verse (히브리서 10:24-25 개역개정) ---------- */
+(function(){
+  const TEXT="서로 돌아보아 사랑과 선행을 격려하며 모이기를 폐하는 어떤 사람들의 습관과 같이 하지 말고 오직 권하여 그 날이 가까움을 볼수록 더욱 그리하자";
+  const W=TEXT.split(" ");
+  const ORDER=[4,12,8,17,2,19,10,14,6,0,16,3,20,9,13,5,18,1,11,15,7]; /* 가리는 순서 */
+  const LEVELS=[["1단계 · 모두 보기",0],["2단계 · 6개 가리기",6],["3단계 · 12개 가리기",12],["4단계 · 전부 가리기",W.length]];
+  let lvl=0,peek={};
+  const vt=$("#vtext");
+  function draw(){
+    vt.innerHTML="";
+    const hidden=new Set(ORDER.slice(0,LEVELS[lvl][1]));
+    W.forEach((w,i)=>{
+      const s=el("span","w",w);
+      if(hidden.has(i)){
+        s.classList.add("hide");s.setAttribute("role","button");s.setAttribute("aria-label","가려진 단어, 눌러서 보기");
+        if(peek[i])s.classList.add("peek");
+        s.addEventListener("click",()=>{peek[i]=!peek[i];draw()});
+      }
+      vt.appendChild(s);vt.appendChild(document.createTextNode(" "));
+    });
+    $$("#lvl button").forEach((b,i)=>b.classList.toggle("on",i===lvl));
+  }
+  const lv=$("#lvl");
+  LEVELS.forEach((l,i)=>{const b=el("button",null,l[0]);b.addEventListener("click",()=>{lvl=i;peek={};draw()});lv.appendChild(b)});
+  $("#vShow").addEventListener("click",()=>{lvl=0;peek={};draw()});
+  const sp=$("#vSpeak");
+  if(!("speechSynthesis" in window))sp.style.display="none";
+  else sp.addEventListener("click",()=>{
+    try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance("히브리서 10장 24절에서 25절. "+TEXT);u.lang="ko-KR";u.rate=.85;speechSynthesis.speak(u)}catch(e){}
+  });
+  draw();
+
+  /* tabs */
+  $$("#tabs button").forEach(b=>b.addEventListener("click",()=>{
+    $$("#tabs button").forEach(x=>x.classList.toggle("on",x===b));
+    $$(".mem .panel").forEach(p=>p.classList.toggle("on",p.id===b.dataset.p));
+  }));
+
+  /* read x3 */
+  let rc=store.get("read",0);
+  const rcEl=$("#readCnt"),rm=$("#readMsg");
+  function drawRead(){
+    rcEl.textContent=Math.min(rc,3)+" / 3";
+    rm.className="msg"+(rc>=3?" good":"");
+    rm.textContent=rc>=3?"세 번 읽었어요! 이제 가려서 외워 보세요.":"";
+  }
+  $("#readBtn").addEventListener("click",()=>{rc=Math.min(3,rc+1);store.set("read",rc);drawRead()});
+  drawRead();
+
+  /* puzzle */
+  const built=$("#built"),chips=$("#vchips"),pm=$("#vpMsg");let pos=0;
+  function puzzle(){
+    pos=0;built.innerHTML="";chips.innerHTML="";pm.textContent="";pm.className="msg";
+    shuffle(W).forEach(w=>{
+      const c=el("button","chip",w);
+      c.addEventListener("click",()=>{
+        if(c.classList.contains("used"))return;
+        if(w===W[pos]){
+          built.appendChild(el("span",null,w));c.classList.add("used");pos++;
+          if(pos===W.length){pm.className="msg good";pm.textContent="완성! 🎉 히브리서 10:24-25을 소리 내어 읽어 보세요."}
+        }else{c.classList.remove("shake");void c.offsetWidth;c.classList.add("shake");pm.className="msg";pm.textContent="아직이에요. 다시 생각해 보세요."}
+      });
+      chips.appendChild(c);
+    });
+  }
+  $("#vpReset").addEventListener("click",puzzle);puzzle();
+
+  /* typing check */
+  const norm=s=>s.replace(/[.,;:!?"'“”‘’·]/g,"").trim().split(/\s+/).filter(Boolean);
+  const res=$("#vRes"),tm=$("#vTMsg"),ty=$("#vType");
+  $("#vCheck").addEventListener("click",()=>{
+    res.innerHTML="";tm.className="msg";
+    const got=norm(ty.value);
+    if(!got.length){tm.textContent="먼저 기억나는 대로 적어 보세요.";return}
+    let ok=0;
+    W.forEach((w,i)=>{
+      const good=got[i]===w;if(good)ok++;
+      res.appendChild(el("span",good?"ok":"no",good?w:(got[i]?got[i]+" → "+w:"□ → "+w)));
+    });
+    if(ok===W.length&&got.length===W.length){tm.className="msg good";tm.textContent="완벽합니다! 🎉"}
+    else{tm.textContent=W.length+"단어 중 "+ok+"개가 맞았어요. 빨간 부분을 다시 확인해 보세요."}
+  });
+  $("#vTClear").addEventListener("click",()=>{ty.value="";res.innerHTML="";tm.textContent=""});
+
+  /* week tracker */
+  const days=store.get("days",[0,0,0,0,0,0,0]);
+  const dw=$("#days"),dm=$("#dayMsg");
+  function drawDays(){
+    dw.innerHTML="";
+    "월화수목금토일".split("").forEach((d,i)=>{
+      const b=el("button",days[i]?"on":"",d);b.setAttribute("aria-pressed",days[i]?"true":"false");
+      b.addEventListener("click",()=>{days[i]=days[i]?0:1;store.set("days",days);drawDays()});
+      dw.appendChild(b);
+    });
+    const c=days.reduce((a,b)=>a+b,0);
+    dm.className="msg"+(c===7?" good":"");
+    dm.textContent=c===0?"오늘부터 시작해 봐요.":c===7?"일주일 내내 외웠어요! 🎉":c+"일 외웠어요. 계속해 봐요.";
+  }
+  drawDays();
+})();
+})();
+</script>
+</body>
+</html>
