@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>제5과 복습 · 하나님은 기도를 통해서 말씀하신다</title>
+<style>
+:root{
+  --bg:#f5f5f7; --surface:#ffffff; --surface2:#f5f5f7; --text:#1d1d1f; --sub:#6e6e73;
+  --line:rgba(0,0,0,.09); --blue:#0071e3; --blue-soft:rgba(0,113,227,.10);
+  --green:#1f9d47; --green-soft:rgba(52,199,89,.15); --red:#d70015; --red-soft:rgba(255,59,48,.12);
+  --orange:#c93400; --orange-soft:rgba(255,149,0,.15);
+  --shadow:0 6px 30px rgba(0,0,0,.06); --r:22px;
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#000; --surface:#1c1c1e; --surface2:#2c2c2e; --text:#f5f5f7; --sub:#98989d;
+    --line:rgba(255,255,255,.14); --blue:#2997ff; --blue-soft:rgba(41,151,255,.16);
+    --green:#30d158; --green-soft:rgba(48,209,88,.16); --red:#ff6961; --red-soft:rgba(255,69,58,.18);
+    --orange:#ffb340; --orange-soft:rgba(255,159,10,.18);
+    --shadow:0 6px 30px rgba(0,0,0,.5);
+  }
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.6;-webkit-font-smoothing:antialiased;word-break:keep-all;overflow-wrap:break-word}
+button{font-family:inherit;color:inherit;cursor:pointer}
+textarea,input{font-family:inherit}
+.wrap{max-width:980px;margin:0 auto;padding:0 22px}
+
+/* progress + nav */
+#bar{position:fixed;top:0;left:0;height:3px;width:0;background:var(--blue);z-index:60;transition:width .15s}
+nav{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 78%,transparent);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:48px;font-size:14px}
+nav b{font-weight:600}
+nav span{color:var(--sub);font-size:13px}
+
+/* sections */
+section{padding:96px 0}
+section.alt{background:var(--surface)}
+.eyebrow{font-size:15px;font-weight:600;color:var(--blue);margin:0 0 8px;letter-spacing:.01em}
+h2{font-size:clamp(28px,5vw,44px);line-height:1.15;letter-spacing:-.025em;margin:0 0 14px;font-weight:700}
+.lead{font-size:clamp(17px,2.2vw,21px);color:var(--sub);margin:0 0 40px;max-width:680px}
+.sec-head{margin-bottom:8px}
+
+/* hero */
+.hero{padding:110px 0 90px;text-align:center;background:linear-gradient(180deg,var(--surface),var(--bg))}
+.hero .tag{display:inline-block;font-size:14px;font-weight:600;color:var(--blue);background:var(--blue-soft);padding:6px 14px;border-radius:980px;margin-bottom:22px}
+.hero h1{font-size:clamp(38px,8vw,80px);line-height:1.05;letter-spacing:-.035em;margin:0 0 20px;font-weight:700;
+  background:linear-gradient(135deg,var(--text) 30%,var(--blue));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{font-size:clamp(18px,2.6vw,24px);color:var(--sub);max-width:640px;margin:0 auto 34px}
+.hero .meta{font-size:14px;margin-top:26px;color:var(--sub)}
+
+/* buttons */
+.btn{appearance:none;border:0;background:var(--surface2);color:var(--text);font-size:16px;font-weight:500;padding:11px 22px;border-radius:980px;transition:transform .15s,background .2s,opacity .2s}
+.alt .btn{background:var(--bg)}
+.btn:hover{transform:scale(1.03)}
+.btn:active{transform:scale(.97)}
+.btn.primary{background:var(--blue);color:#fff}
+.btn:disabled{opacity:.4;cursor:default;transform:none}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.row.center{justify-content:center}
+
+/* cards */
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.card{background:var(--surface);border-radius:var(--r);padding:26px;box-shadow:var(--shadow)}
+.alt .card{background:var(--bg);box-shadow:none}
+.rcard{appearance:none;border:0;text-align:left;width:100%;background:var(--surface);border-radius:var(--r);padding:26px;box-shadow:var(--shadow);min-height:150px;display:flex;flex-direction:column;gap:12px;transition:transform .2s}
+.rcard:hover{transform:translateY(-3px)}
+.rcard .qq{font-size:19px;font-weight:600;line-height:1.4}
+.rcard .hint{font-size:13px;color:var(--blue);font-weight:500}
+.rcard .aa{display:none;color:var(--sub);font-size:16px;animation:fade .35s ease}
+.rcard.open .aa{display:block}
+.rcard.open .hint{display:none}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* OX */
+.ox{background:var(--bg);border-radius:var(--r);padding:22px 24px;margin-bottom:14px}
+.ox p{margin:0 0 14px;font-size:18px;font-weight:500}
+.ox .btns{display:flex;gap:10px}
+.ox .btns button{appearance:none;border:0;width:64px;height:48px;border-radius:14px;background:var(--surface);font-size:24px;font-weight:600;transition:transform .15s,background .2s}
+.ox .btns button:hover{transform:scale(1.06)}
+.ox .fb{display:none;margin-top:14px;font-size:15px;color:var(--sub);animation:fade .3s ease}
+.ox.done .fb{display:block}
+.ox.done .btns button{pointer-events:none;opacity:.45}
+.ox.done .btns button.sel{opacity:1}
+.ox.ok .btns button.sel{background:var(--green-soft);color:var(--green)}
+.ox.no .btns button.sel{background:var(--red-soft);color:var(--red)}
+.fb b.g{color:var(--green)} .fb b.r{color:var(--red)}
+.score{margin-top:18px;font-size:17px;font-weight:600;color:var(--blue);min-height:28px}
+
+/* flip */
+.flip{perspective:1000px;height:230px;cursor:pointer;background:none;border:0;padding:0;text-align:left}
+.flip .in{position:relative;width:100%;height:100%;transition:transform .7s cubic-bezier(.2,.8,.2,1);transform-style:preserve-3d}
+.flip.on .in{transform:rotateY(180deg)}
+.flip .f,.flip .b{position:absolute;inset:0;border-radius:var(--r);padding:24px;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;flex-direction:column;justify-content:center;gap:10px;overflow:auto}
+.flip .f{background:var(--surface);box-shadow:var(--shadow);font-size:20px;font-weight:600;line-height:1.4}
+.flip .f small{display:block;color:var(--blue);font-weight:500;font-size:13px}
+.flip .b{background:linear-gradient(145deg,#0071e3,#5e5ce6);color:#fff;transform:rotateY(180deg);font-size:16px;line-height:1.55}
+.flip .b em{font-style:normal;font-size:13px;opacity:.85}
+.flip .b strong{font-size:18px}
+
+/* order */
+.order{display:grid;gap:18px;grid-template-columns:1fr 1fr}
+@media(max-width:720px){.order{grid-template-columns:1fr}}
+.order h3{margin:0 0 10px;font-size:15px;color:var(--sub);font-weight:600}
+ol.slots{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+ol.slots li{display:flex;gap:12px;align-items:center;min-height:50px;padding:10px 14px;border-radius:14px;background:var(--bg);font-size:15px;border:1.5px dashed var(--line);color:var(--sub)}
+ol.slots li .n{flex:none;width:26px;height:26px;border-radius:50%;background:var(--surface);display:grid;place-items:center;font-size:13px;font-weight:600;color:var(--sub)}
+ol.slots li.on{border:1.5px solid transparent;background:var(--green-soft);color:var(--text);animation:pop .35s ease}
+ol.slots li.on .n{background:var(--green);color:#fff}
+@keyframes pop{0%{transform:scale(.96)}60%{transform:scale(1.02)}100%{transform:scale(1)}}
+.pool{display:grid;gap:8px}
+.pool button{appearance:none;border:0;text-align:left;background:var(--bg);border-radius:14px;padding:12px 14px;font-size:15px;transition:transform .15s,opacity .2s}
+.pool button:hover{transform:translateX(3px)}
+.pool button:disabled{opacity:.25;pointer-events:none}
+.shake{animation:shake .4s}
+@keyframes shake{20%,60%{transform:translateX(-7px)}40%,80%{transform:translateX(7px)}}
+.msg{margin-top:16px;min-height:26px;font-size:16px;font-weight:500;color:var(--sub)}
+.msg.good{color:var(--green)} .msg.bad{color:var(--orange)}
+
+/* fill */
+.fillbox{background:var(--bg);border-radius:var(--r);padding:26px}
+.fillbox ol{margin:0;padding-left:0;list-style:none;display:grid;gap:14px;font-size:18px}
+.fillbox li{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.fillbox .no{font-weight:600;color:var(--blue);margin-right:4px}
+.blank{appearance:none;border:0;min-width:84px;height:38px;border-radius:10px;background:var(--surface);border-bottom:2px solid var(--blue);font-size:17px;font-weight:600;padding:0 12px;transition:background .2s}
+.blank.filled{color:var(--blue)}
+.blank.ok{background:var(--green-soft);color:var(--green);border-color:var(--green)}
+.blank.bad{background:var(--red-soft);color:var(--red);border-color:var(--red)}
+.bank{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0}
+.chip{appearance:none;border:0;background:var(--surface);border-radius:980px;padding:10px 20px;font-size:16px;font-weight:600;box-shadow:var(--shadow);transition:transform .15s,opacity .2s,background .2s}
+.chip.sel{background:var(--blue);color:#fff;transform:scale(1.07)}
+.chip.used{opacity:.25;pointer-events:none}
+
+/* bicycle */
+.stage{background:var(--surface);border-radius:28px;padding:36px 30px;box-shadow:var(--shadow);text-align:center;min-height:260px;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.stage .ico{font-size:64px;line-height:1;margin-bottom:14px;animation:pop .5s ease}
+.stage h3{font-size:26px;margin:0 0 10px;letter-spacing:-.02em}
+.stage p{margin:0;font-size:18px;color:var(--sub);max-width:560px}
+.dots{display:flex;gap:8px;justify-content:center;margin:20px 0}
+.dots i{width:8px;height:8px;border-radius:50%;background:var(--line);transition:all .3s}
+.dots i.on{background:var(--blue);width:26px;border-radius:8px}
+.verse{background:var(--blue-soft);border-radius:var(--r);padding:22px 26px;margin-top:28px}
+.verse .ref{font-size:14px;font-weight:600;color:var(--blue);margin-bottom:6px}
+.verse p{margin:0;font-size:17px}
+.warn{background:var(--orange-soft);border-radius:var(--r);padding:20px 26px;margin-top:16px;font-size:16px}
+.warn b{color:var(--orange)}
+
+/* discern */
+.four{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));margin-bottom:34px}
+.four .rcard{min-height:130px;padding:22px}
+.four .rcard .qq{font-size:17px}
+.deny{background:linear-gradient(145deg,#1d1d1f,#3a3a3c);color:#fff;border-radius:var(--r);padding:26px 28px;margin-bottom:30px}
+.deny h3{margin:0 0 6px;font-size:20px}
+.deny p{margin:0;color:#d2d2d7;font-size:16px}
+.scn{background:var(--surface);border-radius:var(--r);padding:24px 26px;margin-bottom:14px;box-shadow:var(--shadow)}
+.scn p{margin:0 0 16px;font-size:17px}
+.scn .btns{display:flex;flex-wrap:wrap;gap:10px}
+.scn .btns button{appearance:none;border:0;background:var(--bg);padding:11px 18px;border-radius:980px;font-size:15px;font-weight:500;transition:background .2s,transform .15s}
+.scn .btns button:hover{transform:scale(1.03)}
+.scn .fb{display:none;margin-top:14px;font-size:15px;color:var(--sub);animation:fade .3s}
+.scn.done .fb{display:block}
+.scn.done .btns button{pointer-events:none;opacity:.4}
+.scn.done .btns button.sel{opacity:1}
+.scn.ok .btns button.sel{background:var(--green-soft);color:var(--green)}
+.scn.no .btns button.sel{background:var(--red-soft);color:var(--red)}
+
+/* journal */
+.field{margin-bottom:16px}
+.field label{display:block;font-size:14px;font-weight:600;color:var(--blue);margin-bottom:6px}
+.field textarea,.ta{width:100%;border:1.5px solid transparent;background:var(--bg);color:var(--text);border-radius:16px;padding:14px 16px;font-size:16px;line-height:1.6;resize:vertical;min-height:84px;outline:none;transition:border .2s,background .2s}
+.alt .field textarea,.alt .ta{background:var(--bg)}
+section:not(.alt) .field textarea,section:not(.alt) .ta{background:var(--surface)}
+.field textarea:focus,.ta:focus{border-color:var(--blue)}
+.note{font-size:13px;color:var(--sub);margin-top:6px}
+.saved{font-size:14px;color:var(--green);opacity:0;transition:opacity .3s}
+.saved.show{opacity:1}
+
+/* quiz */
+.qbox{background:var(--surface);border-radius:28px;padding:34px 30px;box-shadow:var(--shadow);max-width:720px;margin:0 auto}
+.qbox .cnt{font-size:14px;color:var(--blue);font-weight:600;margin-bottom:10px}
+.qbox h3{font-size:clamp(20px,3vw,26px);margin:0 0 22px;line-height:1.35;letter-spacing:-.01em}
+.opts{display:grid;gap:10px}
+.opts button{appearance:none;border:1.5px solid transparent;background:var(--bg);text-align:left;padding:15px 18px;border-radius:16px;font-size:16px;transition:background .2s,transform .15s}
+.opts button:hover{transform:translateX(3px)}
+.opts button.ok{background:var(--green-soft);border-color:var(--green)}
+.opts button.no{background:var(--red-soft);border-color:var(--red)}
+.opts.lock button{pointer-events:none}
+.qfb{margin-top:16px;font-size:15px;color:var(--sub);min-height:24px}
+.qprog{height:4px;border-radius:4px;background:var(--bg);margin-bottom:22px;overflow:hidden}
+.qprog i{display:block;height:100%;background:var(--blue);width:0;transition:width .4s}
+.result{text-align:center}
+.ring{width:170px;height:170px;border-radius:50%;margin:10px auto 20px;display:grid;place-items:center;background:conic-gradient(var(--blue) calc(var(--p)*1%),var(--bg) 0)}
+.ring div{width:134px;height:134px;border-radius:50%;background:var(--surface);display:grid;place-items:center;font-size:44px;font-weight:700;letter-spacing:-.03em}
+.ring small{font-size:18px;color:var(--sub);font-weight:500}
+
+/* memory verse */
+.mem{background:linear-gradient(150deg,#0b1f4d 0%,#1b3a8a 55%,#5e5ce6 100%);color:#fff;padding:110px 0}
+.mem .eyebrow{color:#9ecbff}
+.mem .lead{color:#c9d6ff}
+.mem .mem-title{font-size:clamp(44px,9vw,84px);line-height:1.05;letter-spacing:-.035em;font-weight:800;color:#fff;margin:0 0 18px;text-shadow:0 2px 24px rgba(0,0,0,.25)}
+.mem .eyebrow{font-size:clamp(18px,2.4vw,22px);color:#cfe3ff}
+.mem .verse-card{background:rgba(0,0,0,.28);-webkit-backdrop-filter:blur(24px);backdrop-filter:blur(24px);border:1.5px solid rgba(255,255,255,.4);border-radius:32px;padding:clamp(32px,6vw,64px) clamp(22px,5vw,56px);text-align:center;margin-bottom:26px;box-shadow:0 12px 50px rgba(0,0,0,.3)}
+.mem .vref{font-size:clamp(18px,2.6vw,24px);font-weight:700;color:#cfe3ff;margin-bottom:22px;letter-spacing:.02em}
+.mem .vtext{font-size:clamp(34px,7vw,64px);line-height:1.5;font-weight:800;letter-spacing:-.025em;color:#fff;text-shadow:0 2px 18px rgba(0,0,0,.35)}
+.mem .vtext .w{display:inline-block;margin:0 .12em;padding:0 .08em;border-radius:8px}
+.mem .vtext .w.hide{background:rgba(255,255,255,.22);color:transparent;cursor:pointer;min-width:2.2em;user-select:none}
+.mem .vtext .w.peek{background:rgba(255,255,255,.1);color:#fff}
+.mem .tabs{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-bottom:22px}
+.mem .tabs button{appearance:none;border:0;background:rgba(255,255,255,.12);color:#fff;padding:9px 18px;border-radius:980px;font-size:15px;font-weight:500;transition:background .2s}
+.mem .tabs button.on{background:#fff;color:#0b1f4d;font-weight:600}
+.mem .panel{display:none;animation:fade .35s}
+.mem .panel.on{display:block}
+.mem .box{background:rgba(255,255,255,.1);border-radius:22px;padding:24px;margin-bottom:16px}
+.mem .box h3{margin:0 0 6px;font-size:19px}
+.mem .box p{margin:0 0 14px;color:#c9d6ff;font-size:15px}
+.mem .btn{background:rgba(255,255,255,.16);color:#fff}
+.mem .btn.primary{background:#fff;color:#0b1f4d}
+.mem .chips{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0}
+.mem .chip{background:rgba(255,255,255,.16);color:#fff;box-shadow:none}
+.mem .built{min-height:62px;border:1.5px dashed rgba(255,255,255,.35);border-radius:16px;padding:14px 16px;font-size:20px;font-weight:600;display:flex;flex-wrap:wrap;gap:8px}
+.mem .built span{background:rgba(48,209,88,.3);padding:2px 12px;border-radius:10px;animation:pop .3s}
+.mem .ta{background:rgba(255,255,255,.14);color:#fff;min-height:100px}
+.mem .ta::placeholder{color:#a9b9e6}
+.mem .res{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.mem .res span{padding:4px 12px;border-radius:10px;font-weight:600}
+.mem .res .ok{background:rgba(48,209,88,.35)}
+.mem .res .no{background:rgba(255,69,58,.45)}
+.mem .msg{color:#d6e2ff}
+.mem .msg.good{color:#8ff0a4}
+.days{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin:14px 0}
+.days button{appearance:none;border:0;aspect-ratio:1;border-radius:50%;background:rgba(255,255,255,.14);color:#fff;font-size:16px;font-weight:600;transition:transform .15s,background .2s}
+.days button:hover{transform:scale(1.07)}
+.days button.on{background:#30d158;color:#06280f}
+.lvl{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px;justify-content:center}
+.lvl button{appearance:none;border:0;background:rgba(255,255,255,.12);color:#fff;padding:8px 16px;border-radius:980px;font-size:14px}
+.lvl button.on{background:#fff;color:#0b1f4d;font-weight:600}
+
+footer{padding:50px 0 70px;text-align:center;color:var(--sub);font-size:13px}
+
+/* scroll reveal */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+  .rv{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<nav><div class="wrap"><b>제5단원 제5과 복습</b><span id="navpct">0%</span></div></nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <div class="tag">하나님을 경험하는 삶 · 5단원 5과</div>
+    <h1>하나님은 기도를 통해서<br>말씀하신다</h1>
+    <p>카드를 열고, 퀴즈를 풀고, 직접 써 보면서 오늘 배운 것을 다시 만나 봅니다.</p>
+    <a href="#s1"><button class="btn primary">복습 시작하기</button></a>
+    <div class="meta">교재 156~163쪽 · 약 15분</div>
+  </div>
+</header>
+
+<!-- 1 -->
+<section id="s1">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">01 · 워밍업</p>
+      <h2>먼저, 네 가지 질문.</h2>
+      <p class="lead">카드를 눌러서 답을 확인해 보세요. 먼저 마음속으로 답해 본 다음에 열어 보는 것이 좋습니다.</p>
+    </div>
+    <div class="grid rv">
+      <button class="rcard"><span class="qq">기도 시간에 말하는 시간과 듣는 시간, 어느 쪽이 더 중요할까요?</span><span class="hint">눌러서 답 보기</span><span class="aa">하나님이 기도 중에 하시는 말씀이 내가 하는 말보다 훨씬 중요합니다. 듣는 것도 기도에 포함됩니다.</span></button>
+      <button class="rcard"><span class="qq">기도는 무엇을 위해 계획된 것일까요?</span><span class="hint">눌러서 답 보기</span><span class="aa">기도는 하나님을 나에게 맞추려는 장치가 아닙니다. 나를 하나님께 맞추도록 계획된 것입니다.</span></button>
+      <button class="rcard"><span class="qq">하나님은 우리의 기도를 필요로 하실까요?</span><span class="hint">눌러서 답 보기</span><span class="aa">필요로 하시지는 않지만, 우리가 기도하기를 원하십니다. 기도는 종교활동이 아니라 관계입니다.</span></button>
+      <button class="rcard"><span class="qq">진리는 공부해야 할 개념일까요?</span><span class="hint">눌러서 답 보기</span><span class="aa">아닙니다. 진리는 하나의 인격체이십니다. 예수님은 “내가… 진리요”라고 하셨습니다.</span></button>
+    </div>
+  </div>
+</section>
+
+<!-- 2 -->
+<section class="alt" id="s2">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">02 · ○ × 퀴즈</p>
+      <h2>맞으면 ○, 틀리면 ×.</h2>
+      <p class="lead">여섯 문장을 읽고 판단해 보세요. 고르면 바로 이유를 알려 드립니다.</p>
+    </div>
+    <div id="oxList" class="rv"></div>
+    <div class="score" id="oxScore"></div>
+  </div>
+</section>
+
+<!-- 3 -->
+<section id="s3">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">03 · 진리는 인격체</p>
+      <h2>카드를 뒤집어 보세요.</h2>
+      <p class="lead">진리를 받는다는 것은 개념을 외우는 것이 아니라, 한 분께 내 인생을 맞추는 것입니다.</p>
+    </div>
+    <div class="grid rv" id="flipGrid"></div>
+  </div>
+</section>
+
+<!-- 4 -->
+<section class="alt" id="s4">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">04 · 8단계 순서 맞추기</p>
+      <h2>하나님의 뜻을 찾는<br>여덟 걸음.</h2>
+      <p class="lead">오른쪽 카드를 1번부터 순서대로 눌러서 채워 보세요. 순서가 틀리면 카드가 흔들립니다.</p>
+    </div>
+    <div class="order rv">
+      <div><h3>내가 채운 순서</h3><ol class="slots" id="slots"></ol></div>
+      <div><h3>카드 (섞여 있습니다)</h3><div class="pool" id="pool"></div></div>
+    </div>
+    <div class="msg" id="orderMsg"></div>
+    <div class="row"><button class="btn" id="orderReset">다시 하기</button></div>
+  </div>
+</section>
+
+<!-- 5 -->
+<section id="s5">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">05 · 열쇠 단어 채우기</p>
+      <h2>빈칸에 알맞은<br>열쇠 단어를.</h2>
+      <p class="lead">아래 단어를 먼저 누르고, 들어갈 빈칸을 누르세요. 채운 칸을 다시 누르면 비워집니다.</p>
+    </div>
+    <div class="fillbox rv">
+      <ol id="fillList"></ol>
+      <div class="bank" id="bank"></div>
+      <div class="row"><button class="btn primary" id="fillCheck">확인</button><button class="btn" id="fillReset">다시 하기</button></div>
+      <div class="msg" id="fillMsg"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 6 -->
+<section class="alt" id="s6">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">06 · 성령 안에서 기도함</p>
+      <h2>차고 안의 파란 자전거.</h2>
+      <p class="lead">화살표를 눌러 이야기를 따라가 보세요.</p>
+    </div>
+    <div class="stage rv" id="stage"></div>
+    <div class="dots" id="dots"></div>
+    <div class="row center"><button class="btn" id="bprev">이전</button><button class="btn primary" id="bnext">다음</button></div>
+    <div class="verse rv">
+      <div class="ref">로마서 8:26-27 (개역개정)</div>
+      <p>이와 같이 성령도 우리의 연약함을 도우시나니 우리는 마땅히 기도할 바를 알지 못하나 오직 성령이 말할 수 없는 탄식으로 우리를 위하여 친히 간구하시느니라 마음을 살피시는 이가 성령의 생각을 아시나니 이는 성도를 위하여 하나님의 뜻대로 간구하심이니라</p>
+    </div>
+    <div class="warn rv"><b>오해하지 마세요.</b> 이 예화는 “원하는 것은 다 받는다”는 뜻이 아닙니다. 핵심은 하나님의 뜻에 맞게 구하면 응답이 있다는 것입니다.</div>
+  </div>
+</section>
+
+<!-- 7 -->
+<section id="s7">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">07 · 성령님의 음성 분별</p>
+      <h2>양은 목자의 음성을 압니다.</h2>
+      <p class="lead">공식은 없지만 안전장치는 있습니다. 먼저 자기부인, 그다음 네 가지 점검입니다.</p>
+    </div>
+    <div class="deny rv">
+      <h3>먼저, 자기부인.</h3>
+      <p>조지 뮬러처럼 하나님의 뜻만 원하는 상태가 되어야 합니다. 이기적·육적 욕심을 내려놓습니다.</p>
+    </div>
+    <div class="four rv">
+      <button class="rcard"><span class="qq">① 성경</span><span class="hint">눌러 보기</span><span class="aa">성경을 통해 무엇을 말씀하시는가?</span></button>
+      <button class="rcard"><span class="qq">② 기도</span><span class="hint">눌러 보기</span><span class="aa">기도를 통해 무엇을 말씀하시는가?</span></button>
+      <button class="rcard"><span class="qq">③ 환경</span><span class="hint">눌러 보기</span><span class="aa">환경을 통해 확신을 주시는가?</span></button>
+      <button class="rcard"><span class="qq">④ 성도</span><span class="hint">눌러 보기</span><span class="aa">다른 성도들을 통해 확신을 주시는가?</span></button>
+    </div>
+    <h3 class="rv" style="font-size:24px;margin:0 0 16px">이럴 땐 어떻게 할까요?</h3>
+    <div id="scnList" class="rv"></div>
+  </div>
+</section>
+
+<!-- 8 -->
+<section class="alt" id="s8">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">08 · 경건일기 연습</p>
+      <h2>들으면, 기록합니다.</h2>
+      <p class="lead">우주의 주인이신 하나님이 말씀하시면 기록해야 합니다. 세 칸을 차례로 써 보세요.</p>
+    </div>
+    <div class="rv">
+      <div class="field"><label for="j1">① 하나님이 사용하신 구절</label><textarea id="j1" placeholder="예) 요한복음 14:6"></textarea></div>
+      <div class="field"><label for="j2">② 그 구절에서 하나님이 자신에 대해 하신 말씀</label><textarea id="j2" placeholder="하나님이 어떤 분이라고 말씀하시는지 적어 보세요."></textarea></div>
+      <div class="field"><label for="j3">③ 그에 대한 나의 응답기도</label><textarea id="j3" placeholder="하나님께 드리는 나의 대답을 적어 보세요."></textarea></div>
+      <div class="row"><button class="btn" id="jClear">모두 지우기</button><span class="saved" id="jSaved">저장됨</span></div>
+      <p class="note">이 기기의 브라우저에만 저장되고, 어디로도 전송되지 않습니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 9 -->
+<section id="s9">
+  <div class="wrap">
+    <div class="sec-head rv" style="text-align:center">
+      <p class="eyebrow">09 · 마지막 점검</p>
+      <h2>열 문제로 확인해요.</h2>
+      <p class="lead" style="margin-left:auto;margin-right:auto">정답을 고르면 바로 해설이 나옵니다.</p>
+    </div>
+    <div class="qbox rv" id="qbox"></div>
+  </div>
+</section>
+
+<!-- 10 -->
+<section class="alt" id="s10">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">10 · 이번 주 결단</p>
+      <h2>이번 주, 나는.</h2>
+      <p class="lead">경건일기를 어떻게 시작할지, 순종이 망설여지는 부분은 무엇인지 한두 줄로 적어 보세요.</p>
+    </div>
+    <div class="rv">
+      <textarea class="ta" id="resolve" rows="4" placeholder="이번 주에 나는…"></textarea>
+      <div class="row" style="margin-top:14px"><button class="btn primary" id="rSave">저장</button><button class="btn" id="rClear">지우기</button><span class="saved" id="rSaved">저장됨</span></div>
+      <p class="note">이 기기의 브라우저에만 저장됩니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 11 MEMORY VERSE -->
+<section class="mem" id="s11">
+  <div class="wrap">
+    <div class="sec-head rv" style="text-align:center">
+      <p class="eyebrow">11</p>
+      <h2 class="mem-title">이번 주 암송구절</h2>
+      <p class="lead" style="margin-left:auto;margin-right:auto">읽고, 가리고, 맞추고, 써 보면서 단계별로 외워 보세요.</p>
+    </div>
+
+    <div class="verse-card rv">
+      <div class="vref">마태복음 18:20 · 개역개정</div>
+      <div class="vtext" id="vtext"></div>
+    </div>
+
+    <div class="lvl rv" id="lvl"></div>
+    <div class="row center rv" style="margin-bottom:34px">
+      <button class="btn" id="vShow">모두 보기</button>
+      <button class="btn" id="vSpeak">🔊 들어보기</button>
+    </div>
+
+    <div class="tabs rv" id="tabs">
+      <button class="on" data-p="p1">① 소리 내어 읽기</button>
+      <button data-p="p2">② 순서 맞추기</button>
+      <button data-p="p3">③ 써 보기</button>
+      <button data-p="p4">④ 일주일 기록</button>
+    </div>
+
+    <div class="panel on" id="p1">
+      <div class="box">
+        <h3>세 번 소리 내어 읽기</h3>
+        <p>눈으로만 읽지 말고, 입으로 소리 내어 읽습니다. 읽을 때마다 버튼을 눌러 주세요.</p>
+        <div class="row"><button class="btn primary" id="readBtn">읽었어요</button><span id="readCnt" style="font-weight:600">0 / 3</span></div>
+        <div class="msg" id="readMsg"></div>
+      </div>
+    </div>
+
+    <div class="panel" id="p2">
+      <div class="box">
+        <h3>말씀 순서 맞추기</h3>
+        <p>섞여 있는 말씀 조각을 순서대로 눌러서 구절을 완성하세요.</p>
+        <div class="built" id="built"></div>
+        <div class="chips" id="vchips"></div>
+        <div class="row"><button class="btn" id="vpReset">다시 섞기</button></div>
+        <div class="msg" id="vpMsg"></div>
+      </div>
+    </div>
+
+    <div class="panel" id="p3">
+      <div class="box">
+        <h3>보지 않고 써 보기</h3>
+        <p>구절을 가린 뒤에 기억나는 대로 적고 확인하세요. 띄어쓰기와 구두점은 달라도 괜찮습니다.</p>
+        <textarea class="ta" id="vType" rows="3" placeholder="여기에 말씀을 적어 보세요."></textarea>
+        <div class="row" style="margin-top:14px"><button class="btn primary" id="vCheck">확인</button><button class="btn" id="vTClear">지우기</button></div>
+        <div class="res" id="vRes"></div>
+        <div class="msg" id="vTMsg"></div>
+      </div>
+    </div>
+
+    <div class="panel" id="p4">
+      <div class="box">
+        <h3>이번 주 암송 기록</h3>
+        <p>그날 구절을 한 번이라도 외웠다면 해당 요일을 눌러 주세요.</p>
+        <div class="days" id="days"></div>
+        <div class="msg" id="dayMsg"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">제5단원 제5과 「하나님은 기도를 통해서 말씀하신다」 복습 · 교재 156~163쪽</div>
+</footer>
+
+<script>
+(function(){
+"use strict";
+const $=(s,r=document)=>r.querySelector(s);
+const $$=(s,r=document)=>Array.from(r.querySelectorAll(s));
+const store={
+  get(k,d){try{const v=localStorage.getItem("g5s5_"+k);return v===null?d:JSON.parse(v)}catch(e){return d}},
+  set(k,v){try{localStorage.setItem("g5s5_"+k,JSON.stringify(v))}catch(e){}}
+};
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function el(tag,cls,text){const e=document.createElement(tag);if(cls)e.className=cls;if(text!=null)e.textContent=text;return e}
+function flash(node){node.classList.add("show");clearTimeout(node._t);node._t=setTimeout(()=>node.classList.remove("show"),1600)}
+
+/* ---------- progress bar ---------- */
+function onScroll(){
+  const h=document.documentElement;
+  const p=Math.min(100,Math.max(0,(h.scrollTop/(h.scrollHeight-h.clientHeight||1))*100));
+  $("#bar").style.width=p+"%";
+  $("#navpct").textContent=Math.round(p)+"%";
+}
+window.addEventListener("scroll",onScroll,{passive:true});onScroll();
+
+/* ---------- scroll reveal ---------- */
+if("IntersectionObserver" in window){
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.12});
+  $$(".rv").forEach(n=>io.observe(n));
+}else{$$(".rv").forEach(n=>n.classList.add("in"))}
+
+/* ---------- reveal cards ---------- */
+$$(".rcard").forEach(c=>c.addEventListener("click",()=>c.classList.toggle("open")));
+
+/* ---------- 2. OX ---------- */
+const OX=[
+  {q:"기도는 하나님을 나에게 맞추려는 장치이다.",a:false,why:"기도는 하나님을 나에게 맞추려는 장치가 아니라, 나를 하나님께 맞추도록 계획된 것입니다."},
+  {q:"하나님이 기도 중에 하시는 말씀이 내가 하는 말보다 훨씬 중요하다.",a:true,why:"그래서 듣는 것도 기도에 포함됩니다. 기도는 하나님과의 쌍방통행입니다."},
+  {q:"하나님은 우리의 기도를 필요로 하시기 때문에 우리가 기도해야 한다.",a:false,why:"하나님은 우리의 기도를 필요로 하시지는 않지만, 우리가 기도하기를 원하십니다."},
+  {q:"진리는 공부해야 할 개념이 아니라 하나의 인격체이다.",a:true,why:"예수님은 “내가… 진리요”라고 하셨습니다(요 14:6)."},
+  {q:"기도 중에 받은 느낌이 성경과 상반되어도, 느낌이 강하면 하나님의 뜻일 수 있다.",a:false,why:"기도 중의 느낌이 성경과 상반되면 틀린 것입니다. 하나님은 간음하도록 인도하지 않으십니다."},
+  {q:"내 목적을 뒷받침할 성구를 찾아 “이것이 하나님의 뜻”이라고 하는 것은 매우 위험하다.",a:true,why:"성령님의 인도를 내 뜻을 정당화하는 근거로 삼아서는 안 됩니다."}
+];
+(function(){
+  const box=$("#oxList");let done=0,right=0;
+  OX.forEach((o,i)=>{
+    const d=el("div","ox");
+    d.appendChild(el("p",null,(i+1)+". "+o.q));
+    const b=el("div","btns");
+    [["○",true],["×",false]].forEach(([t,v])=>{
+      const btn=el("button",null,t);btn.setAttribute("aria-label",v?"맞다":"틀리다");
+      btn.addEventListener("click",()=>{
+        if(d.classList.contains("done"))return;
+        const ok=(v===o.a);
+        d.classList.add("done",ok?"ok":"no");btn.classList.add("sel");
+        fb.textContent="";
+        const s=el("b",ok?"g":"r",ok?"정답입니다. ":"아쉬워요. 정답은 "+(o.a?"○":"×")+"입니다. ");
+        fb.appendChild(s);fb.appendChild(document.createTextNode(o.why));
+        done++;if(ok)right++;
+        if(done===OX.length)$("#oxScore").textContent=right===OX.length?"여섯 문제 모두 맞혔어요! 🎉":OX.length+"문제 중 "+right+"개를 맞혔어요.";
+      });
+      b.appendChild(btn);
+    });
+    d.appendChild(b);
+    const fb=el("div","fb");d.appendChild(fb);
+    box.appendChild(d);
+  });
+})();
+
+/* ---------- 3. flip cards ---------- */
+(function(){
+  const F=[
+    {f:"예수님은 진리를 “가르쳐 주겠다”고 하셨을까요?",s:"요한복음 14:6",b:["아니요. “내가… 진리요”라고 하셨습니다.","<em>“예수께서 이르시되 내가 곧 길이요 진리요 생명이니 아무도 나로 말미암지 않고는 아버지께로 올 자가 없느니라”</em>"]},
+    {f:"영생을 주실 때, 하나님이 주신 것은?",s:"요한복음 17:3",b:["어떤 것이 아니라 하나님 자신을 주셨습니다.","<em>“영생은 곧 유일하신 참 하나님과 그가 보내신 자 예수 그리스도를 아는 것이니이다”</em>"]},
+    {f:"그렇다면 진리를 받는다는 것은?",s:"핵심",b:["개념을 받는 것이 아니라, 한 인격체에 내 인생을 맞추는 것입니다."]},
+    {f:"성경을 읽다가 낯설게 와 닿는 순간은?",s:"적용",b:["하나님이 “지금 이 진리를 적용하라”고 일깨우시는 순간입니다."]}
+  ];
+  const g=$("#flipGrid");
+  F.forEach(c=>{
+    const b=el("button","flip");b.setAttribute("aria-label","카드 뒤집기");
+    const inn=el("div","in");
+    const f=el("div","f");const sm=el("small",null,c.s);f.appendChild(sm);f.appendChild(document.createTextNode(c.f));
+    const bk=el("div","b");
+    c.b.forEach((t,i)=>{const p=el(i===0?"strong":"span");if(i===0)p.textContent=t;else p.innerHTML=t;bk.appendChild(p)});
+    inn.appendChild(f);inn.appendChild(bk);b.appendChild(inn);
+    b.addEventListener("click",()=>b.classList.toggle("on"));
+    g.appendChild(b);
+  });
+})();
+
+/* ---------- 4. ordering ---------- */
+(function(){
+  const STEPS=[
+    "하나님이 주도하셔서 내가 기도하고 싶게 하신다.",
+    "성령님이 하나님의 말씀으로 뜻을 제시하신다.",
+    "성령 안에서 하나님의 뜻과 일치하는 기도를 한다.",
+    "내 인생을 진리(하나님)께 조정한다.",
+    "성경·환경·교회(다른 성도들)의 확인과 다음 지시를 살핀다.",
+    "순종한다.",
+    "하나님이 나를 통해 일하신다.",
+    "성령님이 기도 중에 제시하신 대로 하나님을 경험한다."
+  ];
+  const slots=$("#slots"),pool=$("#pool"),msg=$("#orderMsg");
+  let next=0,miss=0;
+  function init(){
+    next=0;miss=0;slots.innerHTML="";pool.innerHTML="";msg.textContent="";msg.className="msg";
+    STEPS.forEach((_,i)=>{const li=el("li");li.appendChild(el("span","n",String(i+1)));li.appendChild(el("span","t","?"));slots.appendChild(li)});
+    shuffle(STEPS.map((t,i)=>i)).forEach(i=>{
+      const b=el("button",null,STEPS[i]);
+      b.addEventListener("click",()=>{
+        if(i===next){
+          const li=slots.children[next];li.classList.add("on");li.querySelector(".t").textContent=STEPS[i];
+          b.disabled=true;next++;
+          if(next===STEPS.length){msg.className="msg good";msg.textContent=miss===0?"한 번도 틀리지 않고 완성했어요! 🎉":"완성! (틀린 횟수 "+miss+"번) 끝은 순종과 경험이라는 것을 기억하세요."}
+          else{msg.className="msg";msg.textContent=next+"단계 완료"}
+        }else{
+          miss++;b.classList.remove("shake");void b.offsetWidth;b.classList.add("shake");
+          msg.className="msg bad";msg.textContent="아직이에요. 지금은 "+(next+1)+"번째 걸음을 찾아보세요.";
+        }
+      });
+      pool.appendChild(b);
+    });
+  }
+  $("#orderReset").addEventListener("click",init);init();
+})();
+
+/* ---------- 5. fill blanks ---------- */
+(function(){
+  const S=[
+    {pre:"하나님이 ",ans:"주도",post:"하셔서 내가 기도하고 싶게 하신다."},
+    {pre:"성령님이 하나님의 ",ans:"말씀",post:"으로 뜻을 제시하신다."},
+    {pre:"성령 안에서 하나님의 뜻과 ",ans:"일치",post:"하는 기도를 한다."},
+    {pre:"내 인생을 진리(하나님)께 ",ans:"조정",post:"한다."},
+    {pre:"성경·환경·교회의 ",ans:"확인",post:"과 다음 지시를 살핀다."},
+    {pre:"",ans:"순종",post:"한다."}
+  ];
+  const WORDS=["조정","확인","말씀","주도","일치","순종"];
+  const list=$("#fillList"),bank=$("#bank"),msg=$("#fillMsg");
+  let vals,sel,blanks,chips;
+  function used(w){return vals.indexOf(w)>=0}
+  function refresh(){
+    chips.forEach(c=>{c.classList.toggle("used",used(c.dataset.w));c.classList.toggle("sel",sel===c.dataset.w)});
+    blanks.forEach((b,i)=>{b.textContent=vals[i]||"　?　";b.classList.toggle("filled",!!vals[i]);b.classList.remove("ok","bad")});
+  }
+  function init(){
+    vals=S.map(()=>"");sel=null;list.innerHTML="";bank.innerHTML="";msg.textContent="";msg.className="msg";blanks=[];chips=[];
+    S.forEach((s,i)=>{
+      const li=el("li");li.appendChild(el("span","no",(i+1)+"."));
+      if(s.pre)li.appendChild(document.createTextNode(s.pre));
+      const b=el("button","blank","　?　");
+      b.addEventListener("click",()=>{
+        if(vals[i]){vals[i]="";sel=null}
+        else if(sel){vals[i]=sel;sel=null}
+        msg.textContent="";refresh();
+      });
+      blanks.push(b);li.appendChild(b);
+      if(s.post)li.appendChild(document.createTextNode(s.post));
+      list.appendChild(li);
+    });
+    shuffle(WORDS).forEach(w=>{
+      const c=el("button","chip",w);c.dataset.w=w;
+      c.addEventListener("click",()=>{if(used(w))return;sel=(sel===w)?null:w;refresh()});
+      chips.push(c);bank.appendChild(c);
+    });
+    refresh();
+  }
+  $("#fillCheck").addEventListener("click",()=>{
+    if(vals.some(v=>!v)){msg.className="msg bad";msg.textContent="아직 비어 있는 칸이 있어요.";return}
+    let ok=0;blanks.forEach((b,i)=>{const r=vals[i]===S[i].ans;b.classList.add(r?"ok":"bad");if(r)ok++});
+    if(ok===S.length){msg.className="msg good";msg.textContent="모두 맞았어요! 🎉"}
+    else{msg.className="msg bad";msg.textContent=S.length+"칸 중 "+ok+"칸이 맞았어요. 빨간 칸을 눌러 다시 채워 보세요."}
+  });
+  $("#fillReset").addEventListener("click",init);init();
+})();
+
+/* ---------- 6. bicycle stepper ---------- */
+(function(){
+  const B=[
+    {i:"🚲",t:"이미 준비해 두셨습니다",p:"저자는 아들 리처드에게 줄 파란 자전거를 이미 사서 차고에 숨겨 두었습니다."},
+    {i:"💭",t:"원하도록 이끌었습니다",p:"그리고 리처드가 스스로 그것을 원하도록 이끌었습니다. 소원을 두고 행하게 하시는 분이 하나님이십니다(빌 2:13)."},
+    {i:"🕊️",t:"성령님이 구하도록 이끄십니다",p:"기도도 마찬가지입니다. 하나님은 이미 준비해 두셨고, 성령님은 우리가 그것을 구하도록 이끄십니다."},
+    {i:"🎁",t:"구하면 받고, 믿음이 자랍니다",p:"하나님의 뜻에 맞게 구하면 항상 받습니다. 그때 하나님은 영광을 받으시고 우리의 믿음은 자랍니다."}
+  ];
+  let n=0;const st=$("#stage"),dots=$("#dots");
+  function draw(){
+    st.innerHTML="";
+    st.appendChild(el("div","ico",B[n].i));st.appendChild(el("h3",null,B[n].t));st.appendChild(el("p",null,B[n].p));
+    dots.innerHTML="";B.forEach((_,i)=>dots.appendChild(el("i",i===n?"on":"")));
+    $("#bprev").disabled=n===0;$("#bnext").disabled=n===B.length-1;
+  }
+  $("#bprev").addEventListener("click",()=>{if(n>0){n--;draw()}});
+  $("#bnext").addEventListener("click",()=>{if(n<B.length-1){n++;draw()}});
+  draw();
+})();
+
+/* ---------- 7. discernment scenarios ---------- */
+(function(){
+  const SC=[
+    {t:"기도 중에 강한 평안과 확신이 왔습니다. 그런데 그 내용은 성경이 분명히 금하는 일입니다.",a:1,why:"기도 중의 느낌이 성경과 상반되면 틀린 것입니다. 하나님은 간음하도록 인도하지 않으십니다."},
+    {t:"내가 꼭 하고 싶은 일이 있습니다. 그것을 뒷받침해 줄 성구를 찾았고, “이것이 하나님의 뜻이다”라고 생각합니다.",a:1,why:"먼저 자기부인이 필요합니다. 내 목적을 뒷받침할 성구를 찾는 것은 매우 위험합니다."},
+    {t:"“하나님의 뜻만 원합니다”라고 먼저 내려놓고 기도했습니다. 성경 말씀이 떠올랐고, 환경과 믿음의 동료들의 조언도 같은 방향입니다.",a:0,why:"자기부인에 더해 성경·기도·환경·성도의 확인이 모였습니다. 이제 순종할 차례입니다."},
+    {t:"기도 중에 어떤 마음이 들었습니다. 성경과 어긋나지는 않지만, 아직 환경도 성도의 확인도 구해 보지 못했습니다.",a:1,why:"혼자만의 느낌으로 서두르지 말고 성경·환경·성도를 통한 확인을 구합니다. 그것이 주관주의를 막아 줍니다."}
+  ];
+  const box=$("#scnList");
+  SC.forEach((s,i)=>{
+    const d=el("div","scn");d.appendChild(el("p",null,(i+1)+". "+s.t));
+    const b=el("div","btns");const fb=el("div","fb");
+    ["믿고 순종해도 된다","멈추고 더 점검한다"].forEach((t,k)=>{
+      const btn=el("button",null,t);
+      btn.addEventListener("click",()=>{
+        if(d.classList.contains("done"))return;
+        const ok=k===s.a;d.classList.add("done",ok?"ok":"no");btn.classList.add("sel");
+        fb.innerHTML="";fb.appendChild(el("b",null,ok?"좋은 분별입니다. ":"다시 생각해 보세요. "));fb.appendChild(document.createTextNode(s.why));
+      });
+      b.appendChild(btn);
+    });
+    d.appendChild(b);d.appendChild(fb);box.appendChild(d);
+  });
+})();
+
+/* ---------- 8. journal ---------- */
+(function(){
+  const ids=["j1","j2","j3"],sv=$("#jSaved");
+  ids.forEach(id=>{
+    const t=$("#"+id);t.value=store.get(id,"");
+    t.addEventListener("input",()=>{store.set(id,t.value);flash(sv)});
+  });
+  $("#jClear").addEventListener("click",()=>{
+    if(!confirm("세 칸에 적은 내용을 모두 지울까요?"))return;
+    ids.forEach(id=>{$("#"+id).value="";store.set(id,"")});
+  });
+})();
+
+/* ---------- 10. resolve ---------- */
+(function(){
+  const t=$("#resolve"),sv=$("#rSaved");t.value=store.get("resolve","");
+  $("#rSave").addEventListener("click",()=>{store.set("resolve",t.value);flash(sv)});
+  $("#rClear").addEventListener("click",()=>{if(!t.value||confirm("적은 내용을 지울까요?")){t.value="";store.set("resolve","")}});
+})();
+
+/* ---------- 9. final quiz ---------- */
+(function(){
+  const Q=[
+    {q:"경건일기의 기록 순서에 들어 있지 않은 것은?",o:["하나님이 사용하신 구절","그날 내가 세운 계획표","그 구절에서 하나님이 자신에 대해 하신 말씀","그에 대한 나의 응답기도"],a:1,e:"세 가지는 구절, 하나님이 자신에 대해 하신 말씀, 나의 응답기도입니다."},
+    {q:"예수님이 하신 말씀은?",o:["내가 너에게 진리를 가르쳐 주겠다","진리는 열심히 공부하면 얻는다","내가… 진리요","진리는 각자가 정하는 것이다"],a:2,e:"진리는 개념이 아니라 인격체이신 예수님입니다(요 14:6)."},
+    {q:"이 과에서 기도를 가장 잘 설명한 표현은?",o:["하나님께 요청 목록을 전달하는 일","관계성 · 쌍방통행의 교제","정해진 시간에 하는 종교활동","믿음의 크기를 재는 시험"],a:1,e:"기도는 종교활동이 아니라 하나님과의 관계입니다."},
+    {q:"기도는 무엇을 위해 계획된 것일까요?",o:["하나님을 나의 계획에 맞추기 위해","나를 하나님께 맞추기 위해","원하는 것을 빨리 얻기 위해","다른 사람에게 보이기 위해"],a:1,e:"기도는 나를 하나님께 맞추도록 계획된 것입니다."},
+    {q:"하나님의 뜻을 찾는 8단계의 첫 번째는?",o:["내가 열심히 기도한다","하나님이 주도하셔서 내가 기도하고 싶게 하신다","성도들에게 먼저 조언을 구한다","순종한다"],a:1,e:"기도의 주도권은 하나님께 있습니다. 기도하고 싶은 마음도 하나님이 시작하신 일입니다."},
+    {q:"8단계에서 “성경·환경·교회의 확인과 다음 지시를 살핀다” 바로 다음 단계는?",o:["순종한다","하나님을 경험한다","다시 처음부터 기도한다","하나님이 나를 통해 일하신다"],a:0,e:"확인 다음은 순종이고, 그다음에 하나님이 나를 통해 일하시며 경험으로 이어집니다."},
+    {q:"롬 8:26-27에서 성령님이 하시는 일은?",o:["우리가 기도하지 않아도 되게 하신다","하나님의 뜻대로 우리를 위해 간구하신다","기도의 형식을 가르쳐 주신다","우리의 연약함을 없애 주신다"],a:1,e:"우리는 기도할 바를 알지 못하지만, 성령님이 하나님의 뜻대로 우리를 위해 간구하십니다."},
+    {q:"차고 안의 자전거 예화가 가르치는 것은?",o:["원하는 것은 무엇이든 받는다","하나님은 이미 준비해 두셨고, 성령님이 우리가 구하도록 이끄신다","아이는 부모에게 졸라야 한다","기도는 포기하지 않는 끈기다"],a:1,e:"핵심은 하나님의 뜻에 맞는 기도에 응답이 있다는 것입니다."},
+    {q:"음성을 분별할 때 가장 먼저 필요한 것은?",o:["자기부인","큰 확신의 느낌","주변 사람들의 박수","전문가의 자격"],a:0,e:"조지 뮬러처럼 하나님의 뜻만 원하는 상태가 되어야 합니다."},
+    {q:"기도 중의 느낌이 성경과 상반될 때는?",o:["더 간절히 기도해서 확인한다","그 느낌이 틀린 것이다","환경이 맞으면 따른다","시간이 지나면 맞게 된다"],a:1,e:"성경과 상반되는 느낌은 틀린 것입니다."}
+  ];
+  const box=$("#qbox");let n=0,score=0;
+  function render(){
+    box.innerHTML="";
+    if(n>=Q.length){
+      const pct=Math.round(score/Q.length*100);
+      const r=el("div","result");
+      const ring=el("div","ring");ring.style.setProperty("--p",pct);
+      const inn=el("div");inn.appendChild(document.createTextNode(String(score)));inn.appendChild(el("small","","/"+Q.length));ring.appendChild(inn);
+      r.appendChild(ring);
+      r.appendChild(el("h3",null,pct===100?"완벽해요! 🎉":pct>=70?"아주 잘했어요!":"조금만 더 복습해 볼까요?"));
+      r.appendChild(el("p",null,pct===100?"이 과의 핵심을 모두 기억하고 있습니다.":"위의 섹션으로 돌아가 카드를 다시 열어 보세요."));
+      const rb=el("button","btn primary","다시 풀기");rb.addEventListener("click",()=>{n=0;score=0;render()});
+      r.appendChild(rb);box.appendChild(r);return;
+    }
+    const q=Q[n];
+    box.appendChild(el("div","cnt","문제 "+(n+1)+" / "+Q.length));
+    const pg=el("div","qprog");const bar=el("i");bar.style.width=(n/Q.length*100)+"%";pg.appendChild(bar);box.appendChild(pg);
+    box.appendChild(el("h3",null,q.q));
+    const o=el("div","opts");const fb=el("div","qfb");
+    const nx=el("button","btn primary",n===Q.length-1?"결과 보기":"다음 문제");nx.style.display="none";nx.style.marginTop="14px";
+    q.o.forEach((t,i)=>{
+      const b=el("button",null,t);
+      b.addEventListener("click",()=>{
+        o.classList.add("lock");
+        const ok=i===q.a;if(ok)score++;
+        b.classList.add(ok?"ok":"no");
+        if(!ok)o.children[q.a].classList.add("ok");
+        fb.textContent=(ok?"정답! ":"아쉬워요. ")+q.e;nx.style.display="inline-block";
+      });
+      o.appendChild(b);
+    });
+    nx.addEventListener("click",()=>{n++;render()});
+    box.appendChild(o);box.appendChild(fb);box.appendChild(nx);
+  }
+  render();
+})();
+
+/* ---------- 11. memory verse (마태복음 18:20 개역개정) ---------- */
+(function(){
+  const TEXT="두세 사람이 내 이름으로 모인 곳에는 나도 그들 중에 있느니라";
+  const W=TEXT.split(" ");
+  const ORDER=[3,6,1,8,5,0,9,2,7,4]; /* 가리는 순서 */
+  const LEVELS=[["1단계 · 모두 보기",0],["2단계 · 3개 가리기",3],["3단계 · 6개 가리기",6],["4단계 · 전부 가리기",10]];
+  let lvl=0,peek={};
+  const vt=$("#vtext");
+  function draw(){
+    vt.innerHTML="";
+    const hidden=new Set(ORDER.slice(0,LEVELS[lvl][1]));
+    W.forEach((w,i)=>{
+      const s=el("span","w",w);
+      if(hidden.has(i)){
+        s.classList.add("hide");s.setAttribute("role","button");s.setAttribute("aria-label","가려진 단어, 눌러서 보기");
+        if(peek[i])s.classList.add("peek");
+        s.addEventListener("click",()=>{peek[i]=!peek[i];draw()});
+      }
+      vt.appendChild(s);vt.appendChild(document.createTextNode(" "));
+    });
+    $$("#lvl button").forEach((b,i)=>b.classList.toggle("on",i===lvl));
+  }
+  const lv=$("#lvl");
+  LEVELS.forEach((l,i)=>{const b=el("button",null,l[0]);b.addEventListener("click",()=>{lvl=i;peek={};draw()});lv.appendChild(b)});
+  $("#vShow").addEventListener("click",()=>{lvl=0;peek={};draw()});
+  const sp=$("#vSpeak");
+  if(!("speechSynthesis" in window))sp.style.display="none";
+  else sp.addEventListener("click",()=>{
+    try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance("마태복음 18장 20절. "+TEXT);u.lang="ko-KR";u.rate=.85;speechSynthesis.speak(u)}catch(e){}
+  });
+  draw();
+
+  /* tabs */
+  $$("#tabs button").forEach(b=>b.addEventListener("click",()=>{
+    $$("#tabs button").forEach(x=>x.classList.toggle("on",x===b));
+    $$(".mem .panel").forEach(p=>p.classList.toggle("on",p.id===b.dataset.p));
+  }));
+
+  /* read x3 */
+  let rc=store.get("read",0);
+  const rcEl=$("#readCnt"),rm=$("#readMsg");
+  function drawRead(){
+    rcEl.textContent=Math.min(rc,3)+" / 3";
+    rm.className="msg"+(rc>=3?" good":"");
+    rm.textContent=rc>=3?"세 번 읽었어요! 이제 가려서 외워 보세요.":"";
+  }
+  $("#readBtn").addEventListener("click",()=>{rc=Math.min(3,rc+1);store.set("read",rc);drawRead()});
+  drawRead();
+
+  /* puzzle */
+  const built=$("#built"),chips=$("#vchips"),pm=$("#vpMsg");let pos=0;
+  function puzzle(){
+    pos=0;built.innerHTML="";chips.innerHTML="";pm.textContent="";pm.className="msg";
+    shuffle(W).forEach(w=>{
+      const c=el("button","chip",w);
+      c.addEventListener("click",()=>{
+        if(w===W[pos]){
+          built.appendChild(el("span",null,w));c.classList.add("used");pos++;
+          if(pos===W.length){pm.className="msg good";pm.textContent="완성! 🎉 마태복음 18:20을 소리 내어 읽어 보세요."}
+        }else{c.classList.remove("shake");void c.offsetWidth;c.classList.add("shake");pm.className="msg";pm.textContent="아직이에요. 다시 생각해 보세요."}
+      });
+      chips.appendChild(c);
+    });
+  }
+  $("#vpReset").addEventListener("click",puzzle);puzzle();
+
+  /* typing check */
+  const norm=s=>s.replace(/[.,;:!?"'“”‘’·]/g,"").trim().split(/\s+/).filter(Boolean);
+  const res=$("#vRes"),tm=$("#vTMsg"),ty=$("#vType");
+  $("#vCheck").addEventListener("click",()=>{
+    res.innerHTML="";tm.className="msg";
+    const got=norm(ty.value);
+    if(!got.length){tm.textContent="먼저 기억나는 대로 적어 보세요.";return}
+    let ok=0;
+    W.forEach((w,i)=>{
+      const good=got[i]===w;if(good)ok++;
+      res.appendChild(el("span",good?"ok":"no",good?w:(got[i]?got[i]+" → "+w:"□ → "+w)));
+    });
+    if(ok===W.length&&got.length===W.length){tm.className="msg good";tm.textContent="완벽합니다! 🎉"}
+    else{tm.textContent=W.length+"단어 중 "+ok+"개가 맞았어요. 빨간 부분을 다시 확인해 보세요."}
+  });
+  $("#vTClear").addEventListener("click",()=>{ty.value="";res.innerHTML="";tm.textContent=""});
+
+  /* week tracker */
+  const days=store.get("days",[0,0,0,0,0,0,0]);
+  const dw=$("#days"),dm=$("#dayMsg");
+  function drawDays(){
+    dw.innerHTML="";
+    "월화수목금토일".split("").forEach((d,i)=>{
+      const b=el("button",days[i]?"on":"",d);b.setAttribute("aria-pressed",days[i]?"true":"false");
+      b.addEventListener("click",()=>{days[i]=days[i]?0:1;store.set("days",days);drawDays()});
+      dw.appendChild(b);
+    });
+    const c=days.reduce((a,b)=>a+b,0);
+    dm.className="msg"+(c===7?" good":"");
+    dm.textContent=c===0?"오늘부터 시작해 봐요.":c===7?"일주일 내내 외웠어요! 🎉":c+"일 외웠어요. 계속해 봐요.";
+  }
+  drawDays();
+})();
+})();
+</script>
+</body>
+</html>
