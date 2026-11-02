@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>세상이 감당하지 못한 사람들 · 히브리서 11:32–38 복습</title>
+<style>
+:root{
+  --bg:#fbfbfd; --bg2:#f5f5f7; --card:#ffffff; --text:#1d1d1f; --sub:#6e6e73; --line:rgba(0,0,0,.08);
+  --blue:#0071e3; --blue-d:#0058b0; --green:#1d9b4a; --red:#d93025; --orange:#e8710a; --purple:#7b4de0;
+  --glass:rgba(251,251,253,.72); --shadow:0 4px 24px rgba(0,0,0,.06); --shadow-h:0 12px 40px rgba(0,0,0,.12);
+  --hero-grad:linear-gradient(135deg,#0a84ff 0%,#7b4de0 55%,#ff6b9d 100%);
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#000; --bg2:#101012; --card:#1c1c1e; --text:#f5f5f7; --sub:#a1a1a6; --line:rgba(255,255,255,.12);
+    --blue:#2997ff; --blue-d:#0a84ff; --green:#32d74b; --red:#ff6961; --orange:#ff9f0a; --purple:#a78bfa;
+    --glass:rgba(0,0,0,.65); --shadow:0 4px 24px rgba(0,0,0,.5); --shadow-h:0 12px 40px rgba(0,0,0,.7);
+  }
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro KR","Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.7;letter-spacing:-.01em;word-break:keep-all;-webkit-font-smoothing:antialiased;
+}
+button{font:inherit;color:inherit;cursor:pointer;border:none;background:none}
+button:focus-visible,textarea:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+
+/* progress + nav */
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--hero-grad);z-index:200;transition:width .1s}
+nav{position:sticky;top:0;z-index:100;background:var(--glass);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line)}
+nav .in{max-width:980px;margin:0 auto;padding:0 20px;height:48px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+nav .t{font-weight:600;font-size:15px;white-space:nowrap}
+nav ul{display:flex;gap:20px;list-style:none;overflow-x:auto;scrollbar-width:none}
+nav ul::-webkit-scrollbar{display:none}
+nav a{color:var(--sub);text-decoration:none;font-size:13px;white-space:nowrap;transition:color .2s}
+nav a:hover,nav a.on{color:var(--text)}
+
+/* layout */
+section{padding:96px 20px}
+section.alt{background:var(--bg2)}
+.wrap{max-width:860px;margin:0 auto}
+.eyebrow{font-size:14px;font-weight:600;color:var(--orange);letter-spacing:.02em;margin-bottom:8px}
+h2{font-size:clamp(30px,5.5vw,48px);line-height:1.15;font-weight:700;letter-spacing:-.03em;margin-bottom:16px}
+.lead{font-size:clamp(17px,2.4vw,21px);color:var(--sub);max-width:680px;margin-bottom:40px}
+.verse{background:var(--card);border-radius:22px;padding:28px 30px;box-shadow:var(--shadow);margin:0 0 32px;border-left:5px solid var(--blue)}
+.verse p{font-size:clamp(17px,2.4vw,20px);font-weight:500}
+.verse cite{display:block;margin-top:10px;font-size:14px;color:var(--sub);font-style:normal}
+.verse mark{background:linear-gradient(transparent 55%,rgba(255,200,0,.45) 55%);color:inherit;padding:0 2px}
+
+/* hero */
+.hero{min-height:92vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:80px 20px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:-20%;background:radial-gradient(circle at 25% 20%,rgba(10,132,255,.25),transparent 45%),radial-gradient(circle at 80% 70%,rgba(255,107,157,.22),transparent 45%),radial-gradient(circle at 50% 100%,rgba(123,77,224,.2),transparent 50%);z-index:0;animation:drift 18s ease-in-out infinite alternate}
+@keyframes drift{to{transform:translate3d(2%,-3%,0) scale(1.08)}}
+.hero .in{position:relative;z-index:1;max-width:820px}
+.hero .tag{display:inline-block;font-size:14px;font-weight:600;padding:6px 14px;border-radius:99px;background:var(--card);box-shadow:var(--shadow);margin-bottom:24px}
+.hero h1{font-size:clamp(40px,9vw,88px);line-height:1.08;font-weight:800;letter-spacing:-.04em;background:var(--hero-grad);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:24px}
+.hero p{font-size:clamp(17px,2.6vw,24px);color:var(--sub);margin-bottom:36px}
+.btn{display:inline-block;background:var(--blue);color:#fff;padding:14px 28px;border-radius:99px;font-weight:600;font-size:17px;text-decoration:none;transition:.2s}
+.btn:hover{background:var(--blue-d);transform:scale(1.03)}
+.btn.ghost{background:transparent;color:var(--blue);border:1.5px solid var(--blue)}
+.btn.ghost:hover{background:var(--blue);color:#fff}
+.btn.sm{padding:9px 20px;font-size:15px}
+.roadmap{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:44px}
+.roadmap a{text-decoration:none;color:var(--text);background:var(--card);box-shadow:var(--shadow);padding:14px 20px;border-radius:18px;font-size:15px;font-weight:600;transition:.25s;min-width:150px}
+.roadmap a:hover{transform:translateY(-4px);box-shadow:var(--shadow-h)}
+.roadmap small{display:block;color:var(--sub);font-weight:400;font-size:13px}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+
+/* flip cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-bottom:12px}
+.flip{perspective:1000px;height:230px}
+.flip .inner{position:relative;width:100%;height:100%;transition:transform .7s cubic-bezier(.2,.7,.2,1);transform-style:preserve-3d}
+.flip.on .inner{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:24px;padding:24px;display:flex;flex-direction:column;justify-content:center;box-shadow:var(--shadow);text-align:left}
+.face.f{background:var(--card);align-items:center;text-align:center}
+.face.f .nm{font-size:30px;font-weight:700;letter-spacing:-.03em}
+.face.f .hint{margin-top:10px;font-size:14px;color:var(--sub)}
+.face.b{background:var(--card);transform:rotateY(180deg);border:2px solid var(--orange)}
+.face.b .tt{font-size:13px;font-weight:700;color:var(--orange);margin-bottom:6px}
+.face.b .ds{font-size:16px;line-height:1.55}
+.face.b .rf{margin-top:10px;font-size:13px;color:var(--sub)}
+.counter{text-align:center;color:var(--sub);font-size:15px;margin:22px 0 28px}
+.counter b{color:var(--orange);font-size:18px}
+.insight{background:var(--card);border-radius:24px;padding:30px;box-shadow:var(--shadow);transition:.5s}
+.insight.locked{opacity:.4;filter:grayscale(1)}
+.insight h3{font-size:22px;margin-bottom:10px}
+.swap{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin:16px 0}
+.swap span{padding:10px 18px;border-radius:14px;font-weight:600;font-size:16px}
+.swap .x{background:rgba(217,48,37,.12);color:var(--red);text-decoration:line-through}
+.swap .o{background:rgba(29,155,74,.14);color:var(--green)}
+.swap i{font-style:normal;color:var(--sub)}
+
+/* match */
+.match{display:grid;grid-template-columns:1fr 1fr;gap:14px 24px;margin-bottom:24px}
+.col{display:flex;flex-direction:column;gap:10px}
+.col h4{font-size:13px;color:var(--sub);font-weight:600;margin-bottom:2px}
+.m{background:var(--card);border-radius:16px;padding:14px 16px;text-align:left;box-shadow:var(--shadow);font-size:15px;line-height:1.45;border:2px solid transparent;transition:.2s}
+.m:hover:not(.done){transform:translateY(-2px)}
+.m.sel{border-color:var(--blue);background:rgba(0,113,227,.08)}
+.m.done{border-color:var(--green);background:rgba(29,155,74,.1);cursor:default}
+.m.bad{animation:shake .4s;border-color:var(--red)}
+.m small{display:block;color:var(--sub);font-size:12px;margin-top:2px}
+@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.status{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+.pill{background:var(--card);padding:6px 14px;border-radius:99px;font-size:14px;font-weight:600;box-shadow:var(--shadow)}
+.secret{background:linear-gradient(135deg,rgba(0,113,227,.1),rgba(123,77,224,.12));border-radius:24px;padding:30px;margin-top:28px}
+.secret .big{font-size:clamp(22px,4vw,30px);font-weight:700;letter-spacing:-.03em;margin:6px 0 12px}
+.meter{margin-top:20px}
+.meter label{font-size:14px;color:var(--sub);display:block;margin-bottom:8px}
+input[type=range]{width:100%;accent-color:var(--blue)}
+.meter-row{display:grid;grid-template-columns:90px 1fr 50px;gap:10px;align-items:center;font-size:14px;margin-top:8px}
+.bar{height:14px;border-radius:99px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:100%;border-radius:99px;transition:width .35s cubic-bezier(.2,.7,.2,1)}
+.bar .me{background:var(--red)} .bar .god{background:var(--green)}
+
+/* segmented */
+.seg{display:inline-flex;background:var(--line);border-radius:14px;padding:4px;margin-bottom:26px}
+.seg button{padding:10px 24px;border-radius:11px;font-weight:600;font-size:16px;color:var(--sub);transition:.25s}
+.seg button.on{background:var(--card);color:var(--text);box-shadow:0 2px 8px rgba(0,0,0,.15)}
+.list{display:grid;gap:12px}
+.item{background:var(--card);border-radius:18px;padding:16px 20px;box-shadow:var(--shadow);display:flex;gap:14px;align-items:flex-start;animation:pop .5s cubic-bezier(.2,.7,.2,1) both}
+.item .ic{font-size:26px;line-height:1.2}
+.item b{display:block;font-size:16px}
+.item span{font-size:14px;color:var(--sub)}
+@keyframes pop{from{opacity:0;transform:translateY(12px) scale(.98)}}
+.badge-row{display:flex;gap:10px;flex-wrap:wrap;margin:6px 0 22px;align-items:center}
+.badge{font-size:13px;font-weight:700;padding:5px 12px;border-radius:99px;background:rgba(0,113,227,.12);color:var(--blue)}
+.worldbox{margin-top:36px;background:#1d1d1f;color:#f5f5f7;border-radius:28px;padding:36px 30px;text-align:center}
+.worldbox .g{font-size:15px;color:#a1a1a6;margin-bottom:10px}
+.worldbox .ko{font-size:clamp(22px,4.2vw,32px);font-weight:700;letter-spacing:-.03em;margin:8px 0}
+.flipline{cursor:pointer;display:inline-block;padding:6px 14px;border-radius:12px;transition:.3s;border:1px dashed rgba(255,255,255,.35)}
+.flipline.on{background:linear-gradient(135deg,#0a84ff,#7b4de0);border-color:transparent}
+.worldbox .tap{font-size:13px;color:#a1a1a6;margin-top:16px}
+
+/* steps */
+.steps{background:var(--card);border-radius:28px;box-shadow:var(--shadow);padding:34px 30px;min-height:290px}
+.dots{display:flex;gap:8px;margin-bottom:24px}
+.dots i{flex:1;height:5px;border-radius:99px;background:var(--line);transition:.4s}
+.dots i.on{background:var(--hero-grad)}
+.step{display:none;animation:pop .5s both}
+.step.on{display:block}
+.step .no{font-size:13px;font-weight:700;color:var(--blue)}
+.step h3{font-size:clamp(22px,4vw,30px);line-height:1.25;margin:6px 0 12px;letter-spacing:-.03em}
+.step p{color:var(--sub);font-size:17px}
+.step q{display:block;margin-top:14px;padding:14px 18px;background:var(--bg2);border-radius:14px;color:var(--text);font-size:16px;quotes:none}
+.stepnav{display:flex;justify-content:space-between;margin-top:26px;gap:10px}
+.stepnav button:disabled{opacity:.3;pointer-events:none}
+
+/* furnace */
+.furnace{margin-top:44px;border-radius:32px;padding:40px 30px;background:linear-gradient(160deg,#2b0f0a,#7a1f0a 55%,#e8710a);color:#fff;text-align:center;position:relative;overflow:hidden}
+.furnace h3{font-size:clamp(24px,4.5vw,36px);letter-spacing:-.03em;margin-bottom:6px}
+.furnace .sub{color:rgba(255,255,255,.75);font-size:15px;margin-bottom:26px}
+.fq{background:rgba(255,255,255,.12);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-radius:20px;padding:20px;margin:14px auto;max-width:620px;text-align:left}
+.fq .lb{font-size:12px;font-weight:700;opacity:.8;margin-bottom:4px}
+.fq.hide{display:none}
+.fq.big{background:#fff;color:#1d1d1f;animation:pop .7s both}
+.fq.big .lb{color:var(--orange);opacity:1}
+.fq.big p{font-size:clamp(18px,3vw,23px);font-weight:700;letter-spacing:-.02em}
+.furnace .btn{background:#fff;color:#7a1f0a;margin-top:12px}
+
+/* quiz */
+.qbox{background:var(--card);border-radius:28px;box-shadow:var(--shadow);padding:32px 28px}
+.qtop{display:flex;justify-content:space-between;font-size:14px;color:var(--sub);margin-bottom:10px}
+.qbar{height:6px;background:var(--line);border-radius:99px;overflow:hidden;margin-bottom:24px}
+.qbar i{display:block;height:100%;width:0;background:var(--hero-grad);transition:width .4s}
+.qq{font-size:clamp(19px,3.2vw,24px);font-weight:700;line-height:1.4;letter-spacing:-.02em;margin-bottom:20px}
+.opts{display:grid;gap:10px}
+.opt{text-align:left;background:var(--bg2);padding:15px 18px;border-radius:14px;font-size:16px;border:2px solid transparent;transition:.2s}
+.opt:hover:not(:disabled){border-color:var(--blue)}
+.opt.ok{background:rgba(29,155,74,.14);border-color:var(--green)}
+.opt.no{background:rgba(217,48,37,.12);border-color:var(--red)}
+.opt:disabled{cursor:default}
+.exp{margin-top:18px;padding:16px 18px;border-radius:14px;background:var(--bg2);font-size:15px;display:none;animation:pop .4s both}
+.exp.show{display:block}
+.exp b{display:block;margin-bottom:4px}
+.qnext{margin-top:18px;text-align:right;min-height:44px}
+.result{text-align:center;padding:10px 0}
+.ring{width:170px;height:170px;margin:10px auto 18px;position:relative}
+.ring svg{transform:rotate(-90deg)}
+.ring .n{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:40px;font-weight:800;letter-spacing:-.03em}
+.result h3{font-size:26px;margin-bottom:6px}
+.result p{color:var(--sub);margin-bottom:20px}
+
+/* reflect */
+.rf-item{background:var(--card);border-radius:22px;box-shadow:var(--shadow);padding:22px 24px;margin-bottom:16px}
+.rf-item label{display:block;font-weight:700;font-size:17px;margin-bottom:10px;line-height:1.45}
+.rf-item textarea{width:100%;min-height:96px;border:1.5px solid var(--line);border-radius:14px;background:var(--bg2);color:var(--text);padding:14px;font:inherit;font-size:16px;resize:vertical}
+.note{font-size:13px;color:var(--sub);text-align:center;margin-top:10px}
+.saved{color:var(--green);opacity:0;transition:.4s}
+.saved.on{opacity:1}
+
+/* summary */
+.sum{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.sum div{background:var(--card);border-radius:22px;padding:24px;box-shadow:var(--shadow)}
+.sum div b{display:block;font-size:13px;color:var(--blue);margin-bottom:6px}
+.sum div p{font-size:17px;font-weight:600;line-height:1.5;letter-spacing:-.02em}
+footer{text-align:center;color:var(--sub);font-size:13px;padding:50px 20px 70px}
+
+@media (max-width:640px){
+  section{padding:68px 18px}
+  nav ul{gap:14px}
+  .match{grid-template-columns:1fr;gap:18px}
+  .meter-row{grid-template-columns:70px 1fr 42px}
+  .steps,.qbox{padding:26px 20px}
+  .nav-t{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+  .rv{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<nav>
+  <div class="in">
+    <span class="t nav-t">히브리서 11:32–38</span>
+    <ul id="navlinks">
+      <li><a href="#s1">① 흠 있는 사람들</a></li>
+      <li><a href="#s2">② 이긴 사람들</a></li>
+      <li><a href="#s3">③ 고난 받은 사람들</a></li>
+      <li><a href="#s4">④ 십자가</a></li>
+      <li><a href="#s5">퀴즈</a></li>
+      <li><a href="#s6">묵상</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="in">
+    <span class="tag">히브리서 강해 (48) · 복습</span>
+    <h1>세상이 감당하지<br>못한 사람들</h1>
+    <p>히브리서 11장 32–38절<br>말씀을 만지고, 뒤집고, 맞춰 보며 다시 기억해 봅니다.</p>
+    <a class="btn" href="#s1">복습 시작하기</a>
+    <div class="roadmap">
+      <a href="#s1">첫째<small>하나님이 쓰신 사람들은 누구였는가?</small></a>
+      <a href="#s2">둘째<small>믿음으로 이긴 사람들</small></a>
+      <a href="#s3">셋째<small>믿음으로 실패한 사람들</small></a>
+    </div>
+  </div>
+</header>
+
+<!-- INTRO -->
+<section class="alt" id="intro">
+  <div class="wrap">
+    <p class="eyebrow rv">오늘의 말씀</p>
+    <h2 class="rv">빨리 감기로 보는 믿음의 역사</h2>
+    <p class="lead rv">라합까지 한 사람씩 만나 오던 히브리서 기자의 말투가 32절에서 달라집니다. 이름을 빠르게 부르고, 그들이 겪은 일을 요약합니다.</p>
+    <div class="verse rv">
+      <p>“내가 무슨 말을 더 하리요 기드온, 바락, 삼손, 입다, 다윗 및 사무엘과 선지자들의 일을 말하려면 내게 시간이 부족하리로다”</p>
+      <cite>히브리서 11:32</cite>
+    </div>
+    <div class="verse rv" style="border-left-color:var(--purple)">
+      <p>“<mark>이런 사람은 세상이 감당하지 못하느니라</mark>”</p>
+      <cite>히브리서 11:38 · 이 사람들에 대한 마지막 평가</cite>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 1 -->
+<section id="s1">
+  <div class="wrap">
+    <p class="eyebrow rv">첫째 · 32절</p>
+    <h2 class="rv">하나님이 쓰신 사람들은 누구였는가?</h2>
+    <p class="lead rv">이름만 보면 모두 훌륭해 보입니다. 카드를 눌러 한 사람씩 뒤집어 보세요.</p>
+
+    <div class="cards rv" id="flipCards"></div>
+    <p class="counter rv">뒤집은 카드 <b id="flipCount">0</b> / 5</p>
+
+    <div class="insight locked rv" id="insight1">
+      <h3>🔓 카드를 모두 뒤집으면 열립니다</h3>
+      <p>히브리서 기자가 이들의 허물을 몰랐을까요? 아닙니다. 잘 알고 있었습니다. 그런데도 이름을 믿음의 전당에 올렸습니다. 믿음의 전당에 이름이 올라가는 기준이 인간의 완전함, 완벽함이 아니기 때문입니다.</p>
+      <div class="swap" id="swap" hidden>
+        <span class="x">믿음의 영웅들</span><i>→</i><span class="o">믿음의 증인들</span>
+      </div>
+      <p id="swapTxt" hidden>그들의 믿음이 위대해서가 아니라, 하나님께서 그들을 믿음의 사람들로 만들어 가신 <b>하나님이 위대하심</b>을 기억해야 합니다. 믿음의 전당은 흠 없는 사람들의 명예의 전당이 아니라, 죄인들이 하나님의 은혜에 붙들려 믿음의 사람들이 된 기록입니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2 -->
+<section class="alt" id="s2">
+  <div class="wrap">
+    <p class="eyebrow rv">둘째 · 33–35절 상반절</p>
+    <h2 class="rv">믿음으로 이긴 사람들</h2>
+    <p class="lead rv">본문의 표현과 구약의 인물을 짝지어 보세요. 왼쪽을 먼저 누르고, 오른쪽에서 짝을 고릅니다.</p>
+
+    <div class="verse rv">
+      <p>“그들은 믿음으로 나라들을 이기기도 하며 의를 행하기도 하며 약속을 받기도 하며 사자들의 입을 막기도 하며 불의 세력을 멸하기도 하며 칼날을 피하기도 하며 연약한 가운데서 강하게 되기도 하며 전쟁에 용감하게 되어 이방 사람들의 진을 물리치기도 하며 여자들은 자기의 죽은 자들을 부활로 받아들이기도 하며”</p>
+      <cite>히브리서 11:33–35a</cite>
+    </div>
+
+    <div class="status rv">
+      <span class="pill">맞춘 짝 <span id="mCount">0</span> / 4</span>
+      <button class="btn ghost sm" id="mReset">다시 섞기</button>
+    </div>
+    <div class="match rv">
+      <div class="col" id="mLeft"><h4>본문 속 표현</h4></div>
+      <div class="col" id="mRight"><h4>구약의 인물</h4></div>
+    </div>
+    <p class="note" id="mMsg" style="margin:0 0 6px"></p>
+
+    <div class="secret rv">
+      <p class="eyebrow">모든 승리의 비밀 · 34절</p>
+      <p class="big">“연약한 가운데서 강하게 되기도 하며”</p>
+      <p>이 사람들은 강해서 이긴 것이 아닙니다. 기드온은 므낫세 지파 중에서 가장 약한 집안의 가장 작은 자였고(삿 6:15), 삼손은 눈이 뽑히고 결박된 가장 비참한 자리에서 마지막으로 하나님께 부르짖었습니다(삿 16:28).</p>
+      <div class="meter">
+        <label for="slider">슬라이더를 오른쪽으로 밀어 “나의 약함”을 늘려 보세요 →</label>
+        <input type="range" id="slider" min="0" max="100" value="10">
+        <div class="meter-row"><span>나의 힘</span><div class="bar"><i class="me" id="barMe" style="width:90%"></i></div><span id="vMe">90%</span></div>
+        <div class="meter-row"><span>하나님의 강함</span><div class="bar"><i class="god" id="barGod" style="width:10%"></i></div><span id="vGod">10%</span></div>
+        <p id="meterTxt" style="margin-top:14px;font-size:15px;color:var(--sub)">내 힘이 클수록 하나님의 강함이 드러날 자리가 좁아 보입니다.</p>
+      </div>
+      <div class="verse" style="margin:26px 0 0;border-left-color:var(--green)">
+        <p>“내 은혜가 네게 족하도다 이는 내 능력이 약한 데서 온전하여짐이라 … 이는 내가 약한 그 때에 강함이라”</p>
+        <cite>고린도후서 12:9–10</cite>
+      </div>
+      <p style="margin-top:16px">믿음은 나의 강함(나의 의, 나의 열심)을 믿는 것이 아니라, 나의 약함 속에서 나를 통해 일하시는 <b>하나님의 강함</b>을 믿는 것입니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3 -->
+<section id="s3">
+  <div class="wrap">
+    <p class="eyebrow rv">셋째 · 35절 하반절–38절</p>
+    <h2 class="rv">믿음으로 실패한 사람들</h2>
+    <p class="lead rv">“또 어떤 이들은…” 35절 중간부터 분위기가 바뀝니다. 아래 스위치로 두 부류를 번갈아 보세요.</p>
+
+    <div class="seg rv" id="seg" role="tablist">
+      <button class="on" data-k="win" role="tab">🏆 이긴 사람들</button>
+      <button data-k="suf" role="tab">🕯️ 고난 받은 사람들</button>
+    </div>
+    <div class="badge-row"><span class="badge">두 쪽 모두 “믿음으로”</span><span id="segLabel" style="font-size:14px;color:var(--sub)">결과: 승리와 형통</span></div>
+    <div class="list" id="segList"></div>
+
+    <div class="verse rv" style="margin-top:36px">
+      <p>“또 어떤 이들은 더 좋은 부활을 얻고자 하여 심한 고문을 받되 구차히 풀려나기를 원하지 아니하였으며”</p>
+      <cite>히브리서 11:35b · 신앙을 버리면 풀어 주겠다는 회유를 거절한 사람들</cite>
+    </div>
+
+    <div class="insight rv" style="margin-top:20px">
+      <h3>같은 믿음, 다른 결과</h3>
+      <p>어떤 이들은 믿음으로 사자의 입을 막지만, 또 어떤 이들은 믿음을 지키다가 사자에게 찢겨지기도 합니다. 그런데 둘 다 “믿음”입니다. 그러므로 “믿음이 좋으면 반드시 잘 된다, 고난이 있다면 믿음이 부족한 것이다”라고 하는 것은 성경이 가르치는 믿음이 아닙니다.</p>
+    </div>
+
+    <div class="worldbox rv">
+      <p class="g">ΗΕΛΛΗΝΙΚΑ · 헬라어 원문 직역</p>
+      <p class="ko">“이런 사람은 세상이 감당하지 못하느니라”</p>
+      <p style="margin:12px 0 8px;color:#a1a1a6">↓ 아래 문장을 눌러 보세요 ↓</p>
+      <button class="flipline ko" id="worldFlip" style="font-size:clamp(20px,3.6vw,28px);font-weight:700;color:#fff">세상이 그들을 쫓아냈다</button>
+      <p class="tap" id="worldTap">세상은 이 사람들을 쓸모없는 자, 귀찮은 자, 쫓아내야 할 자로 여겼습니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4 -->
+<section class="alt" id="s4">
+  <div class="wrap">
+    <p class="eyebrow rv">맺음</p>
+    <h2 class="rv">두 믿음의 길이 만나는 곳</h2>
+    <p class="lead rv">승리하는 믿음과 실패하는 것처럼 보이는 믿음. 이 두 길이 하나로 만나는 곳은 어디일까요? “다음”을 눌러 따라가 보세요.</p>
+
+    <div class="steps rv">
+      <div class="dots" id="dots"></div>
+      <div id="stepBox">
+        <div class="step on">
+          <span class="no">1 / 5</span>
+          <h3>마치 실패한 것처럼 보이신 예수님</h3>
+          <p>예수님은 이 땅에 오셔서 조롱을 받으셨고, 채찍에 맞으셨고, 결박되셨고, 영문 밖으로 쫓겨나 결국은 죽임을 당하셨습니다.</p>
+        </div>
+        <div class="step">
+          <span class="no">2 / 5</span>
+          <h3>그러나 사흘 만에</h3>
+          <p>죄와 사망의 권세를 깨뜨리시고 “더 좋은 부활”의 첫 열매가 되셨습니다. 그리고 우리에게도 더 좋은 부활의 소망을 주셨습니다.</p>
+        </div>
+        <div class="step">
+          <span class="no">3 / 5</span>
+          <h3>두 종류의 부활</h3>
+          <p>요한복음 5장 29절에는 두 종류의 부활이 소개됩니다.</p>
+          <q>“선한 일을 행한 자는 생명의 부활로, 악한 일을 행한 자는 심판의 부활로 나오리라”</q>
+        </div>
+        <div class="step">
+          <span class="no">4 / 5</span>
+          <h3>선한 일이란 무엇인가?</h3>
+          <p>선하신 분은 한 분, 하나님뿐이십니다. 그러므로 선한 일은 하나님의 일입니다. 그것이 무엇일까요?</p>
+          <q>“하나님께서 보내신 이를 믿는 것이 하나님의 일이니라” (요 6:29)</q>
+        </div>
+        <div class="step">
+          <span class="no">5 / 5</span>
+          <h3>믿음 = 선한 일 · 불신 = 악한 일</h3>
+          <p>하나님께서 보내신 예수 그리스도를 믿는 것이 선한 일이며, 선한 일을 한 사람은 더 좋은 부활, 생명의 부활로 나옵니다. 하나님께서 보내신 이를 믿지 않는 것, 이것이 악한 일입니다.</p>
+        </div>
+      </div>
+      <div class="stepnav">
+        <button class="btn ghost sm" id="prevS" disabled>이전</button>
+        <button class="btn sm" id="nextS">다음</button>
+      </div>
+    </div>
+
+    <div class="furnace rv">
+      <h3>🔥 “그리 아니하실지라도”</h3>
+      <p class="sub">다니엘의 세 친구, 풀무불 앞의 고백 (단 3:17–18)</p>
+      <div class="fq" id="f1">
+        <p class="lb">승리하는 믿음</p>
+        <p>“왕이시여 우리가 섬기는 하나님이 계시다면 우리를 맹렬히 타는 풀무불 가운데에서 능히 건져내시겠고”</p>
+      </div>
+      <button class="btn" id="fBtn">그런데 그 다음에 뭐라고 고백합니까?</button>
+      <div class="fq big hide" id="f2">
+        <p class="lb">실패하는 것처럼 보이는 믿음</p>
+        <p>“그렇게 하지 아니하실지라도 우리는 왕의 신들을 섬기지도 아니하고 왕이 세운 금 신상에게 절하지도 아니할 줄을 아옵소서”</p>
+        <p style="font-size:15px;font-weight:500;color:var(--sub);margin-top:10px">결과가 좋게 나오든 나쁘게 나오든, 그 결과를 하나님께 맡기고 끝까지 하나님 편에 서는 것. 이것이 믿음입니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section id="s5">
+  <div class="wrap">
+    <p class="eyebrow rv">확인 퀴즈</p>
+    <h2 class="rv">얼마나 기억하고 있나요?</h2>
+    <p class="lead rv">10문항입니다. 답을 고르면 바로 해설이 나옵니다.</p>
+    <div class="qbox rv" id="quiz"></div>
+  </div>
+</section>
+
+<!-- REFLECT -->
+<section class="alt" id="s6">
+  <div class="wrap">
+    <p class="eyebrow rv">나에게 적용하기</p>
+    <h2 class="rv">묵상 질문</h2>
+    <p class="lead rv">자유롭게 적어 보세요. 적은 내용은 이 기기의 브라우저에만 저장되고, 어디로도 전송되지 않습니다.</p>
+    <div id="rflist"></div>
+    <p class="note"><span class="saved" id="savedMsg">✓ 저장되었습니다</span></p>
+
+    <h2 class="rv" style="margin-top:70px;font-size:clamp(26px,4.5vw,38px)">한 장으로 정리</h2>
+    <div class="sum rv">
+      <div><b>첫째</b><p>믿음의 전당은 흠 없는 사람들의 명예의 전당이 아니라, 하나님의 은혜에 붙들린 죄인들의 기록이다.</p></div>
+      <div><b>둘째</b><p>믿음으로 이긴 것도 내 힘이 아니라 연약한 가운데 일하신 하나님의 강함이다.</p></div>
+      <div><b>셋째</b><p>믿음의 결과는 언제나 승리와 형통이 아니다. 고난 받은 사람도 같은 믿음이다.</p></div>
+      <div><b>맺음</b><p>두 길은 십자가에서 만난다. “그리 아니하실지라도” 끝까지 하나님 편에 서는 것이 믿음이다.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>히브리서 강해 (48) · 히브리서 11장 32–38절 · 복습 자료</footer>
+
+<script>
+(function(){
+  const $ = (s,r=document)=>r.querySelector(s);
+  const $$ = (s,r=document)=>[...r.querySelectorAll(s)];
+  const shuffle = a => { a=[...a]; for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; };
+
+  /* progress bar + nav highlight */
+  const prog = $('#progress');
+  const links = $$('#navlinks a');
+  const secs = links.map(a=>$(a.getAttribute('href')));
+  function onScroll(){
+    const h = document.documentElement;
+    prog.style.width = (h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
+    let cur = -1;
+    secs.forEach((s,i)=>{ if(s.getBoundingClientRect().top < 140) cur = i; });
+    links.forEach((a,i)=>a.classList.toggle('on',i===cur));
+  }
+  addEventListener('scroll',onScroll,{passive:true}); onScroll();
+
+  /* reveal */
+  const io = new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} }),{threshold:.12});
+  $$('.rv').forEach(el=>io.observe(el));
+
+  /* 1. flip cards */
+  const people = [
+    {n:'기드온', d:'하나님의 부르심 앞에서 몇 번이나 표적을 구했습니다. 양털만 이슬로 적셔 달라 했다가, 다음 날엔 양털만 말려 달라고 했습니다. 승리한 뒤에는 금 에봇을 만들어 이스라엘을 음란하게 하는 올무를 남겼습니다.', r:'삿 6:36–40; 8:27'},
+    {n:'바락', d:'드보라가 함께 가지 않으면 가지 않겠다고 했던 사람입니다.', r:'삿 4:8'},
+    {n:'삼손', d:'하나님이 주신 힘을 정욕 앞에서 허비한 사람입니다.', r:'삿 13–16장'},
+    {n:'입다', d:'경솔한 서원으로 자기 딸을 잃은 사람입니다.', r:'삿 11장'},
+    {n:'다윗', d:'간음하고, 그것을 덮으려고 충신을 죽게 한 사람입니다.', r:'삼하 11장'}
+  ];
+  const fc = $('#flipCards');
+  let flipped = 0;
+  people.forEach(p=>{
+    const el = document.createElement('div');
+    el.className='flip';
+    el.innerHTML = `<button class="inner" aria-pressed="false" aria-label="${p.n} 카드 뒤집기">
+      <div class="face f"><div class="nm">${p.n}</div><div class="hint">눌러서 뒤집기 ↻</div></div>
+      <div class="face b"><div class="tt">${p.n}의 흠</div><div class="ds">${p.d}</div><div class="rf">${p.r}</div></div></button>`;
+    const btn = $('.inner',el);
+    let seen=false;
+    btn.addEventListener('click',()=>{
+      el.classList.toggle('on');
+      btn.setAttribute('aria-pressed', el.classList.contains('on'));
+      if(!seen){ seen=true; flipped++; $('#flipCount').textContent=flipped; if(flipped===people.length) unlock1(); }
+    });
+    fc.appendChild(el);
+  });
+  function unlock1(){
+    const b=$('#insight1'); b.classList.remove('locked');
+    $('h3',b).textContent='✨ 모두 흠이 있는 사람들이었습니다';
+    $('#swap').hidden=false; $('#swapTxt').hidden=false;
+  }
+
+  /* 2. matching game */
+  const pairs = [
+    {id:'a', l:'“사자들의 입을 막기도 하며”', r:'다니엘', rs:'사자 굴 · 단 6:22'},
+    {id:'b', l:'“불의 세력을 멸하기도 하며”', r:'사드락·메삭·아벳느고', rs:'풀무불 · 단 3장'},
+    {id:'c', l:'“자기의 죽은 자들을 부활로 받아들이기도 하며”', r:'사르밧 과부와 수넴 여인', rs:'엘리야·엘리사 · 왕상 17장, 왕하 4장'},
+    {id:'d', l:'“칼날을 피하기도 하며”', r:'다윗과 엘리야', rs:'사울의 창, 이세벨의 칼'}
+  ];
+  let selL=null, matched=0;
+  function buildMatch(){
+    selL=null; matched=0; $('#mCount').textContent=0; $('#mMsg').textContent='';
+    const L=$('#mLeft'), R=$('#mRight');
+    $$('.m',L).forEach(x=>x.remove()); $$('.m',R).forEach(x=>x.remove());
+    shuffle(pairs).forEach(p=>{
+      const b=document.createElement('button'); b.className='m'; b.dataset.id=p.id; b.textContent=p.l; L.appendChild(b);
+    });
+    shuffle(pairs).forEach(p=>{
+      const b=document.createElement('button'); b.className='m'; b.dataset.id=p.id; b.innerHTML=`${p.r}<small>${p.rs}</small>`; R.appendChild(b);
+    });
+    $$('.m',L).forEach(b=>b.addEventListener('click',()=>{
+      if(b.classList.contains('done')) return;
+      $$('.m',L).forEach(x=>x.classList.remove('sel'));
+      b.classList.add('sel'); selL=b;
+    }));
+    $$('.m',R).forEach(b=>b.addEventListener('click',()=>{
+      if(b.classList.contains('done')) return;
+      if(!selL){ $('#mMsg').textContent='먼저 왼쪽에서 본문 속 표현을 골라 주세요.'; return; }
+      if(selL.dataset.id===b.dataset.id){
+        selL.classList.remove('sel'); selL.classList.add('done'); b.classList.add('done');
+        selL=null; matched++; $('#mCount').textContent=matched;
+        $('#mMsg').textContent = matched===pairs.length ? '🎉 모두 맞췄습니다! 공통점은 하나입니다. 사람의 힘으로는 불가능한 일이었고, 그 자리에서 그들은 하나님을 신뢰했으며, 하나님이 일하셨습니다.' : '정답입니다 ✓';
+      } else {
+        b.classList.add('bad'); selL.classList.add('bad');
+        const a=selL, c=b; setTimeout(()=>{a.classList.remove('bad');c.classList.remove('bad');},450);
+        $('#mMsg').textContent='아쉽습니다. 다시 한 번 생각해 보세요.';
+      }
+    }));
+  }
+  buildMatch();
+  $('#mReset').addEventListener('click',buildMatch);
+
+  /* slider */
+  const sl=$('#slider');
+  function meter(){
+    const v=+sl.value, me=100-v;
+    $('#barMe').style.width=me+'%'; $('#barGod').style.width=v+'%';
+    $('#vMe').textContent=me+'%'; $('#vGod').textContent=v+'%';
+    $('#meterTxt').textContent = v<35 ? '내 힘이 클수록 하나님의 강함이 드러날 자리가 좁아 보입니다.'
+      : v<75 ? '약함을 인정할수록 하나님이 일하실 자리가 넓어집니다.'
+      : '“내가 약한 그 때에 강함이라.” 강함은 내 안이 아니라 하나님께로부터 나옵니다.';
+  }
+  sl.addEventListener('input',meter);
+
+  /* 3. segmented */
+  const segData = {
+    win:{label:'결과: 승리와 형통', items:[
+      ['🦁','사자의 입을 막음','다니엘 (단 6:22)'],
+      ['🔥','불의 세력을 멸함','풀무불 속의 세 친구 (단 3장)'],
+      ['⚔️','칼날을 피함','사울의 창을 피한 다윗, 이세벨의 칼을 피한 엘리야'],
+      ['🌅','죽은 자를 부활로 받음','사르밧 과부의 아들(왕상 17장), 수넴 여인의 아들(왕하 4장)']
+    ]},
+    suf:{label:'결과: 고난과 순교 · 그러나 같은 “믿음으로”', items:[
+      ['🪨','돌로 치는 것','성전 뜰에서 돌에 맞은 스가랴 (대하 24:20–21), 스데반'],
+      ['🪚','톱으로 켜는 것','유대 전승에 따르면 므낫세 왕 때의 이사야'],
+      ['⛓️','조롱과 채찍질, 결박과 옥','웅덩이에 던져지고 옥에 갇힌 예레미야 (렘 20:2; 38:6)'],
+      ['🐑','양과 염소의 가죽을 입고 유리함','털옷을 입고 광야를 다닌 엘리야'],
+      ['🕳️','광야와 산과 동굴과 토굴','오바댜가 굴에 숨겨 준 백 명의 선지자들 (왕상 18:4)']
+    ]}
+  };
+  function renderSeg(k){
+    $('#segLabel').textContent=segData[k].label;
+    const L=$('#segList'); L.innerHTML='';
+    segData[k].items.forEach((it,i)=>{
+      const d=document.createElement('div'); d.className='item'; d.style.animationDelay=(i*70)+'ms';
+      d.innerHTML=`<div class="ic">${it[0]}</div><div><b>${it[1]}</b><span>${it[2]}</span></div>`;
+      L.appendChild(d);
+    });
+  }
+  $$('#seg button').forEach(b=>b.addEventListener('click',()=>{
+    $$('#seg button').forEach(x=>x.classList.toggle('on',x===b)); renderSeg(b.dataset.k);
+  }));
+  renderSeg('win');
+
+  let wf=false;
+  $('#worldFlip').addEventListener('click',function(){
+    wf=!wf; this.classList.toggle('on',wf);
+    this.textContent = wf ? '세상은 그들을 받을 자격이 없었다' : '세상이 그들을 쫓아냈다';
+    $('#worldTap').textContent = wf
+      ? '하나님의 평가는 정반대입니다. 그들이 세상에 합당하지 않았던 것이 아니라, 세상이 그들에게 합당하지 않았습니다.'
+      : '세상은 이 사람들을 쓸모없는 자, 귀찮은 자, 쫓아내야 할 자로 여겼습니다.';
+  });
+
+  /* 4. steps */
+  const steps=$$('#stepBox .step'); let si=0;
+  const dots=$('#dots'); steps.forEach(()=>dots.appendChild(document.createElement('i')));
+  function showStep(){
+    steps.forEach((s,i)=>s.classList.toggle('on',i===si));
+    $$('i',dots).forEach((d,i)=>d.classList.toggle('on',i<=si));
+    $('#prevS').disabled = si===0;
+    $('#nextS').disabled = si===steps.length-1;
+    $('#nextS').textContent = si===steps.length-2 ? '마지막 단계' : '다음';
+  }
+  $('#nextS').addEventListener('click',()=>{ if(si<steps.length-1){si++;showStep();} });
+  $('#prevS').addEventListener('click',()=>{ if(si>0){si--;showStep();} });
+  showStep();
+
+  $('#fBtn').addEventListener('click',function(){
+    $('#f2').classList.remove('hide'); this.style.display='none';
+  });
+
+  /* 5. quiz */
+  const Q = [
+    {q:'히브리서 기자가 32절에서 “시간이 부족하리로다”라고 말한 뜻은 무엇입니까?',
+     o:['더 이상 믿음의 사람을 알지 못해서','믿음의 사람들을 한 사람씩 다 이야기하자면 끝이 없어서','편지를 빨리 마쳐야 하는 사정이 있어서','라합 이후로는 믿음의 사람이 없어서'],a:1,
+     e:'구약의 믿음의 사람들을 일일이 다 말하자면 끝이 없으므로, 이제부터는 이름을 빠르게 부르고 요약해서 설명합니다. 마치 믿음의 역사 전체를 빨리 감기로 보여주는 것 같습니다.'},
+    {q:'본문의 분위기가 갑자기 바뀌는 지점은 어디입니까?',
+     o:['32절 시작','33절 중간','35절 중간','38절 끝'],a:2,
+     e:'35절 중간부터 매를 맞고, 옥에 갇히고, 돌에 맞고, 톱으로 켜지고, 동굴에서 떠돌던 사람들의 이야기로 바뀝니다. 앞부분은 믿음으로 승리한 사람들의 이야기입니다.'},
+    {q:'기드온이 하나님의 부르심 앞에서 보인 모습은 무엇입니까?',
+     o:['표적을 거듭 구했다','부르심을 즉시 거절했다','드보라와 함께 가기를 요청했다','경솔한 서원을 했다'],a:0,
+     e:'양털만 이슬로 적셔 달라고 했다가, 다음 날에는 양털만 말려 달라고 했습니다(삿 6:36–40). 드보라와 함께 가겠다고 한 사람은 바락(삿 4:8), 경솔한 서원은 입다(삿 11장)입니다.'},
+    {q:'믿음의 전당에 이름이 올라가는 기준은 무엇이라고 했습니까?',
+     o:['인간의 완전함과 완벽함','하나님의 은혜에 붙들린 믿음','많은 업적과 승리','순교의 여부'],a:1,
+     e:'기준은 인간의 완전함, 완벽함이 아닙니다. 믿음의 전당은 흠 없는 사람들의 명예의 전당이 아니라, 죄인들이 하나님의 은혜에 붙들려 믿음의 사람들이 된 기록입니다.'},
+    {q:'설교에서 히브리서 11장을 어떻게 읽자고 했습니까?',
+     o:['“믿음의 영웅들”이 아니라 “믿음의 증인들”의 이야기로','“믿음의 증인들”이 아니라 “믿음의 영웅들”의 이야기로','“구약의 역사”의 기록으로','“순교자들”의 기록으로'],a:0,
+     e:'그들의 믿음이 위대해서가 아니라, 그들을 믿음의 사람들로 만들어 가신 하나님이 위대하심을 기억해야 하기 때문입니다.'},
+    {q:'34절 “연약한 가운데서 강하게 되기도 하며”가 가르치는 바는 무엇입니까?',
+     o:['믿음이 특출난 사람이 승리한다','약함을 숨겨야 이길 수 있다','강함은 그들 안이 아니라 하나님께로부터 나온다','약한 사람은 승리할 수 없다'],a:2,
+     e:'기드온은 가장 약한 집안의 가장 작은 자였고, 삼손은 눈이 뽑히고 결박된 상태에서 부르짖었습니다. 믿음으로 이긴 이야기도 그들이 특출나서가 아니라 하나님의 일하심입니다.'},
+    {q:'“톱으로 켜는 것”은 누구의 이야기로 설명되었습니까?',
+     o:['스가랴','예레미야','엘리야','이사야 (유대 전승)'],a:3,
+     e:'유대 전승에 의하면 이사야 선지자가 므낫세 왕 때 톱으로 켜서 죽임을 당했다고 전합니다. “돌로 치는 것”은 스가랴(대하 24:20–21)와 스데반의 이야기입니다.'},
+    {q:'38절 “이런 사람은 세상이 감당하지 못하느니라”를 헬라어 원문으로 직역하면?',
+     o:['세상은 그들을 이길 수 없었다','세상은 그들을 받을 자격이 없었다','세상은 그들을 알지 못했다','세상은 그들을 두려워했다'],a:1,
+     e:'세상은 이들을 쫓아내야 할 자로 여겼지만, 하나님의 평가는 정반대입니다. 그들이 세상에 합당하지 않았던 것이 아니라 세상이 그들에게 합당하지 않았습니다.'},
+    {q:'요한복음 6:29에 따르면 “하나님의 일”은 무엇입니까?',
+     o:['율법을 지키는 것','많은 헌금을 드리는 것','하나님께서 보내신 이를 믿는 것','고난을 견디는 것'],a:2,
+     e:'선하신 분은 하나님 한 분뿐이므로 선한 일은 하나님의 일이고, 그것은 하나님께서 보내신 예수 그리스도를 믿는 것입니다. 그래서 선한 일을 한 사람은 생명의 부활로 나옵니다.'},
+    {q:'다니엘의 세 친구의 “그리 아니하실지라도” 고백이 뜻하는 믿음은 무엇입니까?',
+     o:['반드시 건져 주실 것이라는 확신','결과를 하나님께 맡기고 끝까지 하나님 편에 서는 것','불 속에서도 죽지 않는다는 믿음','왕의 명령에 협상하는 지혜'],a:1,
+     e:'결과가 좋게 나오든 나쁘게 나오든 그 결과를 하나님께 맡기고 끝까지 하나님 편에 서는 것, 이것이 믿음입니다(단 3:17–18).'}
+  ];
+  const qb=$('#quiz'); let qi=0, score=0;
+  function renderQ(){
+    if(qi>=Q.length) return renderResult();
+    const q=Q[qi];
+    qb.innerHTML=`<div class="qtop"><span>문제 ${qi+1} / ${Q.length}</span><span>점수 ${score}</span></div>
+      <div class="qbar"><i style="width:${qi/Q.length*100}%"></i></div>
+      <p class="qq">${q.q}</p>
+      <div class="opts">${q.o.map((t,i)=>`<button class="opt" data-i="${i}">${t}</button>`).join('')}</div>
+      <div class="exp" id="exp"></div>
+      <div class="qnext" id="qnext"></div>`;
+    $$('.opt',qb).forEach(b=>b.addEventListener('click',()=>{
+      const i=+b.dataset.i, ok=i===q.a;
+      if(ok) score++;
+      $$('.opt',qb).forEach(x=>{ x.disabled=true; if(+x.dataset.i===q.a) x.classList.add('ok'); });
+      if(!ok) b.classList.add('no');
+      const ex=$('#exp'); ex.innerHTML=`<b>${ok?'정답입니다 🎉':'아쉽습니다'}</b>${q.e}`; ex.classList.add('show');
+      $('#qnext').innerHTML=`<button class="btn sm" id="qn">${qi===Q.length-1?'결과 보기':'다음 문제'}</button>`;
+      $('#qn').addEventListener('click',()=>{qi++;renderQ();});
+    }));
+  }
+  function renderResult(){
+    const pct=score/Q.length, C=2*Math.PI*70;
+    const msg = pct===1 ? ['완벽합니다! 🏆','말씀이 마음에 깊이 새겨졌습니다.']
+      : pct>=.7 ? ['아주 잘하셨어요 👏','핵심을 잘 기억하고 계십니다.']
+      : pct>=.4 ? ['좋은 시작입니다 🌱','해당 섹션을 한 번 더 훑어보면 좋겠어요.']
+      : ['다시 한 번 천천히 🙂','위에서 카드를 뒤집고 짝을 맞춰 본 뒤 다시 도전해 보세요.'];
+    qb.innerHTML=`<div class="result">
+      <div class="ring"><svg width="170" height="170" viewBox="0 0 170 170">
+        <circle cx="85" cy="85" r="70" fill="none" stroke="var(--line)" stroke-width="12"/>
+        <circle id="rc" cx="85" cy="85" r="70" fill="none" stroke="url(#g)" stroke-width="12" stroke-linecap="round" stroke-dasharray="${C}" stroke-dashoffset="${C}" style="transition:stroke-dashoffset 1.2s cubic-bezier(.2,.7,.2,1)"/>
+        <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0a84ff"/><stop offset="1" stop-color="#ff6b9d"/></linearGradient></defs>
+      </svg><div class="n">${score}/${Q.length}</div></div>
+      <h3>${msg[0]}</h3><p>${msg[1]}</p>
+      <button class="btn" id="retry">다시 풀기</button></div>`;
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{ $('#rc').style.strokeDashoffset = C*(1-pct); }));
+    $('#retry').addEventListener('click',()=>{qi=0;score=0;renderQ();});
+  }
+  renderQ();
+
+  /* 6. reflection (localStorage, local only) */
+  const RF = [
+    '“믿음이 좋으면 반드시 잘 된다”고 생각했던 적이 있나요? 그 생각은 오늘 말씀으로 어떻게 달라지나요?',
+    '지금 내 삶에서 가장 “약한” 부분은 무엇인가요? 그 자리에서 하나님의 강함을 어떻게 의지할 수 있을까요?',
+    '결과와 상관없이 “그리 아니하실지라도” 하나님 편에 서야 할 나의 자리는 어디인가요?'
+  ];
+  const KEY='heb11-32-38-reflect';
+  let store={}; try{ store=JSON.parse(localStorage.getItem(KEY)||'{}'); }catch(e){}
+  const rl=$('#rflist'); let tm;
+  RF.forEach((t,i)=>{
+    const d=document.createElement('div'); d.className='rf-item rv';
+    d.innerHTML=`<label for="rf${i}">${i+1}. ${t}</label><textarea id="rf${i}" placeholder="여기에 적어 보세요"></textarea>`;
+    const ta=$('textarea',d); ta.value=store[i]||'';
+    ta.addEventListener('input',()=>{
+      store[i]=ta.value;
+      try{ localStorage.setItem(KEY,JSON.stringify(store)); }catch(e){}
+      const m=$('#savedMsg'); m.classList.add('on'); clearTimeout(tm); tm=setTimeout(()=>m.classList.remove('on'),1200);
+    });
+    rl.appendChild(d); io.observe(d);
+  });
+})();
+</script>
+</body>
+</html>
