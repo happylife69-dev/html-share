@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>내가 만든 신 · 프롤로그 복습</title>
+<style>
+:root{
+  --bg:#f5f5f7; --bg2:#ffffff; --card:#ffffff; --text:#1d1d1f; --sub:#6e6e73; --line:rgba(0,0,0,.08);
+  --blue:#0071e3; --blue-soft:rgba(0,113,227,.10); --green:#30a46c; --red:#e5484d; --orange:#f5a524; --purple:#8e5cf7;
+  --shadow:0 4px 24px rgba(0,0,0,.06); --shadow-lg:0 20px 60px rgba(0,0,0,.12);
+  --nav:rgba(251,251,253,.72);
+  --hero1:#0b0b0f; --hero2:#2a2a35;
+  --r:22px;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#000; --bg2:#0d0d0f; --card:#1c1c1e; --text:#f5f5f7; --sub:#98989d; --line:rgba(255,255,255,.12);
+    --blue:#2997ff; --blue-soft:rgba(41,151,255,.16);
+    --shadow:0 4px 24px rgba(0,0,0,.5); --shadow-lg:0 20px 60px rgba(0,0,0,.6);
+    --nav:rgba(22,22,23,.72);
+  }
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:72px;-webkit-text-size-adjust:100%}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Apple SD Gothic Neo","Pretendard","Noto Sans KR",sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.6;letter-spacing:-.01em;word-break:keep-all;
+  -webkit-font-smoothing:antialiased;
+}
+button{font:inherit;color:inherit;cursor:pointer;border:none;background:none}
+textarea{font:inherit;color:inherit}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:50;height:52px;display:flex;align-items:center;justify-content:center;
+  background:var(--nav);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);
+  border-bottom:1px solid var(--line)}
+nav .inner{width:min(980px,100%);padding:0 20px;display:flex;align-items:center;gap:6px;overflow-x:auto;scrollbar-width:none}
+nav .inner::-webkit-scrollbar{display:none}
+nav .brand{font-weight:600;font-size:15px;margin-right:auto;white-space:nowrap}
+nav a{font-size:12.5px;color:var(--sub);text-decoration:none;padding:6px 10px;border-radius:980px;white-space:nowrap;transition:.2s}
+nav a:hover,nav a.on{color:var(--text);background:var(--blue-soft)}
+#bar{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--blue),var(--purple));z-index:60;transition:width .1s}
+
+section{padding:96px 20px}
+.wrap{width:min(980px,100%);margin:0 auto}
+.narrow{width:min(760px,100%);margin:0 auto}
+.eyebrow{font-size:14px;font-weight:600;color:var(--blue);margin-bottom:10px}
+h2{font-size:clamp(30px,5vw,48px);line-height:1.12;font-weight:700;letter-spacing:-.03em;margin-bottom:14px}
+.lead{font-size:clamp(17px,2.2vw,21px);color:var(--sub);max-width:680px}
+.center{text-align:center}.center .lead{margin-inline:auto}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;color:#f5f5f7;position:relative;overflow:hidden;
+  background:radial-gradient(1200px 600px at 50% 0%,#33334a 0%,var(--hero1) 60%);padding-top:120px}
+#hero .orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:.5;animation:float 12s ease-in-out infinite}
+#hero .o1{width:360px;height:360px;background:#0a84ff;left:-80px;top:20%}
+#hero .o2{width:320px;height:320px;background:#bf5af2;right:-60px;top:45%;animation-delay:-4s}
+#hero .o3{width:260px;height:260px;background:#ff453a;left:40%;bottom:-120px;animation-delay:-8s;opacity:.35}
+@keyframes float{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,-40px)}}
+#hero .wrap{position:relative;z-index:2}
+#hero .kicker{font-size:15px;color:#a1a1a6;letter-spacing:.08em;margin-bottom:18px}
+#hero h1{font-size:clamp(40px,8vw,84px);line-height:1.05;font-weight:800;letter-spacing:-.04em;margin-bottom:26px}
+#hero h1 em{font-style:normal;background:linear-gradient(90deg,#64d2ff,#bf5af2,#ff6482);-webkit-background-clip:text;background-clip:text;color:transparent}
+#hero p{font-size:clamp(17px,2.4vw,24px);color:#c7c7cc;max-width:640px;margin:0 auto 34px}
+.btn{display:inline-block;background:var(--blue);color:#fff;border-radius:980px;padding:13px 26px;font-size:17px;text-decoration:none;transition:.25s}
+.btn:hover{transform:scale(1.04);filter:brightness(1.1)}
+.btn.ghost{background:transparent;color:var(--blue);border:1px solid var(--blue)}
+.scrollhint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);color:#8e8e93;font-size:13px;animation:bob 2s infinite;z-index:2}
+@keyframes bob{50%{transform:translate(-50%,8px)}}
+
+/* STRUCTURE */
+.chapters{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-top:44px}
+.chap{background:var(--card);border-radius:var(--r);padding:26px 18px;text-align:center;box-shadow:var(--shadow);transition:.35s;position:relative;overflow:hidden}
+.chap:hover{transform:translateY(-6px) scale(1.03);box-shadow:var(--shadow-lg)}
+.chap .n{font-size:44px;font-weight:800;letter-spacing:-.04em;background:linear-gradient(135deg,var(--blue),var(--purple));-webkit-background-clip:text;background-clip:text;color:transparent}
+.chap .t{font-weight:600;font-size:17px}
+.chap.mask{grid-column:1/-1;background:linear-gradient(135deg,#1d1d1f,#3a3a46);color:#f5f5f7}
+.chap.mask .t{font-size:18px}.chap.mask small{display:block;color:#a1a1a6;margin-top:4px}
+.chap.now{outline:3px solid var(--blue)}
+.chap.now::after{content:"지금 배우는 곳";position:absolute;top:8px;right:10px;font-size:11px;color:var(--blue);font-weight:600}
+
+/* FLOW tabs */
+.tabs{display:flex;gap:8px;overflow-x:auto;padding:4px 2px 14px;margin-top:36px;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:0 0 auto;padding:10px 18px;border-radius:980px;background:var(--card);box-shadow:var(--shadow);font-size:15px;font-weight:500;color:var(--sub);transition:.25s}
+.tab b{margin-right:6px;color:var(--blue)}
+.tab:hover{transform:translateY(-2px)}
+.tab.on{background:var(--text);color:var(--bg)}
+.tab.on b{color:var(--bg)}
+.panel{background:var(--card);border-radius:28px;box-shadow:var(--shadow);padding:clamp(24px,4vw,48px);display:none;animation:pop .45s cubic-bezier(.2,.7,.2,1)}
+.panel.on{display:block}
+@keyframes pop{from{opacity:0;transform:translateY(14px) scale(.985)}to{opacity:1;transform:none}}
+.panel h3{font-size:clamp(24px,3.4vw,34px);letter-spacing:-.03em;line-height:1.2;margin-bottom:8px}
+.panel .sublabel{color:var(--blue);font-weight:600;font-size:15px;margin-bottom:6px}
+.keyline{font-size:clamp(19px,2.6vw,26px);font-weight:600;line-height:1.4;margin:18px 0 22px;letter-spacing:-.02em}
+.keyline mark{background:linear-gradient(transparent 62%,rgba(255,214,10,.55) 0);color:inherit}
+.panel ul{margin:0 0 18px 1.2em;color:var(--sub)}
+.panel li{margin:4px 0}
+details.q{background:var(--bg);border-radius:16px;padding:14px 18px;margin-top:10px}
+details.q summary{cursor:pointer;font-weight:600;font-size:15px;color:var(--blue);list-style:none}
+details.q summary::-webkit-details-marker{display:none}
+details.q summary::before{content:"＋ ";}
+details.q[open] summary::before{content:"－ ";}
+details.q blockquote{margin-top:12px;font-size:15.5px;color:var(--sub);border-left:3px solid var(--blue);padding-left:14px;line-height:1.75}
+.verse{display:inline-block;background:var(--blue-soft);color:var(--blue);padding:3px 11px;border-radius:980px;font-size:14px;font-weight:600;margin:2px 4px 2px 0}
+.stepnav{display:flex;justify-content:space-between;margin-top:22px}
+.stepnav button{color:var(--blue);font-size:15px;padding:8px 4px}
+.stepnav button:disabled{opacity:.3;cursor:default}
+
+/* FLIP CARDS */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:44px}
+.flip{perspective:1000px;height:220px;cursor:pointer}
+.flip .in{position:relative;width:100%;height:100%;transition:transform .7s cubic-bezier(.2,.7,.2,1);transform-style:preserve-3d}
+.flip.on .in{transform:rotateY(180deg)}
+.flip .f,.flip .b{position:absolute;inset:0;border-radius:var(--r);padding:22px;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;flex-direction:column;justify-content:center;box-shadow:var(--shadow)}
+.flip .f{background:var(--card);align-items:center;text-align:center}
+.flip .f .ico{font-size:34px;margin-bottom:10px}
+.flip .f .qt{font-size:18px;font-weight:600;line-height:1.35}
+.flip .f small{color:var(--sub);margin-top:12px;font-size:12.5px}
+.flip .b{background:linear-gradient(145deg,var(--blue),#5e5ce6);color:#fff;transform:rotateY(180deg);font-size:15px;line-height:1.55}
+.flip .b strong{display:block;font-size:13px;opacity:.8;margin-bottom:8px;font-weight:600}
+.counter{margin-top:22px;color:var(--sub);font-size:14px}
+
+/* FACTORY */
+#factory{background:var(--bg2)}
+.pick{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:34px 0 10px}
+.chip{padding:10px 20px;border-radius:980px;background:var(--bg);font-size:16px;font-weight:500;transition:.25s;border:1px solid var(--line)}
+.chip:hover{transform:translateY(-2px)}
+.chip.on{background:var(--blue);color:#fff;border-color:var(--blue)}
+.pipe{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:30px 0 24px;position:relative}
+.node{background:var(--card);border-radius:20px;padding:18px 14px;text-align:center;box-shadow:var(--shadow);opacity:.35;transform:scale(.95);transition:.5s cubic-bezier(.2,.7,.2,1);min-height:150px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.node.lit{opacity:1;transform:scale(1)}
+.node .e{font-size:34px;margin-bottom:6px;transition:.5s}
+.node.lit .e{transform:scale(1.15)}
+.node .h{font-weight:700;font-size:15px;margin-bottom:4px}
+.node .d{font-size:13px;color:var(--sub);line-height:1.45}
+.node.danger.lit{background:linear-gradient(145deg,#2a0f12,#4a1519);color:#ffd9dc}
+.node.danger.lit .d{color:#ffb4ba}
+.meter{height:8px;border-radius:8px;background:var(--line);overflow:hidden;margin:6px 0 20px}
+.meter i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--green),var(--orange),var(--red));transition:width .7s cubic-bezier(.2,.7,.2,1)}
+.says{min-height:72px;font-size:clamp(18px,2.6vw,24px);font-weight:600;text-align:center;letter-spacing:-.02em;line-height:1.45}
+.row{display:flex;gap:12px;justify-content:center;margin-top:16px;flex-wrap:wrap}
+@media(max-width:700px){.pipe{grid-template-columns:1fr 1fr}}
+
+/* METAPHORS */
+.mgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+.mcard{background:var(--card);border-radius:var(--r);padding:26px 22px;box-shadow:var(--shadow);transition:.3s;border:2px solid transparent}
+.mcard .ic{font-size:40px;margin-bottom:6px}
+.mcard h3{font-size:22px;letter-spacing:-.02em}
+.mcard .k{color:var(--blue);font-weight:600;font-size:14px;margin-bottom:10px}
+.mcard .clue{background:var(--bg);border-radius:12px;padding:10px 12px;font-size:13.5px;color:var(--sub);margin:12px 0}
+.mcard .clue b{color:var(--text)}
+.mcard label{display:flex;gap:10px;align-items:flex-start;padding:9px 6px;font-size:15px;cursor:pointer;border-radius:10px;line-height:1.45}
+.mcard label:hover{background:var(--blue-soft)}
+.mcard input{accent-color:var(--blue);width:18px;height:18px;margin-top:3px;flex:0 0 auto}
+.mcard.win{border-color:var(--blue);box-shadow:0 0 0 6px var(--blue-soft),var(--shadow-lg);transform:translateY(-6px)}
+.mresult{text-align:center;margin-top:28px;font-size:18px;font-weight:600;min-height:56px}
+.mresult small{display:block;font-weight:400;color:var(--sub);font-size:14px;margin-top:4px}
+@media(max-width:820px){.mgrid{grid-template-columns:1fr}}
+
+/* GAMES shared */
+.stage{background:var(--card);border-radius:28px;box-shadow:var(--shadow);padding:clamp(24px,4vw,44px);margin-top:36px;text-align:center}
+.pbar{height:6px;background:var(--line);border-radius:6px;overflow:hidden;margin-bottom:22px}
+.pbar i{display:block;height:100%;width:0;background:var(--blue);transition:width .5s}
+.qno{font-size:13px;color:var(--sub);margin-bottom:8px;letter-spacing:.04em}
+.qtext{font-size:clamp(20px,3vw,28px);font-weight:700;letter-spacing:-.025em;line-height:1.35;margin-bottom:24px}
+.opts{display:grid;gap:10px;text-align:left}
+.opt{padding:16px 20px;border-radius:16px;background:var(--bg);font-size:16.5px;transition:.2s;border:2px solid transparent;text-align:left;line-height:1.45}
+.opt:hover:not(:disabled){background:var(--blue-soft);transform:translateX(4px)}
+.opt.ok{background:rgba(48,164,108,.15);border-color:var(--green)}
+.opt.no{background:rgba(229,72,77,.13);border-color:var(--red);animation:shake .4s}
+.opt:disabled{cursor:default}
+@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.explain{margin-top:18px;padding:16px 18px;border-radius:16px;background:var(--bg);text-align:left;font-size:15px;color:var(--sub);display:none;animation:pop .4s}
+.explain.show{display:block}
+.explain b{color:var(--text)}
+.score{font-size:clamp(56px,10vw,96px);font-weight:800;letter-spacing:-.05em;background:linear-gradient(135deg,var(--blue),var(--purple));-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1.1}
+.confetti{position:fixed;top:-10px;width:9px;height:14px;z-index:100;pointer-events:none;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(105vh) rotate(720deg);opacity:.8}}
+
+/* SORT */
+.sortcard{display:inline-block;background:linear-gradient(145deg,var(--blue),#5e5ce6);color:#fff;border-radius:24px;padding:34px 44px;font-size:clamp(22px,3.5vw,32px);font-weight:700;box-shadow:var(--shadow-lg);margin:10px 0 26px;transition:.35s;min-width:240px}
+.sortcard.ok{background:linear-gradient(145deg,#30a46c,#1f8a5a)}
+.sortcard.no{background:linear-gradient(145deg,#e5484d,#c4343a);animation:shake .4s}
+.buckets{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.bucket{padding:18px 10px;border-radius:18px;background:var(--bg);font-weight:600;font-size:16px;transition:.2s;border:2px solid var(--line)}
+.bucket small{display:block;font-weight:400;color:var(--sub);font-size:12.5px;margin-top:2px}
+.bucket:hover{background:var(--blue-soft);border-color:var(--blue);transform:translateY(-3px)}
+.sortmsg{min-height:28px;margin-top:16px;font-size:15px;color:var(--sub)}
+@media(max-width:560px){.buckets{grid-template-columns:1fr}}
+
+/* REFLECT */
+#reflect{background:var(--bg2)}
+.rcard{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);padding:28px;margin-top:22px}
+.rcard .tag{font-size:13px;font-weight:600;color:var(--blue);margin-bottom:6px}
+.rcard h3{font-size:clamp(19px,2.6vw,24px);line-height:1.4;letter-spacing:-.02em;margin-bottom:14px}
+.rcard textarea{width:100%;min-height:130px;resize:vertical;border:1px solid var(--line);background:var(--bg);border-radius:16px;padding:16px;font-size:16px;line-height:1.6;outline:none;transition:.2s}
+.rcard textarea:focus{border-color:var(--blue);box-shadow:0 0 0 4px var(--blue-soft)}
+.saved{font-size:13px;color:var(--green);height:18px;margin-top:8px;opacity:0;transition:.3s}
+.saved.show{opacity:1}
+.note{font-size:13px;color:var(--sub);text-align:center;margin-top:24px}
+
+footer{padding:60px 20px 90px;text-align:center;color:var(--sub);font-size:13px}
+footer .verse-final{font-size:clamp(20px,3vw,28px);color:var(--text);font-weight:700;letter-spacing:-.03em;margin-bottom:12px;line-height:1.4}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<nav>
+  <div class="inner">
+    <span class="brand">내가 만든 신</span>
+    <a href="#structure">구성</a><a href="#flow">핵심 흐름</a><a href="#cards">용어 카드</a><a href="#factory">우상 공장</a>
+    <a href="#metaphors">세 은유</a><a href="#sort">분류</a><a href="#quiz">퀴즈</a><a href="#reflect">묵상</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
+  <div class="wrap">
+    <div class="kicker">팀 켈러 · 내가 만든 신 · 프롤로그 복습</div>
+    <h1>내가 만든 신은<br><em>반드시 나를 배반한다</em></h1>
+    <p>우상, 생각보다 훨씬 더 위험하다.<br>읽고, 뒤집어 보고, 맞춰 보고, 내 마음을 들여다보는 복습.</p>
+    <a class="btn" href="#structure">복습 시작하기</a>
+  </div>
+  <div class="scrollhint">↓ 스크롤</div>
+</section>
+
+<!-- STRUCTURE -->
+<section id="structure">
+  <div class="wrap center">
+    <div class="eyebrow rv">책 전체 구성</div>
+    <h2 class="rv">우리는 어디로 가고 있을까</h2>
+    <p class="lead rv">프롤로그는 다섯 가지 우상과 그 뒤에 숨은 신들을 만나기 전, 우상이 무엇인지 알려 주는 입구입니다.</p>
+    <div class="chapters">
+      <div class="chap rv now"><div class="n">0</div><div class="t">프롤로그</div></div>
+      <div class="chap rv"><div class="n">1</div><div class="t">평생 소원</div></div>
+      <div class="chap rv"><div class="n">2</div><div class="t">사랑</div></div>
+      <div class="chap rv"><div class="n">3</div><div class="t">돈</div></div>
+      <div class="chap rv"><div class="n">4</div><div class="t">성취</div></div>
+      <div class="chap rv"><div class="n">5</div><div class="t">권력</div></div>
+      <div class="chap mask rv"><div class="t">＋ 가면 쓴 숨은 신들</div><small>6. 문화와 종교</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- FLOW -->
+<section id="flow" style="background:var(--bg2)">
+  <div class="wrap">
+    <div class="eyebrow rv">핵심 흐름</div>
+    <h2 class="rv">한 편의 이야기로 읽는<br>프롤로그</h2>
+    <p class="lead rv">탭을 눌러 도입부터 F까지 차례로 따라가 보세요. 각 탭의 「교재 원문 보기」를 열면 인용문이 나옵니다.</p>
+
+    <div class="tabs rv" id="tabs"></div>
+    <div id="panels" class="rv"></div>
+  </div>
+</section>
+
+<!-- FLIP CARDS -->
+<section id="cards">
+  <div class="wrap center">
+    <div class="eyebrow rv">용어 카드</div>
+    <h2 class="rv">카드를 뒤집어 확인하기</h2>
+    <p class="lead rv">앞면을 보고 먼저 답을 떠올린 뒤, 눌러서 뒤집어 보세요.</p>
+    <div class="cards" id="cardGrid"></div>
+    <div class="counter" id="cardCount">0 / 8 카드 확인</div>
+  </div>
+</section>
+
+<!-- FACTORY -->
+<section id="factory">
+  <div class="narrow center">
+    <div class="eyebrow rv">B. 인간의 마음은 우상 공장</div>
+    <h2 class="rv">좋은 것이 신이 되는 과정</h2>
+    <p class="lead rv">하나를 골라 단계를 눌러 보세요. 우상은 나쁜 것에서 시작하지 않고, 좋은 것에서 시작합니다.</p>
+    <div class="pick rv" id="pick"></div>
+    <div class="pipe" id="pipe"></div>
+    <div class="meter"><i id="meter"></i></div>
+    <div class="says" id="says">위에서 하나를 골라 주세요.</div>
+    <div class="row">
+      <button class="btn ghost" id="prevStep">← 이전</button>
+      <button class="btn" id="nextStep">다음 단계 →</button>
+    </div>
+  </div>
+</section>
+
+<!-- METAPHORS -->
+<section id="metaphors">
+  <div class="wrap center">
+    <div class="eyebrow rv">E. 왜 위험한가</div>
+    <h2 class="rv">내 우상을 찾는 세 가지 단서</h2>
+    <p class="lead rv">성경은 우상을 대하는 모습을 세 가지 은유로 말합니다. 우상은 사랑하고, 믿고, 순종하는 대상입니다. 나에게 해당하는 질문에 체크해 보세요.</p>
+    <div class="mgrid" id="mgrid" style="text-align:left"></div>
+    <div class="mresult" id="mresult"></div>
+  </div>
+</section>
+
+<!-- SORT -->
+<section id="sort" style="background:var(--bg2)">
+  <div class="narrow center">
+    <div class="eyebrow rv">D. 우상이란?</div>
+    <h2 class="rv">어떤 종류의 우상일까?</h2>
+    <p class="lead rv">나타난 항목을 개인적·문화적·지적 우상 가운데 알맞은 곳에 넣어 보세요.</p>
+    <div class="stage rv" id="sortStage"></div>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section id="quiz">
+  <div class="narrow center">
+    <div class="eyebrow rv">복습 퀴즈</div>
+    <h2 class="rv">얼마나 기억하고 있나요?</h2>
+    <p class="lead rv">여덟 문제입니다. 답을 누르면 바로 해설이 나옵니다.</p>
+    <div class="stage rv" id="quizStage"></div>
+  </div>
+</section>
+
+<!-- REFLECT -->
+<section id="reflect">
+  <div class="narrow">
+    <div class="center">
+      <div class="eyebrow rv">묵상과 적용</div>
+      <h2 class="rv">내 마음에게 물어보기</h2>
+      <p class="lead rv">쓴 내용은 이 브라우저 안에만 저장됩니다. 어디로도 전송되지 않습니다.</p>
+    </div>
+    <div class="rcard rv">
+      <div class="tag">이해를 돕는 질문</div>
+      <h3>우상이 점령한 사회에 살고 있습니다. 우상이 무엇인지 설명해 보십시오.</h3>
+      <textarea id="r1" placeholder="내 말로 설명해 보세요."></textarea>
+      <div class="saved" id="s1">저장됨</div>
+    </div>
+    <div class="rcard rv">
+      <div class="tag">적용을 돕는 질문</div>
+      <h3>“저것만 있으면 내 삶이 의미 있어질 거야. 나도 가치 있는 사람이 될 거야. 내가 중요해지고, 안정감이 들 거야.” 당신의 삶에서 “저것”은 무엇입니까?</h3>
+      <textarea id="r2" placeholder="나의 ‘저것’은…"></textarea>
+      <div class="saved" id="s2">저장됨</div>
+    </div>
+    <div class="row"><button class="btn ghost" id="clearR">입력 지우기</button></div>
+    <p class="note">「입력 지우기」는 이 화면에 적은 글만 지웁니다. 노트 파일에는 영향이 없습니다.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="verse-final">가짜 신들의 악영향에서 해방되는 길은<br>참 하나님께로 돌이키는 것뿐이다.</div>
+  교재: 팀 켈러, 『내가 만든 신』 프롤로그 · 400. 성경공부 / 450. 내가 만든 신
+</footer>
+
+<script>
+/* ---------- 유틸 ---------- */
+const $ = (s, r=document) => r.querySelector(s);
+const $$ = (s, r=document) => [...r.querySelectorAll(s)];
+
+/* ---------- 스크롤 진행바 / 등장 효과 / 네비 하이라이트 ---------- */
+const bar = $('#bar');
+addEventListener('scroll', () => {
+  const h = document.documentElement;
+  bar.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
+}, {passive:true});
+
+const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} }), {threshold:.12});
+function observeRv(root=document){ $$('.rv:not(.in)', root).forEach(el => io.observe(el)); }
+observeRv();
+
+const navLinks = $$('nav a');
+const secObs = new IntersectionObserver(es => es.forEach(e => {
+  if(e.isIntersecting){ navLinks.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#'+e.target.id)); }
+}), {rootMargin:'-45% 0px -50% 0px'});
+$$('section[id]').forEach(s => secObs.observe(s));
+
+/* ---------- 핵심 흐름 탭 ---------- */
+const FLOW = [
+ {tab:'도입', label:'우울한 이상기류', title:'풍요의 한복판에서', sub:'사회학자 토크빌이 바라본 미국',
+  key:'풍요 속에서도 사람들을 괴롭히는 <mark>우울한 이상기류</mark>의 원인은 삶 전체를 “이 세상의 부실한 낙” 위에 세운 것, 곧 우상숭배다.',
+  pts:['1830년대 토크빌: “풍요의 한복판에서…우울한 기류가 시민들을 괴롭히고 있다.”','풍족해지면 행복해지리라는 희망은 신기루였다.','호황기에도 만연하고, 경제적 내리막길에는 지독한 절망으로 변한다.'],
+  verses:[],
+  quote:'1830년대에 토크빌은 미국을 설명하며 유명한 말을 남겼다. "풍요의 한복판에서…우울한 기류가 시민들을 괴롭히고 있다." 미국인들은 풍족해지면 행복해질 것이라 믿었으나 그런 희망은 신기루였다.(13-하1) 정신없이 바쁜 호황기에도 만연해 있다가 경제적 내리막길을 걸을 때 지독한 절망으로 변하는 이 \'우울한 이상기류\'의 원인은 무엇인가? 토크빌은 삶 전체를 "이 세상의 부실한 낙" 위에 세워 올린 결과라고 이유를 분석했다. 그리고 그것이 바로 우상숭배다.(14-3)'},
+ {tab:'A', label:'우리 사회의 모습', title:'우상이 점령한 사회', sub:'A. 우리 사회의 모습',
+  key:'현대 사회도 고대 사회와 <mark>근본적으로 다르지 않다.</mark> 신전이 사무실, 헬스장, 스튜디오, 경기장으로 바뀌었을 뿐이다.',
+  pts:['문화마다 그 문화를 지배하는 우상이 있다.','현대의 아프로디테: 외모와 몸매에 집착한 우울증과 섭식 장애.','현대의 아르테미스: 돈과 성공을 최고의 가치로 떠받들며 가정과 공동체를 팽개침.'],
+  verses:[],
+  quote:'\'우상숭배\'란 단어를 들으면 현대인은 목상 앞에 절하는 원시인의 모습을 떠올린다…현대 사회도 고대 사회와 근본적으로 다르지 않다. 문화마다 그 문화를 지배하는 우상이 있다. 제사장과 토템과 의식도 있다. 사무실이나 헬스장이나 스튜디오나 경기장 같은 신전이 있어, 행복한 삶이라는 복을 얻고 액운을 물리치려면 거기서 제사를 드려야 한다. 미모와 권력과 돈과 성취의 신이란 바로 우리 개인의 삶과 사회 전반에서 신적 위치를 점한 이것들이 아니고 무엇이겠는가?(15-2)<br><br>우리는 아프로디테 동상 앞에 무릎 꿇지는 않을지 몰라도, 오늘날 많은 젊은 여성이 외모와 몸매에 과도히 집착한 우울증과 각종 섭식 장애에 시달린다. 실제로 아르테미스에게 향을 피우지 않아도 돈과 성공을 세상 최고의 가치로 떠받들면 우리도 자녀를 일종의 인신 제물로 바치는 것이다. 직장에서 높은 자리로 올라가고 더 많은 제물과 위신을 얻고자 가정과 공동체마저 팽개친다.(15-하1)'},
+ {tab:'B', label:'우상이 만들어지는 곳', title:'인간의 마음은 우상 공장', sub:'B. 우상이 만들어지는 곳',
+  key:'제조 방법은 하나다. <mark>좋은 것을 궁극적인 것으로 바꿔 신격화</mark>하는 것.',
+  pts:['눈에 보이는 신상보다, 마음속의 내적 우상숭배가 모든 사람에게 두루 퍼져 있다.','성공, 사랑, 재물, 가정 같은 “좋은 것”이 재료다.','그것만 얻으면 존재감, 든든함, 안전, 충족감을 누릴 것 같기 때문이다.'],
+  verses:['에스겔 14:3'],
+  quote:'대체로 사람들은 \'우상\'(idols) 하면 눈에 보이는 신상을 떠올린다…물론 아직도 세상 곳곳에서 전통 우상숭배가 이루어지고 있긴 하지만, 마음속에서 이루어지는 내적 우상숭배는 모든 사람에게 두루 널리 퍼져 있다.(18-3) 에스겔 14장 3절에서 하나님은 이스라엘 장로들을 가리켜 "이 사람들이 자기 우상을 마음에 들이며"라고 말씀하신다…인간의 마음이 성공, 사랑, 재물의 소유, 가정 등 \'좋은 것\'을 궁극적인 것으로 탈바꿈시킨다는 뜻이다. 우리 마음은 그런 것을 신격화해 삶의 중심에 둔다. 그것만 얻으면 존재감과 든든함과 안전과 충족감을 누릴 수 있다고 생각하기 때문이다.(18-하1)'},
+ {tab:'C', label:'무엇이 우상인가?', title:'무엇이든 우상이 될 수 있다', sub:'C. 무엇이 우상인가?',
+  key:'“다른 신들”이란 세상 모든 것이다. 그리고 <mark>좋은 것일수록</mark> 더 쉽게 우상이 된다.',
+  pts:['2계명이 답이다: 어떤 형상도 만들지 말고, 절하지도 섬기지도 말라.','제1계명: “너는 나 외에 다른 신들을 네게 있게 말지니라.”','모든 것이 하나님의 대용품, 곧 가짜 신(Counterfeit gods)이 될 수 있다.','더 좋은 것일수록 가장 깊은 욕구와 희망을 채우리라는 기대도 커진다.'],
+  verses:['출애굽기 20:3~5','신명기 5:7'],
+  quote:'"너를 위하여 새긴 우상을 만들지 말고 또 위로 하늘에 있는 것이나 아래로 땅에 있는 것이나 땅 아래 물속에 있는 것의 어떤 형상도 만들지 말며 그것들에게 절하지 말며 그것들을 섬기지 말라."(출 20:4~5)<br><br>제1계명 “너는 나 외에 다른 신들을 네게 있게 말지니라” (출 20:3, 신 5:7)<br><br>"다른 신들이란 무엇인가?"…세상 모든 것이 포함된다! 돈이나 섹스를 신으로 떠받들 수 있다는 건 누구나 안다. 하지만 삶의 무엇이든 우상 노릇할 수 있다. 모든 것이 하나님의 대용품, 즉 \'가짜 신\'(Counterfeit gods)이 될 수 있다.(21-2) 우리는 우상을 나쁜 것이라고 생각하지만 그 자체가 나쁜 경우는 거의 없다. 더 좋은 것일수록 그것이 우리의 가장 깊은 욕구와 희망을 채우리라는 기대도 커진다. 무엇이든 가짜 신이 될 수 있으며, 특히 삶의 가장 좋은 것일수록 더 그렇다.(22-2)'},
+ {tab:'D', label:'우상이란?', title:'“저것만 있으면 내 삶이 의미 있을 거야”', sub:'D. 우상이란?',
+  key:'우상이란 <mark>하나님보다 더 중요하게 여기는 것</mark>, 하나님만 주실 수 있는 것을 다른 데서 얻으려는 바로 그것이다.',
+  pts:['하나님보다 더 크게 마음과 생각을 차지하는 것.','그것 없이는 살아갈 가치를 별로 느끼지 못한다면 가짜 신.','열정, 에너지, 돈, 정서적 자원을 더 생각할 것도 없이 쏟게 된다.','이런 관계에 가장 적합한 말은 “숭배(worship)”.'],
+  verses:[],
+  extra:'<p style="margin-top:6px"><b>세 가지 종류</b></p><ul><li><b>개인의 우상:</b> 로맨틱한 사랑과 가정, 돈, 권력, 성취, 인맥, 매력적 외모 등</li><li><b>문화적 우상:</b> 군사력, 기술 발전, 경제 번영</li><li><b>지적 우상:</b> 이데올로기</li></ul>',
+  quote:'우상이란 무엇인가? …무엇이든 하나님보다 더 크게 당신 마음과 생각을 차지하는 것이다. 하나님만이 주실 수 있는 것을 다른 데서 얻으려 한다면 그게 바로 우상이다.(22-3) 무엇이든 워낙 당신 삶의 중심이자 필수여서 그것 없이는 살아갈 가치를 별로 느끼지 못한다면 그게 바로 가짜 신이다. 우상은 마음을 지배하므로 당신은 더 생각할 것도 없이 열정과 에너지, 돈과 정서적 자원을 다분히 거기에 쏟을 수 있다.(23-1)<br><br>무엇이든 당신이 그것을 보며 마음 깊은 곳에서 이렇게 말한다면 그게 곧 우상이다. \'저것만 있으면 내 삶이 의미 있어질 거야. 나도 가치 있는 사람이 될 거야. 내가 중요해지고, 안정감이 들 거야.\' 이런 관계를 여러 가지로 표현할 수 있지만 가장 적합한 말은 \'숭배\'(worship)일 것이다.(23-2) 당신의 행복, 삶의 의미, 정체성에 하나님보다 더 영향을 끼친다면 무엇이든 우상이다.(24-1)'},
+ {tab:'E', label:'왜 위험한가?', title:'마음속 우상이 삶 전체를 지배한다', sub:'E. 왜 위험한가?',
+  key:'우상은 사랑하고, 믿고, 순종하는 대상이다. <mark>우리를 지배하는 것이 우리의 주인</mark>이다.',
+  pts:['① 결혼의 은유(사랑하는): 하나님보다 다른 것을 더 갈망하면 영적 간음. 공상 속에서 찾는다.','② 종교의 은유(믿는): 평화와 안전을 다른 데서 구함. 악몽 속에서 찾는다.','③ 정치적 은유(순종하는): 타협할 수 없을 만큼 중요해진 것에 속박됨. 가장 집요한 감정 속에서 찾는다.','권력을 구하면 권력에게, 사람에게 받아들여지기 원하면 그 사람에게 지배당한다.'],
+  verses:[],
+  quote:'사람들이 마음속 우상을 어떻게 대하는지를 성경은 세 가지 기본 은유로 기술한다. 그들은 우상을 사랑하고, 우상을 믿고, 우상을 순종한다…무엇이든 우리를 지배하는 것이 우리의 주인이다. 권력을 구하는 사람은 권력에 지배당하고, 사람에게 받아들여지기 원하는 사람은 좋아하는 사람에게 지배당한다. 우리는 스스로를 지배하는 게 아니라 자기 삶의 주인에게 지배당한다.(29-1)'},
+ {tab:'F', label:'그렇다면 어떻게?', title:'돌이키라, 바로 지금', sub:'F. 그렇다면 어떻게?',
+  key:'우상을 분별하는 것만으로는 부족하다. 해방의 길은 <mark>참 하나님께로 돌이키는 것</mark>뿐이다.',
+  pts:['① 어려움은 좋은 기회: 우상이 무너지는 소리는 “환상에서 깨어나는” 순간이다.','희망의 근거로 삼았던 계획, 일, 사람이 약속을 지키지 않을 때 주문이 깨진다.','② 살아 계신 하나님은 시내 산과 십자가에서 자신을 계시하셨다.','그분은 진정으로 채워 주시고, 실망시켜도 참으로 용서해 주신다.'],
+  verses:[],
+  quote:'우리가 살고 있는 세상이 비종교적인 것 같아도, 우리 마음은 사실 이 시대의 화려한 각종 우상이 지배하고 있다. 세계 경제가 휘청거리면서 오랜 세월 우리가 숭배해 온 많은 우상이 사방에서 무너지는 소리가 들린다.(30-3) 이것은 아주 좋은 기회이기도 하다. 지금 우리는 잠시나마 \'환상에서 깨어나는\' 중이다. 옛날 이야기에서 악한 주술사가 걸어 둔 주문이 깨지면서 거기서 벗어날 기회가 오는 것처럼, 희망의 근거로 삼았던 계획이나 일이나 사람이 (생각대로) 약속을 지키지 않을 때 우리 개개인에게 이런 시점이 찾아온다.(30-하1)<br><br>절망에서 헤어나 전진하려면 우리 마음과 문화에 자리한 우상을 분별해야 한다. 하지만 그것만으로는 부족하다. 가짜 신들의 악영향에서 해방되는 길은 참 하나님께로 돌이키는 것뿐이다. 살아 계신 하나님은 시내 산과 십자가에서 자신을 계시하셨다. 그분을 만나면 진정으로 당신을 채워 주신다. 당신이 실망시켜도 참으로 용서해 주신다. 능히 그러실 수 있는 분은 주님 뿐이다.(31-2)'}
+];
+
+const tabsEl = $('#tabs'), panelsEl = $('#panels');
+FLOW.forEach((f,i) => {
+  const t = document.createElement('button');
+  t.className = 'tab' + (i===0?' on':''); t.innerHTML = `<b>${f.tab}</b>${f.label}`;
+  t.onclick = () => showTab(i);
+  tabsEl.appendChild(t);
+  const p = document.createElement('div');
+  p.className = 'panel' + (i===0?' on':'');
+  p.innerHTML = `
+    <div class="sublabel">${f.sub}</div>
+    <h3>${f.title}</h3>
+    <div class="keyline">${f.key}</div>
+    <ul>${f.pts.map(x=>`<li>${x}</li>`).join('')}</ul>
+    ${f.extra||''}
+    ${f.verses.length?`<div style="margin-bottom:6px">${f.verses.map(v=>`<span class="verse">${v}</span>`).join('')}</div>`:''}
+    <details class="q"><summary>교재 원문 보기</summary><blockquote>${f.quote}</blockquote></details>
+    <div class="stepnav"><button data-d="-1">← 이전</button><button data-d="1">다음 →</button></div>`;
+  panelsEl.appendChild(p);
+  $$('.stepnav button', p).forEach(b => {
+    const d = +b.dataset.d, to = i + d;
+    if(to<0 || to>=FLOW.length) b.disabled = true;
+    b.onclick = () => { showTab(to); $('#flow').scrollIntoView({behavior:'smooth'}); };
+  });
+});
+function showTab(i){
+  $$('.tab').forEach((t,k)=>t.classList.toggle('on',k===i));
+  $$('.panel').forEach((t,k)=>t.classList.toggle('on',k===i));
+  $$('.tab')[i].scrollIntoView({inline:'center',block:'nearest',behavior:'smooth'});
+}
+
+/* ---------- 플립 카드 ---------- */
+const CARDS = [
+ {i:'🗿', q:'우상이란 무엇인가?', a:'무엇이든 하나님보다 더 크게 내 마음과 생각을 차지하는 것. 하나님만 주실 수 있는 것을 다른 데서 얻으려 하면 우상입니다.', s:'D'},
+ {i:'🙇', q:'우상숭배는 어떤 마음의 말로 드러나나?', a:'“저것만 있으면 내 삶이 의미 있어질 거야. 나도 가치 있는 사람이 될 거야. 내가 중요해지고, 안정감이 들 거야.”', s:'D'},
+ {i:'🎭', q:'가짜 신(Counterfeit gods)이란?', a:'하나님의 대용품. 세상 모든 것이 가짜 신이 될 수 있고, 특히 삶의 가장 좋은 것일수록 더 그렇습니다.', s:'C'},
+ {i:'🏭', q:'우상의 제조 방법은?', a:'성공, 사랑, 재물, 가정 같은 좋은 것을 궁극적인 것으로 바꿔 신격화하여 삶의 중심에 두는 것.', s:'B'},
+ {i:'📜', q:'제1계명은?', a:'“너는 나 외에 다른 신들을 네게 있게 말지니라.” (출 20:3, 신 5:7) 그렇다면 “다른 신들”은 무엇인가? 2계명이 답합니다.', s:'C'},
+ {i:'💔', q:'결혼의 은유에서 우상은 무엇이 되나?', a:'‘거짓 연인’. 하나님보다 다른 것을 더 갈망하고 즐거워하면 영적 간음입니다. 공상의 내용에서 찾을 수 있습니다.', s:'E'},
+ {i:'🌫️', q:'토크빌이 본 “우울한 이상기류”의 원인은?', a:'삶 전체를 “이 세상의 부실한 낙” 위에 세워 올린 결과. 그것이 곧 우상숭배입니다.', s:'도입'},
+ {i:'🕊️', q:'가짜 신들에게서 해방되는 길은?', a:'참 하나님께로 돌이키는 것뿐. 시내 산과 십자가에서 자신을 계시하신 분은 진정으로 채우시고, 실망시켜도 용서하십니다.', s:'F'}
+];
+const grid = $('#cardGrid'); const seen = new Set();
+CARDS.forEach((c,i) => {
+  const d = document.createElement('div'); d.className='flip rv';
+  d.innerHTML = `<div class="in"><div class="f"><div class="ico">${c.i}</div><div class="qt">${c.q}</div><small>눌러서 뒤집기 · ${c.s}</small></div><div class="b"><strong>답</strong>${c.a}</div></div>`;
+  d.onclick = () => { d.classList.toggle('on'); seen.add(i); $('#cardCount').textContent = `${seen.size} / ${CARDS.length} 카드 확인` + (seen.size===CARDS.length?' 🎉':''); };
+  grid.appendChild(d);
+});
+observeRv(grid);
+
+/* ---------- 우상 공장 ---------- */
+const GOODS = [
+  {n:'성공', e:'🏆'}, {n:'사랑', e:'❤️'}, {n:'재물', e:'💰'}, {n:'가정', e:'🏠'}, {n:'외모', e:'✨'}, {n:'인정', e:'👏'}
+];
+let good = null, step = 0;
+const pick = $('#pick'), pipe = $('#pipe');
+GOODS.forEach((g,i) => {
+  const b = document.createElement('button'); b.className='chip'; b.textContent = `${g.e} ${g.n}`;
+  b.onclick = () => { good = g; step = 1; $$('.chip').forEach((c,k)=>c.classList.toggle('on',k===i)); renderFactory(); };
+  pick.appendChild(b);
+});
+function renderFactory(){
+  const g = good || {n:'그것', e:'❔'};
+  const nodes = [
+    {e:g.e, h:`좋은 ${g.n}`, d:'그 자체로는 선물. 나쁜 것이 아닙니다.'},
+    {e:'🔥', h:'기대가 커진다', d:`“${g.n}이(가) 내 깊은 욕구와 희망을 채워 주겠지.”`},
+    {e:'👑', h:'신격화', d:`${g.n}이(가) 삶의 중심, 궁극적인 것이 됩니다.`, danger:true},
+    {e:'🛐', h:'우상숭배', d:`“${g.n}만 있으면 내 삶이 의미 있어질 거야.”`, danger:true}
+  ];
+  pipe.innerHTML = nodes.map((n,i)=>`<div class="node ${n.danger?'danger':''} ${i<step?'lit':''}"><div class="e">${n.e}</div><div class="h">${n.h}</div><div class="d">${n.d}</div></div>`).join('');
+  $('#meter').style.width = (step/4*100)+'%';
+  const says = [
+    '위에서 하나를 골라 주세요.',
+    `${g.n}은(는) 하나님이 주신 좋은 것일 수 있습니다.`,
+    `좋은 것일수록 “이것이 나를 채워 주리라”는 기대가 커집니다.`,
+    `마음이 ${g.n}을(를) 신격화해 삶의 중심에 둡니다. 이제 ${g.n}이(가) 나를 지배합니다.`,
+    `“${g.n}만 있으면 내 삶이 의미 있어질 거야.” 이것이 곧 숭배입니다. 그러나 내가 만든 신은 반드시 나를 배반합니다.`
+  ];
+  $('#says').textContent = says[step];
+  $('#prevStep').style.visibility = step>1 ? 'visible':'hidden';
+  $('#nextStep').textContent = step>=4 ? '처음으로 ↺' : '다음 단계 →';
+}
+$('#nextStep').onclick = () => { if(!good){ $('#says').textContent='먼저 위에서 하나를 골라 주세요 👆'; return; } step = step>=4 ? 1 : step+1; renderFactory(); };
+$('#prevStep').onclick = () => { if(step>1){ step--; renderFactory(); } };
+renderFactory();
+
+/* ---------- 세 가지 은유 ---------- */
+const MET = [
+ {k:'marriage', ic:'💍', t:'결혼의 은유', v:'사랑하는', clue:'<b>찾는 곳:</b> 평소의 <b>공상</b>. 내가 즐기는 상상, 가장 절실한 꿈.', sin:'영적 간음',
+  q:['자주 즐기는 상상이 어느 한 가지에 쏠려 있다.','그것에서 사랑받는 존재라는 느낌과 아름다움, 보람을 얻고 싶다.','하나님보다 그것을 더 갈망하고 즐거워할 때가 있다.']},
+ {k:'religion', ic:'🛐', t:'종교의 은유', v:'믿는', clue:'<b>찾는 곳:</b> 내가 시달리는 <b>악몽</b>. 가장 두려워하는 것.', sin:'거짓 구주',
+  q:['그것을 잃으면 어떻게 될까 하는 두려움이 크다.','그것 없이는 삶의 가치를 느끼기 어렵다.','그것이 나를 지켜 주리라 믿고 비위를 맞추려 애쓴다.']},
+ {k:'politics', ic:'⛓️', t:'정치적 은유', v:'순종하는', clue:'<b>찾는 곳:</b> 가장 집요한 <b>감정</b>. 분노, 불안, 낙심, 죄책감.', sin:'속박하는 주인',
+  q:['그것 때문에 주체할 수 없는 분노나 불안에 빠지곤 한다.','떨칠 수 없는 죄책감이 나를 괴롭힌다.','그것을 위해서라면 다른 소중한 것도 타협하게 된다.']}
+];
+const mg = $('#mgrid');
+MET.forEach(m => {
+  const d = document.createElement('div'); d.className='mcard rv'; d.dataset.k = m.k;
+  d.innerHTML = `<div class="ic">${m.ic}</div><h3>${m.t}</h3><div class="k">우상을 ‘${m.v}’ 대상으로 대한다 · ${m.sin}</div><div class="clue">${m.clue}</div>`
+    + m.q.map(x=>`<label><input type="checkbox"><span>${x}</span></label>`).join('');
+  mg.appendChild(d);
+});
+observeRv(mg);
+mg.addEventListener('change', () => {
+  const counts = MET.map(m => $$('input:checked', $(`.mcard[data-k=${m.k}]`)).length);
+  const max = Math.max(...counts);
+  $$('.mcard', mg).forEach((c,i) => c.classList.toggle('win', max>0 && counts[i]===max));
+  const r = $('#mresult');
+  if(max===0){ r.innerHTML=''; return; }
+  const winners = MET.filter((m,i)=>counts[i]===max).map(m=>m.t).join(', ');
+  r.innerHTML = `가장 강하게 반응한 영역: <span style="color:var(--blue)">${winners}</span><small>해당 은유의 질문을 다시 읽고, 나의 “저것”이 무엇인지 아래 묵상 칸에 적어 보세요.</small>`;
+});
+
+/* ---------- 우상 분류 게임 ---------- */
+const SORT_ITEMS = [
+  {t:'로맨틱한 사랑과 가정', a:'p'}, {t:'군사력', a:'c'}, {t:'이데올로기', a:'i'}, {t:'매력적인 외모', a:'p'},
+  {t:'기술 발전', a:'c'}, {t:'인맥', a:'p'}, {t:'경제 번영', a:'c'}, {t:'성취', a:'p'}
+];
+const BK = {p:'개인의 우상', c:'문화적 우상', i:'지적 우상'};
+let sIdx=0, sScore=0, sOrder=[];
+const sortStage = $('#sortStage');
+function sortStart(){
+  sOrder = [...SORT_ITEMS].sort(()=>Math.random()-.5); sIdx=0; sScore=0; sortRender();
+}
+function sortRender(){
+  if(sIdx>=sOrder.length){
+    sortStage.innerHTML = `<div class="qno">완료</div><div class="score">${sScore}<span style="font-size:.4em"> / ${sOrder.length}</span></div>
+      <p style="margin:12px 0 22px;color:var(--sub)">${sScore===sOrder.length?'완벽합니다! 우상의 세 가지 종류를 잘 기억하고 있네요.':'다시 한 번 도전해 보세요. 개인·문화·지적 우상의 예를 떠올려 보세요.'}</p>
+      <button class="btn" id="sortAgain">다시 하기</button>`;
+    $('#sortAgain').onclick = sortStart; if(sScore===sOrder.length) burst(); return;
+  }
+  const it = sOrder[sIdx];
+  sortStage.innerHTML = `<div class="pbar"><i style="width:${sIdx/sOrder.length*100}%"></i></div><div class="qno">${sIdx+1} / ${sOrder.length}</div>
+    <div class="sortcard" id="sc">${it.t}</div>
+    <div class="buckets">
+      <button class="bucket" data-a="p">👤 개인의 우상<small>사랑·돈·권력·성취…</small></button>
+      <button class="bucket" data-a="c">🏛️ 문화적 우상<small>사회가 떠받드는 것</small></button>
+      <button class="bucket" data-a="i">💭 지적 우상<small>생각의 체계</small></button>
+    </div><div class="sortmsg" id="sm"></div>`;
+  $$('.bucket', sortStage).forEach(b => b.onclick = () => {
+    const ok = b.dataset.a === it.a; const sc = $('#sc');
+    $$('.bucket', sortStage).forEach(x=>x.disabled=true);
+    sc.classList.add(ok?'ok':'no'); if(ok) sScore++;
+    $('#sm').textContent = ok ? '정답!' : `아쉬워요. 정답은 “${BK[it.a]}”입니다.`;
+    setTimeout(()=>{ sIdx++; sortRender(); }, 1100);
+  });
+}
+sortStart();
+
+/* ---------- 퀴즈 ---------- */
+const QUIZ = [
+ {q:'토크빌이 “우울한 이상기류”의 원인이라고 분석한 것은?', o:['경제적 불평등','삶 전체를 “이 세상의 부실한 낙” 위에 세운 것','정치적 혼란','종교의 쇠퇴'], a:1, e:'토크빌은 삶 전체를 “이 세상의 부실한 낙” 위에 세워 올린 결과라고 보았고, 켈러는 그것이 바로 우상숭배라고 말합니다.'},
+ {q:'우상이 만들어지는 방식으로 교재가 말하는 것은?', o:['나쁜 것을 좋아하게 되는 것','남들을 따라 하는 것','좋은 것을 궁극적인 것으로 바꿔 신격화하는 것','종교 의식을 소홀히 하는 것'], a:2, e:'에스겔 14:3처럼 사람의 마음은 성공, 사랑, 재물, 가정 같은 좋은 것을 궁극적인 것으로 탈바꿈시켜 삶의 중심에 둡니다.'},
+ {q:'교재에 따르면 우상이 되기 가장 쉬운 것은?', o:['삶에서 가장 좋은 것','가장 나쁜 것','눈에 보이는 신상','잘 모르는 것'], a:0, e:'더 좋은 것일수록 가장 깊은 욕구와 희망을 채워 주리라는 기대도 커지기 때문에, 특히 삶의 가장 좋은 것일수록 우상이 되기 쉽습니다.'},
+ {q:'교재가 말하는 우상의 정의에 가장 가까운 것은?', o:['금지된 물건','하나님보다 더 크게 마음과 생각을 차지하는 것','남이 숭배하는 대상','종교적 상징물'], a:1, e:'하나님만이 주실 수 있는 것을 다른 데서 얻으려 한다면 그게 바로 우상입니다.'},
+ {q:'‘결혼의 은유(사랑하는)’에서 내 우상을 찾아내는 단서는?', o:['악몽','공상','분노','통장 잔고'], a:1, e:'우리가 즐기는 상상은 무엇인지, 가장 절실한 꿈은 무엇인지를 보면 거짓 연인이 된 우상을 찾을 수 있습니다.'},
+ {q:'‘종교의 은유(믿는)’에서 내 우상을 찾아내는 단서는?', o:['시달리는 악몽, 가장 두려워하는 것','주로 하는 공상','자주 내는 짜증','기도 시간'], a:0, e:'삶의 가치를 느끼기 위해 결코 없어서는 안 될 것, 가장 두려워하는 것을 보면 그 우상을 찾을 수 있습니다.'},
+ {q:'‘정치적 은유(순종하는)’에서 우상을 찾아내는 단서는?', o:['꿈꾸는 미래','가장 집요한 감정(분노·불안·낙심·죄책감)','친한 사람들','좋아하는 취미'], a:1, e:'우리를 주체할 수 없는 분노와 불안, 낙심에 빠뜨리거나 떨칠 수 없는 죄책감으로 괴롭히는 것이 우리를 속박하는 우상입니다.'},
+ {q:'가짜 신들의 악영향에서 해방되는 길은?', o:['우상을 더 잘 분별하는 것','더 열심히 노력하는 것','참 하나님께로 돌이키는 것','우상을 멀리하는 것'], a:2, e:'우상 분별만으로는 부족합니다. 시내 산과 십자가에서 자신을 계시하신 분은 진정으로 채우시고 실망시켜도 용서하십니다.'}
+];
+let qi=0, qs=0;
+const qStage = $('#quizStage');
+function quizRender(){
+  if(qi>=QUIZ.length){
+    const pct = qs/QUIZ.length;
+    const msg = pct===1?'완벽합니다! 프롤로그의 핵심을 다 붙잡았어요.':pct>=.75?'아주 잘했어요. 틀린 문제의 해설만 다시 읽어 보세요.':pct>=.5?'좋은 출발이에요. 핵심 흐름 탭을 한 번 더 훑어보세요.':'괜찮아요. 핵심 흐름과 용어 카드를 보고 다시 도전해 보세요.';
+    qStage.innerHTML = `<div class="pbar"><i style="width:100%"></i></div><div class="qno">결과</div><div class="score">${qs}<span style="font-size:.4em"> / ${QUIZ.length}</span></div><p style="margin:12px 0 24px;color:var(--sub);font-size:17px">${msg}</p><button class="btn" id="qAgain">다시 풀기</button>`;
+    $('#qAgain').onclick = () => { qi=0; qs=0; quizRender(); };
+    if(pct>=.75) burst(); return;
+  }
+  const q = QUIZ[qi];
+  qStage.innerHTML = `<div class="pbar"><i style="width:${qi/QUIZ.length*100}%"></i></div><div class="qno">문제 ${qi+1} / ${QUIZ.length}</div><div class="qtext">${q.q}</div>
+    <div class="opts">${q.o.map((x,i)=>`<button class="opt" data-i="${i}">${x}</button>`).join('')}</div>
+    <div class="explain" id="ex"></div><div class="row" id="nx" style="display:none"><button class="btn" id="nextQ">${qi===QUIZ.length-1?'결과 보기':'다음 문제 →'}</button></div>`;
+  $$('.opt', qStage).forEach(b => b.onclick = () => {
+    const i = +b.dataset.i, ok = i===q.a;
+    $$('.opt', qStage).forEach((x,k)=>{ x.disabled=true; if(k===q.a) x.classList.add('ok'); });
+    if(!ok) b.classList.add('no'); else qs++;
+    const ex = $('#ex'); ex.innerHTML = `<b>${ok?'정답입니다 👏':'아쉬워요'}</b><br>${q.e}`; ex.classList.add('show');
+    $('#nx').style.display='flex';
+    $('#nextQ').onclick = () => { qi++; quizRender(); };
+  });
+}
+quizRender();
+
+/* ---------- 폭죽 ---------- */
+function burst(){
+  const colors=['#0a84ff','#bf5af2','#ff453a','#ffd60a','#30d158','#64d2ff'];
+  for(let i=0;i<60;i++){
+    const c=document.createElement('i'); c.className='confetti';
+    c.style.left=Math.random()*100+'vw'; c.style.background=colors[i%colors.length];
+    c.style.animationDuration=(2+Math.random()*2)+'s'; c.style.animationDelay=Math.random()*.6+'s';
+    c.style.borderRadius = Math.random()>.5?'50%':'2px';
+    document.body.appendChild(c); setTimeout(()=>c.remove(),5000);
+  }
+}
+
+/* ---------- 묵상 (브라우저 내 저장) ---------- */
+const store = {
+  get(k){ try{ return localStorage.getItem(k)||''; }catch(e){ return ''; } },
+  set(k,v){ try{ localStorage.setItem(k,v); return true; }catch(e){ return false; } },
+  del(k){ try{ localStorage.removeItem(k); }catch(e){} }
+};
+[['r1','s1'],['r2','s2']].forEach(([id,sid]) => {
+  const ta = $('#'+id), sv = $('#'+sid); const key = 'idols-prologue-'+id;
+  ta.value = store.get(key); let t;
+  ta.addEventListener('input', () => { clearTimeout(t); t = setTimeout(() => {
+    sv.textContent = store.set(key, ta.value) ? '저장됨 ✓' : '이 환경에서는 저장되지 않습니다'; sv.classList.add('show'); setTimeout(()=>sv.classList.remove('show'),1500);
+  }, 400); });
+});
+$('#clearR').onclick = () => {
+  if(!confirm('이 화면에 적은 묵상 내용을 지울까요? (노트 파일은 그대로입니다)')) return;
+  ['r1','r2'].forEach(id => { $('#'+id).value=''; store.del('idols-prologue-'+id); });
+};
+</script>
+</body>
+</html>
