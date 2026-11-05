@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>제2과 복습 · 하나님은 환경을 통해서 말씀하신다</title>
+<style>
+:root{
+  --bg:#f5f5f7; --bg-elev:#ffffff; --bg-soft:#fbfbfd;
+  --text:#1d1d1f; --text-2:#6e6e73; --text-3:#86868b;
+  --line:rgba(0,0,0,.08); --blue:#0071e3; --blue-soft:rgba(0,113,227,.1);
+  --green:#30a14e; --green-soft:rgba(48,161,78,.12);
+  --red:#e0383e; --red-soft:rgba(224,56,62,.1);
+  --orange:#f5a524; --purple:#8e5cf7;
+  --shadow:0 2px 12px rgba(0,0,0,.06),0 12px 40px rgba(0,0,0,.05);
+  --radius:22px;
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Apple SD Gothic Neo","Pretendard","Noto Sans KR",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#000; --bg-elev:#1c1c1e; --bg-soft:#141416;
+    --text:#f5f5f7; --text-2:#a1a1a6; --text-3:#86868b;
+    --line:rgba(255,255,255,.12); --blue:#2997ff; --blue-soft:rgba(41,151,255,.16);
+    --green:#32d74b; --green-soft:rgba(50,215,75,.16);
+    --red:#ff453a; --red-soft:rgba(255,69,58,.16);
+    --shadow:0 2px 12px rgba(0,0,0,.4),0 12px 40px rgba(0,0,0,.3);
+  }
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;letter-spacing:-.01em;word-break:keep-all;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;border:0;background:none;cursor:pointer;letter-spacing:inherit}
+button:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+
+/* nav */
+nav{position:sticky;top:0;z-index:50;height:52px;display:flex;align-items:center;justify-content:center;gap:28px;padding:0 20px;
+  background:color-mix(in srgb,var(--bg) 72%,transparent);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line);font-size:13px}
+nav .brand{font-weight:600}
+nav a{color:var(--text-2);text-decoration:none;transition:color .2s}
+nav a:hover{color:var(--text)}
+@media (max-width:720px){nav a.opt{display:none}nav{gap:16px;justify-content:space-between}}
+#bar{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--blue),var(--purple));z-index:60;transition:width .1s}
+
+/* layout */
+section{padding:96px 22px}
+.wrap{max-width:980px;margin:0 auto}
+.eyebrow{font-size:14px;font-weight:600;color:var(--blue);margin-bottom:10px}
+h2{font-size:clamp(30px,5vw,48px);line-height:1.12;font-weight:700;letter-spacing:-.03em;margin-bottom:14px}
+.lead{font-size:clamp(17px,2.2vw,21px);color:var(--text-2);max-width:680px;margin-bottom:40px;line-height:1.55}
+.card{background:var(--bg-elev);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px}
+.pill{display:inline-block;font-size:12px;font-weight:600;padding:4px 11px;border-radius:99px;background:var(--blue-soft);color:var(--blue)}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}*{animation:none!important}}
+
+/* hero */
+.hero{min-height:calc(100vh - 52px);display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;padding:80px 22px}
+.hero::before,.hero::after{content:"";position:absolute;border-radius:50%;filter:blur(90px);opacity:.5;z-index:0;animation:float 14s ease-in-out infinite}
+.hero::before{width:480px;height:480px;background:#7cc4ff;top:-120px;left:-100px}
+.hero::after{width:520px;height:520px;background:#c9a7ff;bottom:-160px;right:-120px;animation-delay:-7s}
+@media (prefers-color-scheme:dark){.hero::before,.hero::after{opacity:.28}}
+@keyframes float{0%,100%{transform:translate(0,0)}50%{transform:translate(40px,30px)}}
+.hero .in-hero{position:relative;z-index:1;max-width:820px}
+.hero .tag{font-size:15px;font-weight:600;color:var(--text-2);margin-bottom:18px}
+.hero h1{font-size:clamp(40px,8vw,84px);line-height:1.04;font-weight:800;letter-spacing:-.04em;margin-bottom:22px;
+  background:linear-gradient(135deg,var(--text) 30%,var(--blue) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.sub{font-size:clamp(17px,2.4vw,23px);color:var(--text-2);max-width:640px;margin:0 auto 34px}
+.btn{display:inline-flex;align-items:center;gap:6px;background:var(--blue);color:#fff;padding:13px 26px;border-radius:99px;font-size:17px;font-weight:500;text-decoration:none;transition:transform .2s,filter .2s}
+.btn:hover{filter:brightness(1.1);transform:scale(1.03)}
+.btn.ghost{background:var(--blue-soft);color:var(--blue)}
+.btn.small{font-size:15px;padding:9px 20px}
+.summary{margin:44px auto 0;max-width:640px;text-align:left;background:color-mix(in srgb,var(--bg-elev) 70%,transparent);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--line);border-radius:var(--radius);padding:22px 26px}
+.summary b{display:block;font-size:13px;color:var(--blue);margin-bottom:6px}
+.summary p{font-size:17px;line-height:1.6}
+
+/* accordion */
+.acc{display:grid;gap:12px}
+.acc-item{background:var(--bg-elev);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+.acc-head{width:100%;display:flex;align-items:center;gap:16px;padding:22px 26px;text-align:left}
+.acc-num{flex:none;width:36px;height:36px;border-radius:50%;background:var(--blue-soft);color:var(--blue);font-weight:700;display:grid;place-items:center}
+.acc-title{flex:1;font-size:19px;font-weight:600}
+.acc-title small{display:block;font-size:13px;font-weight:400;color:var(--text-3)}
+.acc-chev{width:22px;height:22px;transition:transform .35s;color:var(--text-3)}
+.acc-item.open .acc-chev{transform:rotate(180deg)}
+.acc-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s cubic-bezier(.2,.7,.2,1)}
+.acc-item.open .acc-body{grid-template-rows:1fr}
+.acc-body>div{overflow:hidden}
+.acc-body ul{padding:0 26px 26px 78px;display:grid;gap:10px;color:var(--text-2);font-size:16px}
+.acc-body li b{color:var(--text)}
+.acc-body mark{background:var(--blue-soft);color:var(--blue);padding:1px 6px;border-radius:6px;font-weight:600}
+.quote{margin:0 26px 26px 78px;padding:14px 18px;border-left:3px solid var(--blue);background:var(--blue-soft);border-radius:0 14px 14px 0;font-size:15px;color:var(--text)}
+@media (max-width:600px){.acc-body ul{padding-left:26px}.quote{margin-left:26px}}
+
+/* tabs / segmented */
+.seg{display:inline-flex;background:color-mix(in srgb,var(--text) 8%,transparent);border-radius:12px;padding:3px;margin-bottom:22px;position:relative}
+.seg button{padding:9px 20px;border-radius:10px;font-size:15px;font-weight:500;color:var(--text-2);position:relative;z-index:1;transition:color .2s,background .25s,box-shadow .25s}
+.seg button.on{background:var(--bg-elev);color:var(--text);box-shadow:0 1px 4px rgba(0,0,0,.15)}
+
+/* flip cards */
+.grid7{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:16px}
+.flip{perspective:1000px;height:200px}
+.flip-in{position:relative;width:100%;height:100%;transition:transform .7s cubic-bezier(.2,.7,.2,1);transform-style:preserve-3d}
+.flip.on .flip-in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:var(--radius);box-shadow:var(--shadow);padding:20px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.face.front{background:var(--bg-elev)}
+.face.front .n{font-size:13px;font-weight:700;color:var(--text-3);margin-bottom:8px}
+.face.front .k{font-size:30px;font-weight:800;letter-spacing:-.03em}
+.face.front .h{font-size:12px;color:var(--text-3);margin-top:12px}
+.face.back{transform:rotateY(180deg);align-items:flex-start;text-align:left;justify-content:flex-start;overflow:auto;font-size:13.5px;line-height:1.5;gap:6px;color:#fff}
+.face.back b{font-size:15px;display:block;margin-bottom:2px}
+.face.back p{opacity:.95}
+.progress-txt{font-size:14px;color:var(--text-2);margin-top:18px}
+
+/* fill blanks */
+.blank-list{display:grid;gap:14px;margin-bottom:24px}
+.sent{font-size:19px;line-height:2.2}
+.sent .no{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--blue-soft);color:var(--blue);font-size:12px;font-weight:700;margin-right:10px;vertical-align:middle}
+.blank{display:inline-block;min-width:96px;padding:2px 14px;margin:0 4px;border-radius:10px;border:2px dashed var(--line);color:var(--text-3);text-align:center;font-weight:600;transition:all .2s;vertical-align:baseline;line-height:1.7}
+.blank.sel{border-color:var(--blue);background:var(--blue-soft)}
+.blank.filled{border-style:solid;border-color:var(--blue);color:var(--blue);background:var(--blue-soft)}
+.blank.ok{border-color:var(--green);color:var(--green);background:var(--green-soft)}
+.blank.no{border-color:var(--red);color:var(--red);background:var(--red-soft)}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:22px}
+.chip{padding:9px 18px;border-radius:99px;background:var(--bg-elev);box-shadow:var(--shadow);font-weight:600;font-size:16px;transition:transform .15s,opacity .2s}
+.chip:hover{transform:translateY(-2px)}
+.chip.used{opacity:.3;pointer-events:none;box-shadow:none}
+.actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.msg{font-size:15px;color:var(--text-2);min-height:24px}
+.msg.good{color:var(--green);font-weight:600}
+
+/* quiz */
+.quiz-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;font-size:14px;color:var(--text-3)}
+.dots{display:flex;gap:6px;flex-wrap:wrap}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--line);transition:background .3s,transform .3s}
+.dot.cur{background:var(--blue);transform:scale(1.3)}
+.dot.ok{background:var(--green)}.dot.bad{background:var(--red)}
+.q-type{margin-bottom:10px}
+.q-text{font-size:clamp(20px,3vw,26px);font-weight:700;line-height:1.35;letter-spacing:-.02em;margin-bottom:22px}
+.opts{display:grid;gap:10px}
+.opt{text-align:left;padding:16px 20px;border-radius:16px;background:var(--bg-soft);border:2px solid transparent;box-shadow:inset 0 0 0 1px var(--line);font-size:17px;transition:all .2s}
+.opt:hover:not(:disabled){box-shadow:inset 0 0 0 2px var(--blue);transform:translateX(3px)}
+.opt:disabled{cursor:default}
+.opt.right{background:var(--green-soft);box-shadow:inset 0 0 0 2px var(--green)}
+.opt.wrong{background:var(--red-soft);box-shadow:inset 0 0 0 2px var(--red);animation:shake .4s}
+.ox{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ox .opt{text-align:center;font-size:42px;font-weight:800;padding:22px}
+.explain{margin-top:18px;padding:16px 20px;border-radius:16px;background:var(--bg-soft);box-shadow:inset 0 0 0 1px var(--line);font-size:15.5px;color:var(--text-2);display:none}
+.explain.show{display:block;animation:pop .35s}
+.explain b{color:var(--text)}
+.result{text-align:center;padding:20px 0}
+.ring{width:150px;height:150px;margin:0 auto 18px;position:relative}
+.ring svg{transform:rotate(-90deg)}
+.ring .num{position:absolute;inset:0;display:grid;place-items:center;font-size:38px;font-weight:800}
+@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+@keyframes pop{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* order */
+.order-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+@media (max-width:760px){.order-grid{grid-template-columns:1fr}}
+.col-t{font-size:13px;font-weight:600;color:var(--text-3);margin-bottom:10px}
+.pool,.slots{display:grid;gap:10px;align-content:start}
+.step{text-align:left;padding:14px 18px;border-radius:16px;background:var(--bg-elev);box-shadow:var(--shadow);font-size:15.5px;transition:transform .2s}
+.step:hover{transform:scale(1.015)}
+.step.bad{animation:shake .4s;box-shadow:inset 0 0 0 2px var(--red)}
+.slot{display:flex;gap:12px;align-items:center;padding:14px 18px;border-radius:16px;font-size:15.5px;min-height:54px;border:2px dashed var(--line);color:var(--text-3)}
+.slot.done{border:2px solid var(--green);background:var(--green-soft);color:var(--text);animation:pop .4s}
+.slot .sn{flex:none;width:26px;height:26px;border-radius:50%;background:var(--line);display:grid;place-items:center;font-size:13px;font-weight:700}
+.slot.done .sn{background:var(--green);color:#fff}
+
+/* job compare */
+.compare{display:grid;gap:14px}
+.cmp-panel{display:none}
+.cmp-panel.on{display:block;animation:pop .45s}
+.scene{border-radius:var(--radius);padding:32px;color:#fff;position:relative;overflow:hidden}
+.scene.dark{background:linear-gradient(160deg,#3a3a3c,#1c1c1e)}
+.scene.light{background:linear-gradient(160deg,#4aa8ff,#7b61ff)}
+.scene h3{font-size:24px;margin-bottom:14px;letter-spacing:-.02em}
+.scene ul{list-style:none;display:grid;gap:10px;font-size:16.5px}
+.scene li{display:flex;gap:10px;align-items:flex-start}
+.scene .quote2{margin-top:18px;padding-top:16px;border-top:1px solid rgba(255,255,255,.25);font-size:15px;opacity:.95}
+.lost li{animation:fade-out 1.6s ease forwards;animation-play-state:paused}
+.cmp-panel.on .lost li{animation-play-state:running}
+
+/* timeline */
+.tl{position:relative;padding-left:34px;display:grid;gap:22px}
+.tl::before{content:"";position:absolute;left:11px;top:6px;bottom:6px;width:2px;background:var(--line)}
+.tl-item{position:relative}
+.tl-item::before{content:"";position:absolute;left:-30px;top:6px;width:14px;height:14px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 5px var(--blue-soft)}
+.tl-item h4{font-size:18px;margin-bottom:4px}
+.tl-item p{color:var(--text-2);font-size:16px}
+.triple{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:30px}
+@media (max-width:600px){.triple{grid-template-columns:1fr}}
+.tri{border-radius:var(--radius);padding:20px;text-align:center;background:var(--bg-soft);box-shadow:inset 0 0 0 1px var(--line);transition:all .4s;cursor:pointer;opacity:.55}
+.tri.on{opacity:1;background:var(--blue-soft);box-shadow:inset 0 0 0 2px var(--blue);transform:translateY(-3px)}
+.tri .em{font-size:30px;display:block;margin-bottom:6px}
+.tri b{display:block;font-size:17px}
+.tri small{color:var(--text-2)}
+.converge{margin-top:16px;text-align:center;padding:22px;border-radius:var(--radius);background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;font-size:18px;font-weight:600;opacity:.25;transform:scale(.96);transition:all .6s cubic-bezier(.2,.7,.2,1)}
+.converge.on{opacity:1;transform:scale(1)}
+.note-box{margin-top:26px;padding:20px 24px;border-radius:var(--radius);background:color-mix(in srgb,var(--orange) 13%,transparent);color:var(--text);font-size:15.5px}
+.note-box b{display:block;margin-bottom:4px}
+
+/* discussion */
+.dq-wrap{position:relative}
+.dq{display:none;min-height:230px}
+.dq.on{display:block;animation:pop .45s}
+.dq h3{font-size:14px;color:var(--blue);margin-bottom:10px}
+.dq p{font-size:clamp(19px,2.6vw,24px);line-height:1.5;font-weight:600;letter-spacing:-.02em}
+.dq small{display:block;margin-top:14px;color:var(--text-3);font-size:14px}
+.dq-nav{display:flex;justify-content:space-between;align-items:center;margin-top:18px}
+.gentle{font-size:14px;color:var(--text-2);margin-top:14px;padding:12px 16px;border-radius:14px;background:var(--bg-soft);box-shadow:inset 0 0 0 1px var(--line)}
+
+/* checklist */
+.five{display:grid;gap:12px}
+.five label{display:flex;gap:16px;align-items:flex-start;padding:20px 22px;border-radius:var(--radius);background:var(--bg-elev);box-shadow:var(--shadow);cursor:pointer;transition:transform .2s,background .3s}
+.five label:hover{transform:scale(1.01)}
+.five input{appearance:none;-webkit-appearance:none;flex:none;width:28px;height:28px;border-radius:50%;border:2px solid var(--text-3);display:grid;place-items:center;margin-top:2px;cursor:pointer;transition:all .25s}
+.five input:checked{background:var(--green);border-color:var(--green)}
+.five input:checked::after{content:"";width:6px;height:12px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg) translate(-1px,-1px)}
+.five label.chk{background:var(--green-soft)}
+.five b{display:block;font-size:17.5px;margin-bottom:3px}
+.five span{color:var(--text-2);font-size:15.5px}
+.badges{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:34px}
+.badge{display:flex;gap:12px;align-items:center;padding:16px 18px;border-radius:18px;background:var(--bg-elev);box-shadow:var(--shadow);font-size:15px;opacity:.5;transition:all .4s}
+.badge.on{opacity:1}
+.badge .ic{width:38px;height:38px;border-radius:12px;background:var(--line);display:grid;place-items:center;font-size:20px;transition:background .4s}
+.badge.on .ic{background:var(--green-soft)}
+.finish{margin-top:36px;text-align:center;padding:48px 24px;border-radius:30px;background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;display:none}
+.finish.show{display:block;animation:pop .6s}
+.finish h3{font-size:clamp(26px,4vw,38px);margin-bottom:10px;letter-spacing:-.03em}
+.finish p{opacity:.92;font-size:18px;max-width:560px;margin:0 auto}
+footer{padding:40px 22px 70px;text-align:center;font-size:13px;color:var(--text-3)}
+.alt{background:var(--bg-soft)}
+@media (prefers-color-scheme:dark){.alt{background:#0a0a0b}}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<nav>
+  <span class="brand">하나님 경험 · 6단원 제2과</span>
+  <a href="#flow" class="opt">흐름</a>
+  <a href="#seven" class="opt">일곱 실체</a>
+  <a href="#blank">빈칸</a>
+  <a href="#quiz">퀴즈</a>
+  <a href="#order" class="opt">순서</a>
+  <a href="#job" class="opt">욥</a>
+  <a href="#share" class="opt">나눔</a>
+  <a href="#five">핵심</a>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="in-hero">
+    <p class="tag rv">하나님 경험 6단원 · 제2과 복습 (교재 172~177쪽)</p>
+    <h1 class="rv">하나님은 환경을 통해서 말씀하신다</h1>
+    <p class="sub rv">나쁘거나 어려운 당신의 환경을 이해하는 데는 하나님의 관점에서 보는 것이 필수불가결하다.</p>
+    <a href="#flow" class="btn rv">복습 시작하기 ↓</a>
+    <div class="summary rv">
+      <b>한 줄 요약</b>
+      <p>어려운 환경을 만나면 환경 속에 빠져 하나님을 판단하지 말고, 하나님께 나아가 그분의 관점을 구하며, 하나님이 일하시는 곳으로 내 삶을 조정합니다.</p>
+    </div>
+  </div>
+</header>
+
+<!-- 1. FLOW -->
+<section id="flow">
+  <div class="wrap">
+    <p class="eyebrow rv">STEP 1 · 교재 흐름</p>
+    <h2 class="rv">다섯 장면으로 다시 보는 이 과</h2>
+    <p class="lead rv">카드를 눌러 펼쳐 보세요. 먼저 눈으로 한 번 훑고, 아래 놀이로 내려갑니다.</p>
+    <div class="acc" id="acc"></div>
+  </div>
+</section>
+
+<!-- 2. SEVEN -->
+<section id="seven" class="alt">
+  <div class="wrap">
+    <p class="eyebrow rv">STEP 2 · 플립 카드</p>
+    <h2 class="rv">하나님을 경험하는 삶의 일곱 가지 실체</h2>
+    <p class="lead rv">일 · 관계 · 초청 · 말씀하십니다 · 갈등 · 조정 · 순종. 카드를 눌러 뒤집고, 뜻을 먼저 떠올려 본 뒤 확인하세요.</p>
+    <div class="grid7 rv" id="grid7"></div>
+    <p class="progress-txt" id="flipTxt">확인한 카드 0 / 7</p>
+  </div>
+</section>
+
+<!-- 3. BLANK -->
+<section id="blank">
+  <div class="wrap">
+    <p class="eyebrow rv">STEP 3 · 빈칸 채우기</p>
+    <h2 class="rv">요한복음 5장 낱말을 채워 보세요</h2>
+    <p class="lead rv">교재 복습 빈칸의 정답 7개(아버지께서 · 일한다 · 스스로 · 주시하여 · 행하고 · 사랑하신다 · 다)를 문장으로 풀어 만든 놀이입니다. 문장 표현은 교재 원문과 다를 수 있습니다. 빈칸을 누르고, 아래 낱말을 눌러 채우세요.</p>
+    <div class="card rv">
+      <div class="blank-list" id="blankList"></div>
+      <div class="chips" id="chips"></div>
+      <div class="actions">
+        <button class="btn small" id="chkBlank">정답 확인</button>
+        <button class="btn small ghost" id="resetBlank">다시 하기</button>
+        <span class="msg" id="blankMsg"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. QUIZ -->
+<section id="quiz" class="alt">
+  <div class="wrap">
+    <p class="eyebrow rv">STEP 4 · 퀴즈</p>
+    <h2 class="rv">10문제, 얼마나 기억하나요?</h2>
+    <p class="lead rv">OX와 객관식이 섞여 있습니다. 답을 고르면 바로 해설이 나옵니다.</p>
+    <div class="card rv" id="quizCard"></div>
+  </div>
+</section>
+
+<!-- 5. ORDER -->
+<section id="order">
+  <div class="wrap">
+    <p class="eyebrow rv">STEP 5 · 순서 맞추기</p>
+    <h2 class="rv">환경이 혼란스러울 때, 일곱 걸음</h2>
+    <p class="lead rv">왼쪽에 섞여 있는 카드를 <b>1번부터 차례로</b> 눌러 보세요. 맞으면 오른쪽 자리에 들어갑니다.</p>
+    <div class="order-grid rv">
+      <div><div class="col-t">섞인 카드</div><div class="pool" id="pool"></div></div>
+      <div><div class="col-t">내가 만든 순서</div><div class="slots" id="slots"></div></div>
+    </div>
+    <div class="actions" style="margin-top:22px">
+      <button class="btn small ghost" id="resetOrder">다시 섞기</button>
+      <span class="msg" id="orderMsg"></span>
+    </div>
+  </div>
+</section>
+
+<!-- 6. JOB -->
+<section id="job" class="alt">
+  <div class="wrap">
+    <p class="eyebrow rv">STEP 6 · 두 가지 시선</p>
+    <h2 class="rv">환경만 볼 때, 하나님의 관점으로 볼 때</h2>
+    <p class="lead rv">같은 욥의 이야기를 두 가지 시선으로 읽어 봅니다. 위의 스위치를 눌러 보세요.</p>
+    <div class="rv">
+      <div class="seg" id="jobSeg">
+        <button class="on" data-p="p1">환경만 볼 때</button>
+        <button data-p="p2">하나님의 관점으로</button>
+      </div>
+      <div class="compare">
+        <div class="cmp-panel on" id="p1">
+          <div class="scene dark">
+            <h3>욥이 본 것</h3>
+            <ul class="lost">
+              <li>💔 재산을 잃었습니다.</li>
+              <li>💔 자녀를 잃었습니다.</li>
+              <li>💔 건강을 잃었습니다.</li>
+            </ul>
+            <p class="quote2">욥은 하나님의 관점(욥 1~2장의 하늘의 일)과 마지막 회복(욥 42:12~17)을 몰랐습니다. 환경에 푹 빠져서 하나님을 보면 하나님을 비틀어 이해하게 됩니다.<br>예를 들면 "하나님은 나를 사랑하지 않으셔", "하나님은 공평하지 않으셔"입니다.</p>
+          </div>
+        </div>
+        <div class="cmp-panel" id="p2">
+          <div class="scene light">
+            <h3>하나님의 관점이 열리면</h3>
+            <ul>
+              <li>🙏 먼저 하나님께 나아가 환경을 하나님의 관점에서 보게 해 달라고 기도합니다.</li>
+              <li>📖 성령님이 <b>하나님의 말씀으로</b> 환경의 진실을 계시해 주십니다.</li>
+              <li>✝️ 십자가에서 이미 표현된 하나님의 사랑은 변하지 않습니다.</li>
+            </ul>
+            <p class="quote2">교재는 "사랑하지 않으셔", "공평하지 않으셔" 두 말이 모두 <b>하나님을 잘못 설명한 것</b>이라고 합니다. 또 욥의 친구들은 하나님의 관점을 안다고 착각하고 "죄를 고백하라"고 했지만 틀렸습니다.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. CARRIE -->
+<section id="carrie">
+  <div class="wrap">
+    <p class="eyebrow rv">STEP 7 · 사례</p>
+    <h2 class="rv">캐리의 암 (교재 175~176쪽)</h2>
+    <p class="lead rv">저자(블랙커비)의 딸 캐리가 암에 걸렸을 때 가족은 어떻게 했을까요?</p>
+    <div class="card rv">
+      <div class="tl">
+        <div class="tl-item"><h4>1. 질문으로 기도했습니다</h4><p>가족은 "이 경험으로 당신이 이루고자 하시는 것이 무엇입니까?" 하고 기도했습니다.</p></div>
+        <div class="tl-item"><h4>2. 요한복음 11장 4절을 받았습니다</h4><p>"이 병은 죽을 병이 아니라 하나님의 영광을 위함이요." 다른 성도들도 같은 구절을 보내 왔습니다.</p></div>
+        <div class="tl-item"><h4>3. 3개월 치료 후 암의 흔적이 없었습니다</h4><p>기도해 주던 사람들의 메마른 기도생활이 새로워졌고, 교회 기도사역과 학생 기도그룹이 살아났습니다.</p></div>
+        <div class="tl-item"><h4>4. 하나님이 영광을 받으셨습니다</h4><p>캐리의 친구들 가운데 주님을 알게 된 학생도 있었습니다. 저자는 하나님이 이 병으로 영광을 받으셨다고 말합니다.</p></div>
+      </div>
+      <p class="col-t" style="margin-top:30px">세 카드를 모두 눌러 보세요. 같은 방향으로 모이는 것이 보입니다.</p>
+      <div class="triple" id="triple">
+        <button class="tri" data-i="0"><span class="em">📖</span><b>성경</b><small>요한복음 11:4</small></button>
+        <button class="tri" data-i="1"><span class="em">🙏</span><b>기도</b><small>이루고자 하시는 것은?</small></button>
+        <button class="tri" data-i="2"><span class="em">🤝</span><b>성도들의 간증</b><small>같은 구절을 보내 옴</small></button>
+      </div>
+      <div class="converge" id="converge">성경 + 기도 + 성도들의 간증이 같은 결론으로 모였습니다.</div>
+      <div class="note-box">
+        <b>함께 기억할 것 (177쪽)</b>
+        캐리 사례는 낫는 것으로 끝납니다. 하나님은 주권자이시므로 욥처럼 무엇을 하시는지 <b style="display:inline">밝히지 않으실 때</b>도 있습니다. 그때에도 하나님의 사랑과 주권을 인정하고 은혜로 환경을 보십시오.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8. SHARE -->
+<section id="share" class="alt">
+  <div class="wrap">
+    <p class="eyebrow rv">STEP 8 · 나눔 질문</p>
+    <h2 class="rv">내 삶으로 가져오기</h2>
+    <p class="lead rv">한 장씩 넘기며 천천히 생각해 보세요. 말하고 싶지 않은 질문은 넘어가도 됩니다.</p>
+    <div class="card rv dq-wrap">
+      <div class="dq on"><h3>질문 1 · 환경 속에서 하나님을 보는 눈</h3><p>힘든 일을 겪을 때 "하나님은 나를 사랑하지 않으셔" 또는 "공평하지 않으셔" 같은 생각이 든 적이 있나요? 그때 내 눈은 환경을 보고 있었나요, 하나님을 보고 있었나요?</p><small>(교재 174쪽 질문 연결)</small></div>
+      <div class="dq"><h3>질문 2 · 지금 나의 환경</h3><p>지금 내가 겪는 어려움이나 혼란스러운 상황이 있다면, "하나님, 이 환경을 당신의 관점에서 보게 해 주세요"라고 기도해 본 적이 있나요? 하나님이 이 환경 속에서 일하고 계신다면, 내가 조정해야 할 것은 무엇일까요?</p></div>
+      <div class="dq"><h3>질문 3 · 지나고 보니</h3><p>그때는 나쁘게만 보였는데 지나고 보니 하나님이 일하고 계셨다고 느낀 경험이 있나요? 그 경험이 지금의 어려움을 보는 눈을 어떻게 바꿔 주나요?</p><small>(캐리 사례나 욥의 마지막 장처럼)</small></div>
+      <div class="dq-nav">
+        <button class="btn small ghost" id="dqPrev">← 이전</button>
+        <span class="msg" id="dqCnt">1 / 3</span>
+        <button class="btn small" id="dqNext">다음 →</button>
+      </div>
+      <p class="gentle">1번과 3번은 개인적인 아픔이 나올 수 있습니다. 말하고 싶지 않으면 넘어가도 됩니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 9. FIVE -->
+<section id="five">
+  <div class="wrap">
+    <p class="eyebrow rv">STEP 9 · 마무리</p>
+    <h2 class="rv">꼭 알아야 할 핵심 5가지</h2>
+    <p class="lead rv">내 말로 설명할 수 있다고 느끼면 체크하세요.</p>
+    <div class="five rv" id="five"></div>
+
+    <div class="badges rv" id="badges">
+      <div class="badge" data-k="flip"><div class="ic">🃏</div><div>일곱 가지 실체<br><small>카드 7장 확인</small></div></div>
+      <div class="badge" data-k="blank"><div class="ic">✍️</div><div>빈칸 채우기<br><small>7개 모두 정답</small></div></div>
+      <div class="badge" data-k="quiz"><div class="ic">🎯</div><div>퀴즈<br><small id="quizBadgeTxt">아직 안 풀었어요</small></div></div>
+      <div class="badge" data-k="order"><div class="ic">🪜</div><div>순서 맞추기<br><small>일곱 걸음 완성</small></div></div>
+      <div class="badge" data-k="carrie"><div class="ic">🔗</div><div>캐리 사례<br><small>세 카드 확인</small></div></div>
+      <div class="badge" data-k="five"><div class="ic">✅</div><div>핵심 5가지<br><small id="fiveBadgeTxt">0 / 5</small></div></div>
+    </div>
+
+    <div class="finish" id="finish">
+      <h3>복습 완료 🎉</h3>
+      <p>환경 속에 빠져 하나님을 판단하지 말고, 하나님께 나아가 그분의 관점을 구하세요. 하나님이 일하시는 곳으로 내 삶을 조정하는 한 주가 되기를 바랍니다.</p>
+    </div>
+  </div>
+</section>
+
+<footer>하나님 경험 6단원 제2과 복습 · 「하나님 경험 6단원_제2과」 노트를 바탕으로 만들었습니다.</footer>
+
+<script>
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const done={flip:false,blank:false,quiz:false,order:false,carrie:false,five:false};
+function mark(k){ if(done[k])return; done[k]=true; $(`.badge[data-k="${k}"]`).classList.add('on'); checkAll(); }
+function checkAll(){ if(Object.values(done).every(Boolean)){ const f=$('#finish'); f.classList.add('show'); setTimeout(()=>f.scrollIntoView({behavior:'smooth',block:'center'}),300);} }
+
+/* progress bar + reveal */
+addEventListener('scroll',()=>{const h=document.documentElement;$('#bar').style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%'},{passive:true});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+function observe(){$$('.rv:not(.in)').forEach(el=>io.observe(el))} observe();
+
+/* 1. accordion */
+const flow=[
+ {t:'예수님은 환경을 통해 아버지의 뜻을 아셨다',s:'172~173쪽',q:'요 5:17, 19-20',items:[
+  '성령님은 <b>성경, 기도, 환경</b> 세 가지로 말씀하십니다. 예수님은 세 번째 방법인 환경으로 아버지의 뜻을 아셨습니다.',
+  '아버지가 먼저 일하십니다. 예수님은 주도권을 잡지 않으셨습니다. 아버지가 하시는 일을 아들에게 보이십니다. 아들이 그것을 보는 것은 <mark>동참하라는 아버지의 초청</mark>입니다.',
+  '예수님은 무엇을 할지 추측하거나 상상할 필요가 없으셨습니다. 하나님이 일하시는 곳을 보고 자기 삶을 거기에 올려놓으셨습니다.',
+  '예수님을 삶의 주인으로 인정한다는 것은 우리 인생과 계획과 목표를 <mark>하나님이 일하시는 곳으로 조정</mark>하는 것입니다.']},
+ {t:'나쁘게 보이는 환경: 하나님의 관점이 필수불가결하다',s:'174쪽',items:[
+  '예수님의 예는 긍정적인 예입니다. 많은 경우 환경은 \'나쁘게\' 보이고, 우리는 "왜 이런 일이 저에게?" 하고 묻고 싶어집니다.',
+  '욥은 재산, 자녀, 건강을 잃었지만 하나님의 관점(욥 1~2장의 하늘의 일)과 마지막 회복(욥 42:12~17)을 몰랐습니다.',
+  '욥의 친구들은 하나님의 관점을 안다고 착각하고 "죄를 고백하라"고 했지만 틀렸습니다.',
+  '어려운 환경에 푹 빠져서 하나님을 보면 하나님을 비틀어 이해하게 됩니다. 교재는 "사랑하지 않으셔", "공평하지 않으셔"가 모두 <mark>하나님을 잘못 설명한 것</mark>이라고 합니다.']},
+ {t:'해법: 하나님께 나아가 그분의 관점으로 보게 해 달라고 기도하라',s:'175쪽',items:[
+  '먼저 하나님께 나아가 환경을 하나님의 관점에서 보게 해 달라고 기도합니다.',
+  '성령님이 <mark>하나님의 말씀으로</mark> 환경의 진실을 계시해 주십니다.']},
+ {t:'사례: 캐리의 암',s:'175~176쪽',q:'요 11:4',items:[
+  '저자(블랙커비)의 딸 캐리가 암에 걸렸습니다. 가족은 "이 경험으로 당신이 이루고자 하시는 것이 무엇입니까?" 하고 기도했습니다.',
+  '가족은 요 11:4("이 병은 죽을 병이 아니라 하나님의 영광을 위함이요")를 받았고, 다른 성도들도 같은 구절을 보내 왔습니다. 성경, 기도, 성도들의 간증이 같은 결론으로 모였습니다.',
+  '3개월 치료 후 암의 흔적이 없었습니다. 저자는 하나님이 이 병으로 영광을 받으셨다고 말합니다.']},
+ {t:'환경이 혼란스러울 때',s:'176~177쪽',items:[
+  '아래 STEP 5에서 일곱 걸음을 순서대로 맞춰 보세요.',
+  '마무리(177쪽): 하나님은 주권자이십니다. 욥처럼 하나님이 무엇을 하시는지 <mark>밝히지 않으실 때</mark>도 있습니다. 그때에도 하나님의 사랑과 주권을 인정하고 은혜로 환경을 보십시오.']}
+];
+const acc=$('#acc');
+flow.forEach((f,i)=>{
+  const d=document.createElement('div');d.className='acc-item rv'+(i===0?' open':'');
+  d.innerHTML=`<button class="acc-head" aria-expanded="${i===0}"><span class="acc-num">${i+1}</span><span class="acc-title">${f.t}<small>${f.s}</small></span>
+  <svg class="acc-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
+  <div class="acc-body"><div>${f.q?`<div class="quote" style="margin-top:0">관련 본문: ${f.q}</div>`:''}<ul>${f.items.map(x=>`<li>${x}</li>`).join('')}</ul></div></div>`;
+  d.firstElementChild.addEventListener('click',e=>{const o=d.classList.toggle('open');e.currentTarget.setAttribute('aria-expanded',o)});
+  acc.appendChild(d);
+});
+observe();
+
+/* 2. flip cards */
+const seven=[
+ ['일','하나님은 항상 당신의 주위에서 일하고 계십니다.','하나님은 내가 부르기 전부터 이미 내 주위에서 일하고 계십니다.','#0a84ff,#5ac8fa'],
+ ['관계','하나님은 당신과 실제적이고, 개인적이며, 지속적인 사랑의 관계를 추구하십니다.','하나님이 원하시는 것은 일꾼이 아니라 나와의 사랑의 관계입니다.','#ff375f,#ff9f0a'],
+ ['초청','하나님은 당신이 그분의 일에 참여하도록 당신을 초청하십니다.','하나님이 하시는 일을 보여주시는 것은 "함께 하자"는 부르심입니다.','#30b0c7,#34c759'],
+ ['말씀하십니다','하나님은 하나님 자신과 자신의 목적과 길을 보여주기 위하여 성령님에 의해 성경, 기도, 환경과 교회를 통해서 말씀하십니다.','네 가지 길(성경, 기도, 환경, 교회)로 알려 주십니다.','#5e5ce6,#bf5af2'],
+ ['갈등','하나님의 부르심은 항상 당신을 믿음의 갈등으로 몰아넣고, 결단과 그에 따른 행동을 요구합니다.','"하나님이 정말 하실 수 있을까?" 하는 갈등이 오고, 믿는다면 행동으로 결단해야 합니다.','#ff453a,#ff9f0a'],
+ ['조정','당신은 하나님의 역사에 참여하기 위해서 당신의 인생을 하나님의 뜻에 맞게 조정해야 합니다.','내 삶의 방향과 계획을 하나님이 일하시는 곳에 맞추는 것입니다.','#00c7be,#0a84ff'],
+ ['순종','당신이 하나님께 순종하고, 하나님이 당신을 통해서 그분의 일을 성취하심으로 말미암아 당신은 경험으로 하나님을 알게 됩니다.','내가 순종하면 하나님이 나를 통해 일을 이루시고, 나는 경험으로 하나님을 알게 됩니다.','#34c759,#30d158']
+];
+const seen=new Set();
+$('#grid7').innerHTML=seven.map((c,i)=>`<div class="flip" tabindex="-1"><button class="flip-in" aria-label="${c[0]} 카드 뒤집기" style="display:block;border-radius:var(--radius)" data-i="${i}">
+ <div class="face front"><span class="n">${i+1}</span><span class="k">${c[0]}</span><span class="h">눌러서 뒤집기</span></div>
+ <div class="face back" style="background:linear-gradient(150deg,${c[3].split(',')[0]},${c[3].split(',')[1]})"><b>${i+1}. ${c[0]}</b><p>${c[1]}</p><p style="opacity:.8">→ ${c[2]}</p></div></button></div>`).join('');
+$$('#grid7 .flip-in').forEach(b=>b.addEventListener('click',()=>{
+  const f=b.parentElement;f.classList.toggle('on');seen.add(b.dataset.i);
+  $('#flipTxt').textContent=`확인한 카드 ${seen.size} / 7`;
+  if(seen.size===7){$('#flipTxt').textContent+=' · 모두 확인했습니다 👏';mark('flip')}
+}));
+
+/* 3. blanks */
+const sents=[
+ ['예수님은 ','','께서 하시는 일을 보셨습니다.'],
+ ['아버지가 일하시니 나도 ','','.'],
+ ['아들은 ','',' 아무것도 할 수 없습니다.'],
+ ['아들은 아버지가 하시는 것을 ','',' 봅니다.'],
+ ['아버지가 하시는 것을 아들도 그대로 ','',' 계십니다.'],
+ ['아버지는 아들을 ','','.'],
+ ['그리고 자기가 하시는 일을 아들에게 ','',' 보이십니다.']
+];
+const answers=['아버지','일한다','스스로','주시하여','행하고','사랑하신다','다'];
+/* 첫 문장은 '아버지께서'를 정답으로 쓰기 위해 앞뒤를 조정 */
+sents[0]=['예수님은 ','','하시는 일을 보셨습니다.'];
+answers[0]='아버지께서';
+let vals=Array(7).fill(null), curBlank=null;
+const chipOrder=[...answers].sort(()=>Math.random()-.5);
+function renderBlank(){
+  $('#blankList').innerHTML=sents.map((s,i)=>`<div class="sent"><span class="no">${i+1}</span>${s[0]}<button class="blank ${vals[i]?'filled':''} ${curBlank===i?'sel':''}" data-i="${i}">${vals[i]||'&nbsp;?&nbsp;'}</button>${s[2]}</div>`).join('');
+  $('#chips').innerHTML=chipOrder.map(w=>`<button class="chip ${vals.includes(w)?'used':''}" data-w="${w}">${w}</button>`).join('');
+  $$('#blankList .blank').forEach(b=>b.onclick=()=>{const i=+b.dataset.i; if(vals[i]){vals[i]=null} curBlank=i; $('#blankMsg').textContent='';renderBlank()});
+  $$('#chips .chip').forEach(c=>c.onclick=()=>{
+    let i=curBlank!==null&&!vals[curBlank]?curBlank:vals.findIndex(v=>!v); if(i<0)return;
+    vals[i]=c.dataset.w; const nx=vals.findIndex(v=>!v); curBlank=nx<0?null:nx; renderBlank();
+  });
+}
+renderBlank();
+$('#chkBlank').onclick=()=>{
+  if(vals.some(v=>!v)){$('#blankMsg').textContent='아직 비어 있는 칸이 있어요.';$('#blankMsg').className='msg';return}
+  let ok=0;$$('#blankList .blank').forEach((b,i)=>{const r=vals[i]===answers[i];b.classList.remove('filled','sel');b.classList.add(r?'ok':'no');if(r)ok++});
+  const m=$('#blankMsg');
+  if(ok===7){m.textContent='7개 모두 정답입니다! 🎉';m.className='msg good';mark('blank')}
+  else{m.textContent=`${ok} / 7 정답. 빨간 칸을 눌러 다시 채워 보세요.`;m.className='msg';
+    $$('#blankList .blank.no').forEach(b=>{b.addEventListener('click',()=>{},{once:true})});
+    /* 틀린 칸만 비우기 */ vals=vals.map((v,i)=>v===answers[i]?v:null);
+    $$('#blankList .blank').forEach(b=>b.onclick=null);
+    setTimeout(()=>{curBlank=vals.findIndex(v=>!v);renderBlank()},1400);}
+};
+$('#resetBlank').onclick=()=>{vals=Array(7).fill(null);curBlank=null;$('#blankMsg').textContent='';renderBlank()};
+
+/* 4. quiz */
+const quiz=[
+ {t:'ox',q:'예수님은 환경을 통해 아버지의 뜻을 아셨다.',a:true,e:'예수님은 성경, 기도, 환경 가운데 <b>환경</b>으로 아버지의 뜻을 아셨습니다(요 5:17, 19-20).'},
+ {t:'mc',q:'아버지가 하시는 일을 아들이 보는 것은 무엇을 뜻할까요?',o:['아들이 새로운 계획을 세우라는 신호','동참하라는 아버지의 초청','잠시 지켜만 보라는 명령','자기 힘으로 열심히 하라는 격려'],a:1,e:'아버지가 먼저 일하십니다. 아들이 그것을 보는 것은 <b>동참하라는 아버지의 초청</b>입니다.'},
+ {t:'ox',q:'욥의 친구들은 하나님의 관점을 정확히 알고 "죄를 고백하라"고 말했다.',a:false,e:'친구들은 하나님의 관점을 <b>안다고 착각</b>했고, 그들의 말은 틀렸습니다.'},
+ {t:'mc',q:'어려운 환경에 푹 빠져서 하나님을 보면 어떻게 될까요?',o:['하나님을 더 깊이 알게 된다','하나님을 비틀어 이해하게 된다','환경이 곧 좋아진다','하나님의 뜻이 저절로 드러난다'],a:1,e:'환경에 푹 빠지면 "하나님은 나를 사랑하지 않으셔", "공평하지 않으셔"처럼 <b>하나님을 비틀어 이해</b>하게 됩니다.'},
+ {t:'mc',q:'환경을 하나님의 관점에서 보게 해 달라고 기도할 때, 성령님은 무엇으로 환경의 진실을 계시해 주실까요?',o:['꿈과 환상으로만','주변 사람들의 의견으로만','하나님의 말씀으로','시간이 지나 저절로'],a:2,e:'성령님은 <b>하나님의 말씀으로</b> 환경의 진실을 계시해 주십니다.'},
+ {t:'mc',q:'캐리의 가족이 받은 성경 구절은 어디일까요?',o:['요한복음 3:16','요한복음 5:17','요한복음 11:4','욥기 42:12'],a:2,e:'"이 병은 죽을 병이 아니라 하나님의 영광을 위함이요" — <b>요한복음 11:4</b>입니다.'},
+ {t:'ox',q:'캐리의 가족은 환경만 보고 하나님의 뜻을 확신했다.',a:false,e:'<b>성경(요 11:4) + 기도 + 성도들의 간증</b>이 같은 방향을 가리킬 때 확신했습니다. 환경은 성경, 기도와 함께 확인해야 합니다.'},
+ {t:'mc',q:'하나님이 무엇을 하시는지 밝히지 않으실 때(욥처럼), 교재는 어떻게 하라고 할까요?',o:['하나님의 침묵을 외면한다','원인을 스스로 찾아낼 때까지 따진다','하나님의 사랑과 주권을 인정하고 은혜로 환경을 본다','내 죄부터 찾아 고백한다'],a:2,e:'177쪽: 그때에도 <b>하나님의 사랑과 주권을 인정하고 은혜로 환경을 보십시오.</b>'},
+ {t:'ox',q:'예수님을 삶의 주인으로 인정한다는 것은 내 계획과 목표를 하나님이 일하시는 곳으로 조정하는 것이다.',a:true,e:'인생과 계획과 목표를 <b>하나님이 일하시는 곳으로 조정</b>하는 것입니다.'},
+ {t:'mc',q:'일곱 가지 실체 가운데 "하나님의 부르심은 항상 당신을 믿음의 갈등으로 몰아넣고, 결단과 행동을 요구한다"에 해당하는 것은?',o:['초청','갈등','조정','순종'],a:1,e:'다섯 번째 실체, <b>갈등</b>입니다. "하나님이 정말 하실 수 있을까?" 하는 갈등 앞에서 행동으로 결단합니다.'}
+];
+let qi=0,score=0,res=[];
+const qc=$('#quizCard');
+function renderQ(){
+  if(qi>=quiz.length)return renderResult();
+  const q=quiz[qi];
+  const opts=q.t==='ox'
+    ?`<div class="ox"><button class="opt" data-v="true">O</button><button class="opt" data-v="false">X</button></div>`
+    :`<div class="opts">${q.o.map((o,i)=>`<button class="opt" data-v="${i}">${'①②③④'[i]} ${o}</button>`).join('')}</div>`;
+  qc.innerHTML=`<div class="quiz-top"><div class="dots">${quiz.map((_,i)=>`<span class="dot ${i===qi?'cur':''} ${res[i]===true?'ok':res[i]===false?'bad':''}"></span>`).join('')}</div><span>점수 ${score}</span></div>
+  <span class="pill q-type">${q.t==='ox'?'OX 퀴즈':'객관식'} · ${qi+1} / ${quiz.length}</span>
+  <div class="q-text">${q.q}</div>${opts}<div class="explain" id="exp"></div><div class="actions" style="margin-top:18px"><button class="btn small" id="nextQ" style="display:none">${qi===quiz.length-1?'결과 보기':'다음 문제 →'}</button></div>`;
+  $$('.opt',qc).forEach(b=>b.onclick=()=>answer(b));
+  $('#nextQ').onclick=()=>{qi++;renderQ()};
+}
+function answer(b){
+  const q=quiz[qi];const v=q.t==='ox'?b.dataset.v==='true':+b.dataset.v;const ok=v===q.a;
+  $$('.opt',qc).forEach(x=>{x.disabled=true;const xv=q.t==='ox'?x.dataset.v==='true':+x.dataset.v;if(xv===q.a)x.classList.add('right')});
+  if(!ok)b.classList.add('wrong');
+  res[qi]=ok;if(ok)score++;
+  const e=$('#exp');e.innerHTML=(ok?'⭕ 정답! ':'❌ 아쉬워요. ')+q.e;e.classList.add('show');$('#nextQ').style.display='inline-flex';
+  $$('.dot',qc)[qi].className='dot '+(ok?'ok':'bad');
+}
+function renderResult(){
+  const pct=score/quiz.length, C=2*Math.PI*62;
+  const msg=score===10?'완벽합니다! 🏆':score>=8?'아주 잘 기억하고 있어요 👏':score>=6?'좋아요. 틀린 문제는 STEP 1에서 다시 확인해 보세요.':'괜찮아요. STEP 1과 STEP 2부터 천천히 다시 읽어 봅시다.';
+  qc.innerHTML=`<div class="result"><div class="ring"><svg width="150" height="150"><circle cx="75" cy="75" r="62" fill="none" stroke="var(--line)" stroke-width="12"/><circle id="rg" cx="75" cy="75" r="62" fill="none" stroke="var(--blue)" stroke-width="12" stroke-linecap="round" stroke-dasharray="${C}" stroke-dashoffset="${C}" style="transition:stroke-dashoffset 1.2s cubic-bezier(.2,.7,.2,1)"/></svg><div class="num">${score}<small style="font-size:16px;color:var(--text-3)">/10</small></div></div>
+  <h3 style="font-size:24px;margin-bottom:6px">${msg}</h3><p style="color:var(--text-2);margin-bottom:20px">틀린 문제: ${res.map((r,i)=>r?null:i+1).filter(Boolean).join(', ')||'없음'}</p>
+  <button class="btn small" id="retry">다시 풀기</button></div>`;
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{$('#rg').style.strokeDashoffset=C*(1-pct)}));
+  $('#retry').onclick=()=>{qi=0;score=0;res=[];renderQ()};
+  $('#quizBadgeTxt').textContent=`${score} / 10점`;
+  if(score>=7)mark('quiz'); else $('#quizBadgeTxt').textContent+=' · 7점 이상이면 완료';
+}
+renderQ();
+
+/* 5. order */
+const steps=[
+ '십자가에서 이미 표현된 하나님의 사랑은 변하지 않음을 새깁니다.',
+ '환경에 푹 빠진 채로 하나님이 어떤 분인지 이해하려 하지 않습니다.',
+ '하나님께 나아가 그분의 관점으로 보게 해 달라고 기도합니다.',
+ '성령님이 말씀으로 인도하시기를 기다립니다.',
+ '삶의 초점을 하나님이 하고 계신다고 생각되는 일에 맞춥니다.',
+ '하나님이 하라고 하시는 모든 일을 합니다.',
+ '하나님이 나를 통해 목적을 이루시는 것을 경험합니다.'
+];
+let next=0,miss=0;
+function initOrder(){
+  next=0;miss=0;$('#orderMsg').textContent='';$('#orderMsg').className='msg';
+  $('#slots').innerHTML=steps.map((_,i)=>`<div class="slot" data-i="${i}"><span class="sn">${i+1}</span><span class="st">?</span></div>`).join('');
+  const idx=steps.map((_,i)=>i);do{idx.sort(()=>Math.random()-.5)}while(idx.every((v,i)=>v===i));
+  $('#pool').innerHTML=idx.map(i=>`<button class="step" data-i="${i}">${steps[i]}</button>`).join('');
+  $$('#pool .step').forEach(b=>b.onclick=()=>{
+    const i=+b.dataset.i;
+    if(i===next){const s=$(`.slot[data-i="${i}"]`);s.classList.add('done');$('.st',s).textContent=steps[i];b.remove();next++;
+      if(next===7){const m=$('#orderMsg');m.textContent=miss===0?'한 번도 틀리지 않고 완성했어요! 🎉':`완성! (틀린 횟수 ${miss}번)`;m.className='msg good';mark('order')}}
+    else{miss++;b.classList.remove('bad');void b.offsetWidth;b.classList.add('bad');$('#orderMsg').textContent=`아직 ${next+1}번 차례가 아니에요.`}
+  });
+}
+$('#resetOrder').onclick=initOrder;initOrder();
+
+/* 6. job seg */
+$$('#jobSeg button').forEach(b=>b.onclick=()=>{
+  $$('#jobSeg button').forEach(x=>x.classList.toggle('on',x===b));
+  $$('.cmp-panel').forEach(p=>p.classList.toggle('on',p.id===b.dataset.p));
+});
+
+/* 7. carrie */
+const tri=new Set();
+$$('#triple .tri').forEach(t=>t.onclick=()=>{
+  t.classList.add('on');tri.add(t.dataset.i);
+  if(tri.size===3){$('#converge').classList.add('on');mark('carrie')}
+});
+
+/* 8. discussion */
+let di=0;const dqs=$$('.dq');
+function showDq(){dqs.forEach((d,i)=>d.classList.toggle('on',i===di));$('#dqCnt').textContent=`${di+1} / ${dqs.length}`;$('#dqPrev').style.visibility=di===0?'hidden':'visible';$('#dqNext').style.visibility=di===dqs.length-1?'hidden':'visible'}
+$('#dqPrev').onclick=()=>{di=Math.max(0,di-1);showDq()};
+$('#dqNext').onclick=()=>{di=Math.min(dqs.length-1,di+1);showDq()};showDq();
+
+/* 9. five */
+const five=[
+ ['환경도 하나님이 말씀하시는 통로입니다.','성령님은 성경, 기도, 환경으로 말씀하시고, 예수님도 환경으로 아버지의 뜻을 아셨습니다.'],
+ ['하나님이 먼저 일하시고, 우리는 그곳에 맞춥니다.','환경은 아버지가 하시는 일을 보는 창이고, 그 일을 보는 것이 동참하라는 초청입니다. 추측이나 상상으로 하나님을 위한 일을 만들지 않습니다.'],
+ ['환경에 푹 빠져서 하나님을 판단하면 하나님을 오해합니다.','"사랑하지 않으신다", "공평하지 않으시다"는 환경이 시키는 말이지 하나님이 하신 말씀이 아닙니다.'],
+ ['어려운 환경에서는 먼저 하나님께 나아가 그분의 관점을 구합니다.','성령님이 말씀으로 환경의 진실을 보여주십니다. 욥 이야기에서 보듯 하나님의 관점을 모른 채 하는 판단은 틀립니다.'],
+ ['이해가 안 될 때도 하나님의 사랑과 주권을 붙듭니다.','하나님이 이유를 밝히지 않으실 수도 있습니다. 그래도 십자가가 증명한 사랑은 변하지 않습니다.']
+];
+$('#five').innerHTML=five.map((f,i)=>`<label><input type="checkbox"><div><b>${i+1}. ${f[0]}</b><span>${f[1]}</span></div></label>`).join('');
+$$('#five input').forEach(c=>c.addEventListener('change',()=>{
+  c.closest('label').classList.toggle('chk',c.checked);
+  const n=$$('#five input:checked').length;$('#fiveBadgeTxt').textContent=`${n} / 5`;
+  if(n===5)mark('five');
+}));
+</script>
+</body>
+</html>
