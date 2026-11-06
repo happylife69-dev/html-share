@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>한 사람을 마음으로 품기 · 목장 리더 모임 복습</title>
+<style>
+:root{
+  --bg:#fbfbfd; --bg2:#f5f5f7; --card:#ffffff; --text:#1d1d1f; --text2:#6e6e73; --line:rgba(0,0,0,.1);
+  --blue:#0071e3; --blue-soft:rgba(0,113,227,.1); --green:#34c759; --red:#ff3b30; --orange:#ff9f0a;
+  --nav:rgba(251,251,253,.72); --shadow:0 4px 24px rgba(0,0,0,.06); --shadow-lg:0 18px 50px rgba(0,0,0,.12);
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#000; --bg2:#111113; --card:#1c1c1e; --text:#f5f5f7; --text2:#a1a1a6; --line:rgba(255,255,255,.14);
+    --blue:#2997ff; --blue-soft:rgba(41,151,255,.16); --green:#30d158; --red:#ff453a; --orange:#ff9f0a;
+    --nav:rgba(0,0,0,.6); --shadow:0 4px 24px rgba(0,0,0,.4); --shadow-lg:0 18px 50px rgba(0,0,0,.6);
+  }
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.6;letter-spacing:-.01em;-webkit-font-smoothing:antialiased;word-break:keep-all}
+button{font:inherit;color:inherit;cursor:pointer;border:none;background:none}
+button:focus-visible,input:focus-visible,textarea:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offset:2px;border-radius:12px}
+
+/* nav */
+nav{position:fixed;inset:0 0 auto 0;height:52px;z-index:50;background:var(--nav);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:center;gap:4px;padding:0 12px;overflow-x:auto;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav a{font-size:13px;color:var(--text2);text-decoration:none;padding:6px 12px;border-radius:980px;white-space:nowrap;transition:.25s}
+nav a:hover{color:var(--text)}
+nav a.on{color:var(--blue);background:var(--blue-soft);font-weight:600}
+#bar{position:fixed;top:52px;left:0;height:2px;background:var(--blue);width:0;z-index:51;transition:width .1s}
+
+section{padding:110px 22px;max-width:980px;margin:0 auto}
+section.wide{max-width:1080px}
+.eyebrow{font-size:14px;font-weight:600;color:var(--blue);letter-spacing:.02em;margin-bottom:10px}
+h2{font-size:clamp(30px,5.2vw,52px);line-height:1.12;letter-spacing:-.03em;font-weight:700;margin:0 0 16px}
+.lead{font-size:clamp(17px,2.2vw,21px);color:var(--text2);max-width:680px;margin:0 0 44px}
+
+/* hero */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 22px 80px;max-width:none;
+  background:radial-gradient(1200px 600px at 50% -10%,var(--blue-soft),transparent 70%)}
+.hero .date{font-size:15px;color:var(--text2);margin-bottom:18px}
+.hero h1{font-size:clamp(44px,9vw,96px);line-height:1.05;letter-spacing:-.04em;font-weight:800;margin:0 0 24px;
+  background:linear-gradient(135deg,var(--text) 30%,var(--blue));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .core{font-size:clamp(18px,2.6vw,26px);max-width:760px;font-weight:500;line-height:1.5;margin:0 auto 14px}
+.hero .core b{color:var(--blue)}
+.hero .verse{color:var(--text2);font-size:15px;margin-bottom:40px}
+.btn{display:inline-block;background:var(--blue);color:#fff;text-decoration:none;padding:13px 28px;border-radius:980px;font-size:17px;font-weight:500;transition:.25s;box-shadow:0 6px 20px var(--blue-soft)}
+.btn:hover{transform:scale(1.04)}
+.btn.ghost{background:var(--blue-soft);color:var(--blue);box-shadow:none}
+.btn.sm{padding:9px 20px;font-size:15px}
+.btn[disabled]{opacity:.4;cursor:default;transform:none}
+.scrollhint{margin-top:56px;color:var(--text2);font-size:13px;animation:bob 2s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(6px)}}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(32px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}*{animation:none!important}}
+
+.card{background:var(--card);border-radius:28px;padding:32px;box-shadow:var(--shadow)}
+.band{background:var(--bg2);max-width:none;padding-left:0;padding-right:0}
+.band>.inner{max-width:980px;margin:0 auto;padding:110px 22px}
+.band.wide>.inner{max-width:1080px}
+
+/* timeline */
+.tl{display:grid;grid-template-columns:repeat(6,1fr);gap:0;position:relative;margin-bottom:28px}
+.tl::before{content:"";position:absolute;top:19px;left:8%;right:8%;height:3px;background:var(--line);border-radius:3px}
+.tl button{position:relative;display:flex;flex-direction:column;align-items:center;gap:10px;padding:0 4px;text-align:center}
+.tl .dot{width:40px;height:40px;border-radius:50%;background:var(--card);border:3px solid var(--line);display:grid;place-items:center;font-size:18px;transition:.3s;z-index:1}
+.tl button:hover .dot{transform:scale(1.12)}
+.tl button.on .dot{background:var(--blue);border-color:var(--blue);transform:scale(1.18);box-shadow:0 0 0 8px var(--blue-soft)}
+.tl .d{font-size:13px;font-weight:600;color:var(--text2);transition:.3s}
+.tl button.on .d{color:var(--blue)}
+#tlDetail{min-height:120px;transition:.3s}
+#tlDetail .tag{display:inline-block;font-size:12px;font-weight:600;background:var(--blue-soft);color:var(--blue);padding:3px 11px;border-radius:980px;margin-bottom:10px}
+#tlDetail h3{margin:0 0 8px;font-size:24px;letter-spacing:-.02em}
+#tlDetail p{margin:0;color:var(--text2);font-size:17px}
+@media(max-width:640px){.tl{grid-template-columns:repeat(3,1fr);row-gap:22px}.tl::before{display:none}}
+
+/* intro timer */
+.quote{font-size:clamp(20px,3vw,30px);font-weight:600;line-height:1.45;letter-spacing:-.02em;border-left:4px solid var(--blue);padding-left:22px;margin:0 0 32px}
+.timer{display:flex;align-items:center;gap:28px;flex-wrap:wrap}
+.ring{position:relative;width:140px;height:140px}
+.ring svg{transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:9}
+.ring .bgc{stroke:var(--line)}
+.ring .fg{stroke:var(--blue);stroke-linecap:round;transition:stroke-dashoffset .3s linear}
+.ring .t{position:absolute;inset:0;display:grid;place-items:center;font-size:34px;font-weight:700;font-variant-numeric:tabular-nums}
+.timer .msg{font-size:17px;color:var(--text2);max-width:360px}
+.link-note{margin-top:28px;padding:18px 22px;border-radius:20px;background:var(--blue-soft);font-size:16px}
+
+/* flip cards */
+.flips{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.flip{perspective:1200px;height:380px}
+.flip>div{position:relative;width:100%;height:100%;transition:transform .8s cubic-bezier(.2,.7,.2,1);transform-style:preserve-3d}
+.flip.on>div{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;border-radius:28px;padding:28px;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;flex-direction:column;box-shadow:var(--shadow);text-align:left}
+.face.front{background:var(--card);align-items:flex-start;justify-content:space-between}
+.face.back{background:linear-gradient(160deg,var(--blue),#5e5ce6);color:#fff;transform:rotateY(180deg);justify-content:center;overflow:auto}
+.face .num{font-size:14px;font-weight:600;color:var(--blue)}
+.face .ico{font-size:56px}
+.face h3{margin:0;font-size:28px;letter-spacing:-.03em;line-height:1.2}
+.face .hint{font-size:13px;color:var(--text2)}
+.face.back p{margin:0;font-size:16.5px;line-height:1.65}
+.face.back .ref{margin-top:14px;font-size:13px;opacity:.8}
+.flip button{width:100%;height:100%;display:block;text-align:inherit;border-radius:28px}
+.sum{margin-top:30px;text-align:center;font-size:clamp(18px,2.4vw,24px);font-weight:600;letter-spacing:-.02em}
+.sum b{color:var(--blue)}
+@media(max-width:820px){.flips{grid-template-columns:1fr}.flip{height:300px}}
+
+/* who */
+.cols{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.cols .card h3{margin:0 0 6px;font-size:22px;letter-spacing:-.02em}
+.cols .card .n{color:var(--blue);font-size:14px;font-weight:600;margin-bottom:6px}
+.cols .card ul{margin:10px 0 0;padding-left:20px;color:var(--text2)}
+.cols .card p{margin:0;color:var(--text2)}
+@media(max-width:760px){.cols{grid-template-columns:1fr}}
+h3.sub{font-size:28px;letter-spacing:-.03em;margin:64px 0 8px}
+p.sub{color:var(--text2);margin:0 0 24px;font-size:17px}
+
+/* list builder */
+.lb{display:grid;gap:18px}
+.lbcard{background:var(--card);border-radius:28px;padding:26px;box-shadow:var(--shadow);transition:.3s}
+.lbcard.done{box-shadow:0 0 0 2px var(--green),var(--shadow)}
+.lbhead{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.lbhead .badge{width:34px;height:34px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font-weight:700;flex:none}
+.lbcard.done .badge{background:var(--green)}
+.lbhead input{flex:1;font:inherit;font-size:20px;font-weight:600;border:none;border-bottom:2px solid var(--line);background:transparent;color:var(--text);padding:6px 2px;transition:.2s}
+.lbhead input:focus{outline:none;border-color:var(--blue)}
+.fields{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.fields label{display:block;font-size:13px;font-weight:600;color:var(--text2);margin-bottom:5px}
+.fields textarea{width:100%;font:inherit;font-size:15px;border-radius:14px;border:1px solid var(--line);background:var(--bg2);color:var(--text);padding:10px 12px;resize:vertical;min-height:62px;transition:.2s}
+.fields textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 4px var(--blue-soft)}
+@media(max-width:640px){.fields{grid-template-columns:1fr}}
+.lbmeta{display:flex;align-items:center;gap:16px;margin-top:20px;flex-wrap:wrap}
+.pbar{flex:1;min-width:180px;height:8px;border-radius:8px;background:var(--line);overflow:hidden}
+.pbar>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--green));border-radius:8px;transition:width .5s cubic-bezier(.2,.7,.2,1)}
+.lbmeta span{font-size:14px;color:var(--text2);font-variant-numeric:tabular-nums}
+.priv{margin-top:18px;padding:16px 20px;border-radius:18px;background:rgba(255,159,10,.12);font-size:14.5px;color:var(--text)}
+.priv b{color:var(--orange)}
+
+/* reality */
+.real{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.real button{background:var(--card);border-radius:24px;padding:24px;text-align:left;box-shadow:var(--shadow);transition:.3s;display:block;width:100%}
+.real button:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.real .q{font-size:13px;font-weight:600;color:var(--blue);display:block;margin-bottom:4px}
+.real .t{font-size:20px;font-weight:700;letter-spacing:-.02em;display:flex;justify-content:space-between;align-items:center}
+.real .t i{font-style:normal;font-size:22px;color:var(--text2);transition:.3s}
+.real button.on .t i{transform:rotate(45deg);color:var(--blue)}
+.real .a{max-height:0;overflow:hidden;opacity:0;transition:max-height .5s,opacity .5s,margin .5s;color:var(--text2);font-size:16px}
+.real button.on .a{max-height:200px;opacity:1;margin-top:12px}
+@media(max-width:640px){.real{grid-template-columns:1fr}}
+
+/* fill */
+.sentence{font-size:clamp(22px,3.6vw,38px);font-weight:700;line-height:1.7;letter-spacing:-.03em;text-align:center;max-width:860px;margin:0 auto 34px}
+.blank{display:inline-block;min-width:3.4em;border-bottom:3px dashed var(--blue);color:var(--blue);padding:0 6px;margin:0 3px;cursor:pointer;transition:.2s;text-align:center;border-radius:6px}
+.blank:hover{background:var(--blue-soft)}
+.blank.filled{border-bottom-style:solid}
+.blank.ok{color:var(--green);border-color:var(--green);background:rgba(52,199,89,.12)}
+.blank.no{color:var(--red);border-color:var(--red);background:rgba(255,59,48,.1);animation:shake .4s}
+@keyframes shake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:28px}
+.chip{background:var(--card);border-radius:980px;padding:10px 22px;font-size:18px;font-weight:600;box-shadow:var(--shadow);transition:.2s}
+.chip:hover{transform:translateY(-2px)}
+.chip.sel{background:var(--blue);color:#fff;transform:scale(1.08)}
+.chip.used{opacity:.25;pointer-events:none}
+.center{text-align:center}
+.fb{min-height:28px;margin-top:16px;font-size:17px;font-weight:600}
+
+/* quiz */
+.quiz{max-width:760px;margin:0 auto}
+.qtop{display:flex;align-items:center;gap:14px;margin-bottom:22px;font-size:14px;color:var(--text2);font-variant-numeric:tabular-nums}
+.qbox{background:var(--card);border-radius:32px;padding:clamp(24px,5vw,44px);box-shadow:var(--shadow-lg)}
+.qbox h3{font-size:clamp(21px,3vw,28px);line-height:1.35;letter-spacing:-.025em;margin:0 0 24px}
+.opts{display:grid;gap:12px}
+.opt{text-align:left;padding:16px 20px;border-radius:18px;background:var(--bg2);font-size:17px;border:2px solid transparent;transition:.2s;display:flex;gap:14px;align-items:center}
+.opt:hover:not([disabled]){border-color:var(--blue);transform:translateX(4px)}
+.opt .k{width:28px;height:28px;border-radius:50%;background:var(--card);display:grid;place-items:center;font-size:13px;font-weight:700;flex:none;color:var(--text2)}
+.opt.right{background:rgba(52,199,89,.15);border-color:var(--green)}
+.opt.wrong{background:rgba(255,59,48,.12);border-color:var(--red);animation:shake .4s}
+.opt[disabled]{cursor:default}
+.expl{margin-top:20px;padding:16px 20px;border-radius:18px;background:var(--blue-soft);font-size:16px;display:none}
+.expl.show{display:block;animation:fade .5s}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}}
+.qnext{margin-top:22px;text-align:right}
+.result{text-align:center;padding:10px 0}
+.result .big{font-size:clamp(64px,14vw,120px);font-weight:800;letter-spacing:-.05em;line-height:1;background:linear-gradient(135deg,var(--blue),var(--green));-webkit-background-clip:text;background-clip:text;color:transparent}
+.result p{font-size:19px;color:var(--text2);margin:14px 0 26px}
+
+/* discussion */
+.car{position:relative;max-width:760px;margin:0 auto}
+.slides{position:relative;min-height:290px}
+.slide{position:absolute;inset:0;background:var(--card);border-radius:32px;padding:clamp(26px,5vw,44px);box-shadow:var(--shadow-lg);opacity:0;transform:translateX(40px) scale(.97);pointer-events:none;transition:.5s cubic-bezier(.2,.7,.2,1);display:flex;flex-direction:column;justify-content:center}
+.slide.on{opacity:1;transform:none;pointer-events:auto}
+.slide.prev{transform:translateX(-40px) scale(.97)}
+.slide .no{font-size:14px;font-weight:600;color:var(--blue);margin-bottom:10px}
+.slide p{margin:0;font-size:clamp(20px,2.8vw,27px);font-weight:600;line-height:1.5;letter-spacing:-.02em}
+.carnav{display:flex;align-items:center;justify-content:center;gap:22px;margin-top:26px}
+.arrow{width:46px;height:46px;border-radius:50%;background:var(--card);box-shadow:var(--shadow);font-size:20px;transition:.2s}
+.arrow:hover{background:var(--blue);color:#fff}
+.dots{display:flex;gap:8px}
+.dots i{width:8px;height:8px;border-radius:8px;background:var(--line);transition:.3s}
+.dots i.on{width:26px;background:var(--blue)}
+
+/* checklist */
+.act{display:grid;grid-template-columns:1fr 200px;gap:28px;align-items:center}
+.checks{display:grid;gap:12px}
+.check{display:flex;gap:16px;align-items:flex-start;text-align:left;background:var(--card);border-radius:22px;padding:20px 22px;box-shadow:var(--shadow);transition:.3s;width:100%}
+.check:hover{transform:translateY(-2px)}
+.box{width:28px;height:28px;border-radius:50%;border:2.5px solid var(--line);flex:none;margin-top:2px;display:grid;place-items:center;color:transparent;font-size:15px;font-weight:700;transition:.3s}
+.check.on .box{background:var(--green);border-color:var(--green);color:#fff;transform:scale(1.1)}
+.check .tx{font-size:17px}
+.check.on .tx{color:var(--text2);text-decoration:line-through;text-decoration-color:var(--line)}
+.pring{position:relative;width:180px;height:180px;margin:0 auto}
+.pring svg{transform:rotate(-90deg)}
+.pring circle{fill:none;stroke-width:14}
+.pring .bgc{stroke:var(--line)}
+.pring .fg{stroke:var(--green);stroke-linecap:round;transition:stroke-dashoffset .8s cubic-bezier(.2,.7,.2,1)}
+.pring .t{position:absolute;inset:0;display:grid;place-items:center;text-align:center;font-size:38px;font-weight:800;letter-spacing:-.03em}
+.pring .t small{display:block;font-size:12px;font-weight:500;color:var(--text2);letter-spacing:0}
+@media(max-width:720px){.act{grid-template-columns:1fr}}
+
+/* prayer */
+.prayer{max-width:none;background:radial-gradient(800px 500px at 50% 40%,rgba(94,92,230,.22),transparent 70%),var(--bg);text-align:center;padding:130px 22px 150px}
+.breath{width:120px;height:120px;border-radius:50%;margin:0 auto 40px;background:radial-gradient(circle at 35% 30%,#fff9,var(--blue));box-shadow:0 0 80px var(--blue-soft);animation:breathe 7s ease-in-out infinite}
+@keyframes breathe{50%{transform:scale(1.35);box-shadow:0 0 130px var(--blue)}}
+.prayer p{max-width:620px;margin:0 auto 20px;font-size:clamp(18px,2.4vw,22px);color:var(--text2)}
+.prayer .pray{font-size:clamp(24px,4vw,38px);font-weight:700;color:var(--text);line-height:1.4;letter-spacing:-.03em;margin-top:28px}
+footer{text-align:center;color:var(--text2);font-size:13px;padding:30px 22px 60px}
+
+/* confetti */
+.cf{position:fixed;top:-20px;width:10px;height:14px;z-index:99;pointer-events:none;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:.9}}
+</style>
+</head>
+<body>
+
+<div id="bar"></div>
+<nav id="nav">
+  <a href="#top">처음</a><a href="#plan">일정</a><a href="#intro">도입</a><a href="#why">1부</a><a href="#who">2부</a><a href="#fill">빈칸</a><a href="#quiz">퀴즈</a><a href="#talk">토론</a><a href="#act">실천</a><a href="#pray">기도</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="date rv">Nov 5, 2026 · 목장 리더 모임 복습</div>
+  <h1 class="rv">한 사람을<br>마음으로 품기</h1>
+  <p class="core rv"><b>핵심 문장:</b> 전도는 행사에 사람을 모으는 일이 아닙니다. 이미 마음에 품은 한 사람에게 하나님의 집 문을 열어 주는 일입니다.</p>
+  <p class="verse rv">요한복음 1:40–46 ("와서 보라") · 누가복음 14:16–24 (큰 잔치)</p>
+  <a class="btn rv" href="#plan">복습 시작하기</a>
+  <div class="scrollhint">↓ 스크롤</div>
+</section>
+
+<!-- PLAN -->
+<section id="plan" class="wide">
+  <div class="eyebrow rv">추수감사주일 전도 초청 1</div>
+  <h2 class="rv">전체 일정</h2>
+  <p class="lead rv">11월 22일 추수감사주일에 전도대상자를 교회로 초청하는 일을 두 번에 걸쳐 준비합니다. 오늘(11/5)은 <b>마음과 명단</b>, 다음 주(11/12)는 <b>초청과 환대</b>를 다룹니다. 동그라미를 눌러 보세요.</p>
+  <div class="tl rv" id="tl"></div>
+  <div class="card rv" id="tlDetail" aria-live="polite"></div>
+</section>
+
+<!-- INTRO -->
+<div class="band" id="intro"><div class="inner">
+  <div class="eyebrow rv">도입</div>
+  <h2 class="rv">여는 질문</h2>
+  <p class="lead rv">지난 7강에서 우리는 한 영혼을 품는 목자의 마음을 배웠습니다. 오늘은 그 마음을 아직 교회 밖에 있는 한 사람에게로 넓혀 봅니다.</p>
+  <div class="card rv">
+    <p style="margin:0 0 6px;color:var(--text2);font-size:15px;font-weight:600">1분 침묵 후 두세 분 나눔</p>
+    <p class="quote" style="margin-top:14px">나를 처음 교회로 초청해 준 사람은 누구였습니까? 무엇 때문에 그 초청에 응했습니까?</p>
+    <div class="timer">
+      <div class="ring">
+        <svg width="140" height="140" viewBox="0 0 140 140"><circle class="bgc" cx="70" cy="70" r="62"/><circle class="fg" id="tmFg" cx="70" cy="70" r="62" stroke-dasharray="389.56" stroke-dashoffset="0"/></svg>
+        <div class="t" id="tmT">1:00</div>
+      </div>
+      <div>
+        <div class="msg" id="tmMsg">버튼을 누르면 1분 침묵이 시작됩니다. 그 사람의 얼굴을 떠올려 보세요.</div>
+        <div style="margin-top:14px;display:flex;gap:10px"><button class="btn sm" id="tmGo">침묵 시작</button><button class="btn sm ghost" id="tmReset">처음으로</button></div>
+      </div>
+    </div>
+  </div>
+  <div class="link-note rv"><b>연결 멘트:</b> 대부분은 설교나 프로그램이 아니라 한 사람 때문에 왔습니다. 안드레는 형제 시몬을 예수님께 데려갔고, 빌립은 나다나엘에게 "와서 보라"고 했습니다(요 1:42, 46). 오늘은 우리가 그 한 사람이 되어 보려고 합니다.</div>
+</div></div>
+
+<!-- PART 1 -->
+<section id="why" class="wide">
+  <div class="eyebrow rv">1부 · 요한복음 1:40–46</div>
+  <h2 class="rv">왜 초청하는가</h2>
+  <p class="lead rv">카드를 눌러 뒤집어 보세요. 앞면에서 먼저 답을 떠올려 보고, 뒷면으로 확인합니다.</p>
+  <div class="flips" id="flips"></div>
+  <p class="sum rv"><b>1부 정리:</b> 우리는 감사로, 관계 안에서, 부담 없이 초청합니다.</p>
+</section>
+
+<!-- PART 2 -->
+<div class="band wide" id="who"><div class="inner">
+  <div class="eyebrow rv">2부</div>
+  <h2 class="rv">누구를 초청하는가</h2>
+  <p class="lead rv">이미 관계가 있는 사람부터, 목장당 3명으로, 이름 옆에 네 가지를 적습니다.</p>
+
+  <div class="cols">
+    <div class="card rv"><div class="n">첫째</div><h3>이미 관계가 있는 사람부터 시작합니다</h3>
+      <ul><li>믿지 않는 가족과 배우자</li><li>직장 동료, 이웃, 거래처 사람들, 자녀 학교에서 만난 부모</li><li>교회를 떠났거나 오랫동안 나오지 않는 분 (7강의 잃은 양)</li></ul></div>
+    <div class="card rv"><div class="n">둘째</div><h3>목장당 3명으로 정합니다</h3>
+      <p>목원마다 한 사람 이상 적으면 목자 혼자의 일이 아니라 목장 전체의 일이 됩니다. 많이 적는 것보다 진심으로 기도할 수 있는 사람을 적는 것이 중요합니다.</p></div>
+  </div>
+
+  <h3 class="sub rv">셋째, 이름 옆에 네 가지를 적습니다</h3>
+  <p class="sub rv">직접 연습해 보세요. 가상의 인물이어도 좋습니다.</p>
+  <div class="lb rv" id="lb"></div>
+  <div class="lbmeta rv"><div class="pbar"><i id="lbBar"></i></div><span id="lbTxt">0 / 15 칸</span></div>
+  <div class="priv rv"><b>개인정보 원칙:</b> 전도대상자의 이름은 목장 안에서, 그리고 목장 리더 모임에서만 사용하고, 허락 없이 외부에 공유하지 않습니다.<br><span style="color:var(--text2)">이 연습 칸에 쓴 내용은 어디에도 저장되거나 전송되지 않고, 새로고침하면 사라집니다. 가급적 실제 이름은 쓰지 마세요.</span></div>
+
+  <h3 class="sub rv">넷째, 이민 현실을 고려합니다</h3>
+  <p class="sub rv">카드를 눌러 어떻게 대하면 좋을지 확인하세요.</p>
+  <div class="real rv" id="real"></div>
+</div></div>
+
+<!-- FILL -->
+<section id="fill">
+  <div class="eyebrow rv">정리와 적용</div>
+  <h2 class="rv">핵심 문장 빈칸 채우기</h2>
+  <p class="lead rv">아래 보기에서 단어를 고른 뒤, 빈칸을 눌러 넣어 보세요. 보기 중에는 정답이 아닌 것도 섞여 있습니다.</p>
+  <div class="sentence rv" id="sentence">
+    전도는 <span class="blank" data-a="행사"></span>에 사람을 모으는 일이 아니라, 이미 <span class="blank" data-a="품은"></span> 한 사람에게 하나님의 집 <span class="blank" data-a="문"></span>을 열어 주는 일이다.
+  </div>
+  <div class="chips rv" id="chips"></div>
+  <div class="center rv"><button class="btn" id="fillCheck">정답 확인</button> <button class="btn ghost" id="fillReset">다시 하기</button><div class="fb" id="fillFb"></div></div>
+  <p class="sum rv" style="margin-top:56px"><b>핵심 정리:</b> 우리는 감사로 초청하고, 이미 있는 관계 안에서 초청하며, 한 사람을 마음으로 품고 기도합니다.</p>
+</section>
+
+<!-- QUIZ -->
+<div class="band" id="quiz"><div class="inner">
+  <div class="eyebrow rv">확인 퀴즈</div>
+  <h2 class="rv">얼마나 기억하고 있나요?</h2>
+  <p class="lead rv">8문항입니다. 답을 고르면 바로 해설이 나옵니다.</p>
+  <div class="quiz rv">
+    <div class="qtop"><span id="qNo">1 / 8</span><div class="pbar"><i id="qBar"></i></div><span id="qSc">0점</span></div>
+    <div class="qbox" id="qBox"></div>
+  </div>
+</div></div>
+
+<!-- TALK -->
+<section id="talk">
+  <div class="eyebrow rv">목장에서 나누기</div>
+  <h2 class="rv">토론 질문</h2>
+  <p class="lead rv">화살표나 키보드 ← → 로 넘겨 보세요.</p>
+  <div class="car rv" id="car">
+    <div class="slides" id="slides"></div>
+    <div class="carnav"><button class="arrow" id="prev" aria-label="이전">←</button><div class="dots" id="dots"></div><button class="arrow" id="next" aria-label="다음">→</button></div>
+  </div>
+</section>
+
+<!-- ACT -->
+<div class="band" id="act"><div class="inner">
+  <div class="eyebrow rv">이번 주 실천과제</div>
+  <h2 class="rv">작은 걸음부터</h2>
+  <p class="lead rv">실천하면 체크해 보세요. (이 체크는 저장되지 않습니다.)</p>
+  <div class="act rv">
+    <div class="checks" id="checks"></div>
+    <div class="pring"><svg width="180" height="180" viewBox="0 0 180 180"><circle class="bgc" cx="90" cy="90" r="78"/><circle class="fg" id="pgFg" cx="90" cy="90" r="78" stroke-dasharray="490.09" stroke-dashoffset="490.09"/></svg><div class="t"><div><span id="pgT">0</span>%<small id="pgS">0 / 3</small></div></div></div>
+  </div>
+</div></div>
+
+<!-- PRAYER -->
+<section class="prayer" id="pray">
+  <div class="breath"></div>
+  <div class="eyebrow rv">마무리 합심기도</div>
+  <p class="rv">각 목자가 마음에 둔 한 사람을 떠올리며 조용히 기도합니다. 인도자는 이렇게 기도로 마칩니다.</p>
+  <div class="pray rv">"우리를 먼저 부르신 주님,<br>받은 사랑을 흘려보내는 목자가 되게 하소서"</div>
+</section>
+
+<footer>다음 리더 모임 11/12(목) · 선정한 <b>명단</b>을 가져옵니다.</footer>
+
+<script>
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+
+/* scroll reveal + nav + progress */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+function observe(root=document){$$('.rv:not(.in)',root).forEach(el=>io.observe(el))}
+observe();
+const secs=['top','plan','intro','why','who','fill','quiz','talk','act','pray'];
+const links=$$('#nav a');
+function onScroll(){
+  const h=document.documentElement;
+  $('#bar').style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
+  let cur=secs[0];
+  secs.forEach(id=>{const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<window.innerHeight*.4)cur=id});
+  links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+cur));
+}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+/* timeline */
+const plan=[
+ {d:'11/5 (목)',i:'📖',tag:'1차',t:'왜, 누구를 초청하는가',p:'오늘 강의입니다. 마음과 명단을 다룹니다.'},
+ {d:'11/5–11/11',i:'✍️',tag:'목장별',t:'전도대상자 선정과 기도 시작',p:'각 목장에서 전도대상자 3명이상 선정, 이름을 불러가며 기도 시작'},
+ {d:'11/12 (목)',i:'🤝',tag:'2차',t:'어떻게 초청하고 맞이하는가',p:'다음 리더 모임입니다. 선정한 명단을 가져옵니다.'},
+ {d:'11/13–11/21',i:'🙏',tag:'특별 기간',t:'특별 새벽기도회와 초청',p:'영혼 구원을 위한 특별 새벽기도회, 초청하기, 11/19–21쯤 확인 연락'},
+ {d:'11/22 (주일)',i:'🍂',tag:'당일',t:'추수감사주일',p:'전도대상자를 교회로 초청하는 날입니다.'},
+ {d:'11/23 이후',i:'💛',tag:'이후',t:'후속 돌봄',p:'초청 이후에도 계속 돌봅니다.'}
+];
+const tl=$('#tl'),det=$('#tlDetail');
+plan.forEach((s,i)=>{
+  const b=document.createElement('button');
+  b.innerHTML=`<span class="dot">${s.i}</span><span class="d">${s.d}</span>`;
+  b.onclick=()=>show(i);tl.appendChild(b);
+});
+function show(i){
+  $$('button',tl).forEach((b,j)=>b.classList.toggle('on',i===j));
+  const s=plan[i];det.innerHTML=`<span class="tag">${s.tag}</span><h3>${s.d} · ${s.t}</h3><p>${s.p}</p>`;
+}
+show(0);
+
+/* silence timer */
+let tmI=null,tmLeft=60;
+const C1=2*Math.PI*62;
+function tmDraw(){$('#tmT').textContent=`${Math.floor(tmLeft/60)}:${String(tmLeft%60).padStart(2,'0')}`;$('#tmFg').style.strokeDashoffset=C1*(1-tmLeft/60)}
+$('#tmGo').onclick=()=>{
+  if(tmI){clearInterval(tmI);tmI=null;$('#tmGo').textContent='이어서 하기';$('#tmMsg').textContent='잠시 멈췄습니다.';return}
+  if(tmLeft<=0)tmLeft=60;
+  $('#tmGo').textContent='일시정지';$('#tmMsg').textContent='조용히, 그 사람의 얼굴을 떠올려 보세요.';
+  tmI=setInterval(()=>{tmLeft--;tmDraw();if(tmLeft<=0){clearInterval(tmI);tmI=null;$('#tmGo').textContent='다시 하기';$('#tmMsg').textContent='1분이 지났습니다. 이제 두세 분이 나눠 봅니다.'}},1000);
+};
+$('#tmReset').onclick=()=>{clearInterval(tmI);tmI=null;tmLeft=60;tmDraw();$('#tmGo').textContent='침묵 시작';$('#tmMsg').textContent='버튼을 누르면 1분 침묵이 시작됩니다. 그 사람의 얼굴을 떠올려 보세요.'};
+tmDraw();
+
+/* flip cards */
+const flips=[
+ {n:'첫째',i:'🎁',t:'감사가 넘치면<br>나누고 싶어집니다',b:'추수감사는 받은 은혜를 기억하는 날입니다. 안드레는 예수님을 만난 기쁨을 혼자 두지 못하고 먼저 형제를 찾았습니다(요 1:41). 초청은 의무가 아니라 감사에서 나옵니다.'},
+ {n:'둘째',i:'🧑‍🤝‍🧑',t:'사람은 논리보다<br>관계 때문에 옵니다',b:'나다나엘이 "나사렛에서 무슨 선한 것이 나오겠느냐"고 반문했을 때, 빌립은 논쟁하지 않았습니다. "와서 보라"고 했습니다. 설명보다 초대가, 설득보다 동행이 먼저입니다.'},
+ {n:'셋째',i:'💌',t:'초청은 압박이 아니라<br>선물입니다',b:'큰 잔치 비유에서 주인은 "내 집을 채우라"고 하시지만(눅 14:23), 그 마음을 여시는 분은 하나님이십니다. 우리는 초청까지 맡고, 결과는 하나님께 맡깁니다.'}
+];
+const fw=$('#flips');
+flips.forEach(f=>{
+  const d=document.createElement('div');d.className='flip rv';
+  d.innerHTML=`<div><button class="face front" aria-label="카드 뒤집기"><span><span class="num">${f.n}</span></span><span class="ico">${f.i}</span><span><h3>${f.t}</h3><span class="hint" style="display:block;margin-top:10px">눌러서 뒤집기 ↻</span></span></button><button class="face back"><p>${f.b}</p></button></div>`;
+  $$('button',d).forEach(b=>b.onclick=()=>d.classList.toggle('on'));
+  fw.appendChild(d);
+});
+observe(fw);
+
+/* list builder */
+const lb=$('#lb');
+const labels=['① 그 사람과 나의 관계','② 그 사람의 요즘 형편','③ 기도제목','④ 부담 없이 초청할 수 있는 방법 (함께 식사, 차량 동행 등)'];
+for(let i=1;i<=3;i++){
+  const c=document.createElement('div');c.className='lbcard';
+  c.innerHTML=`<div class="lbhead"><span class="badge">${i}</span><input type="text" placeholder="이름 (가상 이름도 괜찮아요)" autocomplete="off" aria-label="${i}번 전도대상자 이름"></div><div class="fields">${labels.map(l=>`<div><label>${l}</label><textarea autocomplete="off" aria-label="${l}"></textarea></div>`).join('')}</div>`;
+  lb.appendChild(c);
+}
+function lbUpdate(){
+  let n=0;
+  $$('.lbcard',lb).forEach(c=>{
+    const f=$$('input,textarea',c).filter(x=>x.value.trim()).length;n+=f;
+    c.classList.toggle('done',f===5);
+  });
+  $('#lbBar').style.width=(n/15*100)+'%';
+  $('#lbTxt').textContent=n===15?'3명 모두 완성했어요! 🎉':`${n} / 15 칸`;
+}
+lb.addEventListener('input',lbUpdate);
+
+/* reality */
+const real=[
+ ['언어와 문화','영어가 편한 가족이나 2세는 영어 예배에 인도합니다.'],
+ ['다른 종교','다른 종교를 가진 분은 예배 방식을 미리 편안하게 설명해 줍니다.'],
+ ['체류 문제와 한인사회의 시선','체류 문제나 한인사회의 시선 때문에 이름 노출을 꺼리는 분이 있습니다.'],
+ ['교회에서 받은 상처','교회에서 받은 상처가 있는 분은 서두르지 않고 관계부터 회복합니다.']
+];
+const rw=$('#real');
+real.forEach((r,i)=>{
+  const b=document.createElement('button');
+  b.innerHTML=`<span class="q">상황 ${i+1}</span><span class="t">${r[0]}<i>＋</i></span><div class="a">${r[1]}</div>`;
+  b.onclick=()=>b.classList.toggle('on');rw.appendChild(b);
+});
+
+/* fill in the blank */
+const words=['행사','설교','품은','아는','문','길'];
+const chipBox=$('#chips');let sel=null;
+function buildChips(){
+  chipBox.innerHTML='';sel=null;
+  words.forEach(w=>{const c=document.createElement('button');c.className='chip';c.textContent=w;c.onclick=()=>{$$('.chip',chipBox).forEach(x=>x.classList.remove('sel'));sel=c;c.classList.add('sel')};chipBox.appendChild(c)});
+}
+buildChips();
+$$('.blank').forEach(b=>b.onclick=()=>{
+  b.classList.remove('ok','no');
+  if(b._chip){b._chip.classList.remove('used');b._chip=null;b.textContent='';b.classList.remove('filled');if(!sel)return}
+  if(!sel)return;
+  b.textContent=sel.textContent;b._chip=sel;b.classList.add('filled');sel.classList.remove('sel');sel.classList.add('used');sel=null;
+});
+$('#fillCheck').onclick=()=>{
+  let ok=0;const bl=$$('.blank');
+  bl.forEach(b=>{const r=b.textContent===b.dataset.a;b.classList.remove('ok','no');void b.offsetWidth;b.classList.add(r?'ok':'no');if(r)ok++});
+  const fb=$('#fillFb');
+  if(ok===bl.length){fb.style.color='var(--green)';fb.textContent='정답입니다! 이 문장이 오늘 강의의 핵심입니다.';confetti()}
+  else{fb.style.color='var(--red)';fb.textContent=`${ok} / ${bl.length} 맞았어요. 빨간 칸을 눌러 비우고 다시 골라 보세요.`}
+};
+$('#fillReset').onclick=()=>{$$('.blank').forEach(b=>{b.textContent='';b._chip=null;b.className='blank'});buildChips();$('#fillFb').textContent=''};
+
+/* quiz */
+const Q=[
+ {q:'안드레가 형제 시몬을 예수님께 데려간 이유로 강의에서 말한 것은?',o:['의무감 때문에','예수님을 만난 기쁨을 혼자 두지 못해서','목사님이 시켜서','교회 행사를 위해서'],a:1,e:'안드레는 예수님을 만난 기쁨을 혼자 두지 못하고 먼저 형제를 찾았습니다(요 1:41). 초청은 의무가 아니라 감사에서 나옵니다.'},
+ {q:'나다나엘이 "나사렛에서 무슨 선한 것이 나오겠느냐"고 반문했을 때 빌립은 어떻게 했습니까?',o:['논리적으로 반박했다','성경 구절을 길게 설명했다','"와서 보라"고 했다','그냥 돌아갔다'],a:2,e:'빌립은 논쟁하지 않고 "와서 보라"고 했습니다. 설명보다 초대가, 설득보다 동행이 먼저입니다.'},
+ {q:'큰 잔치 비유(눅 14:23)에서 우리가 맡은 일은 어디까지입니까?',o:['초청까지, 결과는 하나님께','반드시 등록시키는 것까지','마음을 돌이키게 하는 것까지','예배 참석 인원을 채우는 것까지'],a:0,e:'그 마음을 여시는 분은 하나님이십니다. 우리는 초청까지 맡고, 결과는 하나님께 맡깁니다.'},
+ {q:'목장당 전도대상자는 몇 명으로 정합니까?',o:['1명','3명','10명','제한 없음'],a:1,e:'목장당 3명으로 정합니다. 목원마다 한 사람 이상 적으면 목장 전체의 일이 됩니다. 많이 적는 것보다 진심으로 기도할 수 있는 사람을 적는 것이 중요합니다.'},
+ {q:'이름 옆에 적는 네 가지에 해당하지 않는 것은?',o:['그 사람과 나의 관계','그 사람의 요즘 형편','기도제목','그 사람의 직업과 연봉'],a:3,e:'관계, 요즘 형편, 기도제목, 부담 없이 초청할 수 있는 방법 이렇게 네 가지입니다.'},
+ {q:'영어가 편한 가족이나 2세는 어디로 인도합니까?',o:['한국어 예배','새벽기도회','영어 예배','목장 모임'],a:2,e:'이민 현실을 고려해 영어가 편한 가족이나 2세는 영어 예배에 인도합니다.'},
+ {q:'전도대상자의 이름은 어디에서만 사용합니까?',o:['목장 안, 그리고 목장 리더 모임','교회 전체 광고 시간','SNS 단체 대화방','주보'],a:0,e:'전도대상자의 이름은 목장 안에서, 그리고 목장 리더 모임에서만 사용하고, 허락 없이 외부에 공유하지 않습니다.'},
+ {q:'다음 리더 모임(11/12)에 가져오는 것은?',o:['초청장 100장','선정한 명단','헌금 봉투','목장 사진'],a:1,e:'다음 리더 모임(11/12)에 선정한 명단을 가져옵니다.'}
+];
+let qi=0,qs=0;
+const qb=$('#qBox');
+function qRender(){
+  const q=Q[qi];
+  $('#qNo').textContent=`${qi+1} / ${Q.length}`;$('#qBar').style.width=(qi/Q.length*100)+'%';$('#qSc').textContent=qs+'점';
+  qb.innerHTML=`<h3>${q.q}</h3><div class="opts">${q.o.map((t,i)=>`<button class="opt" data-i="${i}"><span class="k">${'ABCD'[i]}</span>${t}</button>`).join('')}</div><div class="expl" id="ex"></div><div class="qnext"></div>`;
+  $$('.opt',qb).forEach(b=>b.onclick=()=>answer(+b.dataset.i));
+}
+function answer(i){
+  const q=Q[qi];const ok=i===q.a;if(ok)qs++;
+  $$('.opt',qb).forEach((b,j)=>{b.disabled=true;if(j===q.a)b.classList.add('right');else if(j===i)b.classList.add('wrong')});
+  const ex=$('#ex');ex.innerHTML=`<b>${ok?'정답입니다! 👏':'아쉬워요.'}</b> ${q.e}`;ex.classList.add('show');
+  $('#qSc').textContent=qs+'점';
+  const n=document.createElement('button');n.className='btn sm';n.textContent=qi===Q.length-1?'결과 보기':'다음 문제';n.onclick=()=>{qi++;qi<Q.length?qRender():qEnd()};
+  $('.qnext',qb).appendChild(n);
+}
+function qEnd(){
+  $('#qBar').style.width='100%';$('#qNo').textContent='완료';
+  const msg=qs===Q.length?'완벽합니다! 오늘 강의의 핵심을 모두 기억하고 있어요.':qs>=6?'아주 잘하셨어요. 틀린 부분만 위에서 다시 살펴보세요.':'괜찮습니다. 위의 카드와 정리를 한 번 더 훑어보고 다시 도전해 보세요.';
+  qb.innerHTML=`<div class="result"><div class="big">${qs}<span style="font-size:.4em">/${Q.length}</span></div><p>${msg}</p><button class="btn" id="qRe">다시 풀기</button></div>`;
+  $('#qRe').onclick=()=>{qi=0;qs=0;qRender()};
+  if(qs>=6)confetti();
+}
+qRender();
+
+/* discussion carousel */
+const talk=[
+ '나를 초청해 준 사람의 어떤 모습이 가장 기억에 남습니까? 나도 그렇게 할 수 있을까요?',
+ '초청을 망설이게 하는 가장 큰 이유는 무엇입니까? (거절당할까 봐, 관계가 어색해질까 봐, 교회 사정 등)',
+ '전에 누군가를 교회에 초청해 본 적이 있다면, 그때 무엇이 어려웠고 무엇이 힘이 되었습니까?'
+];
+const sl=$('#slides'),dt=$('#dots');let ci=0;
+talk.forEach((t,i)=>{
+  sl.insertAdjacentHTML('beforeend',`<div class="slide"><div class="no">토론질문 ${i+1} / ${talk.length}</div><p>${t}</p></div>`);
+  dt.insertAdjacentHTML('beforeend','<i></i>');
+});
+function cShow(i){
+  ci=(i+talk.length)%talk.length;
+  $$('.slide',sl).forEach((s,j)=>{s.classList.toggle('on',j===ci);s.classList.toggle('prev',j<ci)});
+  $$('i',dt).forEach((d,j)=>d.classList.toggle('on',j===ci));
+}
+$('#prev').onclick=()=>cShow(ci-1);$('#next').onclick=()=>cShow(ci+1);
+addEventListener('keydown',e=>{
+  if(['INPUT','TEXTAREA'].includes(document.activeElement.tagName))return;
+  const r=$('#talk').getBoundingClientRect();if(r.top>innerHeight||r.bottom<0)return;
+  if(e.key==='ArrowLeft')cShow(ci-1);if(e.key==='ArrowRight')cShow(ci+1);
+});
+cShow(0);
+
+/* checklist */
+const acts=[
+ '다음 목장 모임에서 전도대상자를 정합니다. 목원마다 한 사람 이상 적습니다.',
+ '목장 기도시간에 "그 사람"을 마음으로 품고 11/22까지 매주 기도합니다.',
+ '다음 리더 모임(11/12)에 선정한 명단을 가져옵니다.'
+];
+const ck=$('#checks');const C2=2*Math.PI*78;
+acts.forEach(a=>{
+  const b=document.createElement('button');b.className='check';
+  b.innerHTML=`<span class="box">✓</span><span class="tx">${a}</span>`;
+  b.onclick=()=>{b.classList.toggle('on');pg()};ck.appendChild(b);
+});
+function pg(){
+  const n=$$('.check.on',ck).length,p=Math.round(n/acts.length*100);
+  $('#pgFg').style.strokeDashoffset=C2*(1-n/acts.length);
+  $('#pgT').textContent=p;$('#pgS').textContent=`${n} / ${acts.length}`;
+  if(n===acts.length)confetti();
+}
+
+/* confetti */
+function confetti(){
+  const cols=['#0071e3','#34c759','#ff9f0a','#ff375f','#5e5ce6','#64d2ff'];
+  for(let i=0;i<60;i++){
+    const d=document.createElement('i');d.className='cf';
+    d.style.left=Math.random()*100+'vw';d.style.background=cols[i%cols.length];
+    d.style.animationDuration=(2+Math.random()*2.2)+'s';d.style.animationDelay=Math.random()*.5+'s';
+    d.style.borderRadius=Math.random()>.5?'50%':'2px';
+    document.body.appendChild(d);setTimeout(()=>d.remove(),5000);
+  }
+}
+</script>
+</body>
+</html>
