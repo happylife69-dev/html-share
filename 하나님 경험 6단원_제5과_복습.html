@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>제5과 하나님은 교회를 통해서 말씀하신다 · 복습</title>
+<style>
+:root{
+  --bg:#fbfbfd; --bg2:#f5f5f7; --card:#ffffff; --text:#1d1d1f; --sub:#6e6e73; --line:rgba(0,0,0,.08);
+  --blue:#0071e3; --blue-soft:rgba(0,113,227,.10); --green:#30a14e; --green-soft:rgba(48,161,78,.12);
+  --red:#e5484d; --red-soft:rgba(229,72,77,.10); --orange:#f5a524;
+  --shadow:0 2px 12px rgba(0,0,0,.06), 0 12px 32px rgba(0,0,0,.06);
+  --nav:rgba(251,251,253,.72);
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#000; --bg2:#111113; --card:#1c1c1e; --text:#f5f5f7; --sub:#a1a1a6; --line:rgba(255,255,255,.12);
+    --blue:#2997ff; --blue-soft:rgba(41,151,255,.16); --green:#32d74b; --green-soft:rgba(50,215,75,.16);
+    --red:#ff453a; --red-soft:rgba(255,69,58,.16); --orange:#ff9f0a;
+    --shadow:0 2px 12px rgba(0,0,0,.4); --nav:rgba(0,0,0,.6);
+  }
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;word-break:keep-all;-webkit-font-smoothing:antialiased;letter-spacing:-.01em}
+button{font-family:inherit;color:inherit;cursor:pointer;border:none;background:none;font-size:inherit}
+textarea,input{font-family:inherit;font-size:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px;border-radius:8px}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:50;background:var(--nav);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:980px;margin:0 auto;height:52px;padding:0 20px;display:flex;align-items:center;gap:16px}
+.nav-title{font-weight:600;font-size:15px;white-space:nowrap}
+.nav-links{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;flex:1}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links a{font-size:13px;color:var(--sub);text-decoration:none;padding:6px 10px;border-radius:980px;white-space:nowrap;transition:.2s}
+.nav-links a:hover{color:var(--text);background:var(--bg2)}
+.prog{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--sub);white-space:nowrap}
+.prog-bar{width:72px;height:6px;border-radius:3px;background:var(--line);overflow:hidden}
+.prog-bar i{display:block;height:100%;width:0;background:var(--blue);border-radius:3px;transition:width .5s cubic-bezier(.2,.8,.2,1)}
+@media(max-width:700px){.nav-title{display:none}}
+
+/* LAYOUT */
+section{padding:96px 20px}
+section.alt{background:var(--bg2)}
+.wrap{max-width:980px;margin:0 auto}
+.eyebrow{font-size:14px;font-weight:600;color:var(--blue);letter-spacing:.02em;margin-bottom:8px}
+h2{font-size:clamp(30px,5vw,48px);font-weight:700;line-height:1.15;letter-spacing:-.03em;margin-bottom:12px}
+.lead{font-size:clamp(17px,2.2vw,21px);color:var(--sub);max-width:680px;margin-bottom:40px}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.card{background:var(--card);border-radius:24px;box-shadow:var(--shadow);padding:28px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;background:var(--blue);color:#fff;font-weight:500;font-size:15px;padding:10px 22px;border-radius:980px;transition:.2s}
+.btn:hover{filter:brightness(1.1)}
+.btn:active{transform:scale(.97)}
+.btn.ghost{background:var(--blue-soft);color:var(--blue)}
+.btn[disabled]{opacity:.4;cursor:default}
+
+/* HERO */
+.hero{min-height:calc(100vh - 52px);display:flex;align-items:center;text-align:center;padding:80px 20px;
+  background:radial-gradient(ellipse at 50% 0%,var(--blue-soft),transparent 60%),var(--bg)}
+.hero .wrap{display:flex;flex-direction:column;align-items:center}
+.pill{display:inline-block;font-size:13px;font-weight:500;color:var(--blue);background:var(--blue-soft);padding:6px 14px;border-radius:980px;margin-bottom:24px}
+.hero h1{font-size:clamp(38px,8vw,84px);font-weight:800;line-height:1.08;letter-spacing:-.04em;margin-bottom:24px;
+  background:linear-gradient(135deg,var(--text) 30%,var(--blue));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero .quote{font-size:clamp(17px,2.4vw,24px);color:var(--sub);max-width:720px;margin-bottom:12px}
+.hero .meta{font-size:14px;color:var(--sub);margin-bottom:36px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:40px}
+.chip{font-size:13px;padding:6px 14px;border-radius:980px;background:var(--card);box-shadow:var(--shadow);color:var(--sub)}
+.scroll-hint{margin-top:56px;font-size:13px;color:var(--sub);animation:bob 2s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(8px)}}
+
+/* FLIP CARDS */
+.flips{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.flip{perspective:1200px;height:260px;width:100%;text-align:left}
+.flip-in{position:relative;width:100%;height:100%;transition:transform .7s cubic-bezier(.2,.8,.2,1);transform-style:preserve-3d}
+.flip.on .flip-in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:24px;padding:28px;display:flex;flex-direction:column;box-shadow:var(--shadow)}
+.face.front{background:var(--card)}
+.face.back{background:linear-gradient(160deg,var(--blue),#5e5ce6);color:#fff;transform:rotateY(180deg);justify-content:center}
+.num{font-size:13px;font-weight:600;color:var(--blue);margin-bottom:10px}
+.face h3{font-size:22px;line-height:1.3;letter-spacing:-.02em;margin-bottom:auto}
+.tap{font-size:13px;color:var(--sub)}
+.face.back p{font-size:16px;line-height:1.65}
+.face.back .num{color:rgba(255,255,255,.75)}
+
+/* BODY */
+.body-grid{display:grid;grid-template-columns:minmax(260px,360px) 1fr;gap:32px;align-items:center}
+@media(max-width:760px){.body-grid{grid-template-columns:1fr}}
+.body-fig{position:relative;width:100%;max-width:340px;aspect-ratio:3/4;margin:0 auto}
+.part{position:absolute;display:flex;align-items:center;justify-content:center;flex-direction:column;font-weight:600;font-size:14px;
+  background:var(--card);box-shadow:var(--shadow);transition:.25s cubic-bezier(.2,.8,.2,1);border:2px solid transparent}
+.part:hover{transform:translateY(-3px) scale(1.04)}
+.part.sel{border-color:var(--blue);background:var(--blue-soft);color:var(--blue)}
+.part.seen::after{content:"✓";position:absolute;top:-6px;right:-6px;width:20px;height:20px;border-radius:50%;background:var(--green);color:#fff;font-size:12px;display:flex;align-items:center;justify-content:center}
+.part .em{font-size:26px;line-height:1}
+.p-head{left:33%;top:0;width:34%;height:24%;border-radius:50%}
+.p-eye{left:6%;top:6%;width:22%;height:15%;border-radius:20px}
+.p-ear{right:6%;top:6%;width:22%;height:15%;border-radius:20px}
+.p-body{left:25%;top:28%;width:50%;height:42%;border-radius:28px}
+.p-handL{left:0;top:34%;width:20%;height:22%;border-radius:20px}
+.p-foot{left:30%;bottom:0;width:40%;height:21%;border-radius:20px}
+.p-heart{right:0;top:34%;width:20%;height:22%;border-radius:20px}
+.info{min-height:240px;display:flex;flex-direction:column;justify-content:center}
+.info .ref{font-size:14px;font-weight:600;color:var(--blue);margin-bottom:6px}
+.info h3{font-size:26px;letter-spacing:-.02em;margin-bottom:12px}
+.info blockquote{border-left:3px solid var(--blue);padding:4px 0 4px 16px;color:var(--sub);margin-bottom:14px;font-size:16px}
+.info p{font-size:17px}
+.info.swap{animation:pop .4s cubic-bezier(.2,.8,.2,1)}
+@keyframes pop{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* MATCH */
+.match{display:grid;grid-template-columns:1fr 1fr;gap:16px 24px}
+@media(max-width:620px){.match{gap:10px}}
+.col{display:flex;flex-direction:column;gap:10px}
+.mi{background:var(--card);border-radius:16px;padding:14px 16px;box-shadow:var(--shadow);text-align:left;font-size:15px;border:2px solid transparent;transition:.2s;line-height:1.45}
+.mi.ref{font-weight:600}
+.mi:hover{transform:translateY(-2px)}
+.mi.sel{border-color:var(--blue);background:var(--blue-soft)}
+.mi.ok{background:var(--green-soft);border-color:var(--green);pointer-events:none}
+.mi.bad{animation:shake .4s;border-color:var(--red);background:var(--red-soft)}
+@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.status{margin-top:20px;font-size:15px;color:var(--sub);display:flex;align-items:center;gap:12px;flex-wrap:wrap;min-height:40px}
+.status b{color:var(--text)}
+
+/* CLOZE */
+.cloze-list{display:flex;flex-direction:column;gap:16px}
+.cloze{background:var(--card);border-radius:20px;padding:22px 24px;box-shadow:var(--shadow);font-size:18px;line-height:2.2}
+.cloze .src{display:block;font-size:13px;color:var(--sub);line-height:1.4;margin-bottom:6px;font-weight:500}
+.cloze input{border:none;border-bottom:2px solid var(--blue);background:var(--blue-soft);border-radius:8px 8px 0 0;padding:2px 8px;text-align:center;width:6.5em;font-weight:600;color:var(--blue);outline:none;transition:.2s}
+.cloze input:focus{background:var(--blue-soft);box-shadow:0 0 0 3px var(--blue-soft)}
+.cloze input.ok{border-color:var(--green);background:var(--green-soft);color:var(--green)}
+.cloze input.bad{border-color:var(--red);background:var(--red-soft);color:var(--red);animation:shake .4s}
+.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:24px}
+
+/* STORY */
+.tl{position:relative;padding-left:36px;margin-bottom:36px}
+.tl::before{content:"";position:absolute;left:11px;top:8px;bottom:8px;width:2px;background:var(--line)}
+.step{position:relative;margin-bottom:20px;background:var(--card);border-radius:20px;padding:18px 22px;box-shadow:var(--shadow);opacity:.35;transform:translateX(8px);transition:.5s cubic-bezier(.2,.8,.2,1)}
+.step.on{opacity:1;transform:none}
+.step::before{content:"";position:absolute;left:-31px;top:24px;width:14px;height:14px;border-radius:50%;background:var(--bg2);border:3px solid var(--line);transition:.4s}
+.step.on::before{background:var(--blue);border-color:var(--blue-soft)}
+.step h4{font-size:17px;margin-bottom:4px}
+.step p{font-size:15px;color:var(--sub)}
+.scn{background:var(--card);border-radius:24px;box-shadow:var(--shadow);padding:28px;margin-bottom:20px}
+.scn h4{font-size:19px;margin-bottom:16px;letter-spacing:-.02em}
+.scn .tag{font-size:12px;font-weight:600;color:var(--blue);margin-bottom:6px;display:block}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{text-align:left;padding:14px 18px;border-radius:14px;background:var(--bg2);border:2px solid transparent;font-size:15.5px;transition:.2s;line-height:1.5}
+.opt:hover:not([disabled]){background:var(--blue-soft)}
+.opt.ok{background:var(--green-soft);border-color:var(--green)}
+.opt.bad{background:var(--red-soft);border-color:var(--red)}
+.opt[disabled]{cursor:default}
+.fb{display:none;margin-top:14px;padding:14px 18px;border-radius:14px;font-size:15px;background:var(--bg2)}
+.fb.show{display:block;animation:pop .4s}
+
+/* QUIZ */
+.quiz{max-width:720px;margin:0 auto}
+.dots{display:flex;gap:6px;justify-content:center;margin-bottom:24px}
+.dots i{width:28px;height:6px;border-radius:3px;background:var(--line);transition:.3s}
+.dots i.cur{background:var(--blue)}
+.dots i.ok{background:var(--green)}
+.dots i.bad{background:var(--red)}
+.q-text{font-size:clamp(20px,3vw,26px);font-weight:700;line-height:1.35;letter-spacing:-.02em;margin-bottom:22px}
+.q-n{font-size:13px;color:var(--sub);margin-bottom:6px;font-weight:600}
+.score{text-align:center;padding:12px 0}
+.score .big{font-size:84px;font-weight:800;letter-spacing:-.04em;line-height:1;background:linear-gradient(135deg,var(--blue),#5e5ce6);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.score p{color:var(--sub);font-size:17px;margin:12px 0 24px}
+
+/* DISCUSS */
+.acc{background:var(--card);border-radius:20px;box-shadow:var(--shadow);margin-bottom:14px;overflow:hidden}
+.acc summary{list-style:none;cursor:pointer;padding:20px 24px;font-weight:600;font-size:17px;display:flex;gap:14px;align-items:flex-start;line-height:1.5}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary .n{flex:none;width:28px;height:28px;border-radius:50%;background:var(--blue-soft);color:var(--blue);font-size:14px;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.acc summary::after{content:"+";margin-left:auto;font-size:24px;font-weight:300;color:var(--sub);transition:.3s;flex:none;line-height:1.2}
+.acc[open] summary::after{transform:rotate(45deg)}
+.acc .in{padding:0 24px 24px 66px}
+.acc .dir{font-size:15px;color:var(--sub);margin-bottom:14px;padding:12px 16px;background:var(--bg2);border-radius:12px}
+.acc textarea{width:100%;min-height:96px;border-radius:14px;border:1px solid var(--line);background:var(--bg2);padding:12px 14px;resize:vertical;line-height:1.6}
+.acc textarea:focus{outline:2px solid var(--blue)}
+.saved{font-size:12px;color:var(--sub);margin-top:6px;height:16px}
+@media(max-width:560px){.acc .in{padding:0 20px 20px}}
+
+/* CHECK */
+.checks{display:flex;flex-direction:column;gap:10px;margin-bottom:36px}
+.ck{display:flex;gap:14px;align-items:center;text-align:left;background:var(--card);padding:16px 20px;border-radius:16px;box-shadow:var(--shadow);font-size:16px;transition:.2s}
+.ck .box{flex:none;width:26px;height:26px;border-radius:50%;border:2px solid var(--line);display:flex;align-items:center;justify-content:center;color:transparent;font-size:15px;transition:.3s}
+.ck.on .box{background:var(--green);border-color:var(--green);color:#fff;transform:scale(1.1)}
+.ck.on span:last-child{color:var(--sub);text-decoration:line-through}
+.final{text-align:center;padding:56px 28px;border-radius:32px;background:linear-gradient(135deg,var(--blue),#5e5ce6);color:#fff}
+.final small{display:block;font-size:14px;opacity:.8;margin-bottom:14px;font-weight:600}
+.final p{font-size:clamp(20px,3.2vw,30px);font-weight:700;line-height:1.5;letter-spacing:-.02em;max-width:760px;margin:0 auto}
+footer{text-align:center;padding:40px 20px 60px;color:var(--sub);font-size:13px}
+
+/* confetti */
+.cf{position:fixed;top:-12px;width:10px;height:14px;z-index:99;pointer-events:none;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(105vh) rotate(720deg);opacity:.8}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-in">
+    <div class="nav-title">제5과 복습</div>
+    <div class="nav-links">
+      <a href="#core">핵심 5가지</a><a href="#body">몸과 지체</a><a href="#match">짝 맞추기</a><a href="#cloze">빈칸</a>
+      <a href="#story">블랙가비</a><a href="#quiz">퀴즈</a><a href="#talk">나눔</a><a href="#act">실천</a>
+    </div>
+    <div class="prog"><span id="progTxt">0/6</span><div class="prog-bar"><i id="progBar"></i></div></div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="pill">하나님 경험 · 제6단원 제5과</span>
+    <h1>하나님은 교회를<br>통해서 말씀하신다</h1>
+    <p class="quote">“하나님은 우리가 홀로 신앙생활하도록 부르신 것이 아니라, 그리스도의 몸인 교회 안에서 서로 의지하며 하나님의 뜻을 분별하고 순종하도록 부르셨습니다.”</p>
+    <p class="meta">교재 189–194쪽 · 고린도전서 12:7–31 · 에베소서 4:13–16 · 골로새서 1:28</p>
+    <div class="chips"><span class="chip">교회론</span><span class="chip">그리스도의 몸</span><span class="chip">지체의식</span><span class="chip">상호의존</span><span class="chip">영적 분별</span></div>
+    <a class="btn" href="#core">복습 시작하기</a>
+    <div class="scroll-hint">↓ 스크롤</div>
+  </div>
+</header>
+
+<!-- 1. 핵심 5가지 -->
+<section id="core" class="alt">
+  <div class="wrap">
+    <div class="eyebrow reveal">STEP 1 · 핵심 진리</div>
+    <h2 class="reveal">반드시 기억할 5가지</h2>
+    <p class="lead reveal">카드를 눌러 뒤집어 보세요. 앞면만 보고 뒷면 내용을 먼저 떠올려 보면 더 오래 기억됩니다.</p>
+    <div class="flips reveal" id="flips"></div>
+    <div class="status" id="flipStatus"><span>뒤집은 카드 <b>0</b> / 5</span></div>
+  </div>
+</section>
+
+<!-- 2. 몸 -->
+<section id="body">
+  <div class="wrap">
+    <div class="eyebrow reveal">STEP 2 · 그리스도의 몸</div>
+    <h2 class="reveal">나는 어떤 지체일까?</h2>
+    <p class="lead reveal">몸의 각 부분을 눌러 보세요. 6곳을 모두 보면 완료됩니다.</p>
+    <div class="body-grid reveal">
+      <div class="body-fig" id="bodyFig"></div>
+      <div class="card info" id="bodyInfo"></div>
+    </div>
+    <div class="status" id="bodyStatus"><span>살펴본 부분 <b>0</b> / 6</span></div>
+  </div>
+</section>
+
+<!-- 3. 짝 맞추기 -->
+<section id="match" class="alt">
+  <div class="wrap">
+    <div class="eyebrow reveal">STEP 3 · 구절 짝 맞추기</div>
+    <h2 class="reveal">말씀과 메시지를 연결하세요</h2>
+    <p class="lead reveal">왼쪽에서 구절을 고르고, 오른쪽에서 그 구절이 가르치는 핵심 메시지를 고르세요.</p>
+    <div class="match reveal" id="matchBoard"></div>
+    <div class="status" id="matchStatus"></div>
+  </div>
+</section>
+
+<!-- 4. 빈칸 -->
+<section id="cloze">
+  <div class="wrap">
+    <div class="eyebrow reveal">STEP 4 · 빈칸 채우기</div>
+    <h2 class="reveal">말씀을 마음에 새기기</h2>
+    <p class="lead reveal">핵심 구절과 문장의 빈칸을 채워 보세요. 막히면 힌트(첫 글자)를 사용할 수 있습니다.</p>
+    <div class="cloze-list reveal" id="clozeList"></div>
+    <div class="row reveal">
+      <button class="btn" id="clozeCheck">정답 확인</button>
+      <button class="btn ghost" id="clozeHint">힌트</button>
+      <span id="clozeMsg" style="color:var(--sub);font-size:15px"></span>
+    </div>
+  </div>
+</section>
+
+<!-- 5. 블랙가비 -->
+<section id="story" class="alt">
+  <div class="wrap">
+    <div class="eyebrow reveal">STEP 5 · 분별 연습</div>
+    <h2 class="reveal">블랙가비의 이야기</h2>
+    <p class="lead reveal">버튼을 눌러 이야기를 한 단계씩 따라가 보고, 아래 상황에서 가장 성경적인 반응을 골라 보세요.</p>
+    <div class="tl reveal" id="timeline"></div>
+    <div class="row reveal" style="margin-top:0;margin-bottom:48px">
+      <button class="btn" id="nextStep">다음 단계 ▸</button>
+      <span id="stepMsg" style="color:var(--sub);font-size:15px"></span>
+    </div>
+    <div id="scenarios" class="reveal"></div>
+    <div class="status" id="scnStatus"></div>
+  </div>
+</section>
+
+<!-- 6. 퀴즈 -->
+<section id="quiz">
+  <div class="wrap">
+    <div class="eyebrow reveal">STEP 6 · 확인 퀴즈</div>
+    <h2 class="reveal">8문제로 점검하기</h2>
+    <p class="lead reveal">정답을 고르면 바로 해설이 나옵니다. 보기 순서는 매번 바뀝니다.</p>
+    <div class="card quiz reveal" id="quizBox"></div>
+  </div>
+</section>
+
+<!-- 7. 나눔 -->
+<section id="talk" class="alt">
+  <div class="wrap">
+    <div class="eyebrow reveal">STEP 7 · 함께 나누기</div>
+    <h2 class="reveal">나눔 질문 5가지</h2>
+    <p class="lead reveal">질문을 펼쳐 내 생각을 적어 보세요. 메모는 이 브라우저 안에만 저장되며 어디로도 전송되지 않습니다.</p>
+    <div id="talkList" class="reveal"></div>
+  </div>
+</section>
+
+<!-- 8. 실천 -->
+<section id="act">
+  <div class="wrap">
+    <div class="eyebrow reveal">STEP 8 · 순종으로 이어가기</div>
+    <h2 class="reveal">이번 주 실천</h2>
+    <p class="lead reveal">배우는 데서 그치지 않고 실제적인 섬김과 순종으로 연결해 보세요.</p>
+    <div class="checks reveal" id="checks"></div>
+    <div class="final reveal">
+      <small>이번 과의 핵심 한 문장</small>
+      <p>“하나님은 교회 안의 다른 지체들을 통해서도 우리를 가르치시고 인도하십니다. 그러므로 우리는 서로를 필요로 합니다.”</p>
+    </div>
+  </div>
+</section>
+
+<footer>하나님 경험 제6단원 제5과 복습 · 교재 189–194쪽</footer>
+
+<script>
+(function(){
+"use strict";
+var $=function(s,r){return (r||document).querySelector(s)};
+var el=function(t,c,h){var e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e};
+var shuffle=function(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a};
+var store={get:function(k){try{return localStorage.getItem(k)}catch(e){return null}},set:function(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+var KEY="gk6-5-";
+
+/* ---------- progress ---------- */
+var TASKS=["cards","body","match","cloze","scn","quiz"],done={};
+function mark(k){
+  if(done[k])return;done[k]=true;
+  var n=Object.keys(done).length;
+  $("#progTxt").textContent=n+"/"+TASKS.length;
+  $("#progBar").style.width=(n/TASKS.length*100)+"%";
+  if(n===TASKS.length){confetti();$("#progTxt").textContent="완료 🎉"}
+}
+function confetti(){
+  var colors=["#0071e3","#5e5ce6","#30a14e","#f5a524","#e5484d","#bf5af2"];
+  for(var i=0;i<60;i++){
+    var c=el("i","cf");c.style.left=Math.random()*100+"vw";
+    c.style.background=colors[i%colors.length];c.style.borderRadius=(i%2?"50%":"2px");
+    c.style.animationDuration=(2+Math.random()*2.5)+"s";c.style.animationDelay=(Math.random()*.6)+"s";
+    document.body.appendChild(c);
+    (function(n){setTimeout(function(){n.remove()},5500)})(c);
+  }
+}
+
+/* ---------- reveal on scroll ---------- */
+var rv=document.querySelectorAll(".reveal");
+if("IntersectionObserver" in window){
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}})},{threshold:.08});
+  rv.forEach(function(n){io.observe(n)});
+}else{rv.forEach(function(n){n.classList.add("in")})}
+
+/* ---------- 1. flip cards ---------- */
+var CORE=[
+ ["교회는 예수 그리스도의 몸입니다.","교회는 단순히 개인들이 모인 단체가 아니라 그리스도 안에서 연결된 하나의 공동체입니다."],
+ ["예수 그리스도는 교회의 머리이십니다.","교회의 모든 성도와 사역은 머리이신 예수 그리스도의 다스림 아래 있어야 합니다."],
+ ["하나님은 모든 성도를 교회 안에 두셨으며, 우리는 서로를 필요로 합니다.","모든 성도는 서로 다른 은사와 역할을 가지고 있으며 함께 그리스도의 몸을 세워야 합니다."],
+ ["하나님은 교회 공동체를 통해 자신의 뜻을 깨닫게 하십니다.","다른 성도들의 권면과 지혜를 통해 자신의 생각을 점검하고 하나님의 인도하심을 분별해야 합니다."],
+ ["교회 안에서 자신의 역할을 발견하고 순종해야 합니다.","하나님께서 주신 은사를 자신의 유익이 아니라 공동체를 세우는 일에 사용해야 합니다."]
+];
+var flipped={};
+CORE.forEach(function(c,i){
+  var b=el("button","flip");b.setAttribute("aria-label","핵심 "+(i+1)+" 카드 뒤집기");
+  b.innerHTML='<div class="flip-in"><div class="face front"><div class="num">핵심 '+(i+1)+'</div><h3>'+c[0]+'</h3><div class="tap">눌러서 뒤집기 ↻</div></div>'+
+    '<div class="face back"><div class="num">핵심 '+(i+1)+'</div><p>'+c[1]+'</p></div></div>';
+  b.onclick=function(){
+    b.classList.toggle("on");flipped[i]=true;
+    var n=Object.keys(flipped).length;
+    $("#flipStatus").innerHTML="<span>뒤집은 카드 <b>"+n+"</b> / 5"+(n===5?" · 모두 확인했어요 ✓":"")+"</span>";
+    if(n===5)mark("cards");
+  };
+  $("#flips").appendChild(b);
+});
+
+/* ---------- 2. body ---------- */
+var PARTS=[
+ {id:"head",cls:"p-head",em:"👑",name:"머리",ref:"에베소서 4:15–16",q:"그리스도께서 머리가 되시며, 온몸이 각 마디를 통해 연결되고 결합하여 자라간다.",
+  t:"교회의 머리는 예수 그리스도",d:"교회의 주인은 목회자도, 장로나 특정한 지도자도 아닙니다. 오직 예수 그리스도이십니다. 중요한 결정 앞에서 먼저 물을 질문은 “교회의 머리이신 예수 그리스도께서 말씀을 통해 우리에게 무엇을 명령하시는가?”입니다."},
+ {id:"eye",cls:"p-eye",em:"👁️",name:"눈",ref:"고린도전서 12:21",q:"눈이 손더러 내가 너를 쓸 데가 없다 하거나 …",
+  t:"눈은 손이 필요합니다",d:"눈이 아무리 잘 보더라도 손이 없으면 물건을 붙잡을 수 없습니다. 말씀에 대한 지식이 많다고 해서 다른 성도들의 도움이 필요 없는 것은 아닙니다."},
+ {id:"ear",cls:"p-ear",em:"👂",name:"귀",ref:"고린도전서 12:14–26",q:"몸은 한 지체뿐 아니요 여럿이니 …",
+  t:"귀도 협력해야 합니다",d:"귀가 아무리 잘 듣더라도 다른 지체들과 협력하지 않으면 몸이 정상적으로 기능할 수 없습니다. 신앙생활을 오래 했다고 다른 사람의 권면을 들을 필요가 없는 것도 아닙니다."},
+ {id:"body",cls:"p-body",em:"⛪",name:"몸 = 교회",ref:"고린도전서 12:27",q:"너희는 그리스도의 몸이요 지체의 각 부분이라.",
+  t:"성도는 소비자가 아니라 지체",d:"교회는 단순히 예배를 드리기 위해 사람들이 모이는 장소가 아닙니다. 예수 그리스도를 머리로 하는 영적인 공동체입니다. 따라서 성도는 교회의 소비자가 아니라 그리스도의 몸에 속한 지체입니다."},
+ {id:"hand",cls:"p-handL",em:"🤲",name:"손",ref:"고린도전서 12:18",q:"그러나 이제 하나님이 그 원하시는 대로 지체를 각각 몸에 두셨으니.",
+  t:"하나님이 맡기신 역할",d:"눈은 보는 역할을, 귀는 듣는 역할을, 손은 붙잡는 역할을 합니다. 중요한 것은 다른 사람과 비교하는 것이 아니라 하나님께서 자신에게 맡기신 일을 충성스럽게 감당하는 것입니다."},
+ {id:"foot",cls:"p-foot",em:"🦶",name:"발",ref:"고린도전서 12:21",q:"… 또한 머리가 발더러 내가 너를 쓸 데가 없다 하지 못하리라.",
+  t:"필요 없는 성도는 없습니다",d:"교회 안에는 필요 없는 성도가 없습니다. 모든 성도는 하나님께서 그리스도의 몸을 세우기 위해 사용하시는 귀한 지체입니다."}
+];
+var fig=$("#bodyFig"),info=$("#bodyInfo"),seen={};
+info.innerHTML='<div class="ref">👈 먼저 눌러 보세요</div><h3>몸의 한 부분을 선택하세요</h3><p style="color:var(--sub)">각 지체에 담긴 고린도전서 12장과 에베소서 4장의 가르침이 나타납니다.</p>';
+PARTS.forEach(function(p){
+  var b=el("button","part "+p.cls,'<span class="em">'+p.em+'</span><span>'+p.name+'</span>');
+  b.setAttribute("aria-label",p.name);
+  b.onclick=function(){
+    fig.querySelectorAll(".part").forEach(function(x){x.classList.remove("sel")});
+    b.classList.add("sel","seen");seen[p.id]=true;
+    info.classList.remove("swap");void info.offsetWidth;info.classList.add("swap");
+    info.innerHTML='<div class="ref">'+p.ref+'</div><h3>'+p.t+'</h3><blockquote>'+p.q+'</blockquote><p>'+p.d+'</p>';
+    var n=Object.keys(seen).length;
+    $("#bodyStatus").innerHTML="<span>살펴본 부분 <b>"+n+"</b> / 6"+(n===6?" · 모두 확인했어요 ✓":"")+"</span>";
+    if(n===6)mark("body");
+  };
+  fig.appendChild(b);
+});
+
+/* ---------- 3. match ---------- */
+var PAIRS=[
+ ["고린도전서 12:27","교회는 개인들의 모임이 아니라 하나의 몸이다"],
+ ["에베소서 4:15–16","교회의 주인은 오직 예수 그리스도이시다"],
+ ["고린도전서 12:18","모든 성도에게 하나님께서 맡기신 역할이 있다"],
+ ["고린도전서 12:21","신앙생활과 사역은 독립이 아니라 상호의존이다"],
+ ["고린도전서 12:25–26","한 지체의 고통과 영광을 함께 나눈다"],
+ ["고린도전서 12:7","은사는 공동체의 유익을 위해 주어진다"]
+];
+var mSel=null,mOk=0,mTry=0;
+function buildMatch(){
+  var board=$("#matchBoard");board.innerHTML="";mSel=null;mOk=0;mTry=0;
+  var L=el("div","col"),R=el("div","col");
+  PAIRS.forEach(function(p,i){
+    var b=el("button","mi ref",p[0]);b.dataset.i=i;b.dataset.side="L";L.appendChild(b);
+  });
+  shuffle(PAIRS.map(function(p,i){return i})).forEach(function(i){
+    var b=el("button","mi",PAIRS[i][1]);b.dataset.i=i;b.dataset.side="R";R.appendChild(b);
+  });
+  board.appendChild(L);board.appendChild(R);
+  board.onclick=function(e){
+    var t=e.target.closest(".mi");if(!t||t.classList.contains("ok"))return;
+    var side=t.dataset.side;
+    if(!mSel||mSel.dataset.side===side){
+      if(mSel)mSel.classList.remove("sel");mSel=t;t.classList.add("sel");return;
+    }
+    mTry++;
+    if(mSel.dataset.i===t.dataset.i){
+      mSel.classList.remove("sel");mSel.classList.add("ok");t.classList.add("ok");mSel=null;mOk++;
+      if(mOk===PAIRS.length){
+        $("#matchStatus").innerHTML="<span>🎉 모두 맞췄어요! 시도 <b>"+mTry+"</b>회</span>";
+        var r=el("button","btn ghost","다시 하기");r.onclick=buildMatch;$("#matchStatus").appendChild(r);
+        mark("match");return;
+      }
+    }else{
+      var a=mSel;a.classList.remove("sel");a.classList.add("bad");t.classList.add("bad");mSel=null;
+      setTimeout(function(){a.classList.remove("bad");t.classList.remove("bad")},450);
+    }
+    $("#matchStatus").innerHTML="<span>맞춘 쌍 <b>"+mOk+"</b> / "+PAIRS.length+" · 시도 "+mTry+"회</span>";
+  };
+  $("#matchStatus").innerHTML="<span>맞춘 쌍 <b>0</b> / "+PAIRS.length+"</span>";
+}
+buildMatch();
+
+/* ---------- 4. cloze ---------- */
+var CLOZE=[
+ {src:"고린도전서 12:27",p:["너희는 그리스도의 ",{a:["몸"]},"이요 지체의 각 부분이라."]},
+ {src:"고린도전서 12:18",p:["그러나 이제 하나님이 그 원하시는 대로 ",{a:["지체"]},"를 각각 몸에 두셨으니."]},
+ {src:"고린도전서 12:21",p:["눈이 ",{a:["손"]},"더러 내가 너를 쓸 데가 없다 하거나 또한 머리가 ",{a:["발"]},"더러 내가 너를 쓸 데가 없다 하지 못하리라."]},
+ {src:"블랙가비의 원리 (교재 191쪽)",p:["“당신이 ",{a:["몸"]},"에서 분리되어 있으면 당신과 몸의 관계에 대한 하나님의 ",{a:["뜻"]},"을 온전히 알 수 없습니다.”"]},
+ {src:"교회의 머리",p:["교회의 모든 성도와 사역은 머리이신 ",{a:["예수 그리스도","그리스도","예수"]},"의 다스림 아래 있어야 합니다."]},
+ {src:"학생들에게 꼭 강조할 내용",p:["성도는 교회의 ",{a:["소비자"]},"가 아니라 그리스도의 몸에 속한 지체입니다."]}
+];
+var inputs=[];
+CLOZE.forEach(function(c){
+  var d=el("div","cloze");d.appendChild(el("span","src",c.src));
+  c.p.forEach(function(x){
+    if(typeof x==="string"){d.appendChild(document.createTextNode(x))}
+    else{
+      var i=el("input");i.type="text";i.setAttribute("autocomplete","off");i.setAttribute("aria-label","빈칸");
+      i.style.width=Math.max(3.2,x.a[0].length*1.3+2)+"em";i._a=x.a;
+      i.addEventListener("keydown",function(e){if(e.key==="Enter")checkCloze()});
+      i.addEventListener("input",function(){i.classList.remove("ok","bad")});
+      inputs.push(i);d.appendChild(i);
+    }
+  });
+  $("#clozeList").appendChild(d);
+});
+var norm=function(s){return s.replace(/\s+/g,"")};
+function checkCloze(){
+  var ok=0;
+  inputs.forEach(function(i){
+    var v=norm(i.value);if(!v){i.classList.remove("ok","bad");return}
+    var good=i._a.some(function(a){return norm(a)===v});
+    i.classList.toggle("ok",good);i.classList.toggle("bad",!good);if(good)ok++;
+  });
+  $("#clozeMsg").textContent=ok+" / "+inputs.length+" 정답"+(ok===inputs.length?" 🎉 완벽해요!":"");
+  if(ok===inputs.length)mark("cloze");
+}
+$("#clozeCheck").onclick=checkCloze;
+$("#clozeHint").onclick=function(){
+  var t=inputs.filter(function(i){return !i.classList.contains("ok")})[0];
+  if(!t){return}
+  t.placeholder=t._a[0].charAt(0)+"…";t.focus();
+  $("#clozeMsg").textContent="힌트: 첫 글자는 “"+t._a[0].charAt(0)+"”";
+};
+
+/* ---------- 5. story + scenarios ---------- */
+var STORY=[
+ ["신학교 시절","블랙가비는 신학교에 다니면서 한 지역교회에서 청소년들을 가르치는 사역을 하고 있었습니다."],
+ ["교회의 요청","교회가 그에게 음악과 교육을 담당하는 사역을 맡아 달라고 요청했습니다. 그는 음악을 인도하거나 교육 프로그램을 책임진 경험이 없었습니다."],
+ ["성도들의 기도와 응답","교회는 지도자가 필요했고, 성도들은 기도하면서 그가 맡을 수 있다고 생각했습니다. 블랙가비도 교회의 필요를 보고 그 사역을 받아들였습니다."],
+ ["2년 후","교회는 그를 담임목사로 청빙했습니다. 충분한 경험이 없었지만 하나님께서 교회를 통해 자신을 인도하고 계신다고 믿고 응답했습니다."],
+ ["교훈과 주의점","하나님은 교회의 필요와 성도들의 권면을 통해 사역을 깨닫게 하실 수 있습니다. 그러나 교회의 필요가 곧 하나님의 부르심은 아니며, 한 사람의 의견이 곧 교회 전체의 뜻도 아닙니다. 성경·기도·환경을 함께 살펴 신중히 분별해야 합니다."]
+];
+var tl=$("#timeline"),stepN=0;
+STORY.forEach(function(s,i){tl.appendChild(el("div","step"+(i===0?" on":""),"<h4>"+(i+1)+". "+s[0]+"</h4><p>"+s[1]+"</p>"))});
+stepN=1;
+$("#nextStep").onclick=function(){
+  var steps=tl.querySelectorAll(".step");
+  if(stepN<steps.length){steps[stepN].classList.add("on");steps[stepN].scrollIntoView({behavior:"smooth",block:"center"});stepN++}
+  if(stepN>=steps.length){$("#nextStep").disabled=true;$("#stepMsg").textContent="이야기 끝! 아래 상황 문제로 이어가 보세요."}
+};
+
+var SCN=[
+ {tag:"상황 1",q:"중요한 결정을 앞둔 한 성도가 있습니다. 어떻게 하는 것이 가장 바람직할까요?",
+  o:[["혼자 기도하고 혼자 결정한다. 하나님은 나에게 직접 말씀하신다.",0,"혼자 모든 것을 판단하려는 태도입니다. 하나님께서는 교회 안의 다른 지체들을 통해서도 필요한 권면과 지혜를 주십니다."],
+     ["말씀을 신실하게 따르는 목회자·장로·성숙한 성도들의 권면을 듣고, 성경 말씀에 비추어 분별한다.",1,"정답입니다. 권면에 귀를 기울이되 모든 권면은 성경 말씀에 비추어 분별해야 합니다."],
+     ["주변 사람들이 말하는 대로 무조건 따른다.",0,"다른 성도의 조언이 언제나 하나님의 뜻과 일치하는 것은 아닙니다. 성경과 기도, 환경도 함께 살펴야 합니다."]]},
+ {tag:"상황 2",q:"교회에 청소년부를 맡을 사람이 급히 필요합니다. 경험이 없는 내가 요청을 받았다면?",
+  o:[["교회에 필요가 있으니 이것은 곧 하나님의 부르심이다.",0,"교회에 필요가 있다고 해서 그것이 곧 하나님의 부르심을 의미하는 것은 아닙니다."],
+     ["경험이 없으니 교회의 필요는 모른 척한다.",0,"교회의 필요를 외면하지 말아야 합니다."],
+     ["교회의 필요와 성도들의 권면을 귀담아듣되, 성경·기도·환경을 함께 살펴 신중하게 분별한다.",1,"정답입니다. 교회의 필요를 외면하지 않으면서, 그것만으로 모든 결정을 내리지도 않습니다."]]},
+ {tag:"상황 3",q:"어떤 성도가 내게 조언을 했는데, 성경 말씀과 맞지 않는 것 같습니다.",
+  o:[["조언해 준 성도의 의견이니 곧 교회 전체의 뜻으로 받아들인다.",0,"한 사람의 의견이 곧 교회 전체의 뜻은 아닙니다."],
+     ["성경 말씀에 비추어 분별하고, 필요하면 성숙한 성도들과 함께 다시 살펴본다.",1,"정답입니다. 모든 권면은 성경 말씀에 비추어 분별해야 합니다."],
+     ["공동체의 권면은 필요 없으니 앞으로 아무 말도 듣지 않는다.",0,"겸손하게 권면을 듣는 태도는 여전히 중요합니다. 기준이 성경 말씀이라는 것이 핵심입니다."]]}
+];
+var scnOk={};
+SCN.forEach(function(s,si){
+  var box=el("div","scn","<span class='tag'>"+s.tag+"</span><h4>"+s.q+"</h4>");
+  var ol=el("div","opts"),fb=el("div","fb");
+  shuffle(s.o).forEach(function(o){
+    var b=el("button","opt",o[0]);
+    b.onclick=function(){
+      if(b.disabled)return;
+      fb.className="fb show";fb.innerHTML=(o[1]?"✅ ":"❌ ")+o[2];
+      if(o[1]){
+        ol.querySelectorAll(".opt").forEach(function(x){x.disabled=true});
+        b.classList.add("ok");scnOk[si]=true;
+        var n=Object.keys(scnOk).length;
+        $("#scnStatus").innerHTML="<span>해결한 상황 <b>"+n+"</b> / "+SCN.length+(n===SCN.length?" · 잘하셨어요 ✓":"")+"</span>";
+        if(n===SCN.length)mark("scn");
+      }else{b.classList.add("bad");b.disabled=true}
+    };
+    ol.appendChild(b);
+  });
+  box.appendChild(ol);box.appendChild(fb);$("#scenarios").appendChild(box);
+});
+
+/* ---------- 6. quiz ---------- */
+var QZ=[
+ {q:"교회의 머리는 누구이십니까?",a:"예수 그리스도",w:["담임 목회자","장로 등 교회 지도자","교회 전체 회중"],e:"교회의 주인은 목회자도, 장로나 특정 지도자도 아닙니다. 오직 예수 그리스도이십니다."},
+ {q:"고린도전서 12:7에 따르면, 성령께서 각 사람에게 은사를 주시는 목적은?",a:"공동체(교회)의 유익",w:["자신의 능력을 드러내기 위해","다른 사람에게 인정받기 위해","개인의 신앙 성장만을 위해"],e:"은사는 자신의 능력을 드러내거나 인정받기 위한 것이 아니라 교회를 세우기 위한 것입니다."},
+ {q:"블랙가비가 지적한 현대 복음주의 교회의 문제는?",a:"만인제사장 교리를 지나치게 개인주의적으로 이해해 공동체 의식을 잃는 것",w:["성경 말씀을 너무 많이 강조하는 것","교회 모임이 너무 많은 것","예배의 형식을 중시하는 것"],e:"모든 성도가 그리스도를 통해 직접 하나님께 나아갈 수 있다는 것은 진리이지만, 그것이 다른 성도나 교회 공동체가 필요 없다는 뜻은 아닙니다."},
+ {q:"“눈이 손더러 내가 너를 쓸 데가 없다 하지 못하리라”(고전 12:21)가 가르치는 것은?",a:"성도들은 서로를 필요로 한다",w:["눈이 가장 중요한 지체다","각자 독립적으로 사역해야 한다","오래 신앙생활한 사람은 도움이 필요 없다"],e:"하나님은 성도들을 서로 의존하도록 만드셨습니다. 신앙생활을 오래 했거나 지식이 많다고 해서 다른 사람의 도움이 필요 없는 것이 아닙니다."},
+ {q:"“당신이 몸에서 분리되어 있으면 …” 블랙가비의 이 원리가 뜻하는 것은?",a:"하나님의 뜻을 온전히 알 수 없다",w:["하나님의 뜻을 더 분명히 알 수 있다","개인 기도가 필요 없어진다","교회 직분을 받아야만 한다"],e:"하나님께서는 교회 안의 다른 지체들을 통해 필요한 권면과 지혜를 주십니다. 혼자 모든 것을 판단하려 하지 마십시오."},
+ {q:"신학교 시절 블랙가비에게 교회가 요청한 사역은?",a:"음악과 교육을 담당하는 사역",w:["해외 선교 사역","교회 재정 관리","새 교회 개척"],e:"그는 경험이 없었지만 교회의 필요와 성도들의 기도를 보고 받아들였고, 2년 뒤 그 교회의 담임목사로 청빙되었습니다."},
+ {q:"교회에 어떤 필요가 있을 때 바른 태도는?",a:"필요를 외면하지 않되, 성경·기도·환경·권면을 함께 살펴 분별한다",w:["필요가 있으니 곧 하나님의 부르심으로 확신한다","필요가 있어도 내 일이 아니니 무시한다","한 사람의 의견을 교회 전체의 뜻으로 받아들인다"],e:"교회의 필요를 외면하지 말아야 하지만, 교회의 필요만으로 모든 결정을 내려서도 안 됩니다."},
+ {q:"“성도는 교회의 ( )가 아니라 그리스도의 몸에 속한 지체입니다.” 빈칸은?",a:"소비자",w:["일꾼","손님","방관자"],e:"교회는 단순히 예배드리는 장소가 아니라, 예수 그리스도를 머리로 하는 영적인 공동체입니다."}
+];
+var qBox=$("#quizBox"),qi=0,qs=0,qres=[];
+function quiz(){
+  if(qi>=QZ.length){return result()}
+  var q=QZ[qi];
+  qBox.innerHTML="";
+  var dots=el("div","dots");
+  QZ.forEach(function(_,i){dots.appendChild(el("i",i<qi?(qres[i]?"ok":"bad"):(i===qi?"cur":"")))});
+  qBox.appendChild(dots);
+  qBox.appendChild(el("div","q-n","문제 "+(qi+1)+" / "+QZ.length));
+  qBox.appendChild(el("div","q-text",q.q));
+  var ol=el("div","opts"),fb=el("div","fb"),next=el("button","btn","");
+  next.style.cssText="display:none;margin-top:18px";next.textContent=qi===QZ.length-1?"결과 보기":"다음 문제 ▸";
+  shuffle([[q.a,1]].concat(q.w.map(function(w){return [w,0]}))).forEach(function(o){
+    var b=el("button","opt",o[0]);
+    b.onclick=function(){
+      ol.querySelectorAll(".opt").forEach(function(x){x.disabled=true});
+      if(o[1]){b.classList.add("ok");qs++;qres[qi]=true;fb.innerHTML="✅ 정답입니다. "+q.e}
+      else{b.classList.add("bad");qres[qi]=false;
+        ol.querySelectorAll(".opt").forEach(function(x){if(x.textContent===q.a)x.classList.add("ok")});
+        fb.innerHTML="❌ 정답은 “"+q.a+"”입니다. "+q.e}
+      fb.className="fb show";next.style.display="inline-flex";
+    };
+    ol.appendChild(b);
+  });
+  next.onclick=function(){qi++;quiz()};
+  qBox.appendChild(ol);qBox.appendChild(fb);qBox.appendChild(next);
+}
+function result(){
+  var best=parseInt(store.get(KEY+"best")||"0",10);if(qs>best){best=qs;store.set(KEY+"best",String(qs))}
+  var msg=qs===QZ.length?"완벽합니다! 이번 과의 핵심을 잘 붙잡으셨어요.":qs>=6?"훌륭해요! 틀린 부분만 위 섹션에서 다시 살펴보세요.":qs>=4?"좋은 출발이에요. 핵심 카드와 몸 그림을 다시 한 번 훑어보세요.":"괜찮아요. 위로 올라가 핵심 5가지를 다시 읽고 도전해 보세요.";
+  qBox.innerHTML='<div class="score"><div class="big">'+qs+'<span style="font-size:36px;-webkit-text-fill-color:var(--sub)"> / '+QZ.length+'</span></div><p>'+msg+'<br><small>내 최고 기록: '+best+' / '+QZ.length+'</small></p></div>';
+  var r=el("button","btn","다시 도전");r.onclick=function(){qi=0;qs=0;qres=[];quiz()};
+  var w=el("div","row");w.style.justifyContent="center";w.appendChild(r);qBox.appendChild(w);
+  mark("quiz");if(qs===QZ.length)confetti();
+}
+quiz();
+
+/* ---------- 7. discussion ---------- */
+var TALK=[
+ ["교회가 그리스도의 몸이라는 사실은 우리에게 어떤 의미가 있습니까? 나는 교회를 하나의 몸으로 생각합니까, 아니면 개인적으로 신앙생활하는 장소로만 생각합니까?","교회는 단순한 종교적 모임이 아니라 그리스도 안에서 서로 연결된 공동체임을 강조합니다."],
+ ["고린도전서 12장은 모든 지체가 서로를 필요로 한다고 말씀합니다. 여러분은 교회 안에서 다른 성도들의 도움이나 권면을 통해 은혜를 경험한 적이 있습니까?","서로를 돌보고 세워 주는 공동체의 중요성을 나누도록 합니다."],
+ ["여러분은 하나님께서 자신에게 주신 은사나 역할이 무엇이라고 생각합니까? 다른 성도들은 여러분에게 어떤 은사가 있다고 말합니까?","자신의 은사를 발견하고 공동체를 위해 사용하도록 격려합니다."],
+ ["중요한 결정을 내릴 때 다른 성도들의 조언을 듣는 것이 왜 중요합니까? 다른 사람의 권면을 받아들이기 어려웠던 경험이 있습니까?","겸손하게 권면을 듣되, 성경 말씀을 기준으로 분별하는 태도를 가르칩니다."],
+ ["지금 우리 교회나 목장에서 내가 감당해야 할 역할이 있다면 무엇입니까? 공동체를 세우기 위해 이번 주에 실천할 수 있는 일은 무엇입니까?","말씀을 배우는 데서 그치지 않고 실제적인 섬김과 순종으로 연결하도록 합니다."]
+];
+TALK.forEach(function(t,i){
+  var d=el("details","acc");
+  d.innerHTML='<summary><span class="n">'+(i+1)+'</span><span>'+t[0]+'</span></summary><div class="in"><div class="dir"><b>나눔의 방향</b> · '+t[1]+'</div><textarea placeholder="내 생각을 적어 보세요…" aria-label="질문 '+(i+1)+' 메모"></textarea><div class="saved"></div></div>';
+  var ta=d.querySelector("textarea"),sv=d.querySelector(".saved"),tm;
+  ta.value=store.get(KEY+"memo"+i)||"";
+  ta.addEventListener("input",function(){
+    clearTimeout(tm);sv.textContent="";
+    tm=setTimeout(function(){store.set(KEY+"memo"+i,ta.value);sv.textContent="이 기기에 저장됨"},500);
+  });
+  $("#talkList").appendChild(d);
+});
+
+/* ---------- 8. checklist ---------- */
+var ACT=[
+ "이번 주 중요한 결정이 있다면, 말씀에 신실한 성숙한 성도 한 분께 조언을 구한다.",
+ "목장(교회) 지체 한 사람에게 연락해 안부를 묻고 함께 기도한다.",
+ "고린도전서 12:12–27을 천천히 읽고 묵상한다.",
+ "내 은사나 역할이 무엇인지 다른 성도에게 물어본다.",
+ "교회나 목장에서 이번 주에 감당할 작은 섬김 한 가지를 정해 실천한다."
+];
+var ckState=[];try{ckState=JSON.parse(store.get(KEY+"checks")||"[]")}catch(e){}
+ACT.forEach(function(t,i){
+  var b=el("button","ck"+(ckState[i]?" on":""),'<span class="box">✓</span><span>'+t+'</span>');
+  b.setAttribute("role","checkbox");b.setAttribute("aria-checked",!!ckState[i]);
+  b.onclick=function(){
+    ckState[i]=!ckState[i];b.classList.toggle("on",ckState[i]);b.setAttribute("aria-checked",ckState[i]);
+    store.set(KEY+"checks",JSON.stringify(ckState));
+    if(ACT.every(function(_,k){return ckState[k]}))confetti();
+  };
+  $("#checks").appendChild(b);
+});
+})();
+</script>
+</body>
+</html>
