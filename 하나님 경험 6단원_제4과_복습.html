@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>제4과 영적인 표징들 · 복습</title>
+<style>
+:root{
+  --bg:#f5f5f7; --card:#ffffff; --card-2:#fafafc; --text:#1d1d1f; --text-2:#6e6e73; --text-3:#86868b;
+  --line:rgba(0,0,0,.08); --blue:#0071e3; --blue-soft:rgba(0,113,227,.10);
+  --green:#30b455; --green-soft:rgba(48,180,85,.14); --red:#ff3b30; --red-soft:rgba(255,59,48,.12);
+  --orange:#ff9f0a; --orange-soft:rgba(255,159,10,.16); --purple:#af52de;
+  --shadow:0 2px 12px rgba(0,0,0,.05), 0 12px 40px rgba(0,0,0,.05);
+  --nav:rgba(245,245,247,.72);
+  --radius:24px;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#000; --card:#1c1c1e; --card-2:#2c2c2e; --text:#f5f5f7; --text-2:#a1a1a6; --text-3:#86868b;
+    --line:rgba(255,255,255,.12); --blue:#2997ff; --blue-soft:rgba(41,151,255,.16);
+    --green:#32d74b; --green-soft:rgba(50,215,75,.16); --red:#ff453a; --red-soft:rgba(255,69,58,.16);
+    --orange:#ff9f0a; --orange-soft:rgba(255,159,10,.18);
+    --shadow:0 2px 12px rgba(0,0,0,.4);
+    --nav:rgba(0,0,0,.65);
+  }
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro KR","Apple SD Gothic Neo","Pretendard","Malgun Gothic",sans-serif;
+  -webkit-font-smoothing:antialiased;line-height:1.6;letter-spacing:-.011em;word-break:keep-all;
+}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;letter-spacing:inherit}
+h1,h2,h3,p{margin:0}
+
+/* NAV */
+nav{
+  position:fixed;inset:0 0 auto 0;z-index:50;height:52px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 max(18px,env(safe-area-inset-left));
+  background:var(--nav);backdrop-filter:saturate(180%) blur(22px);-webkit-backdrop-filter:saturate(180%) blur(22px);
+  border-bottom:1px solid var(--line);
+}
+nav .title{font-weight:600;font-size:15px}
+nav .links{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;margin:0 12px;flex:1;justify-content:center}
+nav .links::-webkit-scrollbar{display:none}
+nav .links a{
+  color:var(--text-2);text-decoration:none;font-size:13px;padding:6px 10px;border-radius:980px;white-space:nowrap;transition:.2s;
+}
+nav .links a.on{background:var(--blue-soft);color:var(--blue);font-weight:600}
+.score{font-size:13px;font-weight:600;background:var(--card);padding:5px 12px;border-radius:980px;box-shadow:var(--shadow);white-space:nowrap}
+.score b{color:var(--blue);display:inline-block;transition:transform .3s}
+.score b.pop{transform:scale(1.4)}
+#bar{position:fixed;top:52px;left:0;height:2px;width:0;background:linear-gradient(90deg,#0a84ff,#bf5af2);z-index:51}
+@media (max-width:760px){nav .links{display:none}nav{justify-content:space-between}}
+
+/* LAYOUT */
+main{max-width:980px;margin:0 auto;padding:0 20px 80px}
+section{padding:84px 0 8px}
+.eyebrow{font-size:14px;font-weight:600;color:var(--blue);letter-spacing:.02em;margin-bottom:8px}
+h2{font-size:clamp(28px,5vw,44px);line-height:1.15;font-weight:700;letter-spacing:-.03em;margin-bottom:12px}
+.lead{font-size:clamp(16px,2.2vw,20px);color:var(--text-2);max-width:700px;margin-bottom:28px}
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px}
+.hint{font-size:13px;color:var(--text-3);margin:10px 4px}
+.pill{
+  display:inline-flex;align-items:center;gap:6px;padding:11px 22px;border-radius:980px;background:var(--blue);color:#fff;font-weight:600;font-size:16px;
+  transition:transform .15s,opacity .2s;text-decoration:none;
+}
+.pill:hover{opacity:.9}.pill:active{transform:scale(.96)}
+.pill.ghost{background:var(--blue-soft);color:var(--blue)}
+.pill:disabled{opacity:.35;cursor:default}
+
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:100px 0 40px}
+.hero .tag{font-size:15px;font-weight:600;color:var(--text-2);margin-bottom:14px}
+.hero h1{
+  font-size:clamp(44px,10vw,96px);line-height:1.05;font-weight:800;letter-spacing:-.045em;margin-bottom:22px;
+  background:linear-gradient(135deg,#0a84ff 0%,#bf5af2 55%,#ff375f 100%);-webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero p.sub{font-size:clamp(17px,2.6vw,24px);color:var(--text-2);max-width:640px;margin-bottom:30px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:34px}
+.chip{background:var(--card);box-shadow:var(--shadow);padding:7px 14px;border-radius:980px;font-size:13px;font-weight:500;color:var(--text-2)}
+.scroll-cue{margin-top:46px;color:var(--text-3);font-size:13px;animation:bob 2s infinite}
+@keyframes bob{50%{transform:translateY(6px)}}
+
+/* QUOTE with blur words */
+.quote{font-size:clamp(22px,3.6vw,34px);line-height:1.5;font-weight:600;letter-spacing:-.03em}
+.blur{
+  filter:blur(9px);background:var(--blue-soft);color:var(--blue);border-radius:8px;padding:0 6px;cursor:pointer;transition:filter .4s,background .4s;
+  user-select:none;
+}
+.blur.open{filter:none;user-select:auto}
+
+/* FLIP CARDS */
+.grid{display:grid;gap:16px}
+.g5{grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.flip{perspective:1000px;height:200px;cursor:pointer;text-align:left}
+.flip .in{position:relative;width:100%;height:100%;transition:transform .7s cubic-bezier(.2,.7,.2,1);transform-style:preserve-3d}
+.flip.on .in{transform:rotateY(180deg)}
+.flip .f,.flip .b{
+  position:absolute;inset:0;border-radius:22px;padding:20px;backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  display:flex;flex-direction:column;justify-content:space-between;box-shadow:var(--shadow);
+}
+.flip .f{background:var(--card)}
+.flip .b{background:linear-gradient(145deg,#0a84ff,#5e5ce6);color:#fff;transform:rotateY(180deg)}
+.flip .n{font-size:13px;font-weight:700;color:var(--blue)}
+.flip .b .n{color:rgba(255,255,255,.75)}
+.flip .t{font-size:16px;font-weight:600;line-height:1.4}
+.flip .tapme{font-size:12px;color:var(--text-3)}
+.flip .b .t{font-size:17px}
+
+/* OBEDIENCE */
+.choice{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0}
+@media(max-width:640px){.choice{grid-template-columns:1fr}}
+.opt{
+  background:var(--card-2);border:2px solid transparent;border-radius:20px;padding:20px;text-align:left;transition:.25s;font-weight:600;font-size:16px;
+}
+.opt small{display:block;font-weight:400;color:var(--text-2);margin-top:4px;font-size:14px}
+.opt:hover{transform:translateY(-2px)}
+.opt.sel.bad{border-color:var(--orange);background:var(--orange-soft)}
+.opt.sel.good{border-color:var(--green);background:var(--green-soft)}
+.result{min-height:70px;border-radius:18px;padding:18px 20px;background:var(--card-2);color:var(--text-2);transition:.3s}
+.result.show{color:var(--text)}
+.checks{margin-top:22px;display:grid;gap:10px}
+.check{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border-radius:16px;background:var(--card-2);text-align:left;transition:.2s}
+.check .box{
+  flex:none;width:24px;height:24px;border-radius:50%;border:2px solid var(--text-3);display:grid;place-items:center;color:transparent;font-size:14px;transition:.25s;margin-top:1px
+}
+.check.on{background:var(--green-soft)}
+.check.on .box{background:var(--green);border-color:var(--green);color:#fff}
+.takeaway{margin-top:22px;padding:18px 22px;border-radius:18px;background:var(--blue-soft);color:var(--blue);font-weight:600}
+
+/* STONES */
+.stones{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin:20px 0}
+@media(max-width:560px){.stones{grid-template-columns:repeat(4,1fr)}}
+.stone{
+  aspect-ratio:1/.8;border-radius:46% 54% 50% 50%/55% 50% 50% 45%;background:linear-gradient(145deg,#d1d1d6,#aeaeb2);
+  display:grid;place-items:center;font-weight:700;color:#fff;font-size:18px;transition:transform .3s,background .4s,box-shadow .4s;box-shadow:0 4px 10px rgba(0,0,0,.12);
+}
+.stone:hover{transform:translateY(-3px) rotate(-2deg)}
+.stone.on{background:linear-gradient(145deg,#ffb340,#ff7a00);transform:scale(1.04);box-shadow:0 8px 20px rgba(255,122,0,.35)}
+.progress{height:8px;border-radius:99px;background:var(--line);overflow:hidden;margin:6px 0 4px}
+.progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,#ff9f0a,#ff375f);border-radius:99px;transition:width .4s}
+.fade{max-height:0;opacity:0;overflow:hidden;transition:max-height .7s ease,opacity .7s ease}
+.fade.show{max-height:400px;opacity:1}
+
+/* MATCH */
+.match{display:grid;grid-template-columns:1fr 1fr;gap:12px 14px}
+.m{
+  background:var(--card-2);border:2px solid transparent;border-radius:16px;padding:14px 16px;text-align:left;font-size:15px;transition:.2s;line-height:1.45
+}
+.m small{display:block;color:var(--text-3);font-size:12px;margin-top:2px}
+.m.sel{border-color:var(--blue);background:var(--blue-soft)}
+.m.done{background:var(--green-soft);border-color:var(--green);pointer-events:none}
+.m.shake{animation:shake .4s;border-color:var(--red);background:var(--red-soft)}
+@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.row{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-top:16px}
+.stat{font-size:14px;color:var(--text-2)}
+.stat b{color:var(--text)}
+
+/* CHAIN */
+.chain{display:flex;gap:8px;justify-content:center;margin-bottom:20px;flex-wrap:wrap}
+.node{
+  padding:9px 16px;border-radius:980px;background:var(--card-2);font-weight:600;font-size:14px;color:var(--text-3);transition:.35s;
+}
+.node.on{background:var(--blue);color:#fff;transform:scale(1.08)}
+.node.past{background:var(--blue-soft);color:var(--blue)}
+.step{min-height:150px;font-size:clamp(17px,2.4vw,22px);font-weight:500;line-height:1.6;text-align:center;display:flex;align-items:center;justify-content:center;padding:10px}
+.step.swap{animation:swap .5s}
+@keyframes swap{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:none}}
+
+/* SEGMENT */
+.seg{display:inline-flex;background:var(--card-2);border-radius:12px;padding:3px;margin-bottom:18px}
+.seg button{padding:8px 22px;border-radius:10px;font-size:14px;font-weight:600;color:var(--text-2);transition:.25s}
+.seg button.on{background:var(--card);color:var(--text);box-shadow:0 2px 8px rgba(0,0,0,.12)}
+.tabpane{padding:20px 22px;border-radius:18px;background:var(--card-2);min-height:130px}
+.tabpane .ref{display:inline-block;margin-top:10px;font-size:13px;font-weight:600;color:var(--blue)}
+.tabpane h3{font-size:20px;margin-bottom:6px}
+
+/* SORT */
+.buckets{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+@media(max-width:640px){.buckets{grid-template-columns:1fr}}
+.bucket{
+  border:2px dashed var(--line);border-radius:18px;padding:12px;min-height:130px;text-align:left;transition:.2s;display:flex;flex-direction:column;gap:8px
+}
+.bucket.hot{border-color:var(--blue);background:var(--blue-soft)}
+.bucket h4{margin:0;font-size:15px}
+.bucket .got{font-size:13px;line-height:1.4;padding:8px 10px;border-radius:12px;background:var(--green-soft)}
+.pool{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.tok{padding:10px 14px;border-radius:14px;background:var(--card-2);border:2px solid transparent;font-size:14px;text-align:left;transition:.2s;line-height:1.4}
+.tok.sel{border-color:var(--blue);background:var(--blue-soft)}
+.tok.shake{animation:shake .4s;border-color:var(--red)}
+
+/* LEDGER */
+.form{display:grid;gap:10px}
+select,textarea,input[type=text]{
+  width:100%;font:inherit;color:var(--text);background:var(--card-2);border:1px solid var(--line);border-radius:14px;padding:13px 14px;outline:none;transition:.2s;
+}
+select:focus,textarea:focus,input:focus{border-color:var(--blue);box-shadow:0 0 0 4px var(--blue-soft)}
+textarea{min-height:84px;resize:vertical}
+.ledger{margin-top:20px;border-left:3px solid var(--line);padding-left:18px;display:grid;gap:14px}
+.entry{position:relative;background:var(--card-2);border-radius:16px;padding:14px 16px;animation:swap .4s}
+.entry::before{content:"";position:absolute;left:-26px;top:20px;width:11px;height:11px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 4px var(--bg)}
+.entry .k{font-size:12px;font-weight:700;color:var(--blue)}
+.entry .x{float:right;font-size:12px;color:var(--text-3)}
+.empty{color:var(--text-3);font-size:14px}
+.caution{margin-top:22px;padding:16px 20px;border-radius:18px;background:var(--orange-soft);font-size:15px}
+.caution b{color:var(--orange)}
+
+/* TRUTHS */
+.truth{background:var(--card);border-radius:22px;box-shadow:var(--shadow);padding:22px 24px;margin-bottom:14px}
+.truth .k{font-size:13px;font-weight:700;color:var(--blue);margin-bottom:6px}
+.truth .s{font-size:clamp(17px,2.3vw,21px);font-weight:600;line-height:1.55}
+.blank{
+  display:inline-block;min-width:76px;text-align:center;border-bottom:3px solid var(--blue);color:transparent;background:var(--blue-soft);border-radius:8px 8px 0 0;padding:0 8px;transition:.3s;
+}
+.blank.open{color:var(--blue);background:transparent}
+.truth .d{max-height:0;opacity:0;overflow:hidden;color:var(--text-2);transition:.5s;font-size:15px}
+.truth.open .d{max-height:200px;opacity:1;margin-top:10px}
+.truth .mark{margin-top:12px;display:none}
+.truth.open .mark{display:inline-flex}
+.truth.known{outline:2px solid var(--green)}
+
+/* QUIZ */
+.qhead{display:flex;justify-content:space-between;align-items:center;font-size:14px;color:var(--text-2);margin-bottom:8px}
+.q{font-size:clamp(20px,3vw,28px);font-weight:700;line-height:1.35;letter-spacing:-.025em;margin:16px 0 20px}
+.ans{display:grid;gap:10px}
+.a{
+  text-align:left;padding:16px 18px;border-radius:16px;background:var(--card-2);border:2px solid transparent;font-size:16px;transition:.2s;display:flex;gap:12px;align-items:center
+}
+.a:hover{transform:translateX(3px)}
+.a .l{flex:none;width:28px;height:28px;border-radius:50%;background:var(--card);display:grid;place-items:center;font-size:13px;font-weight:700;color:var(--text-2)}
+.a.right{background:var(--green-soft);border-color:var(--green)}
+.a.wrong{background:var(--red-soft);border-color:var(--red);animation:shake .4s}
+.a.lock{pointer-events:none}
+.explain{margin-top:16px;padding:16px 18px;border-radius:16px;background:var(--blue-soft);display:none}
+.explain.show{display:block;animation:swap .4s}
+.final{text-align:center;padding:20px 0}
+.final .big{font-size:clamp(56px,12vw,100px);font-weight:800;letter-spacing:-.05em;line-height:1;background:linear-gradient(135deg,#30d158,#0a84ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* FINALE */
+.words{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}
+.slot{min-height:64px;border:2px dashed var(--line);border-radius:18px;padding:12px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:17px}
+.w{padding:10px 16px;border-radius:14px;background:var(--card-2);font-weight:600;transition:.2s}
+.w:hover{transform:translateY(-2px)}
+.w.in{background:var(--blue);color:#fff}
+.sentence{
+  text-align:center;font-size:clamp(24px,4.4vw,42px);font-weight:800;letter-spacing:-.035em;line-height:1.35;margin:10px 0;
+  background:linear-gradient(135deg,#0a84ff,#bf5af2,#ff375f);-webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.note-final{margin-top:20px;color:var(--text-2);font-size:16px;text-align:center}
+footer{text-align:center;color:var(--text-3);font-size:13px;padding:40px 0 10px}
+canvas#confetti{position:fixed;inset:0;pointer-events:none;z-index:100}
+</style>
+</head>
+<body>
+<nav>
+  <span class="title">제4과 복습</span>
+  <div class="links" id="links">
+    <a href="#s-topic">핵심 주제</a><a href="#s-sum">요약</a><a href="#s-obey">순종</a><a href="#s-sign">표징</a>
+    <a href="#s-time">연속성</a><a href="#s-moses">출애굽기 3장</a><a href="#s-ledger">영적 명세서</a><a href="#s-five">핵심 5가지</a><a href="#s-quiz">퀴즈</a>
+  </div>
+  <span class="score">⭐ <b id="pts">0</b>점</span>
+</nav>
+<div id="bar"></div>
+
+<main>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="tag">하나님 경험 · 6단원 제4과</div>
+  <h1>영적인<br>표징들</h1>
+  <p class="sub">과거에 나를 인도하신 하나님을 기억하며,<br>오늘의 결정을 분별하는 법을 복습해 봅시다.</p>
+  <div class="chips">
+    <span class="chip">교재 182–187쪽</span><span class="chip">여호수아 4:1–7</span><span class="chip">창세기 12:1–8</span><span class="chip">출애굽기 3:1–12</span><span class="chip">사무엘상 7:12</span>
+  </div>
+  <a class="pill" href="#s-topic">복습 시작하기 ›</a>
+  <div class="scroll-cue">아래로 스크롤</div>
+</header>
+
+<!-- 핵심 주제 -->
+<section id="s-topic">
+  <div class="reveal">
+    <div class="eyebrow">이번 과의 핵심 주제</div>
+    <h2>흐릿한 단어를 탭해 보세요.</h2>
+    <p class="lead">핵심 단어를 먼저 떠올린 뒤 눌러서 확인합니다.</p>
+  </div>
+  <div class="card reveal">
+    <p class="quote">“하나님께서 <span class="blur" data-p="2">과거</span>에 나를 어떻게 인도하셨는지 <span class="blur" data-p="2">돌아보면</span>, 현재와 미래에 나를 인도하시는 하나님의 뜻을 <span class="blur" data-p="2">분별</span>하는 데 도움을 받을 수 있습니다.”</p>
+    <p class="hint">우리는 하나님의 뜻을 알고 싶을 때 주로 앞으로 어떤 일이 일어날 것인지에 관심을 가집니다. 그러나 블랙가비는 하나님의 인도하심을 분별하기 위해 먼저 지금까지 하나님께서 내 삶에서 어떤 일을 행하셨는지 돌아보아야 한다고 강조합니다.</p>
+  </div>
+</section>
+
+<!-- 1. 요약 -->
+<section id="s-sum">
+  <div class="reveal">
+    <div class="eyebrow">1 · 교재의 전체 내용 요약</div>
+    <h2>다섯 장의 카드로 보는 흐름</h2>
+    <p class="lead">카드를 탭하면 뒤집어서 핵심 메시지를 볼 수 있습니다. 앞면만 보고 먼저 맞혀 보세요.</p>
+  </div>
+  <div class="grid g5 reveal" id="sumCards"></div>
+  <p class="hint" id="sumHint">0 / 5 카드를 확인했어요.</p>
+</section>
+
+<!-- 2-① 순종 -->
+<section id="s-obey">
+  <div class="reveal">
+    <div class="eyebrow">2 ① · 교재 182쪽</div>
+    <h2>알기 전에, 먼저 순종할 준비</h2>
+    <p class="lead">때로는 나쁜 것과 좋은 것 사이가 아니라, 좋은 것과 더 좋은 것 사이에서 선택해야 합니다.</p>
+  </div>
+  <div class="card reveal">
+    <p style="font-weight:600;font-size:18px">어떤 성도가 새로운 사역에 참여할 것인지 고민하고 있다고 가정해 봅시다. 이 성도의 마음은 어느 쪽일까요?</p>
+    <div class="choice">
+      <button class="opt" data-k="bad">자신의 편안함과 유익만 생각한다<small>탭해서 결과 보기</small></button>
+      <button class="opt" data-k="good">“주님께서 무엇을 원하시든지, 어떤 대가를 치르더라도 순종하겠습니다.”<small>탭해서 결과 보기</small></button>
+    </div>
+    <div class="result" id="obeyResult">두 가지 마음가짐 중 하나를 선택해 보세요.</div>
+    <div class="checks" id="obeyChecks"></div>
+    <div class="takeaway">중요한 교훈: 하나님의 뜻을 분별하는 출발점은 정보가 아니라 순종입니다.</div>
+  </div>
+</section>
+
+<!-- 2-② 표징 -->
+<section id="s-sign">
+  <div class="reveal">
+    <div class="eyebrow">2 ② · 교재 182–184쪽 · 여호수아 4:1–7</div>
+    <h2>기억하기 위한 이정표</h2>
+    <p class="lead">영적인 표징은 미래를 예언하는 신비한 징조가 아닙니다. 하나님께서 과거에 베푸신 은혜와 인도하심을 기억하도록 돕는 신앙의 이정표입니다.</p>
+  </div>
+
+  <div class="card reveal">
+    <h3 style="font-size:22px;margin-bottom:4px">요단강의 열두 돌 쌓기</h3>
+    <p class="hint" style="margin-top:0">돌을 하나씩 탭해서 기념비를 세워 보세요. 열두 개를 모두 세우면 그 이유가 나타납니다.</p>
+    <div class="stones" id="stones"></div>
+    <div class="progress"><i id="stoneBar"></i></div>
+    <p class="stat"><b id="stoneN">0</b> / 12</p>
+    <div class="fade" id="stoneMsg">
+      <div class="takeaway" style="margin-top:14px">
+        <p>그 이유는 무엇이었습니까?</p>
+        <p style="margin-top:8px;font-weight:500;color:var(--text)">후손들이 그 돌들의 의미를 물을 때 하나님께서 요단강을 마르게 하시고 이스라엘을 건너게 하셨다는 사실을 가르치기 위해서였습니다.</p>
+        <p style="margin-top:8px;font-weight:500;color:var(--text)">이 돌들은 단순한 기념물이 아니었습니다. 하나님께서 자기 백성을 위해 행하신 일을 기억하게 하는 표징이었습니다.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card reveal" style="margin-top:18px">
+    <h3 style="font-size:22px;margin-bottom:4px">짝 맞추기: 인물 ↔ 영적인 표징의 의미</h3>
+    <p class="hint" style="margin-top:0">왼쪽 인물을 탭하고, 오른쪽에서 알맞은 의미를 탭하세요.</p>
+    <div class="match" id="match"></div>
+    <div class="row">
+      <span class="stat">맞춘 짝 <b id="mDone">0</b> / 7 · 시도 <b id="mTry">0</b>회</span>
+      <button class="pill ghost" id="mReset">다시 섞기</button>
+    </div>
+    <div class="takeaway" style="margin-top:18px">이 사건들의 공통점: 하나님께서 자기 백성에게 은혜를 베푸시고 중요한 일을 행하셨을 때, 그들은 그 사건을 기억하기 위한 표징을 남겼습니다.</div>
+  </div>
+</section>
+
+<!-- 2-③ 연속성 -->
+<section id="s-time">
+  <div class="reveal">
+    <div class="eyebrow">2 ③ · 교재 184쪽</div>
+    <h2>끊어지지 않는 하나님의 약속</h2>
+    <p class="lead">하나님의 일하심은 서로 단절된 사건들의 모음이 아닙니다. 하나님은 자신의 언약과 구원 계획에 따라 역사하십니다.</p>
+  </div>
+  <div class="card reveal">
+    <div class="chain" id="chain"></div>
+    <div class="step" id="stepText"></div>
+    <div class="row" style="justify-content:center">
+      <button class="pill ghost" id="prev">‹ 이전</button>
+      <button class="pill" id="next">다음 ›</button>
+    </div>
+    <div class="takeaway">하나님은 자신의 약속에 신실하십니다. 자신의 삶을 돌아볼 때도 하나님의 신실하심을 기억해야 합니다.</div>
+  </div>
+</section>
+
+<!-- 2-④ 출애굽기 3장 -->
+<section id="s-moses">
+  <div class="reveal">
+    <div class="eyebrow">2 ④ · 교재 185쪽 · 출애굽기 3장</div>
+    <h2>모세의 부르심, 더 큰 계획의 일부</h2>
+    <p class="lead">모세는 자기 인생에서 새로운 일을 시작한다고 생각할 수 있었지만, 하나님께서는 이미 시작하신 자신의 일에 모세를 초청하셨습니다.</p>
+  </div>
+  <div class="card reveal">
+    <div class="seg" id="seg">
+      <button class="on" data-i="0">과거</button><button data-i="1">현재</button><button data-i="2">미래</button>
+    </div>
+    <div class="tabpane" id="pane"></div>
+
+    <h3 style="font-size:20px;margin:30px 0 4px">분류 게임</h3>
+    <p class="hint" style="margin-top:0">문장을 탭하고, 알맞은 시간대 상자를 탭하세요.</p>
+    <div class="pool" id="pool"></div>
+    <div class="buckets" id="buckets"></div>
+    <p class="stat" style="margin-top:12px">분류 완료 <b id="sDone">0</b> / 6</p>
+    <div class="takeaway">중요한 것은 내가 하나님을 위해 무엇을 시작할 것인가보다, 하나님께서 이미 이루고 계시는 뜻에 어떻게 순종할 것인가 하는 것입니다.</div>
+  </div>
+</section>
+
+<!-- 2-⑤ 영적 명세서 -->
+<section id="s-ledger">
+  <div class="reveal">
+    <div class="eyebrow">2 ⑤ · 교재 186–187쪽</div>
+    <h2>나의 영적 명세서 쓰기</h2>
+    <p class="lead">영적 명세서란 지금까지 하나님께서 나의 삶을 어떻게 인도하셨는지 기록하고 돌아보는 것입니다.</p>
+  </div>
+  <div class="card reveal">
+    <div class="form">
+      <select id="lk">
+        <option>회심했던 순간</option>
+        <option>중요한 결정을 앞두고 말씀을 통해 깨달음을 얻었던 경험</option>
+        <option>사역으로 부르심을 받았던 사건</option>
+        <option>어려운 시기에 하나님의 도우심을 경험했던 일</option>
+      </select>
+      <textarea id="lt" placeholder="그때 하나님께서 어떻게 인도하셨는지 한두 문장으로 적어 보세요."></textarea>
+      <div class="row" style="margin:0">
+        <span class="stat">이 기록은 이 기기의 브라우저에만 저장되며, 어디로도 전송되지 않습니다.</span>
+        <button class="pill" id="la">기록 추가</button>
+      </div>
+    </div>
+    <div class="ledger" id="ledger"></div>
+    <div class="caution"><b>주의</b> · 과거의 경험이 현재의 선택을 자동으로 정당화하는 것은 아닙니다. 말씀과 기도, 공동체의 지혜를 통해 신중하게 판단해야 합니다.</div>
+  </div>
+</section>
+
+<!-- 3. 핵심 5 -->
+<section id="s-five">
+  <div class="reveal">
+    <div class="eyebrow">3 · 반드시 기억해야 할 핵심 진리 5가지</div>
+    <h2>빈칸을 채워 보세요</h2>
+    <p class="lead">밑줄 친 빈칸을 탭하기 전에 먼저 답을 떠올려 보세요. 기억났다면 “기억했어요”를 눌러 주세요.</p>
+  </div>
+  <div id="truths" class="reveal"></div>
+  <p class="hint" id="truthHint">0 / 5 기억했어요.</p>
+</section>
+
+<!-- 퀴즈 -->
+<section id="s-quiz">
+  <div class="reveal">
+    <div class="eyebrow">실력 확인</div>
+    <h2>10문제 퀴즈</h2>
+    <p class="lead">한 번에 맞히면 10점, 두 번째 시도에 맞히면 5점입니다.</p>
+  </div>
+  <div class="card reveal" id="quiz"></div>
+</section>
+
+<!-- 핵심 한 문장 -->
+<section id="s-final">
+  <div class="reveal">
+    <div class="eyebrow">이번 과의 핵심 한 문장</div>
+    <h2>문장을 완성해 보세요</h2>
+    <p class="lead">아래 조각을 순서대로 탭해서 핵심 한 문장을 만드세요.</p>
+  </div>
+  <div class="card reveal">
+    <div class="slot" id="slot"><span class="hint" style="margin:0">여기에 문장이 만들어집니다</span></div>
+    <div class="words" id="words"></div>
+    <div class="row"><span class="stat" id="orderMsg"></span><button class="pill ghost" id="orderReset">처음부터</button></div>
+    <div class="fade" id="finale">
+      <p class="sentence">“과거에 나를 인도하신 하나님의 은혜를 기억하고, 오늘도 그 하나님을 신뢰하며 순종하십시오.”</p>
+      <p class="note-final">이번 제4과에서는 특히 <b>‘영적인 표징은 미래를 알려주는 신비한 징조가 아니라, 과거에 역사하신 하나님의 신실하심을 기억하게 하는 이정표’</b>라는 사실을 정확하게 이해하는 것이 중요합니다.</p>
+    </div>
+  </div>
+</section>
+
+<footer>하나님 경험 6단원 · 제4과 영적인 표징들 · 복습</footer>
+</main>
+<canvas id="confetti"></canvas>
+
+<script>
+/* ---------- 유틸 ---------- */
+const $=(s,r=document)=>r.querySelector(s);
+const $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let points=0;
+function addPts(n){points+=n;const b=$('#pts');b.textContent=points;b.classList.add('pop');setTimeout(()=>b.classList.remove('pop'),250)}
+
+/* confetti */
+function confetti(){
+  const c=$('#confetti'),x=c.getContext('2d');c.width=innerWidth;c.height=innerHeight;
+  const cols=['#0a84ff','#bf5af2','#ff375f','#ff9f0a','#30d158','#64d2ff'];
+  const ps=Array.from({length:140},()=>({x:innerWidth/2,y:innerHeight*.6,vx:(Math.random()-.5)*16,vy:-Math.random()*16-4,s:Math.random()*8+4,c:cols[Math.random()*cols.length|0],r:Math.random()*6,vr:(Math.random()-.5)*.4}));
+  let t=0;(function f(){x.clearRect(0,0,c.width,c.height);ps.forEach(p=>{p.vy+=.35;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;x.save();x.translate(p.x,p.y);x.rotate(p.r);x.fillStyle=p.c;x.fillRect(-p.s/2,-p.s/2,p.s,p.s*.6);x.restore()});if(++t<140)requestAnimationFrame(f);else x.clearRect(0,0,c.width,c.height)})();
+}
+
+/* 스크롤 진행 / 나타나기 / 내비 */
+addEventListener('scroll',()=>{const h=document.documentElement;$('#bar').style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%'},{passive:true});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+$$('.reveal').forEach(e=>io.observe(e));
+const secs=$$('main section'),links=$$('#links a');
+const io2=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id))}}),{rootMargin:'-45% 0px -50% 0px'});
+secs.forEach(s=>io2.observe(s));
+
+/* ---------- 핵심 주제: 블러 ---------- */
+$$('.blur').forEach(b=>b.addEventListener('click',()=>{if(!b.classList.contains('open')){b.classList.add('open');addPts(+b.dataset.p)}}));
+
+/* ---------- 1. 요약 카드 ---------- */
+const SUM=[
+ ['하나님의 뜻 앞에서 순종을 결단하라','하나님의 뜻을 알기 전에 순종할 마음을 준비하라'],
+ ['영적인 만남의 물질적인 표징들','하나님께서 행하신 일을 기억하라'],
+ ['하나님의 관점에서 역사를 바라보기','하나님은 과거와 현재와 미래를 연결하여 일하신다'],
+ ['모세를 부르신 하나님의 계획','하나님의 부르심은 이미 진행 중인 구원 계획과 연결된다'],
+ ['영적인 표징을 통해 인도하심을 분별하기','과거의 인도하심을 돌아보며 현재의 결정을 살펴보라']
+];
+const seen=new Set();
+$('#sumCards').innerHTML=SUM.map((s,i)=>`<div class="flip" data-i="${i}"><div class="in"><div class="f"><span class="n">${i+1}</span><span class="t">${s[0]}</span><span class="tapme">탭해서 핵심 메시지 보기</span></div><div class="b"><span class="n">핵심 메시지</span><span class="t">${s[1]}</span><span></span></div></div></div>`).join('');
+$$('.flip').forEach(f=>f.addEventListener('click',()=>{f.classList.toggle('on');const i=+f.dataset.i;if(!seen.has(i)){seen.add(i);addPts(1);$('#sumHint').textContent=seen.size+' / 5 카드를 확인했어요.'+(seen.size===5?' 👏':'')}}));
+
+/* ---------- 2-① 순종 ---------- */
+const OB={
+ bad:'그 성도가 자신의 편안함과 유익만 생각한다면 하나님의 인도하심을 올바르게 분별하기 어려울 수 있습니다.',
+ good:'하나님께서 무엇을 원하시는지 알고 기꺼이 순종하겠다는 마음을 가진다면, 자신의 욕심과 두려움을 내려놓고 말씀에 따라 판단할 수 있습니다.'
+};
+let obeyDone=false;
+$$('.opt').forEach(o=>o.addEventListener('click',()=>{
+  $$('.opt').forEach(x=>x.classList.remove('sel','good','bad'));
+  o.classList.add('sel',o.dataset.k);
+  const r=$('#obeyResult');r.textContent=OB[o.dataset.k];r.classList.add('show');
+  if(o.dataset.k==='good'&&!obeyDone){obeyDone=true;addPts(2)}
+}));
+const CK=['하나님의 뜻을 아는 것보다 먼저 필요한 것은 순종할 마음입니다.','자신의 뜻과 하나님의 뜻이 다를 때에도 하나님께 순종할 준비가 되어 있어야 합니다.','하나님의 뜻을 구한다는 것은 자신의 계획을 정당화하는 것이 아닙니다.'];
+$('#obeyChecks').innerHTML='<p class="hint" style="margin:0 0 -2px">학생들에게 꼭 강조할 내용 — 이해했다면 체크하세요.</p>'+CK.map(t=>`<button class="check"><span class="box">✓</span><span>${t}</span></button>`).join('');
+$$('.check').forEach(c=>c.addEventListener('click',()=>{const on=c.classList.toggle('on');if(on)addPts(1)}));
+
+/* ---------- 2-② 돌 쌓기 ---------- */
+let stoneN=0;
+$('#stones').innerHTML=Array.from({length:12},(_,i)=>`<button class="stone">${i+1}</button>`).join('');
+$$('.stone').forEach(s=>s.addEventListener('click',()=>{
+  if(s.classList.contains('on'))return;
+  s.classList.add('on');stoneN++;$('#stoneN').textContent=stoneN;$('#stoneBar').style.width=(stoneN/12*100)+'%';
+  if(stoneN===12){$('#stoneMsg').classList.add('show');addPts(3);confetti()}
+}));
+
+/* ---------- 2-② 짝 맞추기 ---------- */
+const PAIRS=[
+ ['아브라함','창 12:7–8','하나님의 약속을 받고 제단을 쌓음'],
+ ['이삭','창 26:23–25','하나님의 약속을 확인하고 제단을 쌓음'],
+ ['야곱','창 28:10–22','벧엘에서 하나님을 만난 사건을 기념함'],
+ ['모세','출 17:8–16',"승리를 주신 하나님을 기억하며 '여호와 닛시'라고 부름"],
+ ['여호수아','수 4:1–7','요단강을 건넌 하나님의 구원 역사를 기념함'],
+ ['기드온','삿 6:11–24',"하나님을 만난 후 제단을 쌓고 '여호와 샬롬'이라고 부름"],
+ ['사무엘','삼상 7:12',"하나님의 도우심을 기억하며 '에벤에셀'이라 이름함"]
+];
+let selL=null,selR=null,mDone=0,mTry=0;
+function buildMatch(){
+  selL=selR=null;mDone=0;mTry=0;$('#mDone').textContent=0;$('#mTry').textContent=0;
+  const L=PAIRS.map((p,i)=>`<button class="m" data-s="L" data-i="${i}">${p[0]}<small>${p[1]}</small></button>`);
+  const R=shuffle(PAIRS.map((p,i)=>({i,t:p[2]}))).map(o=>`<button class="m" data-s="R" data-i="${o.i}">${esc(o.t)}</button>`);
+  // 좌우를 한 줄씩 번갈아 배치
+  let h='';for(let k=0;k<7;k++)h+=L[k]+R[k];
+  $('#match').innerHTML=h;
+  $$('#match .m').forEach(b=>b.addEventListener('click',()=>pickMatch(b)));
+}
+function pickMatch(b){
+  const side=b.dataset.s;
+  $$('#match .m[data-s="'+side+'"]').forEach(x=>x.classList.remove('sel'));
+  b.classList.add('sel');
+  if(side==='L')selL=b;else selR=b;
+  if(selL&&selR){
+    mTry++;$('#mTry').textContent=mTry;
+    const ok=selL.dataset.i===selR.dataset.i;
+    const a=selL,c=selR;selL=selR=null;
+    if(ok){a.className='m done';c.className='m done';mDone++;$('#mDone').textContent=mDone;addPts(2);
+      if(mDone===7){confetti();addPts(3)}}
+    else{[a,c].forEach(x=>{x.classList.remove('sel');x.classList.add('shake');setTimeout(()=>x.classList.remove('shake'),450)})}
+  }
+}
+$('#mReset').addEventListener('click',buildMatch);buildMatch();
+
+/* ---------- 2-③ 연속성 ---------- */
+const CH=[
+ ['아브라함','하나님은 아브라함을 부르시고 그에게 후손과 땅을 약속하셨습니다. 그 약속은 아브라함 한 사람의 삶에서 끝나지 않았습니다.'],
+ ['이삭','하나님은 이삭에게 나타나셔서 아브라함에게 주신 약속을 확인하셨습니다.'],
+ ['야곱','하나님은 야곱에게 나타나셔서 자신이 아브라함과 이삭의 하나님이심을 말씀하셨습니다.'],
+ ['모세','하나님은 모세를 부르셨을 때도 자신이 아브라함과 이삭과 야곱의 하나님이심을 밝히셨습니다.']
+];
+let ci=0;
+function renderChain(swap){
+  $('#chain').innerHTML=CH.map((c,i)=>`<span class="node ${i===ci?'on':i<ci?'past':''}">${c[0]}</span>`).join('');
+  const s=$('#stepText');s.textContent=CH[ci][1];
+  if(swap){s.classList.remove('swap');void s.offsetWidth;s.classList.add('swap')}
+  $('#prev').disabled=ci===0;$('#next').disabled=ci===CH.length-1;
+}
+let chainBonus=false;
+$('#prev').addEventListener('click',()=>{if(ci>0){ci--;renderChain(true)}});
+$('#next').addEventListener('click',()=>{if(ci<CH.length-1){ci++;renderChain(true);if(ci===CH.length-1&&!chainBonus){chainBonus=true;addPts(2)}}});
+renderChain(false);
+
+/* ---------- 2-④ 출 3장 ---------- */
+const TM=[
+ ['과거 — 하나님께서 이미 행하신 일','하나님은 아브라함과 이삭과 야곱에게 약속하셨고, 그들의 후손을 자기 백성으로 삼으셨습니다.','출 3:6'],
+ ['현재 — 하나님께서 지금 행하고 계신 일','하나님은 애굽에서 고통받는 이스라엘 백성의 부르짖음을 들으셨고, 모세를 부르셔서 그들을 구원하는 일에 참여시키셨습니다.','출 3:7–10'],
+ ['미래 — 하나님께서 이루실 일','하나님은 이스라엘을 애굽에서 인도하여 내시고, 약속의 땅으로 이끄시며, 자신을 예배하는 백성으로 세우실 것을 말씀하셨습니다.','출 3:12, 17']
+];
+function showTab(i){
+  $$('#seg button').forEach((b,k)=>b.classList.toggle('on',k===i));
+  const t=TM[i];$('#pane').innerHTML=`<h3>${t[0]}</h3><p>${t[1]}</p><span class="ref">${t[2]}</span>`;
+}
+$$('#seg button').forEach(b=>b.addEventListener('click',()=>showTab(+b.dataset.i)));showTab(0);
+
+const SORT=[
+ ['하나님은 아브라함과 이삭과 야곱에게 약속하셨습니다.',0],
+ ['그들의 후손을 자기 백성으로 삼으셨습니다.',0],
+ ['애굽에서 고통받는 이스라엘 백성의 부르짖음을 들으셨습니다.',1],
+ ['모세를 부르셔서 구원하는 일에 참여시키셨습니다.',1],
+ ['약속의 땅으로 이끄십니다.',2],
+ ['자신을 예배하는 백성으로 세우실 것입니다.',2]
+];
+const BN=['과거','현재','미래'];
+let selTok=null,sDone=0;
+$('#pool').innerHTML=shuffle(SORT.map((s,i)=>({i,t:s[0]}))).map(o=>`<button class="tok" data-i="${o.i}">${o.t}</button>`).join('');
+$('#buckets').innerHTML=BN.map((n,i)=>`<button class="bucket" data-b="${i}"><h4>${n}</h4></button>`).join('');
+$$('.tok').forEach(t=>t.addEventListener('click',()=>{$$('.tok').forEach(x=>x.classList.remove('sel'));t.classList.add('sel');selTok=t;$$('.bucket').forEach(b=>b.classList.add('hot'))}));
+$$('.bucket').forEach(b=>b.addEventListener('click',()=>{
+  if(!selTok)return;
+  const i=+selTok.dataset.i;
+  if(SORT[i][1]===+b.dataset.b){
+    const d=document.createElement('div');d.className='got';d.textContent=SORT[i][0];b.appendChild(d);
+    selTok.remove();selTok=null;sDone++;$('#sDone').textContent=sDone;addPts(1);
+    $$('.bucket').forEach(x=>x.classList.remove('hot'));
+    if(sDone===6){addPts(2);confetti()}
+  }else{selTok.classList.add('shake');const t=selTok;setTimeout(()=>t.classList.remove('shake'),450)}
+}));
+
+/* ---------- 2-⑤ 영적 명세서 (브라우저 localStorage) ---------- */
+const LK='gk6-4-ledger';
+let ledger=[];try{ledger=JSON.parse(localStorage.getItem(LK)||'[]')}catch(e){ledger=[]}
+function renderLedger(){
+  $('#ledger').innerHTML=ledger.length?ledger.map((e,i)=>`<div class="entry"><button class="x" data-i="${i}">지우기</button><div class="k">${esc(e.k)}</div><div>${esc(e.t).replace(/\n/g,'<br>')}</div></div>`).join(''):'<p class="empty">아직 기록이 없습니다. 하나님께서 인도하셨던 순간을 하나 적어 보세요.</p>';
+  $$('#ledger .x').forEach(b=>b.addEventListener('click',()=>{ledger.splice(+b.dataset.i,1);save();renderLedger()}));
+}
+function save(){try{localStorage.setItem(LK,JSON.stringify(ledger))}catch(e){}}
+$('#la').addEventListener('click',()=>{
+  const t=$('#lt').value.trim();if(!t)return;
+  ledger.push({k:$('#lk').value,t});save();$('#lt').value='';renderLedger();addPts(2);
+});
+renderLedger();
+
+/* ---------- 3. 핵심 5 ---------- */
+const TR=[
+ ['핵심 1','하나님의 뜻을 알기 전에 ','순종할 마음','을 준비해야 합니다.','하나님께서 무엇을 원하시든지 따르겠다는 태도가 하나님의 뜻을 분별하는 출발점입니다.'],
+ ['핵심 2','영적인 표징은 하나님께서 행하신 일을 기억하게 하는 신앙의 ','이정표','입니다.','구원받은 경험, 중요한 부르심, 말씀을 통해 깨달았던 순간 등을 기억해야 합니다.'],
+ ['핵심 3','하나님은 자신의 목적에 따라 ','신실하게',' 역사하십니다.','하나님께서 아브라함과 이삭과 야곱에게 약속하신 것을 모세 시대에도 이루어 가셨던 것처럼, 하나님의 구원 계획에는 연속성이 있습니다.'],
+ ['핵심 4','과거의 인도하심을 ','돌아보면',' 현재의 결정을 분별하는 데 도움이 됩니다.','중요한 선택을 앞두고 지금까지 하나님께서 어떻게 인도하셨는지 살펴보아야 합니다.'],
+ ['핵심 5','하나님의 인도하심을 분별했다면 ','믿음으로',' 순종해야 합니다.','자신의 편안함이나 유익보다 하나님의 뜻을 우선하며, 말씀과 기도 가운데 순종해야 합니다.']
+];
+$('#truths').innerHTML=TR.map((t,i)=>`<div class="truth" data-i="${i}"><div class="k">${t[0]}</div><div class="s">${t[1]}<button class="blank">${t[2]}</button>${t[3]}</div><div class="d">${t[4]}</div><button class="pill ghost mark">기억했어요 ✓</button></div>`).join('');
+const known=new Set();
+$$('.truth').forEach(el=>{
+  $('.blank',el).addEventListener('click',e=>{e.target.classList.add('open');el.classList.add('open')});
+  $('.mark',el).addEventListener('click',()=>{
+    const i=+el.dataset.i;if(known.has(i))return;
+    known.add(i);el.classList.add('known');addPts(2);$('#truthHint').textContent=known.size+' / 5 기억했어요.'+(known.size===5?' 🎉':'');
+    if(known.size===5)confetti();
+  });
+});
+
+/* ---------- 퀴즈 ---------- */
+const QZ=[
+ {q:'하나님의 뜻을 분별하는 출발점은 무엇입니까?',o:['더 많은 정보를 모으는 것','순종할 마음','가장 유익한 선택지를 고르는 것','과거 경험의 목록'],a:1,e:'하나님의 뜻을 분별하는 출발점은 정보가 아니라 순종입니다.'},
+ {q:'영적인 표징은 미래를 예언하는 신비한 징조이다.',o:['O','X'],a:1,e:'영적인 표징은 미래를 예언하는 신비한 징조가 아니라, 하나님께서 과거에 베푸신 은혜와 인도하심을 기억하도록 돕는 신앙의 이정표입니다.'},
+ {q:'이스라엘 백성이 요단강을 건넌 뒤 열두 개의 돌을 기념비로 세우게 하신 이유는?',o:['후손들이 의미를 물을 때, 하나님께서 요단강을 마르게 하시고 건너게 하셨음을 가르치기 위해','이스라엘 열두 지파의 땅 경계를 정하기 위해','전쟁에서 승리한 장수를 기리기 위해','다음 이동 경로를 표시하기 위해'],a:0,e:'이 돌들은 단순한 기념물이 아니라, 하나님께서 자기 백성을 위해 행하신 일을 기억하게 하는 표징이었습니다.'},
+ {q:'사무엘이 하나님의 도우심을 기억하며 이름한 것은? (삼상 7:12)',o:['여호와 닛시','에벤에셀','여호와 샬롬','벧엘'],a:1,e:"사무엘은 하나님의 도우심을 기억하며 '에벤에셀'이라 이름했습니다."},
+ {q:"기드온이 하나님을 만난 후 제단을 쌓고 부른 이름은? (삿 6:11–24)",o:['여호와 닛시','에벤에셀','여호와 샬롬','엘 샤다이'],a:2,e:"기드온은 제단을 쌓고 '여호와 샬롬'이라고 불렀습니다. ('여호와 닛시'는 모세, 출 17:8–16)"},
+ {q:'하나님이 모세에게 자신을 어떤 분으로 밝히셨습니까? (출 3:6)',o:['천지를 창조하신 하나님','아브라함과 이삭과 야곱의 하나님','광야에서 만나를 내리신 하나님','다윗의 하나님'],a:1,e:'하나님은 아브라함과 이삭과 야곱에게 약속하셨고, 그 구원 계획의 연장선에서 모세를 부르셨습니다. (과거)'},
+ {q:"‘영적 명세서’란 무엇입니까?",o:['미래에 일어날 일을 기록한 예언 목록','지금까지 하나님께서 나의 삶을 어떻게 인도하셨는지 기록하고 돌아보는 것','교회 재정을 정리한 문서','성경 구절을 암송한 횟수 기록'],a:1,e:'영적 명세서는 지금까지 하나님께서 나의 삶을 어떻게 인도하셨는지 기록하고 돌아보는 것입니다.'},
+ {q:'과거의 경험은 현재의 선택을 자동으로 정당화해 준다.',o:['O','X'],a:1,e:'과거의 경험이 현재의 선택을 자동으로 정당화하는 것은 아닙니다. 말씀과 기도, 공동체의 지혜를 통해 신중하게 판단해야 합니다.'},
+ {q:'모세의 부르심에서 블랙가비가 강조하는 ‘하나님의 관점’은?',o:['모세가 스스로 새 일을 시작했다','하나님께서 이미 시작하신 자신의 일에 모세를 초청하셨다','모세의 능력이 부르심의 기준이었다','이스라엘의 상황이 좋아졌기 때문에 부르셨다'],a:1,e:'모세는 새로운 일을 시작한다고 생각할 수 있었지만, 하나님께서는 이미 시작하신 자신의 일에 모세를 초청하셨습니다.'},
+ {q:'하나님의 뜻을 찾기 전에 먼저 가져야 할 태도로 블랙가비가 강조한 고백은?',o:['주님, 제가 원하는 길로 인도해 주십시오.','주님께서 무엇을 원하시든지, 어떤 대가를 치르더라도 순종하겠습니다.','주님, 먼저 확실한 증거를 보여 주십시오.','주님, 저에게 유익한 쪽을 알려 주십시오.'],a:1,e:'하나님의 뜻을 알기 원하면서도 자신이 원하는 방향으로만 인도해 달라고 한다면 진정으로 하나님의 뜻을 구하는 것이 아닙니다.'}
+];
+let qi=0,score=0,tries=0,qLocked=false,qScore=0;
+function renderQ(){
+  const box=$('#quiz');
+  if(qi>=QZ.length){
+    const pct=Math.round(qScore/(QZ.length*10)*100);
+    const msg=qScore>=90?'완벽해요! 핵심을 정확히 이해하고 계십니다.':qScore>=60?'잘하셨어요! 틀린 부분만 위쪽에서 다시 복습해 보세요.':'괜찮아요. 위쪽 카드와 핵심 5가지를 다시 보고 도전해 보세요.';
+    box.innerHTML=`<div class="final"><div class="big">${qScore}점</div><p class="lead" style="margin:14px auto 22px">${msg}</p><button class="pill" id="retry">다시 풀기</button></div>`;
+    $('#retry').addEventListener('click',()=>{qi=0;qScore=0;renderQ()});
+    if(qScore>=60)confetti();
+    return;
+  }
+  const Q=QZ[qi];tries=0;qLocked=false;
+  const opts=Q.o.length===2?Q.o.map((t,i)=>({t,i})):shuffle(Q.o.map((t,i)=>({t,i})));
+  box.innerHTML=`<div class="qhead"><span>문제 ${qi+1} / ${QZ.length}</span><span>현재 ${qScore}점</span></div><div class="progress"><i style="width:${qi/QZ.length*100}%;background:var(--blue)"></i></div><div class="q">${Q.q}</div><div class="ans">${opts.map((o,k)=>`<button class="a" data-i="${o.i}"><span class="l">${Q.o.length===2?(o.t):'ABCD'[k]}</span><span>${Q.o.length===2?(o.t==='O'?'맞다':'아니다'):esc(o.t)}</span></button>`).join('')}</div><div class="explain" id="exp"></div><div class="row" style="justify-content:flex-end"><button class="pill" id="nq" style="display:none">${qi===QZ.length-1?'결과 보기':'다음 문제'} ›</button></div>`;
+  $$('#quiz .a').forEach(b=>b.addEventListener('click',()=>{
+    if(qLocked)return;
+    if(+b.dataset.i===Q.a){
+      b.classList.add('right');qLocked=true;$$('#quiz .a').forEach(x=>x.classList.add('lock'));
+      const g=tries===0?10:tries===1?5:0;qScore+=g;if(g)addPts(g);
+      const e=$('#exp');e.innerHTML='<b>'+(g===10?'정답! ':'정답입니다. ')+'</b>'+esc(Q.e);e.classList.add('show');$('#nq').style.display='inline-flex';
+    }else{
+      b.classList.add('wrong','lock');tries++;
+    }
+  }));
+  $('#nq').addEventListener('click',()=>{qi++;renderQ();$('#s-quiz').scrollIntoView({behavior:'smooth'})});
+}
+renderQ();
+
+/* ---------- 핵심 한 문장 ---------- */
+const CHUNKS=['과거에 나를 인도하신','하나님의 은혜를 기억하고,','오늘도 그 하나님을 신뢰하며','순종하십시오.'];
+let nextC=0;
+function buildOrder(){
+  nextC=0;$('#slot').innerHTML='<span class="hint" style="margin:0">여기에 문장이 만들어집니다</span>';
+  $('#orderMsg').textContent='';$('#finale').classList.remove('show');
+  $('#words').innerHTML=shuffle(CHUNKS.map((t,i)=>({t,i}))).map(o=>`<button class="w" data-i="${o.i}">${o.t}</button>`).join('');
+  $$('#words .w').forEach(w=>w.addEventListener('click',()=>{
+    if(+w.dataset.i===nextC){
+      if(nextC===0)$('#slot').innerHTML='';
+      const s=document.createElement('span');s.className='w in';s.textContent=w.textContent;$('#slot').appendChild(s);
+      w.remove();nextC++;
+      if(nextC===CHUNKS.length){$('#finale').classList.add('show');$('#orderMsg').textContent='완성했어요!';addPts(5);confetti()}
+    }else{w.classList.add('shake');w.style.background='var(--red-soft)';setTimeout(()=>{w.style.background=''},450);$('#orderMsg').textContent='순서를 다시 생각해 보세요.'}
+  }));
+}
+$('#orderReset').addEventListener('click',buildOrder);buildOrder();
+</script>
+</body>
+</html>
