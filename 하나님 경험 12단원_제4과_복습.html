@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>제4과 서로를 돕는 것 · 복습</title>
+<style>
+:root{
+  --bg:#fbfbfd; --bg2:#f5f5f7; --card:#ffffff; --text:#1d1d1f; --sub:#6e6e73; --line:rgba(0,0,0,.08);
+  --blue:#0071e3; --blue-soft:rgba(0,113,227,.10); --green:#1f9d55; --green-soft:rgba(48,209,88,.14);
+  --red:#d70015; --red-soft:rgba(255,59,48,.12); --orange:#c93400; --orange-soft:rgba(255,149,0,.14);
+  --shadow:0 2px 6px rgba(0,0,0,.04),0 12px 32px rgba(0,0,0,.06);
+  --nav:rgba(251,251,253,.72);
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#000; --bg2:#111113; --card:#1c1c1e; --text:#f5f5f7; --sub:#a1a1a6; --line:rgba(255,255,255,.12);
+    --blue:#2997ff; --blue-soft:rgba(41,151,255,.16); --green:#32d74b; --green-soft:rgba(50,215,75,.16);
+    --red:#ff453a; --red-soft:rgba(255,69,58,.16); --orange:#ff9f0a; --orange-soft:rgba(255,159,10,.16);
+    --shadow:0 0 0 1px rgba(255,255,255,.04); --nav:rgba(0,0,0,.72);
+  }
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+body{margin:0;background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;
+  line-height:1.65;-webkit-font-smoothing:antialiased;word-break:keep-all;letter-spacing:-.01em}
+button,input{font:inherit;color:inherit;letter-spacing:inherit}
+button{cursor:pointer}
+
+/* nav */
+nav{position:sticky;top:0;z-index:50;background:var(--nav);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:980px;margin:0 auto;padding:0 16px;height:48px;display:flex;align-items:center;gap:20px;overflow-x:auto;scrollbar-width:none}
+.nav-in::-webkit-scrollbar{display:none}
+.nav-in b{font-weight:600;font-size:14px;white-space:nowrap}
+.nav-in a{font-size:12.5px;color:var(--sub);text-decoration:none;white-space:nowrap;transition:color .2s}
+.nav-in a:hover{color:var(--text)}
+#bar{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:var(--blue);transition:width .1s}
+
+/* layout */
+main{max-width:980px;margin:0 auto;padding:0 20px}
+section{padding:88px 0 24px}
+.eyebrow{font-size:14px;font-weight:600;color:var(--blue);margin:0 0 8px}
+h2{font-size:clamp(28px,5vw,44px);line-height:1.15;font-weight:700;letter-spacing:-.03em;margin:0 0 12px}
+.lead{font-size:clamp(16px,2.2vw,19px);color:var(--sub);margin:0 0 32px;max-width:660px}
+.ref{font-size:12px;color:var(--sub);font-weight:400}
+
+/* hero */
+.hero{text-align:center;padding:96px 0 40px}
+.hero .eyebrow{font-size:15px}
+.hero h1{font-size:clamp(34px,7vw,64px);line-height:1.1;font-weight:700;letter-spacing:-.04em;margin:0 0 20px;
+  background:linear-gradient(135deg,var(--text) 30%,var(--blue));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.sub{font-size:clamp(17px,2.6vw,24px);color:var(--sub);margin:0 auto 36px;max-width:640px}
+.quote{background:var(--card);border-radius:28px;padding:36px 28px;box-shadow:var(--shadow);max-width:700px;margin:0 auto}
+.quote q{display:block;font-size:clamp(20px,3.4vw,28px);font-weight:600;line-height:1.4;quotes:none;letter-spacing:-.025em}
+.quote small{display:block;margin-top:12px;color:var(--sub)}
+.cta{display:inline-block;margin-top:32px;background:var(--blue);color:#fff;text-decoration:none;padding:12px 26px;border-radius:980px;font-size:17px;transition:transform .2s,opacity .2s}
+.cta:hover{transform:scale(1.03);opacity:.92}
+
+/* cards & grids */
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.card{background:var(--card);border-radius:22px;padding:24px;box-shadow:var(--shadow)}
+.card h3{margin:0 0 6px;font-size:19px;letter-spacing:-.02em}
+.card p{margin:0;color:var(--sub);font-size:15.5px}
+.tag{display:inline-block;font-size:12px;font-weight:600;padding:3px 10px;border-radius:980px;background:var(--blue-soft);color:var(--blue);margin-bottom:10px}
+.tag.g{background:var(--green-soft);color:var(--green)}
+.tag.o{background:var(--orange-soft);color:var(--orange)}
+.tag.gray{background:var(--bg2);color:var(--sub)}
+.stack>*+*{margin-top:16px}
+
+/* reveal buttons */
+.reveal-btn{width:100%;text-align:left;background:var(--card);border:0;border-radius:22px;padding:22px 24px;box-shadow:var(--shadow);display:flex;gap:14px;align-items:flex-start;transition:transform .2s}
+.reveal-btn:active{transform:scale(.985)}
+.reveal-btn .ic{flex:none;width:36px;height:36px;border-radius:12px;background:var(--blue-soft);color:var(--blue);display:grid;place-items:center;font-weight:700}
+.reveal-btn h3{margin:0;font-size:18px}
+.reveal-btn .more{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s ease;color:var(--sub);font-size:15.5px}
+.reveal-btn .more>div{overflow:hidden}
+.reveal-btn[aria-expanded=true] .more{grid-template-rows:1fr}
+.reveal-btn .more>div>p{margin:8px 0 0}
+.reveal-btn .more ul{margin:8px 0 0;padding-left:20px}
+.reveal-btn .more li+li{margin-top:4px}
+.chev{margin-left:auto;color:var(--sub);transition:transform .3s;flex:none}
+.reveal-btn[aria-expanded=true] .chev{transform:rotate(180deg)}
+
+/* tabs */
+.seg{display:flex;gap:4px;background:var(--bg2);border-radius:14px;padding:4px;margin-bottom:18px;overflow-x:auto}
+.seg button{flex:1;min-width:92px;border:0;background:transparent;border-radius:11px;padding:10px 8px;font-size:14.5px;color:var(--sub);transition:all .2s}
+.seg button[aria-selected=true]{background:var(--card);color:var(--text);font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.12)}
+.panel{animation:fade .35s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.big{font-size:clamp(22px,3.6vw,30px);font-weight:700;letter-spacing:-.03em;line-height:1.3;margin:6px 0 12px}
+
+/* blanks */
+.q{background:var(--card);border-radius:22px;padding:20px 22px;box-shadow:var(--shadow);margin-bottom:12px}
+.q .num{font-size:13px;font-weight:600;color:var(--blue);margin-bottom:6px;display:flex;gap:8px;align-items:center}
+.q .stem{font-size:17px;font-weight:500;line-height:2.1}
+.q input.blank{width:7.5em;border:0;border-bottom:2px solid var(--line);background:var(--bg2);border-radius:8px 8px 0 0;padding:2px 8px;text-align:center;outline:none;transition:border-color .2s,background .2s;margin:0 2px}
+.q input.blank:focus{border-color:var(--blue)}
+.q input.blank.ok{border-color:var(--green);background:var(--green-soft);color:var(--green)}
+.q input.blank.bad{border-color:var(--red);background:var(--red-soft);animation:shake .35s}
+@keyframes shake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:8px}
+.btn{border:0;border-radius:980px;padding:8px 18px;background:var(--blue);color:#fff;font-size:14.5px;transition:opacity .2s,transform .2s}
+.btn:hover{opacity:.9}.btn:active{transform:scale(.96)}
+.btn.ghost{background:var(--bg2);color:var(--text)}
+.fb{font-size:14.5px;margin-top:6px;min-height:1.2em}
+.fb.ok{color:var(--green)}.fb.bad{color:var(--red)}
+
+/* quiz */
+.opts{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+.opts button{flex:1;min-width:120px;border:0;border-radius:16px;padding:14px;font-size:16px;font-weight:600;background:var(--bg2);transition:all .2s;line-height:1.4}
+.opts button.ox{font-size:22px;font-weight:700}
+.opts button:hover:not(:disabled){background:var(--blue-soft);color:var(--blue)}
+.opts button.right{background:var(--green-soft);color:var(--green)}
+.opts button.wrong{background:var(--red-soft);color:var(--red)}
+.opts button:disabled{cursor:default}
+.opts.col{flex-direction:column}
+.opts.col button{text-align:left;font-weight:500;font-size:15.5px}
+.explain{display:none;margin-top:12px;padding:12px 14px;border-radius:14px;background:var(--bg2);font-size:15px;color:var(--sub)}
+.explain.show{display:block;animation:fade .3s}
+.qbar{height:6px;border-radius:99px;background:var(--bg2);overflow:hidden;margin-bottom:18px}
+.qbar i{display:block;height:100%;width:0;background:var(--blue);transition:width .4s}
+
+/* chips */
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px}
+.chip{border:1px solid var(--line);background:var(--card);border-radius:980px;padding:10px 18px;font-size:15.5px;transition:all .2s;box-shadow:var(--shadow)}
+.chip[aria-pressed=true]{background:var(--blue);color:#fff;border-color:var(--blue)}
+.chip.warn[aria-pressed=true]{background:var(--orange);border-color:var(--orange);color:#fff}
+.callout{border-left:4px solid var(--blue);background:var(--blue-soft);border-radius:0 16px 16px 0;padding:14px 18px;margin:16px 0;font-size:15.5px}
+.callout.o{border-color:var(--orange);background:var(--orange-soft)}
+.callout.g{border-color:var(--green);background:var(--green-soft)}
+.verse{font-size:clamp(17px,2.6vw,21px);line-height:1.7;font-weight:500;letter-spacing:-.02em}
+.verse small{display:block;margin-top:8px;color:var(--sub);font-size:13.5px;font-weight:400}
+
+/* flashcards */
+.fc{perspective:1000px;height:210px;border:0;background:none;padding:0}
+.fc .in{position:relative;width:100%;height:100%;transition:transform .6s cubic-bezier(.2,.8,.2,1);transform-style:preserve-3d}
+.fc[aria-pressed=true] .in{transform:rotateY(180deg)}
+.fc .f,.fc .b{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:22px;padding:22px;display:flex;flex-direction:column;justify-content:center;box-shadow:var(--shadow);text-align:left;overflow:auto}
+.fc .f{background:var(--card)}
+.fc .b{background:var(--blue);color:#fff;transform:rotateY(180deg);font-weight:600;font-size:15.5px;line-height:1.5}
+.fc .f .n{font-size:13px;font-weight:600;color:var(--blue)}
+.fc .f .k{font-size:21px;font-weight:700;letter-spacing:-.025em;margin-top:6px}
+.fc .f .h{font-size:13px;color:var(--sub);margin-top:10px}
+
+/* checklist */
+.check{display:flex;gap:12px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--line);cursor:pointer}
+.check:last-child{border:0}
+.check input{width:22px;height:22px;accent-color:var(--blue);flex:none;margin-top:3px}
+.check input:checked+span{color:var(--green);font-weight:600}
+
+/* compare */
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:560px){.cmp{grid-template-columns:1fr}}
+.cmp .side{border-radius:22px;padding:22px;box-shadow:var(--shadow);background:var(--card)}
+
+/* order game */
+.slots{display:flex;flex-direction:column;gap:10px;margin:14px 0}
+.slot{display:flex;gap:12px;align-items:center;min-height:56px;border:2px dashed var(--line);border-radius:16px;padding:10px 14px;color:var(--sub);font-size:15px;transition:all .3s}
+.slot b{flex:none;width:30px;height:30px;border-radius:99px;background:var(--bg2);display:grid;place-items:center;font-size:14px;color:var(--sub)}
+.slot.fill{border:2px solid var(--green);background:var(--green-soft);color:var(--text);animation:fade .3s}
+.slot.fill b{background:var(--green);color:#fff}
+.pool{display:flex;flex-wrap:wrap;gap:10px}
+.pool button{border:0;border-radius:16px;padding:12px 16px;background:var(--bg2);font-size:15px;text-align:left;transition:all .2s;max-width:100%}
+.pool button:hover:not(:disabled){background:var(--blue-soft);color:var(--blue)}
+.pool button:disabled{opacity:.25;cursor:default}
+.pool button.shake{animation:shake .35s;background:var(--red-soft)}
+
+/* slider */
+input[type=range]{width:100%;accent-color:var(--blue);margin:10px 0 0}
+.range-labels{display:flex;justify-content:space-between;font-size:12.5px;color:var(--sub)}
+
+/* result */
+.result{text-align:center}
+.ring{width:180px;height:180px;margin:0 auto 12px;position:relative}
+.ring svg{transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:12;stroke-linecap:round}
+.ring .tr{stroke:var(--bg2)}
+.ring .pr{stroke:var(--blue);stroke-dasharray:471;stroke-dashoffset:471;transition:stroke-dashoffset 1s cubic-bezier(.2,.8,.2,1)}
+.ring .t{position:absolute;inset:0;display:grid;place-items:center;font-size:38px;font-weight:700;letter-spacing:-.03em}
+.ring .t small{font-size:14px;font-weight:400;color:var(--sub);display:block;text-align:center}
+
+/* reveal on scroll */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}html{scroll-behavior:auto}}
+footer{max-width:980px;margin:72px auto 0;padding:28px 20px 56px;border-top:1px solid var(--line);color:var(--sub);font-size:13px;text-align:center}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-in">
+    <b>제4과 복습</b>
+    <a href="#s1">핵심 문장</a><a href="#s2">한 몸</a><a href="#s3">제자 삼는 일</a>
+    <a href="#s4">예배</a><a href="#s5">사랑의 징계</a><a href="#s6">퀴즈</a>
+    <a href="#s7">요점 카드</a><a href="#s8">나눔</a><a href="#s9">결과</a>
+  </div>
+  <div id="bar"></div>
+</nav>
+
+<main>
+
+<!-- HERO -->
+<header class="hero rv">
+  <p class="eyebrow">하나님을 경험하는 삶 · 12단원 제4과 · p.378~384</p>
+  <h1>서로를<br>돕는 것</h1>
+  <p class="sub">함께할 때 순종하는 법을 배웁니다</p>
+  <div class="quote">
+    <q>우리는 그리스도께서 명령하신 모든 것에 순종하기를 배우기 위해서 서로를 도와야만 한다.</q>
+    <small>이 과의 핵심 문장 · p.378</small>
+  </div>
+  <a class="cta" href="#s1">복습 시작하기</a>
+</header>
+
+<!-- 1. 빈칸 -->
+<section id="s1" class="rv">
+  <p class="eyebrow">01 · 빈칸 채우기</p>
+  <h2>핵심 구절을 떠올려 보세요</h2>
+  <p class="lead">빈칸을 채우고 <b>확인</b>을 누르세요. 막히면 <b>힌트</b>를 눌러 보세요.</p>
+  <div id="blanks"></div>
+</section>
+
+<!-- 2. 한 몸 -->
+<section id="s2" class="rv">
+  <p class="eyebrow">02 · 그리스도의 몸</p>
+  <h2>나는 몸을 떠나서<br>온전해질 수 없습니다</h2>
+  <p class="lead">하나님이 우리를 그리스도의 몸인 교회에 두신 이유를 확인해 보세요. <span class="ref">(p.378)</span></p>
+
+  <div class="card stack">
+    <div>
+      <span class="tag">먼저 생각해 보세요</span>
+      <h3>살아 계신 그리스도께서 모든 믿는 자 안에 거하십니다. 그렇다면?</h3>
+    </div>
+    <div class="opts col" id="bodyOpts"></div>
+    <div class="explain" id="bodyEx"></div>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <span class="tag g">교재 본문</span>
+    <p class="verse">“우리는 한 몸으로 역할을 하도록 창조되었으므로, 믿는 자들 간의 친밀한 교제를 떠나서는 건강할 수가 없습니다. 몸을 떠나서는 온전한 사람이 될 수 없습니다.”
+      <small>지체들은 서로 돕고 보완함으로써 온전한 한 몸을 이룹니다. 그리스도의 몸과의 교제는 하나님과의 교제에 있어서 중요한 부분입니다. (p.378)</small></p>
+  </div>
+</section>
+
+<!-- 3. 제자 삼는 일 -->
+<section id="s3" class="rv">
+  <p class="eyebrow">03 · 제자 삼는 일에 있어 서로 돕는 것</p>
+  <h2>“가르치라”가 아니라<br>“가르쳐 지키게 하라”</h2>
+  <p class="lead">예수님의 지상명령이 요구하는 것은 지식이 아니라 순종입니다. <span class="ref">(p.378~379)</span></p>
+
+  <div class="card stack">
+    <div>
+      <span class="tag o">마태복음 28:19~20</span>
+      <h3>탭을 눌러 차이를 비교해 보세요</h3>
+    </div>
+    <div class="seg" id="cmdSeg" role="tablist">
+      <button role="tab" aria-selected="true" data-c="0">예수님이 하지 않으신 말씀</button>
+      <button role="tab" aria-selected="false" data-c="1">예수님이 하신 말씀</button>
+    </div>
+    <div class="callout" id="cmdPanel"></div>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <span class="tag">디모데후서 2:2</span>
+    <p class="verse">“또 네가 많은 증인 앞에서 내게 들은 바를 충성된 사람들에게 부탁하라 그들이 또 다른 사람들을 가르칠 수 있으리라”
+      <small>바울은 일대일 제자훈련이라는 생각이 아니라, <b>그리스도의 몸이라는 배경</b>에서 가르쳤습니다. (p.379)</small></p>
+    <div class="callout o">“제구실을 하고 있는 신약성서적 교회를 떠나서 온전한 신앙인이 된 사람은 아무도 없다.” 하나님이 제자를 길러내는 과정을 그리스도의 몸 안에 정립해 놓으셨기 때문입니다. <span class="ref">(p.379)</span></div>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <span class="tag g">몸 안에서 배우는 이유 9가지</span>
+    <h3>혼자 성숙하려는 것보다 왜 나을까요?</h3>
+    <p style="margin-bottom:14px">교재의 아홉 가지 이유를 다섯 묶음으로 나눴습니다. 눌러서 펼쳐 보세요. <span class="ref">(p.379)</span></p>
+    <div class="stack" id="reasons"></div>
+    <div class="meter-txt" id="reasonTxt" style="font-size:13.5px;color:var(--sub);margin-top:12px">0 / 5 묶음 확인</div>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <span class="tag">에베소서 4:11~13</span>
+    <p class="verse">“이는 성도를 온전하게 하여 봉사의 일을 하게 하며 그리스도의 몸을 세우려 하심이라”
+      <small>사역, 영적인 은사, 섬김을 위한 준비 등 하나님이 주시는 모든 것은 그리스도의 몸을 위한 것입니다. 몸을 떠나면 은사나 사역은 아무런 의미가 없습니다. (p.380)</small></p>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <span class="tag g">암송구절 · 히브리서 10:24~25</span>
+    <h3>이 단원의 암송구절은 서로를 돕는 방법을 가르쳐 줍니다</h3>
+    <p>교재는 이 구절이 무엇이라 말하는지 직접 적어 보게 합니다. 본문 원문은 교재에 실려 있지 않으니, 성경을 펴서 확인해 보세요. <span class="ref">(p.380)</span></p>
+    <p style="margin-top:12px"><b style="color:var(--text)">교재가 묻는 실천 (눌러서 체크해 보세요)</b></p>
+    <div style="margin-top:4px" id="practice"></div>
+    <div class="callout g" id="practiceRes" style="display:none"></div>
+  </div>
+</section>
+
+<!-- 4. 예배 -->
+<section id="s4" class="rv">
+  <p class="eyebrow">04 · 예배함에 있어서 서로를 돕는 것</p>
+  <h2>예배는 구경이 아니라<br>하나님을 만나는 자리</h2>
+  <p class="lead">예배도 그분을 실제적이고 개인적으로 만나는 것이어야 합니다. <span class="ref">(p.381)</span></p>
+
+  <div class="card">
+    <span class="tag o">초대교회의 예배</span>
+    <h3>그들은 예배 중에 무엇을 했을까요?</h3>
+    <p style="margin-bottom:14px">구절을 눌러 예배 모습을 확인해 보세요. <span class="ref">(p.381)</span></p>
+    <div class="chips" id="worshipChips"></div>
+    <div class="callout" id="worshipInfo">구절을 눌러 보세요.</div>
+    <div class="callout g">초대교회는 성령의 코이노니아로 역할을 담당했으므로 <b>아무도 교회에 주어진 은사를 독점하지 않았고</b>, 각 신자가 예배를 돕고 협력할 가능성을 지니고 있었습니다. 그 공헌의 첫째 요건은 <b>전 그리스도인 공동체를 세우는 데 도움이 되느냐</b>였습니다. <span class="ref">(p.381)</span></div>
+  </div>
+
+  <div class="card stack" style="margin-top:16px">
+    <div>
+      <span class="tag">나의 예배 점검</span>
+      <h3>슬라이더를 움직여 지금 내 예배에 가까운 쪽을 골라 보세요</h3>
+      <p>이 화면의 선택은 어디에도 저장되거나 전송되지 않습니다. <span class="ref">(p.381~382)</span></p>
+    </div>
+    <div>
+      <input type="range" id="wRange" min="0" max="100" value="50" aria-label="내 예배 경험 정도">
+      <div class="range-labels"><span>구경꾼에 가까움</span><span>참여자에 가까움</span></div>
+    </div>
+    <div class="callout" id="wPanel"></div>
+    <div class="callout o">예배가 나를 소극적인 반응이나 구경꾼이 되게 하거나, 하나님이 아닌 사람이나 프로그램에 초점을 맞추게 하면, 냉담, 무관심, 의심, 갈등을 끌어들일 뿐입니다. <span class="ref">(p.381)</span></div>
+    <div class="callout g">예배에서 경험해야 할 것을 경험하지 못한다면 <b>기도로 하나님의 인도하심을 구하십시오.</b> 예배를 이끄시는 분들과 나 자신의 준비와 참여를 위해서입니다. <span class="ref">(p.382)</span></div>
+  </div>
+</section>
+
+<!-- 5. 사랑의 징계 -->
+<section id="s5" class="rv">
+  <p class="eyebrow">05 · 순종함에 있어서 서로를 돕는 것</p>
+  <h2>사랑하기 때문에<br>바로잡아 줍니다</h2>
+  <p class="lead">교정, 징계, 심판은 완전한 사랑의 표현일 수 있습니다. <span class="ref">(p.382)</span></p>
+
+  <button class="reveal-btn" aria-expanded="false" id="storyBtn">
+    <div class="ic">!</div>
+    <div style="flex:1"><h3>순종하지 않던 어린 소녀의 예화</h3>
+      <div class="more"><div><p>부모가 “이리 온!” 해도 반대 방향으로 뛰어가는 세 살 아이를 가족들이 “귀엽다”고만 하던 가정이 있었습니다. 그 아이는 어느 날 달려오는 차 앞으로 뛰어들어 목숨을 잃었고, 저자가 처음 인도한 장례식이 되었습니다. 바로잡아 주지 않는 것은 사랑이 아닐 수 있습니다. <span class="ref">(p.382)</span></p></div></div>
+    </div>
+    <span class="chev">⌄</span>
+  </button>
+
+  <div class="card stack" style="margin-top:16px">
+    <div>
+      <span class="tag o">상황 선택</span>
+      <h3>형제·자매가 자신에게 해가 될 일을 하고 있다면?</h3>
+      <p>하나님과 같은 사랑을 표현한 것은 어느 것일까요? 하나씩 눌러 보세요. <span class="ref">(p.383)</span></p>
+    </div>
+    <div class="opts col" id="reactOpts"></div>
+    <div class="explain" id="reactEx"></div>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <span class="tag">히브리서 12:6</span>
+    <p class="verse">“주께서 그 사랑하시는 자를 징계하시고 그가 받아들이시는 아들마다 채찍질 하심이라.”
+      <small>하나님이 자녀를 징계하시는 것은 그들을 향한 온전한 사랑의 표현입니다. 우리도 형제·자매를 사랑하면 하나님께로 돌아오도록 사랑으로 징계해야 합니다. 그러나 오직 사랑의 동기에서 출발해야 합니다. (p.383)</small></p>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <span class="tag g">순서 맞추기 · 마태복음 18:15~17</span>
+    <h3>죄로 떨어진 형제를 다시 찾는 네 단계</h3>
+    <p>아래 카드를 <b>첫 단계부터 순서대로</b> 눌러 보세요. <span class="ref">(p.383)</span></p>
+    <div class="slots" id="slots"></div>
+    <div class="pool" id="pool"></div>
+    <div class="fb" id="orderFb" style="margin-top:12px"></div>
+    <div class="row"><button class="btn ghost" id="orderReset">다시 섞기</button></div>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <span class="tag o">사랑의 징계 지침</span>
+    <div class="stack" style="margin-top:6px">
+      <p><b style="color:var(--text)">오래 참고 온유하게.</b> 방황하는 사람은 돌아오기 전에 많은 사랑을 필요로 할 수 있습니다. (고전 13장) <span class="ref">p.383</span></p>
+      <p><b style="color:var(--text)">내가 먼저 개인적으로.</b> 사랑의 징계는 먼저 내가 그 사람에게 개인적으로 접근하는 것을 요구합니다. <span class="ref">p.383</span></p>
+      <p><b style="color:var(--text)">기도하며, 하나님의 관점에서.</b> 어떤 징계든지 하나님의 관점에서 하고, 뜨거운 기도를 필요로 합니다. <span class="ref">p.383</span></p>
+      <p><b style="color:var(--text)">성급하지 않게.</b> 제2, 3, 4단계로 올라갈 때 너무 성급히 하지 마십시오. <span class="ref">p.384</span></p>
+      <p><b style="color:var(--text)">나도 은혜로 구원받은 죄인.</b> 언젠가는 나도 징계를 받을지 모릅니다. 내가 대접받고 싶은 대로 남을 대접하십시오. 그렇게 하면 영원한 형제·자매를 얻을지도 모릅니다. <span class="ref">p.384</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- 6. 퀴즈 -->
+<section id="s6" class="rv">
+  <p class="eyebrow">06 · 퀴즈</p>
+  <h2>얼마나 기억나나요?</h2>
+  <p class="lead">한 문제씩 풀면 바로 해설이 나옵니다.</p>
+  <div class="qbar"><i id="qprog"></i></div>
+  <div id="quiz"></div>
+</section>
+
+<!-- 7. 카드 -->
+<section id="s7" class="rv">
+  <p class="eyebrow">07 · 요점 카드</p>
+  <h2>카드를 뒤집어 보세요</h2>
+  <p class="lead">앞면의 질문에 먼저 답해 보고 뒤집어서 확인하세요.</p>
+  <div class="grid g3" id="cards"></div>
+
+  <div class="card" style="margin-top:24px">
+    <span class="tag gray">이 과의 요점 (교재 p.384)</span>
+    <div class="stack" style="margin-top:10px">
+      <p>• 그리스도인들은 서로를 필요로 한다.</p>
+      <p>• 우리는 그리스도께서 분부하신 모든 것에 순종하는 것을 배우기 위해서 서로를 도와야만 한다.</p>
+      <p>• 하나님께 예배드리는 것은 그분을 실제적이고 개인적으로 만나는 것이어야만 한다.</p>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <span class="tag gray">학생들이 꼭 알아야 할 핵심</span>
+    <p style="font-size:13.5px;margin-bottom:6px">※ 교사 참고: 교재 흐름에 맞춰 정리한 것으로, 교재가 직접 쓴 문장은 아닙니다.</p>
+    <div class="stack" style="margin-top:10px">
+      <p><b style="color:var(--text)">1. 신앙은 혼자 완성되지 않습니다.</b> 하나님은 다른 지체를 통해 말씀하시고 일하시므로 몸을 떠나서는 온전해질 수 없습니다.</p>
+      <p><b style="color:var(--text)">2. 목표는 아는 것이 아니라 지키는 것입니다.</b> “가르쳐 지키게 하라”는 말씀대로, 순종하는 법은 몸 안에서 서로 도우며 배웁니다.</p>
+      <p><b style="color:var(--text)">3. 은사와 사역은 몸을 세우기 위해 주어졌습니다.</b> 내가 받은 것이 곧 남을 돕는 도구입니다.</p>
+      <p><b style="color:var(--text)">4. 예배는 구경이 아니라 하나님을 직접 만나는 자리입니다.</b> 준비하고 참여하며, 서로를 세우는 자리여야 합니다.</p>
+      <p><b style="color:var(--text)">5. 사랑은 때로 바로잡아 주는 것입니다.</b> 덮어두거나 모른 척하는 것은 사랑이 아닙니다. 다만 개인적으로, 기도하며, 순서를 지켜, 사랑의 동기로만 합니다.</p>
+      <p><b style="color:var(--text)">6. 마태복음 18장의 순서는 “먼저 단둘이”입니다.</b> 교회에 알리는 것은 세 번째 단계이고, 낙인을 찍거나 쫓아내는 것이 목적이 아닙니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 8. 나눔 -->
+<section id="s8" class="rv">
+  <p class="eyebrow">08 · 소그룹 나눔 질문</p>
+  <h2>함께 나눠 보세요</h2>
+  <p class="lead">카드를 눌러 질문을 펼쳐 보세요.</p>
+  <div class="stack" id="shares"></div>
+</section>
+
+<!-- 9. 결과 -->
+<section id="s9" class="rv">
+  <p class="eyebrow">09 · 오늘의 복습</p>
+  <h2>복습 결과</h2>
+  <div class="card result">
+    <div class="ring">
+      <svg viewBox="0 0 170 170" width="180" height="180"><circle class="tr" cx="85" cy="85" r="75"/><circle class="pr" id="ringPr" cx="85" cy="85" r="75"/></svg>
+      <div class="t"><div><span id="scoreNum">0</span><small id="scoreSub">/ 0</small></div></div>
+    </div>
+    <h3 id="scoreMsg" style="margin:6px 0 4px">빈칸과 퀴즈를 풀면 점수가 쌓입니다</h3>
+    <p id="scoreDetail">빈칸 0 / 6 · 퀴즈 0 / 8</p>
+    <div class="row" style="justify-content:center;margin-top:16px">
+      <button class="btn" id="retry">처음부터 다시</button>
+    </div>
+  </div>
+  <div class="callout" style="margin-top:20px">
+    <b>이번 과 한 줄 정리</b><br>
+    우리는 <b>한 몸</b>입니다. 서로 격려하고, 함께 예배하며, <b>사랑으로 바로잡아 줄 때</b> 그리스도께서 분부하신 모든 것에 순종하는 법을 배웁니다.
+  </div>
+</section>
+
+</main>
+
+<footer>하나님을 경험하는 삶 · 12단원 제4과 복습 · 교재 p.378~384</footer>
+
+<script>
+(function(){
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const norm=s=>s.replace(/\s+/g,'').replace(/[.,!?'"“”‘’]/g,'');
+
+/* ---------- data ---------- */
+const BL=[
+ {pre:'“…내가 너희에게 분부한 모든 것을 가르쳐 ',post:' 하라…” (마 28:20)',ans:['지키게'],ref:'p.378',hint:'ㅈㅋㄱ'},
+ {pre:'몸을 떠나서는 ',post:' 사람이 될 수 없다.',ans:['온전한'],ref:'p.378',hint:'ㅇㅈㅎ'},
+ {pre:'“또 네가 많은 증인 앞에서 내게 들은 바를 ',post:' 사람들에게 부탁하라” (딤후 2:2)',ans:['충성된'],ref:'p.379',hint:'ㅊㅅㄷ'},
+ {pre:'제구실을 하고 있는 ',post:' 교회를 떠나서 온전한 신앙인이 된 사람은 아무도 없다.',ans:['신약성서적','신약성경적'],ref:'p.379',hint:'ㅅㅇㅅㅅㅈ'},
+ {pre:'“하나님은 무질서의 하나님이 아니시요 오직 ',post:'의 하나님이시니라.” (고전 14:33)',ans:['화평'],ref:'p.381',hint:'ㅎㅍ'},
+ {pre:'“주께서 그 사랑하시는 자를 ',post:'하시고 그가 받아들이시는 아들마다 채찍질 하심이라.” (히 12:6)',ans:['징계'],ref:'p.383',hint:'ㅈㄱ'}
+];
+const QZ=[
+ {q:'그리스도께서 모든 믿는 자 안에 거하시므로, 나는 다른 신자 안에서 일하시는 하나님을 경험할 수 있다.',o:['O','X'],a:0,ex:'맞습니다. 다른 믿는 자들과의 관계를 통해 그들의 인생을 통해서 역사하시는 하나님을 경험할 수 있습니다. (p.378)'},
+ {q:'지상명령(마 28:19~20)에서 예수님이 강조하신 것은 무엇입니까?',o:['분부한 모든 것을 가르치라','분부한 모든 것을 가르쳐 지키게 하라','모든 민족에게 성경을 나눠 주라'],a:1,ex:'예수님은 “가르치라”고만 하지 않으시고 “가르쳐 지키게 하라”고 하셨습니다. 새신자가 모든 것을 지켜 행하기까지 가르치지 못했다면 우리의 역할은 끝나지 않은 것입니다. (p.378)'},
+ {q:'바울은 디모데에게 본래 일대일 제자훈련이라는 생각으로 가르쳤다.',o:['O','X'],a:1,ex:'바울은 일대일 제자훈련이 아니라 그리스도의 몸이라는 배경에서 가르쳤습니다. (딤후 2:2, p.379)'},
+ {q:'엡 4:11~13에 따르면, 하나님이 믿는 자들에게 주시는 사역과 은사는 무엇을 위한 것입니까?',o:['개인의 영적 성공','그리스도의 몸을 세우기 위해','교회의 규모를 키우기 위해'],a:1,ex:'모든 은사와 사역은 성도를 온전하게 하여 봉사의 일을 하게 하며 그리스도의 몸을 세우기 위한 것입니다. 몸을 떠나면 은사나 사역은 아무런 의미가 없습니다. (p.380)'},
+ {q:'초대교회 예배에서 은사는 어떻게 쓰였습니까?',o:['소수의 지도자만 은사를 사용했다','아무도 은사를 독점하지 않았고, 각 신자가 예배를 돕고 협력했다','은사는 개인 신앙을 위해서만 사용했다'],a:1,ex:'초대교회는 성령의 코이노니아로 역할을 담당했으므로 아무도 은사를 독점하지 않았고, 각 신자가 예배를 돕고 협력할 가능성을 지니고 있었습니다. 그 첫째 요건은 공동체를 세우는 데 도움이 되느냐 하는 것이었습니다. (p.381)'},
+ {q:'교정, 징계, 심판은 완전한 사랑의 표현일 수 있다.',o:['O','X'],a:0,ex:'그렇습니다. 히브리서 12:6은 하나님의 징계를 사랑이라고 표현합니다. (p.382)'},
+ {q:'마태복음 18:15~17에서 죄를 범한 형제를 찾는 첫 단계는 무엇입니까?',o:['교회에 말한다','너와 그 사람만 상대하여 권고한다','한두 사람을 데리고 간다'],a:1,ex:'먼저 그 사람과 단둘이 상대하여 권고합니다. 들으면 형제를 얻은 것입니다. (p.383)'},
+ {q:'사랑의 징계는 오직 사랑의 동기에서 출발해야 하며, 2~4단계로 성급히 올라가지 않는다.',o:['O','X'],a:0,ex:'맞습니다. 사랑의 징계는 오직 사랑의 동기에서 출발해야 하고, 제2, 3, 4단계로 올라갈 때 너무 성급히 하지 말아야 합니다. (p.383~384)'}
+];
+const state={blank:new Set(), quiz:{}};
+
+/* ---------- nav progress & scroll reveal ---------- */
+const bar=$('#bar');
+addEventListener('scroll',()=>{const h=document.documentElement;bar.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight||1)*100)+'%'},{passive:true});
+if('IntersectionObserver' in window){
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.08});
+  $$('.rv').forEach(el=>io.observe(el));
+}else{$$('.rv').forEach(el=>el.classList.add('in'))}
+
+/* ---------- helper: single-choice with explanation ---------- */
+function choice(optsEl,exEl,items,correct,exFn,onFirst){
+  let done=false;
+  items.forEach((t,j)=>{
+    const b=document.createElement('button');b.textContent=t;
+    b.onclick=()=>{
+      exEl.innerHTML=exFn(j);exEl.classList.add('show');
+      b.classList.remove('right','wrong');
+      b.classList.add(j===correct?'right':'wrong');
+      if(onFirst&&!done){done=true;onFirst(j)}
+    };
+    optsEl.append(b);
+  });
+}
+
+/* ---------- blanks ---------- */
+const bl=$('#blanks');
+BL.forEach((b,i)=>{
+  const d=document.createElement('div');d.className='q';
+  d.innerHTML=`<div class="num">빈칸 ${i+1} <span class="ref">${b.ref}</span></div>
+   <div class="stem"></div>
+   <div class="row"><button class="btn">확인</button><button class="btn ghost">힌트</button></div>
+   <div class="fb"></div>`;
+  const stem=$('.stem',d);
+  stem.append(b.pre);
+  const inp=document.createElement('input');inp.className='blank';inp.type='text';inp.autocomplete='off';inp.setAttribute('aria-label','빈칸 '+(i+1));
+  stem.append(inp,b.post);
+  const fb=$('.fb',d),[ok,hint]=$$('button',d);
+  const check=()=>{
+    const v=norm(inp.value);if(!v){fb.textContent='';return}
+    if(b.ans.some(a=>norm(a)===v)){
+      inp.className='blank ok';fb.className='fb ok';fb.textContent='정답입니다 ✓';
+      state.blank.add(i);inp.readOnly=true;
+    }else{
+      inp.className='blank bad';fb.className='fb bad';fb.textContent='다시 한번 떠올려 보세요.';
+      setTimeout(()=>inp.classList.remove('bad'),400);
+    }
+    update();
+  };
+  ok.onclick=check;inp.addEventListener('keydown',e=>{if(e.key==='Enter')check()});
+  hint.onclick=()=>{fb.className='fb';fb.textContent='초성 힌트: '+b.hint};
+  bl.append(d);
+});
+
+/* ---------- 02 한 몸 ---------- */
+choice($('#bodyOpts'),$('#bodyEx'),
+ ['1. 나는 하나님이 다른 신자 안에서 일하시는 것을 경험할 수 없다.','2. 나는 하나님이 다른 신자 안에서 일하시는 것을 경험할 수 있다.'],1,
+ j=>j===1?'<b style="color:var(--green)">정답!</b> 하나님은 믿는 자들의 모임 안에서 일하시고, 우리는 그리스도의 몸을 떠나서는 경험할 수 없는 방법으로 하나님을 압니다. (p.378)':'<b style="color:var(--red)">다시 생각해 보세요.</b> 그리스도께서 모든 믿는 자 안에 거하시므로 다른 신자 안에서 일하시는 하나님도 경험할 수 있습니다. (p.378)');
+
+/* ---------- 03 가르치라 vs 가르쳐 지키게 하라 ---------- */
+const CMD=[
+ '“내가 너희에게 분부한 모든 것을 <b>가르치라</b>”고 하지 않으셨습니다. 성경을 읽으면 누구든지 예수님이 명령하신 것이 무엇인지는 배울 수 있습니다. <span class="ref">(p.378)</span>',
+ '“내가 너희에게 분부한 모든 것을 <b>가르쳐 지키게 하라</b>”고 하셨습니다. 모든 것을 지키는 것을 배우는 것은 다른 차원의 문제이며, 그리스도를 따르기를 배우는 것은 평생이 소요되는 과정입니다. 혼자서는 배울 수 없습니다. <span class="ref">(p.378~379)</span>'
+];
+function cmd(i){const p=$('#cmdPanel');p.className='callout'+(i?' g':' o');p.innerHTML=CMD[i]}
+$$('#cmdSeg button').forEach(b=>b.onclick=()=>{$$('#cmdSeg button').forEach(x=>x.setAttribute('aria-selected','false'));b.setAttribute('aria-selected','true');cmd(+b.dataset.c)});
+cmd(0);
+
+/* ---------- 03 아홉 가지 이유 (다섯 묶음) ---------- */
+const RS=[
+ ['용기와 도전, 그리고 모범',['내가 용기를 잃을 때, 다른 사람들이 내가 정진할 수 있도록 용기를 준다.','성숙한 그리스도인의 삶을 가까이에서 관찰함으로써 주님과 좀더 비슷한 삶을 살고 싶은 도전을 받는다.','다른 사람들이 모범을 보여주기 때문에 어떻게 그리스도인의 삶을 영위해야 하는지를 잘 배우게 된다.']],
+ ['진리에서 벗어날 때',['내가 진리에서 벗어나 그릇된 가르침에 빠지게 될 때 하나님이 그분의 말씀과 성령님과 교회를 통해서 말씀해 주신다.']],
+ ['죄악에 빠질 때',['내가 죄악에 빠질 때, 그리스도인 형제, 자매들이 사랑으로 이끌어 회개하고 주님께 돌아오도록 해준다.']],
+ ['함께 깨닫고 내 역할을 알게 됨',['하나님이 동료 그리스도인에게 영적인 깨달음을 주시면 나는 그 진리를 그 사람과 나누고, 성령님이 확신시켜 주심에 따라 배울 수 있다.','하나님이 다른 지체들을 통해서 내가 그리스도의 몸에서 어떤 구실을 해야 하는지를 확신시켜 주심으로 나는 하나님의 뜻을 알 수 있다.']],
+ ['기쁨과 만족',['하나님이 나를 통해 역사하심으로 다른 신자들의 인생에 깊은 감명을 주는 것을 경험할 때, 나는 신이 난다.','하나님이 나를 사용하셔서 그리스도의 몸을 세우시고 다른 신자들이 성숙을 향해 성장하게 하실 때, 만족감을 느낀다.']]
+];
+const rs=$('#reasons'),seen=new Set();
+RS.forEach((r,i)=>{
+  const b=document.createElement('button');b.className='reveal-btn';b.setAttribute('aria-expanded','false');
+  b.innerHTML=`<div class="ic">${i+1}</div><div style="flex:1"><h3>${r[0]}</h3><div class="more"><div><ul>${r[1].map(x=>`<li>${x}</li>`).join('')}</ul></div></div></div><span class="chev">⌄</span>`;
+  b.onclick=()=>{
+    b.setAttribute('aria-expanded',b.getAttribute('aria-expanded')!=='true');
+    seen.add(i);$('#reasonTxt').textContent=seen.size+' / 5 묶음 확인'+(seen.size===5?' · 아홉 가지를 모두 확인했어요 ✓':'');
+  };
+  rs.append(b);
+});
+
+/* ---------- 03 실천 체크 ---------- */
+const PR=['다른 신자가 하나님을 사랑하고, 서로를 사랑하며, 잃어버린 세상을 사랑하도록 격려할 방법 하나 정하기','다른 신자가 선행을 하도록 격려할 방법 하나 정하기','다른 신자가 함께 모여 예배드리고, 공부하고, 교제하도록 권할 방법 두 가지 정하기'];
+const pr=$('#practice'),prr=$('#practiceRes');
+PR.forEach(t=>{const l=document.createElement('label');l.className='check';l.innerHTML=`<input type="checkbox"><span>${t}</span>`;pr.append(l)});
+pr.addEventListener('change',()=>{
+  const n=$$('input:checked',pr).length;prr.style.display=n?'block':'none';
+  prr.innerHTML=n===3?'세 가지를 모두 정했네요! 이번 주 한 가지라도 실제로 실천해 보세요.':'좋아요. 나머지도 하나님이 떠올려 주시기를 기도하며 정해 보세요. ('+n+' / 3)';
+});
+
+/* ---------- 04 예배 ---------- */
+const WS=[
+ ['행 2:42, 46~47','사도의 가르침을 받아 서로 교제하고 떡을 떼며 오로지 기도하기를 힘썼습니다. 날마다 마음을 같이하여 성전에 모이고, 집에서 떡을 떼며 기쁨과 순전한 마음으로 음식을 먹고 하나님을 찬미했습니다.'],
+ ['엡 5:19~20','시와 찬송과 신령한 노래들로 서로 화답하며 마음으로 주께 노래하고 찬송하며, 범사에 우리 주 예수 그리스도의 이름으로 항상 아버지 하나님께 감사했습니다.'],
+ ['고전 14:26, 29~33','모일 때 각각 찬송시도 있고, 가르치는 말씀도 있고, 계시도 있고, 방언도 있고, 통역함도 있었습니다. 모든 것을 덕을 세우기 위하여 하며, 질서 있게 하나씩 말하고 다른 이들은 분별했습니다. 하나님은 무질서의 하나님이 아니시요 오직 화평의 하나님이시기 때문입니다.']
+];
+const wc=$('#worshipChips');
+WS.forEach((w,i)=>{
+  const b=document.createElement('button');b.className='chip';b.setAttribute('aria-pressed','false');b.textContent=w[0];
+  b.onclick=()=>{$$('.chip',wc).forEach(x=>x.setAttribute('aria-pressed','false'));b.setAttribute('aria-pressed','true');$('#worshipInfo').innerHTML='<b>'+w[0]+'</b><br><span style="color:var(--sub)">'+w[1]+'</span>'};
+  wc.append(b);
+});
+
+const WL=[
+ {c:'o',t:'“나는 하나님이 예배시간을 통해 역사하시는 것을 거의 느끼지 못한다. 예배시간이 냉랭하고 하나의 형식처럼 느껴진다.”'},
+ {c:'',t:'“나는 가끔 하나님이 내 인생에서, 우리 교회에서 무언가를 하고 계신다는 것을 느낀다. 대부분 나는 교회에 갈 때 들었던 똑같은 마음을 가지고 집에 돌아온다.”'},
+ {c:'g',t:'“나는 하나님의 임재하심을 느낀다. 나는 하나님이 나를 인도하심을 느낀다. 나는 하나님이 우리 가운데서 역사하고 계심을 인해서 다른 사람들과 함께 기뻐한다. 나는 돌아오는 주에 그리스도와 같은 삶을 살아야겠다는 마음을 갖게 된다.”'}
+];
+const wr=$('#wRange');
+function wUpd(){
+  const v=+wr.value,i=v<34?0:(v<67?1:2),p=$('#wPanel');
+  p.className='callout'+(WL[i].c?' '+WL[i].c:'');
+  p.innerHTML=WL[i].t+' <span class="ref">(p.381~382 교재의 세 가지 문장 중)</span>';
+}
+wr.addEventListener('input',wUpd);wUpd();
+
+/* ---------- 05 예화 ---------- */
+$('#storyBtn').onclick=function(){this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')!=='true')};
+
+/* ---------- 05 상황 선택 ---------- */
+const RC=[
+ ['1. 나는 그 사람을 화나게 하는 어떤 말도 하지 않을 것이다.','<b style="color:var(--red)">사랑이 아닌 회피입니다.</b> 교재가 고른 답이 아닙니다. 사랑하기 때문에 해가 되는 길에서 돌이키도록 도와야 합니다.'],
+ ['2. 나는 마음을 넓게 가지고 그 사람의 그릇된 행실을 용납할 것이다.','<b style="color:var(--red)">사랑이 아닌 방치입니다.</b> 교재가 고른 답이 아닙니다. 순종하지 않는 아이를 “귀엽다”고만 한 예화를 떠올려 보세요.'],
+ ['3. 나는 그에게 암시를 주고 내가 전하려는 뜻을 알아주기를 바랄 것이다.','<b style="color:var(--red)">직접적인 사랑의 표현이 아닙니다.</b> 교재가 고른 답이 아닙니다. 사랑의 징계는 내가 먼저 개인적으로 접근하는 것을 요구합니다.'],
+ ['4. 나는 그 사람을 개인적으로 찾아가서, 그 사람이 잘 되기를 바라는 내 마음을 얘기하고, 징계의 말씀이 담긴 성경구절을 함께 읽을 것이다.','<b style="color:var(--green)">이것이 하나님과 같은 사랑입니다.</b> 개인적으로 찾아가 잘 되기를 바라는 마음을 전하고, 말씀을 함께 읽습니다. (p.383)'],
+ ['5. 나는 교회로 직접 가서 교회에서 그 사람을 내쫓을 것을 건의할 것이다.','<b style="color:var(--red)">징계가 악용된 방식입니다.</b> 과거 교회의 징계가 경솔하게, 혹은 원수를 갚는 데 쓰였고, 사랑과 보살핌을 전혀 표현하지 않은 채 5번의 경우처럼 사용되었습니다. (p.383)']
+];
+choice($('#reactOpts'),$('#reactEx'),RC.map(x=>x[0]),3,j=>RC[j][1]);
+
+/* ---------- 05 순서 맞추기 ---------- */
+const ST=['너와 그 사람과만 상대하여 권고한다','한두 사람을 데리고 가서 두세 증인의 입으로 말마다 확증하게 한다','교회에 말한다','교회의 말도 듣지 않으면 이방인과 세리와 같이 여긴다'];
+const slots=$('#slots'),pool=$('#pool'),ofb=$('#orderFb');
+let next=0,wrong=0;
+function shuffled(){const a=ST.map((_,i)=>i);let ok=false;while(!ok){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}ok=a.some((v,i)=>v!==i)}return a}
+function orderInit(){
+  next=0;wrong=0;ofb.className='fb';ofb.textContent='';
+  slots.innerHTML='';pool.innerHTML='';
+  ST.forEach((_,i)=>{const s=document.createElement('div');s.className='slot';s.innerHTML=`<b>${i+1}</b><span>비어 있음</span>`;slots.append(s)});
+  shuffled().forEach(idx=>{
+    const b=document.createElement('button');b.textContent=ST[idx];
+    b.onclick=()=>{
+      if(idx===next){
+        const s=slots.children[next];s.classList.add('fill');$('span',s).textContent=ST[idx];
+        b.disabled=true;next++;wrong=0;
+        if(next===ST.length){ofb.className='fb ok';ofb.textContent='완성! 단계마다 사랑의 동기로, 성급하지 않게 올라갑니다. (p.383~384)'}
+        else{ofb.className='fb ok';ofb.textContent='좋아요. 다음 단계는?'}
+      }else{
+        wrong++;b.classList.add('shake');setTimeout(()=>b.classList.remove('shake'),400);
+        ofb.className='fb bad';ofb.textContent=wrong>=2?'힌트: 지금 찾는 단계는 '+(next+1)+'단계입니다. 첫 단계는 “단둘이”입니다.':'아직 아니에요. 다시 생각해 보세요.';
+      }
+    };
+    pool.append(b);
+  });
+}
+$('#orderReset').onclick=orderInit;orderInit();
+
+/* ---------- 퀴즈 ---------- */
+const qz=$('#quiz');
+QZ.forEach((q,i)=>{
+  const d=document.createElement('div');d.className='q';
+  const isOX=q.o[0]==='O';
+  d.innerHTML=`<div class="num">문제 ${i+1} / ${QZ.length}</div><div class="stem" style="line-height:1.6">${q.q}</div>
+   <div class="opts${isOX?'':' col'}"></div><div class="explain"></div>`;
+  const ob=$('.opts',d),ex=$('.explain',d);
+  q.o.forEach((t,j)=>{
+    const b=document.createElement('button');b.textContent=t;if(isOX)b.className='ox';
+    b.onclick=()=>{
+      if(i in state.quiz)return;
+      state.quiz[i]=(j===q.a);
+      $$('button',ob).forEach((x,k)=>{x.disabled=true;if(k===q.a)x.classList.add('right');});
+      if(j!==q.a)b.classList.add('wrong');
+      ex.innerHTML=(j===q.a?'<b style="color:var(--green)">정답!</b> ':'<b style="color:var(--red)">아쉬워요.</b> ')+q.ex;ex.classList.add('show');
+      update();
+    };
+    ob.append(b);
+  });
+  qz.append(d);
+});
+
+/* ---------- 카드 ---------- */
+const CARDS=[
+ ['이 과의 핵심 문장은?','우리는 그리스도께서 명령하신 모든 것에 순종하기를 배우기 위해서 서로를 도와야만 한다.','p.378'],
+ ['지상명령에서 예수님은 무엇을 하라고 하셨나?','분부한 모든 것을 “가르쳐 지키게” 하라고 하셨습니다. 새신자가 순종하기까지 가르치지 못했다면 우리의 역할은 끝나지 않았습니다.','p.378'],
+ ['바울은 어떤 배경에서 디모데를 가르쳤나?','일대일 제자훈련이라는 생각이 아니라 그리스도의 몸이라는 배경에서 가르쳤습니다. (딤후 2:2)','p.379'],
+ ['은사와 사역은 무엇을 위한 것인가?','성도를 온전하게 하여 봉사의 일을 하게 하며 그리스도의 몸을 세우기 위한 것입니다. (엡 4:11~13)','p.380'],
+ ['예배가 교제를 향상시키려면?','하나님을 실제적이고 개인적으로 경험하도록 인도해야 합니다.','p.381'],
+ ['사랑의 징계 네 단계는?','① 단둘이 권고 → ② 한두 사람과 함께 → ③ 교회에 말함 → ④ 이방인과 세리와 같이 여김. 오직 사랑의 동기로, 성급하지 않게.','p.383']
+];
+const cd=$('#cards');
+CARDS.forEach((c,i)=>{
+  const b=document.createElement('button');b.className='fc';b.setAttribute('aria-pressed','false');
+  b.innerHTML=`<div class="in"><div class="f"><div class="n">카드 ${i+1}</div><div class="k">${c[0]}</div><div class="h">눌러서 뒤집기 · ${c[2]}</div></div><div class="b">${c[1]}</div></div>`;
+  b.onclick=()=>b.setAttribute('aria-pressed',b.getAttribute('aria-pressed')!=='true');
+  cd.append(b);
+});
+
+/* ---------- 나눔 ---------- */
+const SH=['신앙생활 중에 다른 지체의 격려, 모범, 권면 덕분에 힘을 얻거나 돌이킨 경험이 있나요? 반대로 혼자 버티다가 약해진 때는 언제였나요?',
+ '교재의 9가지 이유 중 지금 나에게 가장 필요한 것은 무엇인가요? 이번 주에 누구를 어떻게 격려할 수 있을까요? (히 10:24~25의 사랑과 선행, 모이기를 힘쓰는 일 가운데 하나를 구체적으로 정해 봅시다.)',
+ '내가 아끼는 형제·자매가 해가 될 길로 가고 있다면 나는 무엇을 하겠습니까? 침묵, 용납, 암시 같은 쉬운 길을 택한 적은 없었나요? 마태복음 18장의 첫 단계, 곧 단둘이 사랑으로 말하는 일을 실천하려면 무엇이 필요할까요?'];
+const sh=$('#shares');
+SH.forEach((t,i)=>{
+  const b=document.createElement('button');b.className='reveal-btn';b.setAttribute('aria-expanded','false');
+  b.innerHTML=`<div class="ic">${i+1}</div><div style="flex:1"><h3>나눔 질문 ${i+1}</h3><div class="more"><div><p>${t}</p></div></div></div><span class="chev">⌄</span>`;
+  b.onclick=()=>b.setAttribute('aria-expanded',b.getAttribute('aria-expanded')!=='true');
+  sh.append(b);
+});
+
+/* ---------- 결과 ---------- */
+function update(){
+  const qc=Object.values(state.quiz).filter(Boolean).length,qa=Object.keys(state.quiz).length;
+  const bc=state.blank.size;
+  const total=BL.length+QZ.length,got=bc+qc;
+  $('#qprog').style.width=(qa/QZ.length*100)+'%';
+  $('#scoreNum').textContent=got;$('#scoreSub').textContent='/ '+total;
+  $('#ringPr').style.strokeDashoffset=471*(1-got/total);
+  $('#scoreDetail').textContent=`빈칸 ${bc} / ${BL.length} · 퀴즈 ${qc} / ${QZ.length}`;
+  const done=(bc===BL.length)&&(qa===QZ.length);
+  $('#scoreMsg').textContent=!bc&&!qa?'빈칸과 퀴즈를 풀면 점수가 쌓입니다':(!done?'좋아요, 계속 이어가 보세요':(got===total?'완벽해요! 🎉':(got>=total*0.7?'잘했어요! 핵심을 잘 기억하고 있어요':'한 번 더 카드와 본문을 훑어보면 좋겠어요')));
+}
+$('#retry').onclick=()=>location.reload();
+update();
+})();
+</script>
+</body>
+</html>
