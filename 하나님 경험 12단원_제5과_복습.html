@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>제5과 당신의 영적인 명세서 · 복습</title>
+<style>
+:root{
+  --bg:#fbfbfd; --bg2:#f5f5f7; --card:#ffffff; --text:#1d1d1f; --sub:#6e6e73; --line:rgba(0,0,0,.08);
+  --blue:#0071e3; --blue-soft:rgba(0,113,227,.10); --green:#1f9d55; --green-soft:rgba(48,209,88,.14);
+  --red:#d70015; --red-soft:rgba(255,59,48,.12); --orange:#c93400; --orange-soft:rgba(255,149,0,.14);
+  --shadow:0 2px 6px rgba(0,0,0,.04),0 12px 32px rgba(0,0,0,.06);
+  --nav:rgba(251,251,253,.72);
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#000; --bg2:#111113; --card:#1c1c1e; --text:#f5f5f7; --sub:#a1a1a6; --line:rgba(255,255,255,.12);
+    --blue:#2997ff; --blue-soft:rgba(41,151,255,.16); --green:#32d74b; --green-soft:rgba(50,215,75,.16);
+    --red:#ff453a; --red-soft:rgba(255,69,58,.16); --orange:#ff9f0a; --orange-soft:rgba(255,159,10,.16);
+    --shadow:0 0 0 1px rgba(255,255,255,.04); --nav:rgba(0,0,0,.72);
+  }
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+body{margin:0;background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;
+  line-height:1.65;-webkit-font-smoothing:antialiased;word-break:keep-all;letter-spacing:-.01em}
+button,input,textarea{font:inherit;color:inherit;letter-spacing:inherit}
+button{cursor:pointer}
+
+/* nav */
+nav{position:sticky;top:0;z-index:50;background:var(--nav);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:980px;margin:0 auto;padding:0 16px;height:48px;display:flex;align-items:center;gap:20px;overflow-x:auto;scrollbar-width:none}
+.nav-in::-webkit-scrollbar{display:none}
+.nav-in b{font-weight:600;font-size:14px;white-space:nowrap}
+.nav-in a{font-size:12.5px;color:var(--sub);text-decoration:none;white-space:nowrap;transition:color .2s}
+.nav-in a:hover{color:var(--text)}
+#bar{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:var(--blue);transition:width .1s}
+
+/* layout */
+main{max-width:980px;margin:0 auto;padding:0 20px}
+section{padding:88px 0 24px}
+.eyebrow{font-size:14px;font-weight:600;color:var(--blue);margin:0 0 8px}
+h2{font-size:clamp(28px,5vw,44px);line-height:1.15;font-weight:700;letter-spacing:-.03em;margin:0 0 12px}
+.lead{font-size:clamp(16px,2.2vw,19px);color:var(--sub);margin:0 0 32px;max-width:660px}
+.ref{font-size:12px;color:var(--sub);font-weight:400}
+
+/* hero */
+.hero{text-align:center;padding:96px 0 40px}
+.hero .eyebrow{font-size:15px}
+.hero h1{font-size:clamp(34px,7vw,64px);line-height:1.1;font-weight:700;letter-spacing:-.04em;margin:0 0 20px;
+  background:linear-gradient(135deg,var(--text) 30%,var(--blue));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.sub{font-size:clamp(17px,2.6vw,24px);color:var(--sub);margin:0 auto 36px;max-width:640px}
+.quote{background:var(--card);border-radius:28px;padding:36px 28px;box-shadow:var(--shadow);max-width:700px;margin:0 auto}
+.quote q{display:block;font-size:clamp(20px,3.4vw,28px);font-weight:600;line-height:1.4;quotes:none;letter-spacing:-.025em}
+.quote small{display:block;margin-top:12px;color:var(--sub)}
+.cta{display:inline-block;margin-top:32px;background:var(--blue);color:#fff;text-decoration:none;padding:12px 26px;border-radius:980px;font-size:17px;transition:transform .2s,opacity .2s}
+.cta:hover{transform:scale(1.03);opacity:.92}
+
+/* cards & grids */
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.card{background:var(--card);border-radius:22px;padding:24px;box-shadow:var(--shadow)}
+.card h3{margin:0 0 6px;font-size:19px;letter-spacing:-.02em}
+.card p{margin:0;color:var(--sub);font-size:15.5px}
+.tag{display:inline-block;font-size:12px;font-weight:600;padding:3px 10px;border-radius:980px;background:var(--blue-soft);color:var(--blue);margin-bottom:10px}
+.tag.g{background:var(--green-soft);color:var(--green)}
+.tag.o{background:var(--orange-soft);color:var(--orange)}
+.tag.gray{background:var(--bg2);color:var(--sub)}
+.stack>*+*{margin-top:16px}
+
+/* reveal buttons */
+.reveal-btn{width:100%;text-align:left;background:var(--card);border:0;border-radius:22px;padding:22px 24px;box-shadow:var(--shadow);display:flex;gap:14px;align-items:flex-start;transition:transform .2s}
+.reveal-btn:active{transform:scale(.985)}
+.reveal-btn .ic{flex:none;width:36px;height:36px;border-radius:12px;background:var(--blue-soft);color:var(--blue);display:grid;place-items:center;font-weight:700}
+.reveal-btn h3{margin:0;font-size:18px}
+.reveal-btn .more{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s ease;color:var(--sub);font-size:15.5px}
+.reveal-btn .more>div{overflow:hidden}
+.reveal-btn[aria-expanded=true] .more{grid-template-rows:1fr}
+.reveal-btn .more>div>p{margin:8px 0 0}
+.chev{margin-left:auto;color:var(--sub);transition:transform .3s;flex:none}
+.reveal-btn[aria-expanded=true] .chev{transform:rotate(180deg)}
+
+.panel{animation:fade .35s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* word-bank blanks */
+.verse{font-size:clamp(17px,2.6vw,21px);line-height:2.1;font-weight:500;letter-spacing:-.02em}
+.verse small{display:block;margin-top:8px;color:var(--sub);font-size:13.5px;font-weight:400;line-height:1.6}
+.vb{display:inline-block;min-width:4.6em;padding:0 12px;margin:0 3px;border:0;border-bottom:2px dashed var(--blue);background:var(--blue-soft);border-radius:8px 8px 0 0;color:var(--blue);text-align:center;font-weight:600;line-height:1.7;min-height:1.7em;vertical-align:baseline;transition:all .2s}
+.vb.on{outline:2px solid var(--blue);outline-offset:2px}
+.vb.ok{border-bottom:2px solid var(--green);background:var(--green-soft);color:var(--green)}
+.vb.bad{border-bottom:2px solid var(--red);background:var(--red-soft);color:var(--red);animation:shake .35s}
+@keyframes shake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:8px}
+.btn{border:0;border-radius:980px;padding:8px 18px;background:var(--blue);color:#fff;font-size:14.5px;transition:opacity .2s,transform .2s}
+.btn:hover{opacity:.9}.btn:active{transform:scale(.96)}
+.btn.ghost{background:var(--bg2);color:var(--text)}
+.fb{font-size:14.5px;margin-top:6px;min-height:1.2em}
+.fb.ok{color:var(--green)}.fb.bad{color:var(--red)}
+
+/* chips */
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px}
+.chip{border:1px solid var(--line);background:var(--card);border-radius:980px;padding:10px 18px;font-size:15.5px;transition:all .2s;box-shadow:var(--shadow)}
+.chip:disabled{opacity:.28;cursor:default}
+.chip[aria-pressed=true]{background:var(--blue);color:#fff;border-color:var(--blue)}
+.callout{border-left:4px solid var(--blue);background:var(--blue-soft);border-radius:0 16px 16px 0;padding:14px 18px;margin:16px 0;font-size:15.5px}
+.callout.o{border-color:var(--orange);background:var(--orange-soft)}
+.callout.g{border-color:var(--green);background:var(--green-soft)}
+
+/* seven steps */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(104px,1fr));gap:10px;margin:6px 0 4px}
+.step{border:0;background:var(--bg2);border-radius:20px;padding:14px 6px 12px;text-align:center;transition:all .25s}
+.step b{display:grid;place-items:center;width:38px;height:38px;margin:0 auto 6px;border-radius:99px;background:var(--blue-soft);color:var(--blue);font-size:17px}
+.step span{display:block;font-size:13px;line-height:1.3;font-weight:600}
+.step:hover{transform:translateY(-2px)}
+.step[aria-pressed=true]{background:var(--blue);color:#fff}
+.step[aria-pressed=true] b{background:rgba(255,255,255,.25);color:#fff}
+.flowline{display:flex;align-items:center;justify-content:center;gap:10px;color:var(--sub);font-size:13.5px;margin-bottom:14px;flex-wrap:wrap}
+.flowline i{font-style:normal;font-weight:700;color:var(--blue)}
+.big{font-size:clamp(20px,3.2vw,26px);font-weight:700;letter-spacing:-.03em;line-height:1.35;margin:4px 0 10px}
+
+/* quiz */
+.q{background:var(--card);border-radius:22px;padding:20px 22px;box-shadow:var(--shadow);margin-bottom:12px}
+.q .num{font-size:13px;font-weight:600;color:var(--blue);margin-bottom:6px;display:flex;gap:8px;align-items:center}
+.q .stem{font-size:17px;font-weight:500;line-height:1.6}
+.opts{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+.opts button{flex:1;min-width:120px;border:0;border-radius:16px;padding:14px;font-size:16px;font-weight:600;background:var(--bg2);transition:all .2s;line-height:1.4}
+.opts button.ox{font-size:22px;font-weight:700}
+.opts button:hover:not(:disabled){background:var(--blue-soft);color:var(--blue)}
+.opts button.right{background:var(--green-soft);color:var(--green)}
+.opts button.wrong{background:var(--red-soft);color:var(--red)}
+.opts button:disabled{cursor:default}
+.opts.col{flex-direction:column}
+.opts.col button{text-align:left;font-weight:500;font-size:15.5px}
+.explain{display:none;margin-top:12px;padding:12px 14px;border-radius:14px;background:var(--bg2);font-size:15px;color:var(--sub)}
+.explain.show{display:block;animation:fade .3s}
+.qbar{height:6px;border-radius:99px;background:var(--bg2);overflow:hidden;margin-bottom:18px}
+.qbar i{display:block;height:100%;width:0;background:var(--blue);transition:width .4s}
+
+/* flashcards */
+.fc{perspective:1000px;height:220px;border:0;background:none;padding:0}
+.fc .in{position:relative;width:100%;height:100%;transition:transform .6s cubic-bezier(.2,.8,.2,1);transform-style:preserve-3d}
+.fc[aria-pressed=true] .in{transform:rotateY(180deg)}
+.fc .f,.fc .b{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:22px;padding:22px;display:flex;flex-direction:column;justify-content:center;box-shadow:var(--shadow);text-align:left;overflow:auto}
+.fc .f{background:var(--card)}
+.fc .b{background:var(--blue);color:#fff;transform:rotateY(180deg);font-weight:600;font-size:15.5px;line-height:1.5}
+.fc .f .n{font-size:13px;font-weight:600;color:var(--blue)}
+.fc .f .k{font-size:20px;font-weight:700;letter-spacing:-.025em;margin-top:6px}
+.fc .f .h{font-size:13px;color:var(--sub);margin-top:10px}
+
+/* checklist */
+.check{display:flex;gap:12px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--line);cursor:pointer}
+.check:last-child{border:0}
+.check input{width:22px;height:22px;accent-color:var(--blue);flex:none;margin-top:3px}
+.check input:checked+span{color:var(--green);font-weight:600}
+
+/* games */
+.slots{display:flex;flex-direction:column;gap:10px;margin:14px 0}
+.slot{display:flex;gap:12px;align-items:center;min-height:56px;border:2px dashed var(--line);border-radius:16px;padding:10px 14px;color:var(--sub);font-size:15px;transition:all .3s}
+.slot b{flex:none;width:30px;height:30px;border-radius:99px;background:var(--bg2);display:grid;place-items:center;font-size:14px;color:var(--sub)}
+.slot.fill{border:2px solid var(--green);background:var(--green-soft);color:var(--text);animation:fade .3s}
+.slot.fill b{background:var(--green);color:#fff}
+.pool{display:flex;flex-direction:column;gap:8px}
+.pool button,.mbtn{border:0;border-radius:16px;padding:12px 16px;background:var(--bg2);font-size:15px;text-align:left;transition:all .2s;max-width:100%}
+.pool button:hover:not(:disabled),.mbtn:hover:not(:disabled){background:var(--blue-soft);color:var(--blue)}
+.pool button:disabled{opacity:.25;cursor:default}
+.pool button.shake,.mbtn.shake{animation:shake .35s;background:var(--red-soft)}
+.mt{display:grid;grid-template-columns:1fr 1fr;gap:10px 14px;margin:14px 0}
+.mt .col{display:flex;flex-direction:column;gap:8px}
+.mbtn{font-size:14.5px;line-height:1.45}
+.mbtn.sel{background:var(--blue);color:#fff}
+.mbtn.done{background:var(--green-soft);color:var(--green);cursor:default;font-weight:600}
+
+/* self check */
+.chip.good[aria-pressed=true]{background:var(--green);border-color:var(--green)}
+.chip.care[aria-pressed=true]{background:var(--orange);border-color:var(--orange)}
+.ta{width:100%;min-height:88px;border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:var(--bg2);resize:vertical;outline:none;font-size:15.5px;line-height:1.6;margin-top:8px}
+.ta:focus{border-color:var(--blue)}
+.privacy{font-size:13px;color:var(--sub);display:flex;gap:6px;align-items:flex-start;margin-top:10px}
+
+/* result */
+.result{text-align:center}
+.ring{width:180px;height:180px;margin:0 auto 12px;position:relative}
+.ring svg{transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:12;stroke-linecap:round}
+.ring .tr{stroke:var(--bg2)}
+.ring .pr{stroke:var(--blue);stroke-dasharray:471;stroke-dashoffset:471;transition:stroke-dashoffset 1s cubic-bezier(.2,.8,.2,1)}
+.ring .t{position:absolute;inset:0;display:grid;place-items:center;font-size:38px;font-weight:700;letter-spacing:-.03em}
+.ring .t small{font-size:14px;font-weight:400;color:var(--sub);display:block;text-align:center}
+
+/* reveal on scroll */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
+.rv.in{opacity:1;transform:none}
+@media (max-width:520px){.mt{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}html{scroll-behavior:auto}}
+footer{max-width:980px;margin:72px auto 0;padding:28px 20px 56px;border-top:1px solid var(--line);color:var(--sub);font-size:13px;text-align:center}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-in">
+    <b>제5과 복습</b>
+    <a href="#s1">핵심 구절</a><a href="#s2">일곱 가지 실체</a><a href="#s3">순서·짝 맞추기</a>
+    <a href="#s4">영적 명세서</a><a href="#s5">내일 그리고 그 이후</a><a href="#s6">퀴즈</a>
+    <a href="#s7">카드</a><a href="#s8">나눔</a><a href="#s9">결과</a>
+  </div>
+  <div id="bar"></div>
+</nav>
+
+<main>
+
+<!-- HERO -->
+<header class="hero rv">
+  <p class="eyebrow">하나님을 경험하는 삶 · 12단원 제5과 · p.385~389</p>
+  <h1>당신의<br>영적인 명세서</h1>
+  <p class="sub">시작하신 분이 완성하십니다</p>
+  <div class="quote">
+    <q>당신의 인생에서 하나님이 시작하신 일은 그분이 완성하실 것이다.</q>
+    <small>이 과의 핵심 문장 · 빌립보서 1:6 · p.385</small>
+  </div>
+  <a class="cta" href="#s1">복습 시작하기</a>
+</header>
+
+<!-- 1. 빈칸 -->
+<section id="s1" class="rv">
+  <p class="eyebrow">01 · 단어 채우기</p>
+  <h2>핵심 구절을 떠올려 보세요</h2>
+  <p class="lead">빈칸을 누른 뒤 아래 단어를 눌러 채우세요. 채운 칸을 다시 누르면 비워집니다. 단어 중에는 <b>정답이 아닌 것</b>도 섞여 있어요.</p>
+
+  <div class="card">
+    <span class="tag">암송구절 · 빌립보서 1:6</span>
+    <p class="verse" id="v1" style="color:var(--text)"></p>
+    <span class="tag o" style="margin-top:14px">이 과의 핵심 문장</span>
+    <p class="verse" id="v2" style="color:var(--text)"></p>
+    <div class="chips" id="bank" style="margin:18px 0 0"></div>
+    <div class="row"><button class="btn" id="vCheck">확인</button><button class="btn ghost" id="vReset">다시</button></div>
+    <div class="fb" id="vFb"></div>
+    <p style="margin-top:10px;font-size:13.5px"><span class="ref">(p.385)</span></p>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <span class="tag g">교재 본문 · p.385</span>
+    <p class="verse">“몇 달 전 우리는 이 여행을 함께 시작했습니다. … 이 단원에서 당신이 이제껏 공부한 것을 <b>복습</b>하고, 하나님이 당신의 인생에서 어떤 일을 해오셨는지 알아보겠습니다. 그리고 나서 당신이 현재 주님과 동행하고 있는 삶의 <b>영적 명세서</b>를 작성하는 데 주님과 시간을 함께 보내시기 바랍니다.”
+      <small>5과는 새로운 내용을 배우는 과가 아니라, 지금까지의 여정을 돌아보고 내 영적 상태를 점검하는 마무리 과입니다.</small></p>
+  </div>
+</section>
+
+<!-- 2. 일곱 가지 실체 -->
+<section id="s2" class="rv">
+  <p class="eyebrow">02 · 일곱 가지 실체</p>
+  <h2>하나님을 경험하는 삶의<br>일곱 가지 실체</h2>
+  <p class="lead">번호를 눌러 하나씩 확인해 보세요. 교재가 이 과정 전체의 결론으로 정리한 일곱 가지입니다. <span class="ref">(p.389)</span></p>
+
+  <div class="card">
+    <div class="flowline"><span>하나님</span><i>→</i><span>1 하나님의 일</span><i>→ … →</i><span>7 순종과 경험</span></div>
+    <div class="steps" id="steps"></div>
+    <div class="callout" id="stepPanel" style="margin-top:18px">번호를 눌러 보세요.</div>
+    <p style="font-size:13px;margin-top:6px">※ 교재 도표(p.389)는 하나님에게서 나온 화살표가 1 하나님의 일에서 7 순종과 경험으로 이어지는 모양입니다. 각 항목의 “한 줄 정리”는 교사가 덧붙인 풀이이며, 교재 문장이 아닙니다.</p>
+  </div>
+  <div class="callout g" style="margin-top:16px"><b>한 줄로 이으면</b><br>하나님이 먼저 일하시고(1), 사랑으로 나를 부르시며(2·3), 말씀하십니다(4). 나는 믿음의 갈등 속에서 결단하고(5) 삶을 조정하며(6), 순종할 때 경험으로 하나님을 알게 됩니다(7).</div>
+</section>
+
+<!-- 3. 게임 -->
+<section id="s3" class="rv">
+  <p class="eyebrow">03 · 게임</p>
+  <h2>순서와 짝을<br>맞춰 보세요</h2>
+  <p class="lead">일곱 가지 실체를 자기 말로 설명할 수 있어야 합니다. 교재 A번 문항을 게임으로 풀어 봅니다. <span class="ref">(p.385, 389)</span></p>
+
+  <div class="card">
+    <span class="tag g">순서 맞추기</span>
+    <h3>일곱 가지 실체를 1번부터 순서대로 눌러 보세요</h3>
+    <div class="slots" id="slots"></div>
+    <div class="pool" id="pool"></div>
+    <div class="fb" id="orderFb" style="margin-top:12px"></div>
+    <div class="row"><button class="btn ghost" id="orderReset">다시 섞기</button></div>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <span class="tag o">짝 맞추기</span>
+    <h3>키워드를 먼저 누르고, 알맞은 설명을 눌러 보세요</h3>
+    <div class="mt"><div class="col" id="mL"></div><div class="col" id="mR"></div></div>
+    <div class="fb" id="matchFb"></div>
+    <div class="row"><button class="btn ghost" id="matchReset">다시 섞기</button></div>
+  </div>
+</section>
+
+<!-- 4. 영적 명세서 -->
+<section id="s4" class="rv">
+  <p class="eyebrow">04 · 나의 영적 명세서</p>
+  <h2>지금 내 모습을<br>정직하게 표시해 보세요</h2>
+  <p class="lead">교재는 이 질문에 답하는 동안 <b>성령님이 내 생각을 주장해 주시도록</b> 먼저 기도하라고 합니다. 잠시 기도한 뒤 시작하세요. <span class="ref">(p.386)</span></p>
+
+  <div class="card">
+    <span class="tag">H · 하나님과 맺고 있는 사랑의 관계</span>
+    <h3>느끼는 대로 가장 잘 표현한 문장을 고르세요 (여러 개 가능)</h3>
+    <div class="chips" id="hChips" style="margin-top:14px"></div>
+    <div class="callout" id="hPanel" style="display:none"></div>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <span class="tag">I · 그리스도의 몸인 교회와 맺고 있는 관계</span>
+    <h3>느끼는 대로 가장 잘 표현한 문장을 고르세요 (여러 개 가능)</h3>
+    <div class="chips" id="iChips" style="margin-top:14px"></div>
+    <div class="callout" id="iPanel" style="display:none"></div>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <span class="tag g">B · 일곱 가지 실체 중 나에게 가장 큰 의미를 주는 것</span>
+    <h3>하나를 고르고, 이유를 한 문장으로 적어 보세요</h3>
+    <div class="chips" id="bChips" style="margin-top:14px"></div>
+    <div id="bBox" style="display:none">
+      <p id="bPrompt" style="margin:0"></p>
+      <textarea class="ta" id="bText" placeholder="여기에 적어 보세요 (저장되지 않습니다)"></textarea>
+    </div>
+  </div>
+
+  <p class="privacy">🔒 이 섹션에서 고르거나 적은 내용은 이 화면에서만 쓰이며, 저장되거나 어디로도 전송되지 않습니다. 새로고침하면 사라집니다. 소그룹에서는 <b>나누고 싶은 만큼만</b> 나눕니다.</p>
+</section>
+
+<!-- 5. 내일 그리고 그 이후 -->
+<section id="s5" class="rv">
+  <p class="eyebrow">05 · 내일, 그리고 그 이후</p>
+  <h2>점검은 다음 걸음을<br>위한 것입니다</h2>
+  <p class="lead">영적 명세서는 점수표가 아니라 파송 준비입니다. 눌러서 질문을 펼쳐 보세요. <span class="ref">(p.387)</span></p>
+
+  <div class="stack" id="tomorrow"></div>
+
+  <div class="card" style="margin-top:16px">
+    <span class="tag g">O · 다른 사람이 주님과 동행하도록 돕기</span>
+    <h3>하나님이 하라고 인도하심을 느끼는 것을 체크해 보세요</h3>
+    <p style="margin-bottom:6px"><span class="ref">(p.388)</span></p>
+    <div id="helps"></div>
+    <div class="callout g" id="helpRes" style="display:none"></div>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <span class="tag o">찬양의 시간</span>
+    <h3>하나님이 하신 일과 하고 계신 일을 떠올려 볼 영역</h3>
+    <p style="margin-bottom:14px">영역을 눌러 하나님이 그곳에서 하신 일을 하나씩 떠올리고, 마음속으로 찬양해 보세요. <span class="ref">(p.388)</span></p>
+    <div class="chips" id="praise"></div>
+    <div class="fb" id="praiseTxt"></div>
+  </div>
+</section>
+
+<!-- 6. 퀴즈 -->
+<section id="s6" class="rv">
+  <p class="eyebrow">06 · 퀴즈</p>
+  <h2>얼마나 기억나나요?</h2>
+  <p class="lead">한 문제씩 풀면 바로 해설이 나옵니다.</p>
+  <div class="qbar"><i id="qprog"></i></div>
+  <div id="quiz"></div>
+</section>
+
+<!-- 7. 카드 -->
+<section id="s7" class="rv">
+  <p class="eyebrow">07 · 요점 카드</p>
+  <h2>카드를 뒤집어 보세요</h2>
+  <p class="lead">앞면의 질문에 먼저 답해 보고 뒤집어서 확인하세요.</p>
+  <div class="grid g3" id="cards"></div>
+
+  <div class="card" style="margin-top:24px">
+    <span class="tag gray">학생들이 꼭 알아야 할 핵심</span>
+    <p style="font-size:13.5px;margin-bottom:6px">※ 교사 참고: 교재 흐름에 맞춰 정리한 것으로, 교재가 직접 쓴 문장은 아닙니다.</p>
+    <div class="stack" style="margin-top:10px">
+      <p><b style="color:var(--text)">1. 시작도 완성도 하나님이십니다.</b> 빌 1:6의 확신이 이 과의 토대입니다. 내 열심이 아니라 하나님이 시작하신 일을 그분이 끝내십니다.</p>
+      <p><b style="color:var(--text)">2. 일곱 가지 실체는 한 흐름입니다.</b> 하나님이 일하시고, 사랑으로 부르시며, 말씀하시고, 나는 갈등 속에서 결단하고 삶을 조정하며 순종합니다. 자기 말로 설명할 수 있어야 합니다.</p>
+      <p><b style="color:var(--text)">3. 하나님을 아는 것은 순종을 통한 경험입니다.</b> 7번이 이 교재 전체의 결론입니다.</p>
+      <p><b style="color:var(--text)">4. 영적 명세서는 점수표가 아니라 정직한 현재 위치 확인입니다.</b> 어떤 답이든 솔직하게 하나님 앞에 내놓는 것이 목적입니다.</p>
+      <p><b style="color:var(--text)">5. 점검은 “그다음”을 위한 것입니다.</b> 도전, 기도제목, 다음 훈련, 사명, 다른 사람 돕기로 이어집니다. 이 과정은 끝이 아니라 파송입니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 8. 나눔 -->
+<section id="s8" class="rv">
+  <p class="eyebrow">08 · 소그룹 나눔 질문</p>
+  <h2>함께 나눠 보세요</h2>
+  <p class="lead">카드를 눌러 질문을 펼쳐 보세요. 영적 점검은 개인적인 내용이므로, 나누고 싶은 만큼만 나눕니다.</p>
+  <div class="stack" id="shares"></div>
+</section>
+
+<!-- 9. 결과 -->
+<section id="s9" class="rv">
+  <p class="eyebrow">09 · 오늘의 복습</p>
+  <h2>복습 결과</h2>
+  <div class="card result">
+    <div class="ring">
+      <svg viewBox="0 0 170 170" width="180" height="180"><circle class="tr" cx="85" cy="85" r="75"/><circle class="pr" id="ringPr" cx="85" cy="85" r="75"/></svg>
+      <div class="t"><div><span id="scoreNum">0</span><small id="scoreSub">/ 0</small></div></div>
+    </div>
+    <h3 id="scoreMsg" style="margin:6px 0 4px">빈칸과 퀴즈를 풀면 점수가 쌓입니다</h3>
+    <p id="scoreDetail">빈칸 0 / 5 · 퀴즈 0 / 8 · 게임 0 / 2</p>
+    <div class="row" style="justify-content:center;margin-top:16px">
+      <button class="btn" id="retry">처음부터 다시</button>
+    </div>
+  </div>
+
+  <div class="callout" style="margin-top:20px">
+    <b>이번 과 한 줄 정리</b><br>
+    하나님이 내 안에서 시작하신 일은 그분이 <b>완성</b>하십니다. 나는 일곱 가지 실체 안에서 <b>순종</b>하며 하나님을 경험으로 알아 갑니다.
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <span class="tag g">마무리 기도 · 에베소서 3:20~21</span>
+    <p class="verse">“우리 가운데서 역사하시는 능력대로 우리가 구하거나 생각하는 모든 것에 더 넘치도록 능히 하실 이에게 교회 안에서와 그리스도 예수 안에서 영광이 대대로 영원무궁하기를 원하노라 아멘.”
+      <small>교재는 에베소서 3:16~21(p.388)로 이 과를 마무리합니다. 하나님이 하신 일과 하고 계신 일로 인해 그분을 찬양하며 마칩니다.</small></p>
+  </div>
+</section>
+
+</main>
+
+<footer>하나님을 경험하는 삶 · 12단원 제5과 복습 · 교재 p.385~389</footer>
+
+<script>
+(function(){
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const shuf=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const toggle=b=>b.setAttribute('aria-expanded',b.getAttribute('aria-expanded')!=='true');
+
+/* ---------- data ---------- */
+const REAL=[
+ {k:'하나님의 일',s:'하나님은 항상 당신의 주위에서 일하고 계십니다.',n:'하나님은 지금도 내 주위에서 일하고 계십니다.',q:'하나님은 항상 어디에서 일하고 계신가?',a:'내 주위에서 일하고 계십니다.',d:'내 주위에서 지금도 일하고 계심'},
+ {k:'사랑의 관계',s:'하나님은 당신과 실제적이고, 개인적이며, 지속적인 사랑의 관계를 추구하십니다.',n:'하나님이 나와 원하시는 것은 형식이 아니라 살아 있는 사랑의 관계입니다.',q:'하나님이 나와 추구하시는 관계는?',a:'실제적이고, 개인적이며, 지속적인 사랑의 관계',d:'실제적·개인적·지속적'},
+ {k:'초청',s:'하나님은 당신이 그분의 일에 참여하도록 당신을 초청하십니다.',n:'나는 구경꾼이 아니라 그분의 일에 참여하도록 부르심을 받았습니다.',q:'하나님은 나를 어디로 초청하시는가?',a:'그분의 일에 참여하도록 초청하십니다.',d:'그분의 일에 참여하라는 부르심'},
+ {k:'하나님이 말씀하심',s:'하나님은 하나님 자신과 자신의 목적과 길을 보여주기 위하여 성령님에 의해 성경, 기도, 환경과 교회를 통해서 말씀하십니다.',n:'말씀하시는 길은 한 가지가 아니라 성경·기도·환경·교회이며, 성령님이 이끄십니다.',q:'하나님은 무엇을 통해 말씀하시는가?',a:'성령님에 의해 성경, 기도, 환경과 교회를 통해서 자신과 자신의 목적과 길을 보여주십니다.',d:'성경·기도·환경·교회를 통해, 성령님으로'},
+ {k:'믿음의 갈등',s:'하나님의 부르심은 항상 당신을 믿음의 갈등으로 몰아넣고, 결단과 그에 따른 행동을 요구합니다.',n:'부르심 앞에서 갈등이 생기는 것은 이상한 일이 아니라, 믿음으로 결단하게 하는 과정입니다.',q:'하나님의 부르심은 항상 나를 어디로 몰아넣는가?',a:'믿음의 갈등으로 몰아넣고, 결단과 그에 따른 행동을 요구합니다.',d:'결단과 행동을 요구하는 갈등'},
+ {k:'조정',s:'당신은 하나님의 역사에 참여하기 위해서 당신의 인생을 하나님의 뜻에 맞게 조정해야 합니다.',n:'맞추는 쪽은 하나님이 아니라 나입니다.',q:'하나님의 역사에 참여하려면 무엇을 해야 하는가?',a:'내 인생을 하나님의 뜻에 맞게 조정해야 합니다.',d:'내 삶을 하나님의 뜻에 맞춤'},
+ {k:'순종과 경험',s:'당신이 하나님께 순종하고, 하나님이 당신을 통해서 그분의 일을 성취하심으로 말미암아 당신은 경험으로 하나님을 알게 됩니다.',n:'하나님은 지식이 아니라 순종 가운데 경험으로 알게 됩니다.',q:'나는 어떻게 경험으로 하나님을 알게 되는가?',a:'내가 순종하고, 하나님이 나를 통해 그분의 일을 성취하실 때입니다.',d:'순종할 때 경험으로 하나님을 앎'}
+];
+const QZ=[
+ {q:'빌립보서 1:6의 확신은 무엇입니까?',o:['내가 열심히 노력하면 하나님의 일이 완성된다','교회가 우리의 신앙을 대신 완성시켜 준다','하나님이 시작하신 일은 그분이 완성하신다'],a:2,ex:'“너희 안에서 착한 일을 시작하신 이가 그리스도 예수의 날까지 이루실 줄을 우리는 확신하노라.” 시작하신 분이 하나님이시듯 완성하실 분도 하나님입니다. (p.385)'},
+ {q:'이 과에서는 지금까지 공부한 것을 복습하고, 현재 주님과 동행하는 삶의 영적 명세서를 작성한다.',o:['O','X'],a:0,ex:'맞습니다. 교재는 이제껏 공부한 것을 복습하고, 하나님이 내 삶에 하신 일을 알아본 뒤 영적 명세서를 작성하게 합니다. (p.385)'},
+ {q:'실체 4: 교재에 따르면 하나님은 무엇을 통해 말씀하십니까?',o:['오직 특별한 환상과 음성을 통해서만','성령님에 의해 성경, 기도, 환경과 교회를 통해','목회자의 설교를 통해서만'],a:1,ex:'하나님은 자신과 자신의 목적과 길을 보여주시기 위해 성령님에 의해 성경, 기도, 환경과 교회를 통해 말씀하십니다. (p.389)'},
+ {q:'실체 5: 하나님의 부르심은 항상 나를 무엇으로 몰아넣습니까?',o:['믿음의 갈등','편안한 안정','외로운 고립'],a:0,ex:'하나님의 부르심은 항상 나를 믿음의 갈등으로 몰아넣고, 결단과 그에 따른 행동을 요구합니다. (p.389)'},
+ {q:'실체 6: 하나님의 역사에 참여하기 위해 “조정”해야 하는 것은?',o:['하나님의 뜻을 내 형편에 맞춘다','내 인생을 하나님의 뜻에 맞게 조정한다','조정 없이 지금 모습 그대로 참여한다'],a:1,ex:'조정하는 쪽은 나입니다. 하나님의 역사에 참여하기 위해 내 인생을 하나님의 뜻에 맞게 조정해야 합니다. (p.389)'},
+ {q:'실체 7: 나는 언제 “경험으로” 하나님을 알게 됩니까?',o:['성경 지식을 충분히 쌓았을 때','오랜 시간 기다린 후에','내가 순종하고 하나님이 나를 통해 일을 이루실 때'],a:2,ex:'내가 하나님께 순종하고, 하나님이 나를 통해 그분의 일을 성취하심으로 말미암아 나는 경험으로 하나님을 알게 됩니다. (p.389)'},
+ {q:'영적인 점검(H, I)에서는 “좋은 표현”만 골라야 한다.',o:['O','X'],a:1,ex:'교재의 선택지에는 “미지근하다”, “차갑다”, “심각한 중태에 빠진 상태”도 들어 있습니다. 목적은 정직하게 현재 위치를 하나님 앞에 내놓는 것입니다. (p.386~387 · 목적에 대한 설명은 교사 정리)'},
+ {q:'실체 2: 하나님이 나와 추구하시는 관계는?',o:['필요할 때만 찾는 관계','교회 직분을 통해서만 맺는 간접적인 관계','실제적이고 개인적이며 지속적인 사랑의 관계'],a:2,ex:'하나님은 나와 실제적이고, 개인적이며, 지속적인 사랑의 관계를 추구하십니다. (p.389)'}
+];
+const state={blank:0,quiz:{},games:new Set()};
+
+/* ---------- nav progress & scroll reveal ---------- */
+const bar=$('#bar');
+addEventListener('scroll',()=>{const h=document.documentElement;bar.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight||1)*100)+'%'},{passive:true});
+if('IntersectionObserver' in window){
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.08});
+  $$('.rv').forEach(el=>io.observe(el));
+}else{$$('.rv').forEach(el=>el.classList.add('in'))}
+
+/* ---------- 01 word-bank blanks ---------- */
+const VB=[
+ {el:'#v1',parts:['너희 안에서 ',0,'을 시작하신 이가 그리스도 예수의 ',1,'까지 ',2,' 줄을 우리는 ',3,'하노라.']},
+ {el:'#v2',parts:['당신의 인생에서 하나님이 시작하신 일은 그분이 ',4,'하실 것이다.']}
+];
+const VA=['착한 일','날','이루실','확신','완성'];
+const slots=[]; // {el,val,locked,chip}
+let activeSlot=-1;
+VB.forEach(v=>{
+  const host=$(v.el);
+  v.parts.forEach(p=>{
+    if(typeof p==='string'){host.append(document.createTextNode(p));return}
+    const b=document.createElement('button');b.className='vb';b.type='button';b.setAttribute('aria-label','빈칸 '+(p+1));
+    b.textContent=' ';
+    slots[p]={el:b,val:null,locked:false,chip:null};
+    b.onclick=()=>{
+      const s=slots[p];
+      if(s.locked)return;
+      if(s.val!==null){clearSlot(p);return}
+      setActive(p);
+    };
+    host.append(b);
+  });
+});
+const bank=$('#bank');
+const chipEls=[];
+shuf(['착한 일','날','이루실','확신','완성','악한 일','때','포기','의심']).forEach(w=>{
+  const c=document.createElement('button');c.className='chip';c.type='button';c.textContent=w;
+  c.onclick=()=>{
+    if(c.disabled)return;
+    let i=activeSlot;
+    if(i<0||slots[i].val!==null||slots[i].locked)i=slots.findIndex(s=>s.val===null&&!s.locked);
+    if(i<0){$('#vFb').className='fb';$('#vFb').textContent='모든 칸이 차 있어요. 칸을 눌러 비우거나 확인을 누르세요.';return}
+    slots[i].val=w;slots[i].chip=c;slots[i].el.textContent=w;slots[i].el.classList.remove('bad','on');
+    c.disabled=true;activeSlot=-1;
+    const n=slots.findIndex(s=>s.val===null&&!s.locked);setActive(n);
+  };
+  chipEls.push(c);bank.append(c);
+});
+function setActive(i){
+  activeSlot=i;
+  slots.forEach((s,k)=>s.el.classList.toggle('on',k===i&&!s.locked));
+}
+function clearSlot(i){
+  const s=slots[i];
+  if(s.chip)s.chip.disabled=false;
+  s.val=null;s.chip=null;s.el.textContent=' ';s.el.classList.remove('bad','ok');
+  setActive(i);
+}
+$('#vCheck').onclick=()=>{
+  const fb=$('#vFb');
+  if(slots.some(s=>s.val===null&&!s.locked)){fb.className='fb';fb.textContent='아직 비어 있는 칸이 있어요.';return}
+  let wrong=0;
+  slots.forEach((s,i)=>{
+    if(s.locked)return;
+    if(s.val===VA[i]){s.locked=true;s.el.classList.remove('bad','on');s.el.classList.add('ok')}
+    else{wrong++;s.el.classList.add('bad')}
+  });
+  state.blank=slots.filter(s=>s.locked).length;
+  if(wrong===0){fb.className='fb ok';fb.textContent='모두 정답입니다 ✓ 시작하신 분이 완성하십니다.'}
+  else{
+    fb.className='fb bad';fb.textContent=wrong+'칸이 아직 맞지 않아요. 빨간 칸을 눌러 비우고 다시 골라 보세요.';
+    slots.forEach((s,i)=>{if(!s.locked){const e=s.el;setTimeout(()=>e.classList.remove('bad'),600)}});
+  }
+  update();
+};
+$('#vReset').onclick=()=>{
+  slots.forEach(s=>{s.val=null;s.locked=false;s.chip=null;s.el.className='vb';s.el.textContent=' '});
+  chipEls.forEach(c=>c.disabled=false);
+  state.blank=0;$('#vFb').textContent='';$('#vFb').className='fb';setActive(0);update();
+};
+setActive(0);
+
+/* ---------- 02 seven steps ---------- */
+const stepsEl=$('#steps');
+REAL.forEach((r,i)=>{
+  const b=document.createElement('button');b.className='step';b.type='button';b.setAttribute('aria-pressed','false');
+  b.innerHTML=`<b>${i+1}</b><span>${r.k}</span>`;
+  b.onclick=()=>{
+    $$('.step',stepsEl).forEach(x=>x.setAttribute('aria-pressed','false'));
+    b.setAttribute('aria-pressed','true');
+    const p=$('#stepPanel');p.className='callout panel';
+    p.innerHTML=`<div class="big">${i+1}. ${r.k}</div><p style="color:var(--text);margin:0 0 10px">${r.s} <span class="ref">(p.389)</span></p><p style="margin:0;font-size:14.5px;color:var(--sub)"><b style="color:var(--text)">한 줄 정리</b> · ${r.n}</p>`;
+  };
+  stepsEl.append(b);
+});
+
+/* ---------- 03 order game ---------- */
+const sl=$('#slots'),pool=$('#pool'),ofb=$('#orderFb');
+let next=0,wrongN=0;
+function orderInit(){
+  next=0;wrongN=0;ofb.className='fb';ofb.textContent='';
+  sl.innerHTML='';pool.innerHTML='';
+  REAL.forEach((_,i)=>{const s=document.createElement('div');s.className='slot';s.innerHTML=`<b>${i+1}</b><span>비어 있음</span>`;sl.append(s)});
+  let order;do{order=shuf(REAL.map((_,i)=>i))}while(order.every((v,i)=>v===i));
+  order.forEach(idx=>{
+    const b=document.createElement('button');b.type='button';b.textContent=REAL[idx].s;
+    b.onclick=()=>{
+      if(idx===next){
+        const s=sl.children[next];s.classList.add('fill');$('span',s).textContent=REAL[idx].s;
+        b.disabled=true;next++;wrongN=0;
+        if(next===REAL.length){ofb.className='fb ok';ofb.textContent='완성! 하나님의 일에서 시작해 순종과 경험으로 이어집니다. (p.389)';state.games.add('order');update()}
+        else{ofb.className='fb ok';ofb.textContent='좋아요. 다음 번호는?'}
+      }else{
+        wrongN++;b.classList.add('shake');setTimeout(()=>b.classList.remove('shake'),400);
+        ofb.className='fb bad';ofb.textContent=wrongN>=2?'힌트: 지금 찾는 번호는 '+(next+1)+'번, 키워드는 “'+REAL[next].k+'”입니다.':'아직 아니에요. 다시 생각해 보세요.';
+      }
+    };
+    pool.append(b);
+  });
+}
+$('#orderReset').onclick=orderInit;orderInit();
+
+/* ---------- 03 match game ---------- */
+const mL=$('#mL'),mR=$('#mR'),mfb=$('#matchFb');
+let selL=null,matched=0;
+function matchInit(){
+  selL=null;matched=0;mL.innerHTML='';mR.innerHTML='';mfb.className='fb';mfb.textContent='';
+  REAL.forEach((r,i)=>{
+    const b=document.createElement('button');b.className='mbtn';b.type='button';b.textContent=(i+1)+'. '+r.k;b.dataset.i=i;
+    b.onclick=()=>{
+      if(b.classList.contains('done'))return;
+      $$('.mbtn',mL).forEach(x=>x.classList.remove('sel'));
+      b.classList.add('sel');selL=i;mfb.className='fb';mfb.textContent='';
+    };
+    mL.append(b);
+  });
+  shuf(REAL.map((_,i)=>i)).forEach(j=>{
+    const b=document.createElement('button');b.className='mbtn';b.type='button';b.textContent=REAL[j].d;
+    b.onclick=()=>{
+      if(b.classList.contains('done'))return;
+      if(selL===null){mfb.className='fb';mfb.textContent='먼저 왼쪽에서 키워드를 눌러 주세요.';return}
+      if(j===selL){
+        const lb=$$('.mbtn',mL)[selL];lb.classList.remove('sel');lb.classList.add('done');b.classList.add('done');
+        selL=null;matched++;mfb.className='fb ok';mfb.textContent=matched+' / 7 짝 맞춤';
+        if(matched===7){mfb.textContent='모두 맞췄어요! 🎉 일곱 가지 실체가 한눈에 보이나요?';state.games.add('match');update()}
+      }else{
+        b.classList.add('shake');setTimeout(()=>b.classList.remove('shake'),400);
+        mfb.className='fb bad';mfb.textContent='짝이 맞지 않아요. 다른 설명을 골라 보세요.';
+      }
+    };
+    mR.append(b);
+  });
+}
+$('#matchReset').onclick=matchInit;matchInit();
+
+/* ---------- 04 spiritual check ---------- */
+const HC=[['날마다 더욱 달콤해진다','good'],['롤러 스케이트를 탄 것 같다','mid'],['기쁨에 넘친다','good'],['미지근하다','care'],['강가에 심은 나무 같다','good'],['조정을 필요로 한다','mid'],['차갑다','care'],['바위와 같이 견고하다','good'],['깊고 넓다','good']];
+const IC=[['마라톤을 뛸 준비가 되어 있음','good'],['훈련중','mid'],['엉망진창','care'],['집에서 회복중','mid'],['시험중','mid'],['전진중','good'],['만족할 만한 상태','good'],['심각한 중태에 빠진 상태','care'],['집중치료를 요함','care']];
+function selfCheck(list,hostId,panelId,kind){
+  const host=$(hostId),panel=$(panelId),on=new Set();
+  list.forEach((it,i)=>{
+    const c=document.createElement('button');c.className='chip '+it[1];c.type='button';c.setAttribute('aria-pressed','false');
+    c.textContent=(i+1)+'. '+it[0];
+    c.onclick=()=>{
+      const p=c.getAttribute('aria-pressed')!=='true';c.setAttribute('aria-pressed',p);
+      p?on.add(i):on.delete(i);render();
+    };
+    host.append(c);
+  });
+  function render(){
+    if(!on.size){panel.style.display='none';return}
+    const tones=new Set([...on].map(i=>list[i][1]));
+    const msgs=[];
+    if(tones.has('care'))msgs.push(kind==='H'
+      ?'<b>솔직하게 표시해 주셨어요.</b> 지금 차갑거나 미지근하게 느껴져도 괜찮습니다. 그 자리에서 다시 시작하면 됩니다. “너희 안에서 착한 일을 시작하신 이가 … 이루실 줄을 우리는 확신하노라.” (빌 1:6)'
+      :'<b>솔직하게 표시해 주셨어요.</b> 힘든 자리를 정직하게 내놓는 것이 회복의 첫걸음입니다. 이 상태를 소그룹이 함께 기도해 줄 수 있습니다. (K번 기도제목으로 이어 보세요)');
+    if(tones.has('mid'))msgs.push(kind==='H'
+      ?'<b>오르내림이나 조정이 필요한 때일 수 있습니다.</b> 일곱 가지 실체 중 5번 믿음의 갈등, 6번 조정을 지나는 과정인지 돌아보세요.'
+      :'<b>훈련과 회복, 시험의 과정에 있다면</b> 하나님이 지금 나를 준비시키고 계신 것일 수 있습니다.');
+    if(tones.has('good'))msgs.push(kind==='H'
+      ?'<b>하나님이 이미 해 오신 일입니다.</b> 이 관계가 어떻게 자라 왔는지 돌아보며 감사해 보세요.'
+      :'<b>감사한 모습입니다.</b> 이 힘을 다른 지체를 세우는 데 어떻게 쓸 수 있을지 생각해 보세요. (O번)');
+    panel.className='callout panel'+(tones.has('care')?' o':(tones.size===1&&tones.has('good')?' g':''));
+    panel.innerHTML=msgs.join('<br><br>')+' <span class="ref">(풀이는 교사 정리)</span>';
+    panel.style.display='block';
+  }
+}
+selfCheck(HC,'#hChips','#hPanel','H');
+selfCheck(IC,'#iChips','#iPanel','I');
+
+const bC=$('#bChips');
+REAL.forEach((r,i)=>{
+  const c=document.createElement('button');c.className='chip';c.type='button';c.setAttribute('aria-pressed','false');c.textContent=(i+1)+'. '+r.k;
+  c.onclick=()=>{
+    $$('.chip',bC).forEach(x=>x.setAttribute('aria-pressed','false'));c.setAttribute('aria-pressed','true');
+    $('#bBox').style.display='block';
+    $('#bPrompt').innerHTML=`<b>${i+1}. ${r.k}</b> — ${r.s}<br><span style="color:var(--sub);font-size:14.5px">이 실체가 나에게 가장 큰 의미를 주는 이유는 무엇인가요?</span>`;
+  };
+  bC.append(c);
+});
+
+/* ---------- 05 tomorrow ---------- */
+const TM=[
+ ['J','가장 큰 영적인 도전은 무엇입니까?','지금 내 앞에 있는 가장 큰 영적 도전을 한 문장으로 적어 보세요.','p.387'],
+ ['K','소그룹이 나를 위해 기도한다면, 가장 의미 있는 기도제목은?','내 영적 성장과 주님과 동행하는 삶을 위해 함께 기도받고 싶은 것을 정해 보세요.','p.387'],
+ ['L','하나님은 내가 제자로서 훈련을 계속하기 위해 다음에 무엇을 하기를 원하신다고 생각합니까?','다음에 이어 갈 훈련이나 공부를 기도하며 생각해 보세요.','p.387'],
+ ['M','하나님이 하고 계신 특수한 사명에 나를 초청하셨다고 생각합니까?','그렇다면 어떤 일인지 적어 보세요. 아직 모르겠다면 그것도 기도제목이 됩니다.','p.387'],
+ ['N','나는 내 교회와 그리스도와의 관계를 위해서 어떻게 기도하고 있습니까?','내 교회를 위해 지금 드리고 있는 기도를 돌아보세요.','p.387']
+];
+const tm=$('#tomorrow');
+TM.forEach(t=>{
+  const b=document.createElement('button');b.className='reveal-btn';b.type='button';b.setAttribute('aria-expanded','false');
+  b.innerHTML=`<div class="ic">${t[0]}</div><div style="flex:1"><h3>${t[1]}</h3><div class="more"><div><p>${t[2]} <span class="ref">(${t[3]})</span></p></div></div></div><span class="chev">⌄</span>`;
+  b.onclick=()=>toggle(b);tm.append(b);
+});
+const HP=['나의 인생에서 하나님이 하신 일, 하고 계신 일들을 증거함','내가 이미 함께 일하고 있는 그룹의 사람들이 하나님을 이와 같은 방법으로 알고 경험하도록 도와줌','한 그룹을 모아서 “하나님을 경험하는 삶”을 가르침','다른 사람들에게 “하나님을 경험하는 삶”을 공부하라고 격려함','다른 제자 훈련교재를 가르침 (예: 최선의 삶, 기도의 삶 등)','그리스도의 제자훈련에 있는 다른 훈련과정의 소그룹을 인도함'];
+const hp=$('#helps'),hr=$('#helpRes');
+HP.forEach((t,i)=>{const l=document.createElement('label');l.className='check';l.innerHTML=`<input type="checkbox"><span>${i+1}. ${t}</span>`;hp.append(l)});
+hp.addEventListener('change',()=>{
+  const n=$$('input:checked',hp).length;hr.style.display=n?'block':'none';
+  hr.innerHTML=n===1?'좋아요. 이 한 가지를 놓고 기도해 보세요.':'<b>'+n+'가지</b>를 골랐어요. 가장 먼저 시작할 하나를 정해 보세요. 모두 하려 하기보다 하나님이 인도하시는 것부터 시작합니다.';
+});
+const PZ=['내 인생에서','내 교회에서','내 가정에서','내 교단에서','내 소그룹 안에서','온 세상에서'];
+const pc=$('#praise'),ptxt=$('#praiseTxt'),pset=new Set();
+PZ.forEach((t,i)=>{
+  const c=document.createElement('button');c.className='chip';c.type='button';c.setAttribute('aria-pressed','false');c.textContent=t;
+  c.onclick=()=>{
+    const p=c.getAttribute('aria-pressed')!=='true';c.setAttribute('aria-pressed',p);p?pset.add(i):pset.delete(i);
+    ptxt.className='fb ok';
+    ptxt.textContent=pset.size===PZ.length?'여섯 영역 모두에서 하나님이 하신 일을 떠올렸어요. 이제 소리 내어 감사드려 보세요. 🙏':(pset.size?pset.size+' / 6 영역 · 하나님이 그곳에서 하신 일을 하나 떠올려 보세요.':'');
+  };
+  pc.append(c);
+});
+
+/* ---------- quiz ---------- */
+const qz=$('#quiz');
+QZ.forEach((q,i)=>{
+  const d=document.createElement('div');d.className='q';
+  const isOX=q.o[0]==='O';
+  d.innerHTML=`<div class="num">문제 ${i+1} / ${QZ.length}</div><div class="stem">${q.q}</div>
+   <div class="opts${isOX?'':' col'}"></div><div class="explain"></div>`;
+  const ob=$('.opts',d),ex=$('.explain',d);
+  q.o.forEach((t,j)=>{
+    const b=document.createElement('button');b.type='button';b.textContent=t;if(isOX)b.className='ox';
+    b.onclick=()=>{
+      if(i in state.quiz)return;
+      state.quiz[i]=(j===q.a);
+      $$('button',ob).forEach((x,k)=>{x.disabled=true;if(k===q.a)x.classList.add('right')});
+      if(j!==q.a)b.classList.add('wrong');
+      ex.innerHTML=(j===q.a?'<b style="color:var(--green)">정답!</b> ':'<b style="color:var(--red)">아쉬워요.</b> ')+q.ex;ex.classList.add('show');
+      update();
+    };
+    ob.append(b);
+  });
+  qz.append(d);
+});
+
+/* ---------- cards ---------- */
+const CARDS=[['이 과의 핵심 문장은?','당신의 인생에서 하나님이 시작하신 일은 그분이 완성하실 것이다. (빌 1:6)','p.385']]
+ .concat(REAL.map((r,i)=>['실체 '+(i+1)+' · '+r.q,r.a,'p.389']));
+const cd=$('#cards');
+CARDS.forEach((c,i)=>{
+  const b=document.createElement('button');b.className='fc';b.type='button';b.setAttribute('aria-pressed','false');
+  b.innerHTML=`<div class="in"><div class="f"><div class="n">카드 ${i+1}</div><div class="k">${c[0]}</div><div class="h">눌러서 뒤집기 · ${c[2]}</div></div><div class="b">${c[1]}</div></div>`;
+  b.onclick=()=>b.setAttribute('aria-pressed',b.getAttribute('aria-pressed')!=='true');
+  cd.append(b);
+});
+
+/* ---------- shares ---------- */
+const SH=['(F, D) 이 교재를 공부하는 동안 하나님을 가장 뜻깊게 경험한 순간은 언제였습니까? 그때 붙잡았던 문장이나 성경구절은 무엇이며, 하나님이 그것을 내 삶에서 어떻게 사용하셨습니까?',
+ '(H, I) 하나님과의 관계와 교회와의 관계를 가장 잘 나타내는 표현을 하나씩 고른다면 무엇입니까? 왜 그렇게 느끼십니까? (고른 표현만 나누어도 되고, 이유는 편하신 만큼만 나눕니다.)',
+ '(J~M, O) 일곱 가지 실체 중 지금 내 삶에서 가장 씨름 중인 것은 무엇입니까? 그리고 하나님이 다음에 하라고 하시는 일 하나를 적는다면 무엇이며, 이 모임이 어떻게 기도해 주면 좋겠습니까?'];
+const sh=$('#shares');
+SH.forEach((t,i)=>{
+  const b=document.createElement('button');b.className='reveal-btn';b.type='button';b.setAttribute('aria-expanded','false');
+  b.innerHTML=`<div class="ic">${i+1}</div><div style="flex:1"><h3>나눔 질문 ${i+1}</h3><div class="more"><div><p>${t}</p></div></div></div><span class="chev">⌄</span>`;
+  b.onclick=()=>toggle(b);sh.append(b);
+});
+
+/* ---------- result ---------- */
+function update(){
+  const qc=Object.values(state.quiz).filter(Boolean).length,qa=Object.keys(state.quiz).length;
+  const bc=state.blank,gc=state.games.size;
+  const total=VA.length+QZ.length,got=bc+qc;
+  $('#qprog').style.width=(qa/QZ.length*100)+'%';
+  $('#scoreNum').textContent=got;$('#scoreSub').textContent='/ '+total;
+  $('#ringPr').style.strokeDashoffset=471*(1-got/total);
+  $('#scoreDetail').textContent=`빈칸 ${bc} / ${VA.length} · 퀴즈 ${qc} / ${QZ.length} · 게임 ${gc} / 2`;
+  const done=(bc===VA.length)&&(qa===QZ.length);
+  $('#scoreMsg').textContent=!bc&&!qa?'빈칸과 퀴즈를 풀면 점수가 쌓입니다':(!done?'좋아요, 계속 이어가 보세요':(got===total?'완벽해요! 🎉':(got>=total*0.7?'잘했어요! 핵심을 잘 기억하고 있어요':'한 번 더 일곱 가지 실체를 훑어보면 좋겠어요')));
+}
+$('#retry').onclick=()=>location.reload();
+update();
+})();
+</script>
+</body>
+</html>
