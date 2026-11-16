@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>믿음의 삶을 경주하라 · 히브리서 12:1-2 복습</title>
+<style>
+:root{
+  --bg:#fbfbfd; --bg2:#f5f5f7; --card:#ffffff; --text:#1d1d1f; --text2:#6e6e73; --line:rgba(0,0,0,.08);
+  --blue:#0071e3; --blue2:#2997ff; --green:#30a14e; --red:#e5484d; --orange:#ff9f0a;
+  --shadow:0 4px 24px rgba(0,0,0,.06); --shadow2:0 12px 40px rgba(0,0,0,.12);
+  --nav:rgba(251,251,253,.72);
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#000; --bg2:#0b0b0d; --card:#1c1c1e; --text:#f5f5f7; --text2:#a1a1a6; --line:rgba(255,255,255,.12);
+    --blue:#2997ff; --blue2:#64b5ff; --green:#32d74b; --red:#ff6b6f;
+    --shadow:0 4px 24px rgba(0,0,0,.5); --shadow2:0 12px 40px rgba(0,0,0,.6);
+    --nav:rgba(0,0,0,.72);
+  }
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Apple SD Gothic Neo","Pretendard","Noto Sans KR",sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.65;letter-spacing:-.01em;word-break:keep-all;
+  -webkit-font-smoothing:antialiased;
+}
+/* progress + nav */
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--blue),var(--blue2));z-index:200;transition:width .1s}
+nav{
+  position:sticky;top:0;z-index:100;height:48px;display:flex;align-items:center;justify-content:center;gap:4px;
+  background:var(--nav);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);
+  border-bottom:1px solid var(--line);overflow-x:auto;padding:0 12px;white-space:nowrap;
+}
+nav a{color:var(--text2);text-decoration:none;font-size:13px;padding:6px 12px;border-radius:980px;transition:.2s}
+nav a:hover,nav a.on{color:var(--text);background:var(--bg2)}
+section{padding:96px 22px;max-width:980px;margin:0 auto}
+.wide{max-width:980px}
+.eyebrow{font-size:14px;font-weight:600;color:var(--blue);letter-spacing:.02em;margin-bottom:10px}
+h2{font-size:clamp(30px,5.4vw,52px);line-height:1.15;font-weight:700;letter-spacing:-.03em;margin-bottom:18px}
+.lead{font-size:clamp(17px,2.4vw,22px);color:var(--text2);max-width:720px;margin-bottom:40px}
+.card{background:var(--card);border-radius:24px;padding:28px;box-shadow:var(--shadow);border:1px solid var(--line)}
+.alt{background:var(--bg2);max-width:none}
+.alt>.in{max-width:980px;margin:0 auto}
+button{font:inherit;cursor:pointer;border:0;color:inherit;background:none}
+.btn{background:var(--blue);color:#fff;padding:12px 26px;border-radius:980px;font-size:16px;font-weight:500;transition:.2s;display:inline-block}
+.btn:hover{filter:brightness(1.1);transform:scale(1.02)}
+.btn.ghost{background:var(--bg2);color:var(--blue)}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.reveal.show{opacity:1;transform:none}
+.verse{font-family:"Apple SD Gothic Neo","Noto Serif KR",serif;font-size:clamp(17px,2.3vw,21px);line-height:1.9;border-left:3px solid var(--blue);padding:4px 0 4px 20px;margin:20px 0}
+.verse small{display:block;color:var(--text2);font-size:14px;margin-top:6px;font-family:inherit}
+mark{background:linear-gradient(transparent 60%,rgba(0,113,227,.25) 60%);color:inherit;padding:0 2px}
+
+/* hero */
+#hero{min-height:92vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding-top:60px}
+#hero .eyebrow{font-size:17px}
+#hero h1{font-size:clamp(42px,9vw,96px);line-height:1.05;font-weight:800;letter-spacing:-.045em;
+  background:linear-gradient(120deg,#0071e3 0%,#7d5fff 50%,#ff375f 100%);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:22px}
+#hero p{font-size:clamp(18px,2.6vw,26px);color:var(--text2);max-width:640px}
+.track-deco{margin-top:56px;width:min(560px,90%);height:6px;border-radius:6px;background:var(--line);position:relative}
+.track-deco i{position:absolute;left:0;top:50%;font-style:normal;font-size:34px;transform:translateY(-62%);animation:run 5s ease-in-out infinite alternate}
+@keyframes run{from{left:0}to{left:calc(100% - 34px)}}
+.hint{margin-top:44px;color:var(--text2);font-size:14px;animation:bob 2s infinite}
+@keyframes bob{50%{transform:translateY(6px)}}
+
+/* flip cards */
+.flips{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.flip{perspective:1000px;height:230px;cursor:pointer}
+.flip .f{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .7s cubic-bezier(.3,.7,.2,1)}
+.flip.on .f{transform:rotateY(180deg)}
+.flip .face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:24px;padding:26px;display:flex;flex-direction:column;justify-content:center;box-shadow:var(--shadow);border:1px solid var(--line)}
+.flip .front{background:var(--card);font-size:20px;font-weight:600}
+.flip .front span{font-size:13px;color:var(--blue);font-weight:600;margin-bottom:8px}
+.flip .front em{font-style:normal;font-size:13px;color:var(--text2);font-weight:400;margin-top:14px}
+.flip .back{background:linear-gradient(145deg,#0071e3,#5e5ce6);color:#fff;transform:rotateY(180deg);font-size:16px;line-height:1.6}
+
+/* grace timeline */
+.race{position:relative;margin:36px 0 24px;padding:0 4px}
+.rail{height:10px;border-radius:10px;background:var(--line);position:relative;overflow:visible}
+.rail .fill{height:100%;width:0;border-radius:10px;background:linear-gradient(90deg,var(--blue),#7d5fff);transition:width 1.6s cubic-bezier(.3,.7,.2,1)}
+.rail .runner{position:absolute;top:-20px;left:0;font-size:30px;transition:left 1.6s cubic-bezier(.3,.7,.2,1);transform:translateX(-50%)}
+.flags{display:flex;justify-content:space-between;margin-top:16px;font-size:14px;color:var(--text2);font-weight:600}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-top:28px}
+.tap{text-align:left;width:100%;transition:.25s}
+.tap:hover{transform:translateY(-3px);box-shadow:var(--shadow2)}
+.tap h3{font-size:22px;margin-bottom:6px}
+.tap .tag{font-size:13px;color:var(--blue);font-weight:600}
+.tap .more{max-height:0;overflow:hidden;opacity:0;transition:.5s;color:var(--text2);font-size:16px}
+.tap.open .more{max-height:300px;opacity:1;margin-top:12px}
+.acc{margin-top:28px}
+.acc button{width:100%;text-align:left;font-size:19px;font-weight:600;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.acc .chev{transition:.3s;color:var(--blue);font-size:22px}
+.acc.open .chev{transform:rotate(45deg)}
+.acc .body{max-height:0;overflow:hidden;transition:max-height .6s ease,opacity .4s;opacity:0}
+.acc.open .body{max-height:700px;opacity:1}
+.acc .body>div{padding-top:16px;color:var(--text2)}
+.acc .body b{color:var(--text)}
+
+/* tabs */
+.seg{display:inline-flex;background:var(--bg2);padding:4px;border-radius:14px;gap:2px;margin-bottom:26px;flex-wrap:wrap}
+.alt .seg{background:var(--card);border:1px solid var(--line)}
+.seg button{padding:9px 18px;border-radius:10px;font-size:15px;font-weight:500;color:var(--text2);transition:.25s}
+.seg button.on{background:var(--blue);color:#fff;box-shadow:0 2px 8px rgba(0,113,227,.35)}
+.panel{display:none;animation:fade .5s}
+.panel.on{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.panel h3{font-size:clamp(22px,3.4vw,32px);letter-spacing:-.02em;margin-bottom:10px}
+.panel p{color:var(--text2);font-size:17px;margin-bottom:12px}
+.panel p b{color:var(--text)}
+
+/* weight */
+.meter{height:14px;border-radius:14px;background:var(--bg2);overflow:hidden;margin:6px 0 4px;border:1px solid var(--line)}
+.meter i{display:block;height:100%;width:100%;background:linear-gradient(90deg,var(--orange),var(--red));transition:width .6s cubic-bezier(.3,.7,.2,1),background .6s}
+.meterrow{display:flex;justify-content:space-between;font-size:14px;color:var(--text2)}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}
+.chip{padding:10px 18px;border-radius:980px;background:var(--bg2);border:1px solid var(--line);font-size:15px;transition:.35s}
+.chip:hover{transform:scale(1.04)}
+.chip.gone{opacity:.35;text-decoration:line-through;transform:scale(.92);background:transparent}
+.chip.in{border-color:rgba(255,159,10,.6)}
+.chip.out{border-color:rgba(229,72,77,.5)}
+.runwrap{text-align:center;font-size:56px;margin:8px 0;transition:.6s}
+.status{text-align:center;font-weight:600;min-height:28px}
+.label{font-size:13px;font-weight:600;color:var(--text2);margin-top:14px}
+
+/* marathon */
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:10px;border-radius:10px;background:var(--bg2);outline:none;border:1px solid var(--line);margin:18px 0 8px}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:30px;height:30px;border-radius:50%;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.3);border:1px solid var(--line);cursor:grab}
+input[type=range]::-moz-range-thumb{width:30px;height:30px;border-radius:50%;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.3);border:1px solid var(--line)}
+.miles{font-size:clamp(40px,8vw,72px);font-weight:700;letter-spacing:-.04em}
+.miles small{font-size:.35em;color:var(--text2);font-weight:500;margin-left:6px}
+.bubble{background:var(--bg2);border-radius:18px;padding:16px 20px;font-size:17px;min-height:64px;transition:.3s;margin:8px 0 16px}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px}
+.vs div{background:var(--bg2);border-radius:18px;padding:16px;font-size:15px;color:var(--text2)}
+.vs div b{display:block;color:var(--text);font-size:16px;margin-bottom:4px}
+.vs .no{opacity:.6}
+
+/* goal stack */
+.stack{display:grid;gap:14px;margin-top:10px}
+.stack .row{display:flex;gap:16px;align-items:flex-start;background:var(--bg2);border-radius:18px;padding:18px 20px}
+.stack .num{flex:none;width:34px;height:34px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font-weight:700}
+.stack b{display:block;margin-bottom:2px}
+.stack span{color:var(--text2);font-size:16px}
+
+/* fill in */
+.fill-in{font-family:"Apple SD Gothic Neo","Noto Serif KR",serif;font-size:clamp(17px,2.3vw,21px);line-height:2.5}
+.fill-in input{font:inherit;width:6.2em;text-align:center;border:0;border-bottom:2px solid var(--blue);background:rgba(0,113,227,.08);color:var(--text);border-radius:8px 8px 0 0;padding:0 4px;outline:none;transition:.2s}
+.fill-in input:focus{background:rgba(0,113,227,.16)}
+.fill-in input.ok{border-color:var(--green);background:rgba(48,161,78,.15);color:var(--green)}
+.fill-in input.no{border-color:var(--red);background:rgba(229,72,77,.12);animation:shake .4s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.ref{display:block;color:var(--text2);font-size:14px;margin-bottom:4px;font-family:-apple-system,sans-serif}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px;align-items:center}
+.msg{color:var(--text2);font-size:15px}
+
+/* quiz */
+.qtop{display:flex;justify-content:space-between;align-items:center;color:var(--text2);font-size:14px;margin-bottom:10px}
+.qbar{height:6px;border-radius:6px;background:var(--bg2);overflow:hidden;margin-bottom:26px}
+.qbar i{display:block;height:100%;width:0;background:var(--blue);transition:width .5s}
+.q{font-size:clamp(20px,3vw,28px);font-weight:600;line-height:1.4;letter-spacing:-.02em;margin-bottom:22px}
+.opts{display:grid;gap:12px}
+.opt{text-align:left;padding:16px 20px;border-radius:16px;background:var(--bg2);border:2px solid transparent;font-size:17px;transition:.2s}
+.opt:hover:not(:disabled){border-color:var(--blue);transform:translateX(3px)}
+.opt.right{background:rgba(48,161,78,.16);border-color:var(--green)}
+.opt.wrong{background:rgba(229,72,77,.14);border-color:var(--red);animation:shake .4s}
+.explain{margin-top:18px;padding:16px 20px;border-radius:16px;background:rgba(0,113,227,.08);color:var(--text);font-size:16px;display:none}
+.explain.on{display:block;animation:fade .4s}
+.result{text-align:center;padding:20px 0}
+.result .score{font-size:clamp(64px,14vw,120px);font-weight:800;letter-spacing:-.05em;background:linear-gradient(120deg,var(--blue),#7d5fff);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* summary */
+.sum{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:30px 0}
+.sum .card{padding:24px}
+.sum .n{font-size:13px;color:var(--blue);font-weight:700;margin-bottom:6px}
+.sum h3{font-size:19px;line-height:1.4;margin-bottom:6px}
+.sum p{color:var(--text2);font-size:15px}
+textarea{width:100%;min-height:110px;font:inherit;font-size:17px;padding:16px 18px;border-radius:16px;border:1px solid var(--line);background:var(--bg2);color:var(--text);resize:vertical;outline:none}
+textarea:focus{border-color:var(--blue);box-shadow:0 0 0 4px rgba(0,113,227,.18)}
+footer{text-align:center;color:var(--text2);font-size:13px;padding:50px 20px 70px}
+/* memory verse of the week */
+.mv{font-family:"Apple SD Gothic Neo","Noto Serif KR",serif;font-size:clamp(26px,5.2vw,46px);line-height:1.7;font-weight:600;letter-spacing:-.02em;text-align:center;padding:10px 0}
+.mv .w{display:inline-block;margin:0 .14em;padding:0 .08em;border-radius:10px;transition:.3s;cursor:pointer}
+.mv .w.hide{color:transparent;background:rgba(0,113,227,.14);text-shadow:none;user-select:none}
+.mv .w.hide.peek{color:var(--text);background:rgba(0,113,227,.06)}
+.mvref{text-align:center;color:var(--text2);font-size:16px;margin-top:4px}
+.lvl{display:flex;justify-content:space-between;font-size:13px;color:var(--text2);margin-top:-2px}
+.mvin{width:100%;font:inherit;font-size:18px;padding:14px 18px;border-radius:16px;border:1px solid var(--line);background:var(--bg2);color:var(--text);outline:none;margin-top:10px}
+.mvin:focus{border-color:var(--blue);box-shadow:0 0 0 4px rgba(0,113,227,.18)}
+.mvin.ok{border-color:var(--green);background:rgba(48,161,78,.12)}
+.mvin.no{border-color:var(--red);animation:shake .4s}
+.days{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin:14px 0 8px}
+.day{aspect-ratio:1;border-radius:50%;background:var(--bg2);border:2px solid var(--line);font-size:15px;font-weight:600;color:var(--text2);transition:.25s;display:grid;place-items:center}
+.day:hover{transform:scale(1.06)}
+.day.on{background:var(--blue);border-color:var(--blue);color:#fff;box-shadow:0 4px 14px rgba(0,113,227,.4)}
+@media(max-width:600px){.day{font-size:13px}}
+@media(max-width:600px){section{padding:68px 18px}.vs{grid-template-columns:1fr}.card{padding:22px;border-radius:20px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<nav>
+  <a href="#hero">시작</a><a href="#recap">지난 주</a><a href="#grace">은혜</a><a href="#three">세 가지</a><a href="#memo">암송</a><a href="#quiz">퀴즈</a><a href="#wrap">마무리</a><a href="#verse">암송구절</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="eyebrow">히브리서 강해 (50) · 복습</div>
+  <h1>믿음의 삶을<br>경주하라</h1>
+  <p>히브리서 12장 1-2절<br>눌러 보고, 뒤집어 보고, 풀어 보며 말씀을 다시 만나요.</p>
+  <div class="track-deco"><i>🏃</i></div>
+  <div class="hint">아래로 스크롤 ↓</div>
+</section>
+
+<!-- RECAP -->
+<section id="recap" class="reveal">
+  <div class="eyebrow">01 · 지난 주 복습</div>
+  <h2>왜 우리가<br>경주해야 할까요?</h2>
+  <p class="lead">카드를 눌러 뒤집어 보세요.</p>
+  <div class="flips">
+    <div class="flip" tabindex="0" role="button">
+      <div class="f">
+        <div class="face front"><span>QUESTION 1</span>히브리서 11장 마지막에서 왜 우리가 믿음의 경주를 해야 한다고 했습니까?<em>눌러서 확인</em></div>
+        <div class="face back">우리가 없이는 그들(구약의 성도들)이 온전함에 이르지 못하기 때문입니다.</div>
+      </div>
+    </div>
+    <div class="flip" tabindex="0" role="button">
+      <div class="f">
+        <div class="face front"><span>QUESTION 2</span>그렇다면 우리가 없으면 구약 성도의 구원이 성취되지 않는다는 뜻일까요?<em>눌러서 확인</em></div>
+        <div class="face back">아닙니다. 구약의 성도들은 이미 하나님의 구원의 은혜를 입었고, 믿음의 경주를 이미 다 끝낸 상태입니다.</div>
+      </div>
+    </div>
+    <div class="flip" tabindex="0" role="button">
+      <div class="f">
+        <div class="face front"><span>QUESTION 3</span>히브리서 기자가 정말 하고 싶었던 말은 무엇입니까?<em>눌러서 확인</em></div>
+        <div class="face back">구약의 성도는 약속을 받지 못했는데도 믿음을 지켰는데, 너희는 더 좋은 것을 이미 받았음에도 다시 유대교로 돌아가려고 하느냐? 돌아가서는 안 된다. 믿음의 삶을 계속 경주하라!</div>
+      </div>
+    </div>
+  </div>
+  <div class="verse reveal" style="margin-top:44px">
+    “이러므로 우리에게 구름같이 둘러싼 허다한 증인들이 있으니 모든 무거운 것과 얽매이기 쉬운 죄를 벗어 버리고 인내로써 우리 앞에 당한 경주를 경주하며”
+    <small>히브리서 12장 1절</small>
+  </div>
+</section>
+
+<!-- GRACE -->
+<section id="grace" class="alt reveal">
+ <div class="in">
+  <div class="eyebrow">02 · 경주의 전제</div>
+  <h2>은혜로 시작하고,<br>은혜로 완성됩니다</h2>
+  <p class="lead">믿음의 경주는 하나님의 은혜로 시작되고, 하나님의 은혜로 완성됩니다.</p>
+
+  <div class="card">
+    <div class="race">
+      <div class="rail"><div class="fill" id="gFill"></div><div class="runner" id="gRun">🏃</div></div>
+      <div class="flags"><span>🚩 출발 · 은혜</span><span>🏁 완성 · 은혜</span></div>
+    </div>
+    <button class="btn ghost" id="gGo">▶ 다시 달려보기</button>
+  </div>
+
+  <div class="two">
+    <button class="card tap">
+      <div class="tag">믿음의 주</div>
+      <h3>시작하시는 분</h3>
+      <div>“믿음의 창시자, 믿음을 시작하시는 분”</div>
+      <div class="more">누가 우리의 믿음을 시작하십니까? 예수 그리스도입니다. 믿음의 시작도 하나님의 은혜입니다.</div>
+    </button>
+    <button class="card tap">
+      <div class="tag">온전하게 하시는 이</div>
+      <h3>완성하시는 분</h3>
+      <div>“그 믿음을 완성하시는 분”</div>
+      <div class="more">누가 우리의 믿음을 완성하십니까? 예수 그리스도입니다. 믿음의 완성도 하나님의 은혜입니다.</div>
+    </button>
+  </div>
+
+  <div class="card tap2" style="margin-top:20px">
+    <div class="label" style="margin-top:0">허다한 증인들</div>
+    <h3 style="font-size:22px;margin:4px 0 8px">증인은 주인공이 아닙니다</h3>
+    <p style="color:var(--text2)">증인들은 주인공을 증명해 내는 사람들입니다. 주인공은 하나님이십니다. 그들의 믿음의 근원을 찾아가면 결국 하나님을 만나게 됩니다. 우리는 그것을 하나님의 은혜라고 부릅니다.</p>
+    <div class="chips" id="witness">
+      <button class="chip">노아 · 방주</button>
+      <button class="chip">아브라함 · 부르심</button>
+      <button class="chip">모세 · 그리스도를 위한 수모</button>
+    </div>
+    <div class="bubble" id="witnessMsg" style="min-height:0">위 이름을 눌러 보세요 👆</div>
+  </div>
+
+  <div class="verse">
+    “너희는 그 은혜에 의하여 믿음으로 말미암아 구원을 받았으니 이것은 너희에게서 난 것이 아니요 하나님의 선물이라”
+    <small>에베소서 2장 8절</small>
+  </div>
+
+  <div class="card acc">
+    <button aria-expanded="false"><span>“그럼 우리는 아무것도 하지 않아도 됩니까?”</span><span class="chev">＋</span></button>
+    <div class="body"><div>
+      <p><b>그렇지 않습니다.</b> 오늘 본문은 분명히 우리에게 믿음의 경주를 하라고 명령합니다. 그러나 그 경주의 <b>근거와 능력</b>은 우리를 구원하시고 붙드시는 하나님에게서 나옵니다.</p>
+      <div class="verse" style="margin-bottom:8px">“,,,두렵고 떨림으로 너희 구원을 이루라/ 너희 안에서 행하시는 이는 하나님이시니 자기의 기쁘신 뜻을 위하여 너희에게 소원을 두고 행하게 하시나니”<small>빌립보서 2장 12-13절</small></div>
+      <p>우리가 인내하지만 끝까지 견디도록 역사하시는 분도 하나님이십니다. 이것이 개혁주의 신학이 강조하는 <b>성도의 견인</b>입니다.</p>
+    </div></div>
+  </div>
+ </div>
+</section>
+
+<!-- THREE -->
+<section id="three" class="reveal">
+  <div class="eyebrow">03 · 실제적인 방법</div>
+  <h2>경주를 잘 하려면<br>세 가지</h2>
+  <p class="lead">탭을 눌러 하나씩 직접 체험해 보세요.</p>
+
+  <div class="seg" id="tabs">
+    <button class="on" data-t="0">① 몸을 가볍게</button>
+    <button data-t="1">② 인내로</button>
+    <button data-t="2">③ 목표와 기준</button>
+  </div>
+
+  <div class="card">
+    <!-- tab 1 -->
+    <div class="panel on" data-p="0">
+      <h3>경주하는 자가 몸을 가볍게 해야 합니다</h3>
+      <p>경주에 불필요한 것은 다 벗어 버리는 것입니다. 옛날 고대 그리스의 달리기 선수들은 거의 알몸으로 뛰었다고 합니다.</p>
+      <div class="verse" style="margin:14px 0">“모든 무거운 것과 얽매이기 쉬운 죄를 벗어버리고”<small>히브리서 12장 1절</small></div>
+      <div class="runwrap" id="wRun">🏋️‍♂️</div>
+      <div class="status" id="wStatus">무거워서 달리기 힘들어요…</div>
+      <div class="meterrow"><span>짐의 무게</span><span id="wPct">100%</span></div>
+      <div class="meter"><i id="wBar"></i></div>
+
+      <div class="label">① 무거운 짐 · 옹콘 (내면의 장애물)</div>
+      <p style="margin:2px 0 0;font-size:15px">‘무게, 무거운 짐, 부피, 부담, 장애물’. 우리 몸에 붙어 있는 것입니다.</p>
+      <div class="chips" id="inner">
+        <button class="chip in">염려와 걱정</button>
+        <button class="chip in">욕심</button>
+        <button class="chip in">욕망</button>
+      </div>
+      <div class="label">② 얽매는 죄 (외부의 장애물)</div>
+      <p style="margin:2px 0 0;font-size:15px">주위에 언제나 상존하고 있는 각종 죄악(유혹). 우리를 넘어뜨리려 합니다.</p>
+      <div class="chips" id="outer">
+        <button class="chip out">각종 죄악(유혹)</button>
+      </div>
+      <p style="font-size:15px">칩을 눌러 벗어 버리세요. 믿음의 경주를 잘 하려면 이 두 가지를 늘 점검하고, 벗어버리는 훈련을 해야 합니다.</p>
+      <div class="actions"><button class="btn ghost" id="wReset">↺ 다시 입기</button></div>
+    </div>
+
+    <!-- tab 2 -->
+    <div class="panel" data-p="1">
+      <h3>인내로써 경주해야 합니다</h3>
+      <p>믿음의 경주는 100m 달리기 같은 단거리가 아닙니다. 비유하자면 <b>마라톤</b>입니다.</p>
+      <p style="font-size:15px">LA 마라톤에 매년 참가하시던 집사님의 이야기입니다. 슬라이더를 끌어 보세요.</p>
+      <div class="miles"><span id="mi">0</span><small>마일 / 26.2</small></div>
+      <input type="range" id="mar" min="0" max="26.2" step="0.1" value="0" aria-label="마라톤 거리">
+      <div class="bubble" id="marMsg">출발! 아직 힘이 넘칩니다.</div>
+      <div class="vs">
+        <div class="no"><b>일반 운동경기</b>1등이 중요합니다.</div>
+        <div><b>믿음의 경주</b>1등이 아니라 끝까지 달리는 것이 중요합니다.</div>
+      </div>
+      <div class="verse" style="margin-top:22px">“그는 그 앞에 있는 즐거움을 위하여 십자가를 <mark>참으사</mark> 부끄러움을 개의치 아니하시더니 하나님 보좌 우편에 앉으셨느니라”<small>히브리서 12장 2절 · 인내의 본이 되신 예수님</small></div>
+      <p style="font-size:15px">구약에서 인내의 대명사는 욥입니다. 그러나 욥의 인내는 예수 그리스도의 인내를 보여주는 모형이고 그림자입니다. 억울하고 힘든 일이 있을 때 기억할 것은 <b>예수님의 인내</b>입니다.</p>
+    </div>
+
+    <!-- tab 3 -->
+    <div class="panel" data-p="2">
+      <h3>분명한 목표와 기준이 있어야 합니다</h3>
+      <p>경주자가 무조건 뛰기만 하면 되는 것이 아닙니다. 믿음의 경주의 목표와 기준은 <b>예수 그리스도</b>입니다. “예수를 바라보자.”</p>
+      <div class="label">바라볼 예수님은 어떤 분이십니까? (눌러서 펼치기)</div>
+      <div class="stack" id="goal">
+        <button class="row" style="text-align:left;width:100%"><div class="num">1</div><div><b>대제사장 되신 예수님</b><span>히브리서 1-10장: ‘유일하시고, 완전하시고, 영원하신 대제사장 예수님’</span></div></button>
+        <button class="row" style="text-align:left;width:100%"><div class="num">2</div><div><b>믿음의 창시자 · 마쳐주시는 분</b><span>우리 안의 믿음은 누구의 것입니까? 예수님의 것입니다. 나의 믿음이라고 말하지만 실소유자는 예수님이십니다. 우리의 믿음을 시작하시고 완성하시는 분이 예수님이시니 안전합니다.</span></div></button>
+        <button class="row" style="text-align:left;width:100%"><div class="num">3</div><div><b>십자가를 지신 분</b><span>십자가에서 우리의 믿음을 시작하시고, 십자가에서 완성하셨습니다. 그러므로 지금 우리가 가진 믿음은 완벽한 믿음입니다.</span></div></button>
+      </div>
+      <p style="font-size:15px;margin-top:16px">그러면 마음은 언제든 바뀔 수 있는데 괜찮을까요? 다행히, 우리의 믿음을 시작하시고 완성하시는 분은 예수님이십니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MEMO -->
+<section id="memo" class="alt reveal">
+ <div class="in">
+  <div class="eyebrow">04 · 말씀 암송</div>
+  <h2>빈칸을<br>채워 보세요</h2>
+  <p class="lead">히브리서 12장 1-2절. 빈칸에 알맞은 말을 적고 정답을 확인하세요.</p>
+  <div class="card">
+    <div class="fill-in" id="fi"></div>
+    <div class="actions">
+      <button class="btn" id="fiCheck">정답 확인</button>
+      <button class="btn ghost" id="fiHint">힌트</button>
+      <button class="btn ghost" id="fiShow">정답 보기</button>
+      <span class="msg" id="fiMsg"></span>
+    </div>
+  </div>
+ </div>
+</section>
+
+<!-- QUIZ -->
+<section id="quiz" class="reveal">
+  <div class="eyebrow">05 · 퀴즈</div>
+  <h2>얼마나 기억하나요?</h2>
+  <p class="lead">10문제. 답을 고르면 바로 해설이 나옵니다.</p>
+  <div class="card" id="quizBox"></div>
+</section>
+
+<!-- WRAP -->
+<section id="wrap" class="alt reveal">
+ <div class="in">
+  <div class="eyebrow">06 · 마무리</div>
+  <h2>한 장으로<br>정리합니다</h2>
+  <div class="sum">
+    <div class="card"><div class="n">전제</div><h3>은혜로 시작, 은혜로 마침</h3><p>믿음의 경주는 하나님의 은혜로 시작하고 하나님의 은혜로 마칩니다.</p></div>
+    <div class="card"><div class="n">첫째</div><h3>몸을 가볍게</h3><p>몸을 무겁게 하는 짐(내면)과 얽매는 죄(외부)를 벗어야 합니다.</p></div>
+    <div class="card"><div class="n">둘째</div><h3>끝까지 인내</h3><p>마라톤처럼 인내하면서 끝까지 달려야 합니다.</p></div>
+    <div class="card"><div class="n">셋째</div><h3>목표와 기준</h3><p>예수님을 바라보며, 분명히 하고 달려야 합니다.</p></div>
+  </div>
+  <div class="card">
+    <h3 style="font-size:22px;margin-bottom:6px">이번 한 주간, 나의 경주</h3>
+    <p style="color:var(--text2);margin-bottom:14px;font-size:15px">내가 벗어야 할 짐, 인내해야 할 일, 바라볼 한 가지를 적어 보세요. 이 기기의 브라우저에만 저장되며 외부로 전송되지 않습니다.</p>
+    <textarea id="note" placeholder="예) 염려를 내려놓고, 힘든 일 앞에서 예수님의 인내를 기억하겠습니다."></textarea>
+    <div class="actions"><button class="btn" id="noteSave">저장</button><span class="msg" id="noteMsg"></span></div>
+  </div>
+  <div class="verse" style="margin-top:36px">“믿음의 주요 또 온전하게 하시는 이인 예수를 바라보자”<small>히브리서 12장 2절</small></div>
+  <p style="font-size:19px;margin-top:10px">이번 한 주간도 믿음의 경주를 힘차게 달려가는 저와 여러분 되시기 바랍니다.</p>
+ </div>
+</section>
+<!-- MEMORY VERSE -->
+<section id="verse" class="reveal">
+  <div class="eyebrow">07 · 암송</div>
+  <h2>이번 주 암송구절</h2>
+  <p class="lead">로마서 3장 23절 (개역개정). 슬라이더로 가려진 단어를 늘려 가며 외워 보세요.</p>
+
+  <div class="card">
+    <div class="mv" id="mv" aria-live="polite"></div>
+    <div class="mvref">로마서 3장 23절 · 개역개정</div>
+    <input type="range" id="mvLvl" min="0" max="3" step="1" value="0" aria-label="가리기 단계" style="margin-top:26px">
+    <div class="lvl"><span>전체 보기</span><span>조금 가림</span><span>많이 가림</span><span>모두 가림</span></div>
+    <p class="msg" style="margin-top:14px;text-align:center" id="mvHelp">가려진 단어를 누르면 잠깐 보여요.</p>
+  </div>
+
+  <div class="card" style="margin-top:20px">
+    <h3 style="font-size:22px;margin-bottom:4px">외워서 써 보기</h3>
+    <p class="msg">구절을 가리고 떠올려 보세요. 띄어쓰기와 문장부호는 달라도 괜찮아요.</p>
+    <input type="text" class="mvin" id="mvIn" placeholder="말씀을 입력하세요" autocomplete="off">
+    <div class="actions"><button class="btn" id="mvCheck">확인</button><span class="msg" id="mvMsg"></span></div>
+  </div>
+
+  <div class="card" style="margin-top:20px">
+    <h3 style="font-size:22px;margin-bottom:4px">이번 주 암송 체크</h3>
+    <p class="msg">오늘 소리 내어 외웠다면 그날을 눌러 주세요. 이 기기의 브라우저에만 저장됩니다.</p>
+    <div class="days" id="days"></div>
+    <p class="msg" id="daysMsg"></p>
+  </div>
+</section>
+
+<footer>히브리서 강해 (50) · 믿음의 삶을 경주하라 (히브리서 12장 1-2절) 복습 자료</footer>
+
+<script>
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+
+/* progress, nav highlight, reveal */
+const prog=$('#progress');
+addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  prog.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
+},{passive:true});
+const navLinks=$$('nav a');
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){
+    e.target.classList.add('show');
+    if(e.target.id==='grace') runGrace();
+    const a=navLinks.find(l=>l.getAttribute('href')==='#'+e.target.id);
+    if(a){navLinks.forEach(l=>l.classList.remove('on'));a.classList.add('on');}
+  }
+}),{threshold:.15});
+$$('.reveal,#hero').forEach(el=>io.observe(el));
+
+/* flip cards */
+$$('.flip').forEach(f=>{
+  const t=()=>f.classList.toggle('on');
+  f.addEventListener('click',t);
+  f.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();t();}});
+});
+
+/* grace race */
+function runGrace(){
+  const fill=$('#gFill'),run=$('#gRun');
+  fill.style.transition=run.style.transition='none';
+  fill.style.width='0%';run.style.left='0%';
+  void fill.offsetWidth;
+  fill.style.transition=run.style.transition='';
+  setTimeout(()=>{fill.style.width='100%';run.style.left='100%';},50);
+}
+$('#gGo').addEventListener('click',runGrace);
+$$('.tap').forEach(t=>t.addEventListener('click',()=>t.classList.toggle('open')));
+const wMsg={
+ '노아 · 방주':'노아가 하나님의 말씀을 믿고 방주를 만든 것도 하나님의 은혜였습니다.',
+ '아브라함 · 부르심':'아브라함이 하나님의 부르심에 응답할 수 있었던 것도 하나님의 은혜였습니다.',
+ '모세 · 그리스도를 위한 수모':'모세가 애굽의 모든 영광을 버리고 그리스도를 위하여 받는 수모를 더 큰 재물로 여긴 것도 하나님의 은혜였습니다.'
+};
+$$('#witness .chip').forEach(c=>c.addEventListener('click',()=>{
+  $('#witnessMsg').textContent=wMsg[c.textContent]+' 그들의 믿음은 스스로 만들어 낸 것이 아니라, 하나님께서 먼저 부르시고, 약속을 주시고, 믿음으로 응답하게 하신 것입니다.';
+  $('#witnessMsg').style.minHeight='64px';
+}));
+$('.acc button').addEventListener('click',e=>{
+  const a=e.currentTarget.closest('.acc');a.classList.toggle('open');
+  e.currentTarget.setAttribute('aria-expanded',a.classList.contains('open'));
+  $('.chev',a).textContent='＋';
+});
+
+/* tabs */
+$$('#tabs button').forEach(b=>b.addEventListener('click',()=>{
+  $$('#tabs button').forEach(x=>x.classList.toggle('on',x===b));
+  $$('.panel').forEach(p=>p.classList.toggle('on',p.dataset.p===b.dataset.t));
+}));
+
+/* weight game */
+const chipsW=$$('#inner .chip,#outer .chip');
+function wUpdate(){
+  const left=chipsW.filter(c=>!c.classList.contains('gone')).length;
+  const pct=Math.round(left/chipsW.length*100);
+  $('#wPct').textContent=pct+'%';
+  $('#wBar').style.width=pct+'%';
+  const run=$('#wRun'),st=$('#wStatus');
+  if(pct===100){run.textContent='🏋️‍♂️';st.textContent='무거워서 달리기 힘들어요…';}
+  else if(pct>=50){run.textContent='🚶';st.textContent='조금 가벼워졌어요.';}
+  else if(pct>0){run.textContent='🏃';st.textContent='거의 다 벗었어요!';}
+  else{run.textContent='🏃💨';st.textContent='가볍게 달립니다! 이제 경주할 준비가 됐어요.';}
+  $('#wBar').style.background=pct<=40?'linear-gradient(90deg,#30d158,#0a84ff)':'';
+}
+chipsW.forEach(c=>c.addEventListener('click',()=>{c.classList.toggle('gone');wUpdate();}));
+$('#wReset').addEventListener('click',()=>{chipsW.forEach(c=>c.classList.remove('gone'));wUpdate();});
+
+/* marathon */
+const mar=$('#mar');
+function marUpdate(){
+  const v=parseFloat(mar.value);
+  $('#mi').textContent=v.toFixed(1);
+  let m;
+  if(v<1) m='출발! 아직 힘이 넘칩니다.';
+  else if(v<8) m='달릴 만합니다. 그런데 벌써 힘들어지기 시작합니다.';
+  else if(v<20) m='중간에 포기하고 싶은 마음이 수없이 듭니다…';
+  else if(v<26.2) m='20마일 이상을 달렸습니다. 이제는 포기하지 않고 인내하면서 끝까지 달립니다!';
+  else m='🏁 완주! 믿음의 경주는 1등이 아니라 끝까지 달리는 것입니다.';
+  $('#marMsg').textContent=m;
+  const p=v/26.2*100;
+  mar.style.background=`linear-gradient(90deg,var(--blue) ${p}%,var(--bg2) ${p}%)`;
+}
+mar.addEventListener('input',marUpdate);marUpdate();
+
+/* goal rows */
+$$('#goal .row').forEach(r=>{
+  const s=$('span',r);s.style.display='none';
+  r.addEventListener('click',()=>{s.style.display=s.style.display==='none'?'block':'none';});
+});
+
+/* fill in */
+const fiData=[
+ {ref:'히브리서 12장 1절',seg:['이러므로 우리에게 구름같이 둘러싼 허다한 ',['증인들'],'이 있으니 모든 무거운 것과 ',['얽매이기'],' 쉬운 죄를 벗어 버리고 ',['인내로써'],' 우리 앞에 당한 ',['경주를'],' 경주하며']},
+ {ref:'히브리서 12장 2절',seg:['믿음의 주요 또 ',['온전하게'],' 하시는 이인 ',['예수를'],' 바라보자 저는 그 앞에 있는 ',['즐거움을'],' 위하여 ',['십자가를'],' ',['참으사'],' 부끄러움을 개의치 아니하시더니 하나님 ',['보좌'],' 우편에 앉으셨느니라']}
+];
+const fiBox=$('#fi'), fiIn=[];
+fiData.forEach(v=>{
+  const p=document.createElement('div');p.style.marginBottom='18px';
+  const r=document.createElement('span');r.className='ref';r.textContent=v.ref;p.appendChild(r);
+  p.appendChild(document.createTextNode('“'));
+  v.seg.forEach(s=>{
+    if(Array.isArray(s)){
+      const i=document.createElement('input');i.type='text';i.dataset.a=s[0];i.autocomplete='off';i.setAttribute('aria-label','빈칸');
+      i.addEventListener('input',()=>i.className='');
+      fiIn.push(i);p.appendChild(i);
+    } else p.appendChild(document.createTextNode(s));
+  });
+  p.appendChild(document.createTextNode('”'));
+  fiBox.appendChild(p);
+});
+const norm=s=>s.replace(/\s+/g,'');
+$('#fiCheck').addEventListener('click',()=>{
+  let ok=0;
+  fiIn.forEach(i=>{
+    const good=norm(i.value)===norm(i.dataset.a);
+    i.className=i.value?(good?'ok':'no'):'';
+    if(good)ok++;
+  });
+  $('#fiMsg').textContent=ok===fiIn.length?'🎉 모두 맞았어요! 말씀이 마음에 새겨졌네요.':`${ok} / ${fiIn.length} 맞았어요. 다시 도전해 보세요.`;
+});
+$('#fiHint').addEventListener('click',()=>{
+  const t=fiIn.find(i=>norm(i.value)!==norm(i.dataset.a));
+  if(!t){$('#fiMsg').textContent='이미 모두 채웠어요!';return;}
+  t.value=t.dataset.a[0];t.className='';t.focus();
+  $('#fiMsg').textContent='첫 글자를 넣었어요.';
+});
+$('#fiShow').addEventListener('click',()=>{
+  fiIn.forEach(i=>{i.value=i.dataset.a;i.className='ok';});
+  $('#fiMsg').textContent='정답을 모두 보여드렸어요. 지우고 다시 외워 보세요.';
+});
+
+/* quiz */
+const Q=[
+ {q:'히브리서 11장 마지막에서 우리가 믿음의 경주를 해야 하는 이유는?',o:['우리가 없이는 그들(구약의 성도들)이 온전함에 이르지 못하기 때문','구약의 성도들이 아직 구원을 받지 못했기 때문','경주에서 1등을 해야 하기 때문','유대교의 전통을 지켜야 하기 때문'],a:0,e:'다만 문자적으로 해석해 우리가 없으면 그들의 구원이 성취되지 않는다고 보면 안 됩니다. 구약의 성도들은 이미 하나님의 구원의 은혜를 입었습니다.'},
+ {q:'히브리서 기자가 정말 하고 싶었던 말은?',o:['구약 성도들을 더 존경하라','더 좋은 것을 이미 받았으니 유대교로 돌아가지 말고 믿음의 삶을 계속 경주하라','율법을 더 열심히 지켜라','경주는 잠시 쉬어도 된다'],a:1,e:'구약의 성도는 약속을 받지 못했는데도 믿음을 지켰는데, 너희는 더 좋은 것을 받았음에도 유대교로 돌아가려 하느냐는 것입니다.'},
+ {q:'“허다한 증인들”에서 증인들이 의미하는 것은?',o:['경주의 주인공','경주의 심판관','주인공이신 하나님을 믿음의 삶으로 증언한 사람들','여호와의 증인'],a:2,e:'증인들은 주인공이 아닙니다. 주인공을 증명해 내는 사람들이고, 주인공은 하나님이십니다.'},
+ {q:'노아, 아브라함, 모세가 믿음의 삶을 살 수 있었던 근원은?',o:['남들보다 강한 의지','남들보다 훌륭한 인품','오랜 훈련','하나님의 은혜'],a:3,e:'그들의 믿음의 근원을 찾아가면 하나님을 만나게 되고, 우리는 그것을 하나님의 은혜라고 부릅니다.'},
+ {q:'“믿음의 주요 또 온전하게 하시는 이”에서 “믿음의 주”의 뜻은?',o:['믿음의 창시자, 믿음을 시작하시는 분','믿음의 감독관','믿음을 시험하시는 분','믿음의 증인'],a:0,e:'“온전하게 하시는 이”는 그 믿음을 완성하시는 분이라는 뜻입니다. 둘 다 예수 그리스도를 가리킵니다.'},
+ {q:'하나님께서 구원하신 백성을 끝까지 붙드신다는 개혁주의 신학의 강조점은?',o:['성도의 칭의','성도의 견인','성도의 교제','성도의 성화'],a:1,e:'우리가 달리지만 우리를 붙드시는 분은 하나님이시고, 끝까지 견디도록 역사하시는 분도 하나님이십니다.'},
+ {q:'“무거운 짐”으로 번역된 헬라어 ‘옹콘’이 가리키는 것은?',o:['외부에서 오는 유혹','내면의 장애물(염려, 걱정, 욕심, 욕망 등)','구약의 율법','핍박'],a:1,e:'옹콘은 ‘무게, 무거운 짐, 부피, 부담, 장애물’이며 우리 몸에 붙어 있는 것입니다. 얽매는 죄는 주위에 상존하는 외부의 장애물입니다.'},
+ {q:'믿음의 경주를 비유한 것은?',o:['100m 달리기','계주','마라톤','수영'],a:2,e:'믿음의 경주는 단거리가 아니라 마라톤입니다. 1등이 아니라 끝까지 달리는 것이 중요합니다.'},
+ {q:'인내의 본을 보여주신 분이며, 욥의 인내가 가리키는 분은?',o:['모세','다윗','엘리야','예수 그리스도'],a:3,e:'욥의 인내는 예수 그리스도의 인내를 보여주는 모형이고 그림자입니다. 예수님은 십자가를 참으셨습니다.'},
+ {q:'믿음의 경주의 목표와 기준은?',o:['교회의 전통','예수 그리스도','나의 열심','다른 성도들'],a:1,e:'“예수를 바라보자.” 우리의 믿음을 시작하시고 완성하시는 분이 예수님이시기 때문입니다.'}
+];
+let qi=0,score=0,locked=false;
+const qb=$('#quizBox');
+function renderQ(){
+  if(qi>=Q.length) return renderResult();
+  const d=Q[qi];locked=false;
+  qb.innerHTML='';
+  const top=document.createElement('div');top.className='qtop';
+  top.innerHTML=`<span>문제 ${qi+1} / ${Q.length}</span><span>점수 ${score}</span>`;
+  const bar=document.createElement('div');bar.className='qbar';bar.innerHTML=`<i style="width:${qi/Q.length*100}%"></i>`;
+  const q=document.createElement('div');q.className='q';q.textContent=d.q;
+  const opts=document.createElement('div');opts.className='opts';
+  const ex=document.createElement('div');ex.className='explain';
+  const next=document.createElement('div');next.className='actions';
+  d.o.forEach((t,i)=>{
+    const b=document.createElement('button');b.className='opt';b.textContent=t;
+    b.addEventListener('click',()=>{
+      if(locked)return;locked=true;
+      const bs=$$('.opt',opts);bs.forEach(x=>x.disabled=true);
+      if(i===d.a){b.classList.add('right');score++;ex.textContent='✅ 정답입니다. '+d.e;}
+      else{b.classList.add('wrong');bs[d.a].classList.add('right');ex.textContent='❌ 아쉬워요. '+d.e;}
+      ex.classList.add('on');
+      const nb=document.createElement('button');nb.className='btn';nb.textContent=qi===Q.length-1?'결과 보기':'다음 문제 →';
+      nb.addEventListener('click',()=>{qi++;renderQ();});
+      next.appendChild(nb);
+      $('.qtop span:last-child',qb).textContent='점수 '+score;
+    });
+    opts.appendChild(b);
+  });
+  qb.append(top,bar,q,opts,ex,next);
+}
+function renderResult(){
+  const pct=Math.round(score/Q.length*100);
+  const m=pct===100?'완벽합니다! 🏆 말씀이 마음에 쏙 들어왔네요.':pct>=70?'훌륭해요! 👏 핵심을 잘 기억하고 계세요.':pct>=40?'좋은 시작이에요. 틀린 부분을 다시 읽어 보세요.':'괜찮아요. 위 내용을 한 번 더 훑어보고 다시 도전해 보세요.';
+  qb.innerHTML=`<div class="result"><div class="score">${score}<span style="font-size:.4em;color:var(--text2)"> / ${Q.length}</span></div><p style="font-size:20px;margin:8px 0 22px">${m}</p><button class="btn" id="qAgain">다시 풀기</button></div>`;
+  $('#qAgain').addEventListener('click',()=>{qi=0;score=0;renderQ();});
+}
+renderQ();
+
+/* reflection note */
+const KEY='hebrews50-review-note';
+try{$('#note').value=localStorage.getItem(KEY)||'';}catch(e){}
+$('#noteSave').addEventListener('click',()=>{
+  try{localStorage.setItem(KEY,$('#note').value);$('#noteMsg').textContent='저장했어요 ✓';}
+  catch(e){$('#noteMsg').textContent='이 환경에서는 저장되지 않습니다.';}
+  setTimeout(()=>$('#noteMsg').textContent='',2500);
+});
+wUpdate();
+
+/* memory verse of the week: Romans 3:23 (KRV) */
+const MV='모든 사람이 죄를 범하였으매 하나님의 영광에 이르지 못하더니';
+const mvWords=MV.split(' '), mvOrder=[2,5,1,6,3,0,4,7], mvCount=[0,3,6,8];
+const mvBox=$('#mv'), mvSp=[];
+mvWords.forEach(w=>{
+  const s=document.createElement('span');s.className='w';s.textContent=w;
+  s.addEventListener('click',()=>{
+    if(!s.classList.contains('hide'))return;
+    s.classList.add('peek');setTimeout(()=>s.classList.remove('peek'),1500);
+  });
+  mvSp.push(s);mvBox.appendChild(s);
+});
+function mvApply(){
+  const n=mvCount[+$('#mvLvl').value];
+  const hide=new Set(mvOrder.slice(0,n));
+  mvSp.forEach((s,i)=>{s.classList.toggle('hide',hide.has(i));s.classList.remove('peek');});
+  const L=+$('#mvLvl').value;
+  $('#mvHelp').textContent=L===0?'먼저 소리 내어 읽어 보세요.':L===3?'모두 가려졌어요. 외워서 아래에 써 보세요!':'가려진 단어를 누르면 잠깐 보여요.';
+  const p=L/3*100;
+  $('#mvLvl').style.background=`linear-gradient(90deg,var(--blue) ${p}%,var(--bg2) ${p}%)`;
+}
+$('#mvLvl').addEventListener('input',mvApply);mvApply();
+const mvNorm=s=>s.replace(/[\s.,;:!?'"“”‘’]/g,'');
+$('#mvCheck').addEventListener('click',()=>{
+  const i=$('#mvIn');
+  if(!i.value.trim()){$('#mvMsg').textContent='말씀을 먼저 입력해 주세요.';return;}
+  const ok=mvNorm(i.value)===mvNorm(MV);
+  i.className='mvin '+(ok?'ok':'no');
+  $('#mvMsg').textContent=ok?'🎉 정확해요! 잘 외우셨네요.':'조금 달라요. 슬라이더로 힌트를 보고 다시 도전해 보세요.';
+});
+$('#mvIn').addEventListener('input',e=>e.target.className='mvin');
+const DK='romans3-23-days', dayNames=['월','화','수','목','금','토','일'];
+let dayState=[];
+try{dayState=JSON.parse(localStorage.getItem(DK)||'[]');}catch(e){}
+const dBox=$('#days');
+function dayMsg(){
+  const n=dayNames.filter((_,i)=>dayState.includes(i)).length;
+  $('#daysMsg').textContent=n===7?'🏆 일주일 내내 암송하셨어요!':n?`${n} / 7일 암송했어요.`:'';
+}
+dayNames.forEach((nm,i)=>{
+  const b=document.createElement('button');b.className='day'+(dayState.includes(i)?' on':'');b.textContent=nm;
+  b.setAttribute('aria-pressed',dayState.includes(i));
+  b.addEventListener('click',()=>{
+    const on=b.classList.toggle('on');
+    dayState=on?[...new Set([...dayState,i])]:dayState.filter(x=>x!==i);
+    b.setAttribute('aria-pressed',on);
+    try{localStorage.setItem(DK,JSON.stringify(dayState));}catch(e){}
+    dayMsg();
+  });
+  dBox.appendChild(b);
+});
+dayMsg();
+</script>
+</body>
+</html>
