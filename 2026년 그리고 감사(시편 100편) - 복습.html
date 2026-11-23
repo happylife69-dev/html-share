@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>2026년 그리고 감사 · 복습</title>
+<style>
+:root{
+  --bg:#fbfbfd; --bg2:#f5f5f7; --card:#ffffff; --text:#1d1d1f; --text2:#6e6e73; --text3:#86868b;
+  --line:rgba(0,0,0,.08); --blue:#0071e3; --blue2:#0077ed; --green:#30a14e; --red:#e5484d; --orange:#ff9f0a;
+  --glass:rgba(251,251,253,.72); --shadow:0 2px 12px rgba(0,0,0,.06), 0 12px 40px rgba(0,0,0,.05);
+  --grad:linear-gradient(135deg,#0071e3 0%,#5e5ce6 50%,#bf5af2 100%);
+  --radius:22px;
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Apple SD Gothic Neo","Pretendard","Noto Sans KR",system-ui,sans-serif;
+}
+:root[data-theme="dark"]{
+  --bg:#000; --bg2:#0b0b0d; --card:#1c1c1e; --text:#f5f5f7; --text2:#a1a1a6; --text3:#86868b;
+  --line:rgba(255,255,255,.12); --blue:#2997ff; --blue2:#409cff; --green:#32d74b; --red:#ff453a; --orange:#ff9f0a;
+  --glass:rgba(0,0,0,.66); --shadow:0 2px 12px rgba(0,0,0,.4), 0 12px 40px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.6;letter-spacing:-.01em;
+  -webkit-font-smoothing:antialiased;word-break:keep-all;transition:background .4s,color .4s}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;letter-spacing:inherit}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:12px}
+
+/* nav */
+nav{position:sticky;top:0;z-index:50;background:var(--glass);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:980px;margin:0 auto;padding:0 20px;height:52px;display:flex;align-items:center;gap:14px}
+.nav-title{font-weight:600;font-size:15px;white-space:nowrap}
+.nav-links{display:flex;gap:4px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links a{color:var(--text2);text-decoration:none;font-size:13px;padding:6px 10px;border-radius:980px;white-space:nowrap;transition:.2s}
+.nav-links a:hover,.nav-links a.on{color:var(--text);background:var(--bg2)}
+#theme{width:34px;height:34px;border-radius:50%;background:var(--bg2);font-size:15px;flex:none;transition:.2s}
+#theme:hover{transform:scale(1.08)}
+#bar{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:var(--grad)}
+
+main{max-width:980px;margin:0 auto;padding:0 20px}
+section{padding:96px 0 24px}
+.eyebrow{font-size:14px;font-weight:600;color:var(--blue);letter-spacing:.02em;margin-bottom:8px}
+h2{font-size:clamp(30px,5.4vw,48px);line-height:1.12;letter-spacing:-.03em;margin:0 0 14px;font-weight:700}
+.lead{font-size:clamp(17px,2.4vw,21px);color:var(--text2);max-width:680px;margin:0 0 36px}
+.note-tag{display:inline-block;font-size:11.5px;font-weight:600;color:var(--text2);background:var(--bg2);padding:3px 9px;border-radius:980px;margin-bottom:10px}
+
+/* hero */
+.hero{min-height:calc(100vh - 52px);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:60px 0;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:-20% -10% auto -10%;height:70%;background:radial-gradient(ellipse at 50% 30%,rgba(94,92,230,.22),transparent 60%),radial-gradient(ellipse at 20% 60%,rgba(0,113,227,.16),transparent 55%),radial-gradient(ellipse at 80% 50%,rgba(191,90,242,.16),transparent 55%);z-index:-1;animation:drift 14s ease-in-out infinite alternate}
+@keyframes drift{to{transform:translate3d(0,24px,0) scale(1.06)}}
+.hero .ref{font-size:17px;color:var(--text2);font-weight:500;margin-bottom:14px}
+.hero h1{font-size:clamp(44px,10vw,96px);line-height:1.04;letter-spacing:-.045em;margin:0 0 18px;font-weight:800}
+.grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .sub{font-size:clamp(20px,3.4vw,30px);font-weight:600;letter-spacing:-.02em;margin:0 0 10px}
+.hero p.d{color:var(--text2);font-size:18px;max-width:520px;margin:0 auto 34px}
+.btn{display:inline-block;background:var(--blue);color:#fff;border-radius:980px;padding:13px 26px;font-size:17px;font-weight:500;text-decoration:none;transition:.2s}
+.btn:hover{background:var(--blue2);transform:scale(1.03)}
+.btn.ghost{background:var(--bg2);color:var(--blue)}
+.scroll-hint{margin-top:46px;color:var(--text3);font-size:13px;animation:bob 2s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(6px)}}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.hero::before,.scroll-hint{animation:none}html{scroll-behavior:auto}}
+
+/* accordion */
+.acc{display:grid;gap:14px}
+.acc-item{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;transition:transform .3s}
+.acc-item:hover{transform:translateY(-2px)}
+.acc-head{width:100%;display:flex;align-items:center;gap:18px;padding:24px 26px;text-align:left}
+.num{flex:none;width:46px;height:46px;border-radius:50%;background:var(--grad);color:#fff;font-weight:700;font-size:20px;display:grid;place-items:center}
+.acc-head .t{flex:1}
+.acc-head .t small{display:block;color:var(--text3);font-size:13px;font-weight:500}
+.acc-head .t strong{display:block;font-size:clamp(19px,2.8vw,25px);letter-spacing:-.025em;line-height:1.3}
+.chev{flex:none;width:30px;height:30px;border-radius:50%;background:var(--bg2);display:grid;place-items:center;transition:transform .35s,background .2s;color:var(--text2);font-size:14px}
+.acc-item.open .chev{transform:rotate(180deg);background:var(--blue);color:#fff}
+.acc-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s cubic-bezier(.2,.7,.2,1)}
+.acc-item.open .acc-body{grid-template-rows:1fr}
+.acc-body>div{overflow:hidden}
+.acc-pad{padding:0 26px 26px 90px}
+@media(max-width:600px){.acc-pad{padding:0 22px 24px 22px}.acc-head{padding:20px 20px;gap:14px}}
+.quote{border-left:3px solid var(--blue);padding:4px 0 4px 16px;margin:14px 0;font-size:17px;font-weight:500;letter-spacing:-.015em}
+.quote cite{display:block;font-style:normal;font-size:13px;color:var(--text3);margin-top:4px;font-weight:400}
+.pts{margin:10px 0 0;padding:0;list-style:none;display:grid;gap:9px}
+.pts li{position:relative;padding-left:22px;color:var(--text2);font-size:16.5px}
+.pts li::before{content:"";position:absolute;left:2px;top:.62em;width:8px;height:8px;border-radius:50%;background:var(--blue)}
+.pts b{color:var(--text);font-weight:600}
+.kw{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.kw span{background:var(--bg2);color:var(--text);padding:5px 13px;border-radius:980px;font-size:14px;font-weight:600}
+
+.summary{margin-top:30px;background:var(--grad);color:#fff;border-radius:var(--radius);padding:34px 30px;text-align:center;box-shadow:var(--shadow)}
+.summary small{opacity:.8;font-size:13px;font-weight:600;letter-spacing:.04em}
+.summary p{margin:10px auto 0;font-size:clamp(20px,3.2vw,28px);font-weight:700;letter-spacing:-.03em;line-height:1.4;max-width:720px}
+
+/* cloze */
+.cloze-wrap{display:grid;gap:18px}
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px}
+.card .ref{font-size:13px;color:var(--blue);font-weight:600;margin-bottom:10px}
+.sentence{font-size:clamp(18px,2.6vw,23px);line-height:2.1;font-weight:500;letter-spacing:-.02em}
+.blank{display:inline-block;min-width:76px;padding:0 12px;margin:0 3px;border-radius:12px;background:var(--bg2);border-bottom:2px solid var(--text3);color:transparent;font-weight:700;text-align:center;line-height:1.7;transition:.25s;vertical-align:baseline}
+.blank.active{border-bottom-color:var(--blue);background:rgba(0,113,227,.1);box-shadow:0 0 0 3px rgba(0,113,227,.18)}
+.blank.done{color:var(--green);background:rgba(48,161,78,.12);border-bottom-color:var(--green)}
+.blank.shake,.chip.shake{animation:shake .4s}
+@keyframes shake{20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.chip{padding:9px 18px;border-radius:980px;background:var(--bg2);font-weight:600;font-size:16px;transition:.2s}
+.chip:hover{background:var(--line)}
+.chip.used{opacity:.25;pointer-events:none;transform:scale(.92)}
+.chip.bad{background:rgba(229,72,77,.15);color:var(--red)}
+.cl-foot{display:flex;align-items:center;gap:12px;margin-top:18px;min-height:34px}
+.cl-msg{color:var(--green);font-weight:600;opacity:0;transition:.4s}
+.cl-msg.show{opacity:1}
+.link{color:var(--blue);font-size:15px;font-weight:500;margin-left:auto}
+.link:hover{text-decoration:underline}
+
+/* flash */
+.fgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px}
+.flip{perspective:1000px;height:220px}
+.flip-in{position:relative;width:100%;height:100%;transition:transform .7s cubic-bezier(.2,.7,.2,1);transform-style:preserve-3d}
+.flip.on .flip-in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:var(--radius);padding:22px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;box-shadow:var(--shadow)}
+.front{background:var(--card)}
+.front .big{font-size:30px;font-weight:800;letter-spacing:-.03em}
+.front .small{margin-top:8px;color:var(--text3);font-size:13px}
+.back{background:var(--grad);color:#fff;transform:rotateY(180deg);font-size:15.5px;line-height:1.55;font-weight:500}
+.back b{display:block;font-size:13px;opacity:.8;margin-bottom:8px;font-weight:600}
+.flip button{position:absolute;inset:0;width:100%;height:100%;border-radius:var(--radius);z-index:2}
+
+/* quiz */
+.quiz{background:var(--card);border-radius:28px;box-shadow:var(--shadow);padding:clamp(24px,5vw,48px);min-height:420px;position:relative}
+.dots{display:flex;gap:6px;margin-bottom:28px}
+.dots i{flex:1;height:5px;border-radius:5px;background:var(--bg2);transition:.4s}
+.dots i.cur{background:var(--blue)}
+.dots i.ok{background:var(--green)}
+.dots i.no{background:var(--red)}
+.q-n{color:var(--text3);font-size:14px;font-weight:600}
+.q-t{font-size:clamp(22px,3.6vw,31px);font-weight:700;letter-spacing:-.03em;line-height:1.35;margin:6px 0 24px}
+.opts{display:grid;gap:12px}
+.opt{text-align:left;padding:17px 20px;border-radius:16px;background:var(--bg2);font-size:17px;font-weight:500;transition:.2s;border:2px solid transparent}
+.opt:hover:not(:disabled){background:var(--line);transform:scale(1.01)}
+.opt:disabled{cursor:default}
+.opt.right{background:rgba(48,161,78,.14);border-color:var(--green)}
+.opt.wrong{background:rgba(229,72,77,.12);border-color:var(--red);animation:shake .4s}
+.fb{margin-top:20px;padding:16px 18px;border-radius:16px;background:var(--bg2);font-size:16px;color:var(--text2);display:none}
+.fb.show{display:block;animation:pop .4s}
+.fb strong{color:var(--text)}
+@keyframes pop{from{opacity:0;transform:translateY(8px)}}
+.q-next{margin-top:22px;display:none}
+.q-next.show{display:inline-block}
+.result{text-align:center;padding:10px 0}
+.ring{position:relative;width:200px;height:200px;margin:0 auto 20px}
+.ring svg{transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:14;stroke-linecap:round}
+.ring .tr{stroke:var(--bg2)}
+.ring .pg{stroke:url(#rg);stroke-dasharray:502;stroke-dashoffset:502;transition:stroke-dashoffset 1.4s cubic-bezier(.2,.7,.2,1)}
+.ring .sc{position:absolute;inset:0;display:grid;place-items:center;font-size:54px;font-weight:800;letter-spacing:-.04em}
+.ring .sc small{font-size:20px;color:var(--text3);font-weight:600}
+.result h3{font-size:28px;margin:0 0 8px;letter-spacing:-.03em}
+.result p{color:var(--text2);margin:0 0 24px;font-size:17px}
+canvas#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:100}
+
+/* journal */
+.field{display:grid;gap:10px;margin-bottom:18px}
+.field label{font-weight:600;font-size:15px}
+.field input,.field textarea{width:100%;font:inherit;font-size:16.5px;color:var(--text);background:var(--bg2);border:2px solid transparent;border-radius:14px;padding:14px 16px;outline:0;resize:vertical;transition:.2s;letter-spacing:-.01em}
+.field input:focus,.field textarea:focus{border-color:var(--blue);background:var(--card)}
+.saved{color:var(--green);font-size:14px;font-weight:600;opacity:0;transition:.4s}
+.saved.show{opacity:1}
+.priv{color:var(--text3);font-size:13px;margin-top:6px}
+.prompt{font-size:clamp(19px,2.8vw,24px);font-weight:600;letter-spacing:-.025em;line-height:1.45;margin:0 0 24px}
+
+/* memorize */
+.verse-card{background:var(--grad);color:#fff;border-radius:28px;box-shadow:var(--shadow);padding:clamp(28px,5vw,52px);text-align:center}
+.verse-card .vref{font-size:14px;font-weight:600;opacity:.85;letter-spacing:.03em;margin-bottom:16px}
+.verse-text{font-size:clamp(22px,4.2vw,36px);font-weight:700;letter-spacing:-.03em;line-height:1.65}
+.w{display:inline-block;margin:0 .14em;padding:0 .08em;border-radius:10px;transition:.25s}
+.w.hide{background:rgba(255,255,255,.22);color:transparent;cursor:pointer;box-shadow:inset 0 -3px 0 rgba(255,255,255,.55)}
+.w.hide:hover{background:rgba(255,255,255,.32)}
+.w.peek{background:rgba(255,255,255,.14);color:#fff;box-shadow:none}
+.seg{display:inline-flex;background:rgba(255,255,255,.18);border-radius:980px;padding:4px;margin-top:28px;gap:2px;flex-wrap:wrap;justify-content:center}
+.seg button{padding:8px 16px;border-radius:980px;font-size:14px;font-weight:600;color:rgba(255,255,255,.85);transition:.2s}
+.seg button.on{background:#fff;color:#1d1d1f}
+.seg-hint{margin-top:14px;font-size:13.5px;opacity:.85}
+.memo-grid{display:grid;gap:18px;margin-top:18px}
+.memo-card h3{margin:0 0 6px;font-size:22px;letter-spacing:-.025em}
+.memo-card .sub{color:var(--text2);font-size:15.5px;margin:0 0 18px}
+.built{min-height:64px;padding:14px 16px;border-radius:16px;background:var(--bg2);font-size:18px;font-weight:600;letter-spacing:-.02em;line-height:1.7;margin-bottom:16px;display:flex;flex-wrap:wrap;gap:4px 8px;align-items:center}
+.built .ph{color:var(--text3);font-weight:500;font-size:15px}
+.built.got{color:var(--green)}
+.week{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
+.day{aspect-ratio:1;border-radius:50%;background:var(--bg2);display:grid;place-items:center;font-weight:700;font-size:15px;transition:.25s;color:var(--text2)}
+.day:hover{background:var(--line)}
+.day.on{background:var(--green);color:#fff;transform:scale(1.06)}
+.tie{margin-top:18px;border-radius:var(--radius);background:var(--bg2);padding:22px 24px}
+.tie p{margin:6px 0 0;color:var(--text2);font-size:16.5px}
+.tie b{color:var(--text)}
+
+footer{text-align:center;color:var(--text3);font-size:13px;padding:80px 20px 60px}
+footer b{color:var(--text2)}
+</style>
+</head>
+<body>
+
+<nav aria-label="복습 메뉴">
+  <div class="nav-in">
+    <span class="nav-title">감사 · 복습</span>
+    <div class="nav-links" id="links">
+      <a href="#outline">3대지</a>
+      <a href="#walk">시편 100편</a>
+      <a href="#cloze">빈칸</a>
+      <a href="#cards">카드</a>
+      <a href="#quiz">퀴즈</a>
+      <a href="#journal">노트</a>
+      <a href="#memo">암송</a>
+    </div>
+    <button id="theme" aria-label="화면 모드 전환" title="라이트/다크 전환">☾</button>
+  </div>
+  <div id="bar"></div>
+</nav>
+
+<main>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="ref rv">시편 100편 1–5절 · 추수감사주일</div>
+  <h1 class="rv">2026년<br><span class="grad">그리고 감사</span></h1>
+  <div class="sub rv">감사함으로 그의 문에 들어가라</div>
+  <p class="d rv">설교를 다시 만나는 시간. 읽고, 누르고, 맞혀 보면서 말씀을 마음에 새겨 보세요.</p>
+  <div class="rv"><a class="btn" href="#outline">복습 시작하기</a></div>
+  <div class="scroll-hint rv">아래로 스크롤 ↓</div>
+</header>
+
+<!-- OUTLINE -->
+<section id="outline">
+  <div class="eyebrow rv">1 · 설교 한눈에 보기</div>
+  <h2 class="rv">세 가지 질문으로<br>다시 들어요.</h2>
+  <p class="lead rv">카드를 눌러 각 대지의 핵심을 펼쳐 보세요.</p>
+
+  <div class="acc rv" data-acc>
+    <div class="acc-item">
+      <button class="acc-head" aria-expanded="false">
+        <span class="num">1</span>
+        <span class="t"><small>첫째</small><strong>우리는 왜 하나님께 감사해야 합니까?</strong></span>
+        <span class="chev">▾</span>
+      </button>
+      <div class="acc-body"><div><div class="acc-pad">
+        <span class="note-tag">복습 요약</span>
+        <ul class="pts">
+          <li><b>우리가 하나님의 백성이기 때문입니다.</b> (시 100:1–3)</li>
+          <li>하나님은 <b>우리를 지으신 분</b>입니다. 생명, 시간, 재능과 기회 모두 하나님께로부터 왔습니다.</li>
+          <li>하나님은 <b>우리를 기르시는 목자</b>입니다. 양처럼 연약한 우리를 책임지시고 인도하시고 돌보십니다.</li>
+          <li>예수님은 우리를 위해 <b>목숨을 버리신 선한 목자</b>이십니다.</li>
+        </ul>
+        <div class="quote">“네게 있는 것 중에 받지 아니한 것이 무엇이냐”<cite>고린도전서 4장 7절</cite></div>
+      </div></div></div>
+    </div>
+
+    <div class="acc-item">
+      <button class="acc-head" aria-expanded="false">
+        <span class="num">2</span>
+        <span class="t"><small>둘째</small><strong>어떻게 감사해야 합니까?</strong></span>
+        <span class="chev">▾</span>
+      </button>
+      <div class="acc-body"><div><div class="acc-pad">
+        <span class="note-tag">복습 요약</span>
+        <ul class="pts">
+          <li><b>하나님께 예배드림으로</b> 감사합니다. (시 100:4)</li>
+          <li>“그의 문”과 “그의 궁정”은 하나님께 예배드리는 장소를 가리킵니다.</li>
+          <li>감사는 예배의 중요한 요소입니다. 감사를 잃어버리면 참된 예배를 드릴 수 없습니다.</li>
+          <li>감사함으로 문에, 찬송함으로 궁정에 들어가 이름을 송축합니다.</li>
+        </ul>
+        <div class="quote">“감사함으로 그의 문에 들어가며 찬송함으로 그의 궁정에 들어가서 그에게 감사하며 그의 이름을 송축할지어다”<cite>시편 100편 4절</cite></div>
+      </div></div></div>
+    </div>
+
+    <div class="acc-item">
+      <button class="acc-head" aria-expanded="false">
+        <span class="num">3</span>
+        <span class="t"><small>마지막</small><strong>이 모든 것을 가능하게 한 것은 무엇입니까?</strong></span>
+        <span class="chev">▾</span>
+      </button>
+      <div class="acc-body"><div><div class="acc-pad">
+        <span class="note-tag">복습 요약</span>
+        <ul class="pts">
+          <li><b>하나님의 선하심</b> 때문입니다. (시 100:5)</li>
+          <li><b>인자하심(헤세드)</b>: 언약적 사랑, 한번 약속하시면 실패하지 않는 사랑</li>
+          <li><b>성실하심(에무나토)</b>: 견고하다, 믿을 만하다</li>
+          <li>선하신 하나님이 사랑하기로 작정하시고, 그 사랑을 성실하게 이루십니다.</li>
+        </ul>
+        <div class="quote">"여호와는 선하시니 그의 인자하심이 영원하고 그의 성실하심이 대대에 이르리로다"<cite>시편 100편 5절</cite></div>
+        <div class="kw"><span>선하심</span><span>헤세드</span><span>에무나토</span></div>
+      </div></div></div>
+    </div>
+  </div>
+
+  <div class="summary rv">
+    <small>결론</small>
+    <p>“우리의 감사는 우리의 환경, 우리의 조건에 있는 것이 아니라, 하나님이 누구신지, 하나님을 아는 것에 기초해야 합니다.”</p>
+  </div>
+</section>
+
+<!-- WALKTHROUGH -->
+<section id="walk">
+  <div class="eyebrow rv">2 · 시편 100편 걸어가기</div>
+  <h2 class="rv">한 절씩<br>문을 열어 보세요.</h2>
+  <p class="lead rv">절을 누르면 설교에서 짚어 준 핵심이 열립니다.</p>
+
+  <div class="acc rv" data-acc>
+    <div class="acc-item">
+      <button class="acc-head" aria-expanded="false">
+        <span class="num">1-2</span>
+        <span class="t"><small>시편 100:1–2</small><strong>온 땅이여, 즐거운 찬송을 부르라</strong></span>
+        <span class="chev">▾</span>
+      </button>
+      <div class="acc-body"><div><div class="acc-pad">
+        <div class="quote">“온 땅이여 여호와께 즐거운 찬송을 부를지어다/ 기쁨으로 여호와를 섬기며 노래하면서 그의 앞에 나아갈지어다”</div>
+        <span class="note-tag">복습 요약</span>
+        <ul class="pts"><li>감사함으로 하나님을 예배하라는 초대입니다.</li></ul>
+        <div class="kw"><span>즐거운 찬송</span><span>기쁨으로 섬김</span></div>
+      </div></div></div>
+    </div>
+    <div class="acc-item">
+      <button class="acc-head" aria-expanded="false">
+        <span class="num">3</span>
+        <span class="t"><small>시편 100:3</small><strong>여호와가 우리 하나님이신 줄 알라</strong></span>
+        <span class="chev">▾</span>
+      </button>
+      <div class="acc-body"><div><div class="acc-pad">
+        <div class="quote">“여호와가 우리 하나님이신 줄 너희는 알지어다 … 그는 우리를 지으신 이요 우리는 그의 것이니 그의 백성이요 그의 기르시는 양이로다.”</div>
+        <span class="note-tag">복습 요약</span>
+        <ul class="pts">
+          <li><b>알지어다</b>: 하나님이 어떤 분이신지를 알라는 것입니다.</li>
+          <li><b>지으신 이</b>: 우리의 존재와 생명이 하나님께로부터 왔습니다.</li>
+          <li><b>기르시는 양</b>: 목자 되신 하나님이 책임지고 인도하고 돌보십니다.</li>
+        </ul>
+        <div class="kw"><span>알지어다</span><span>지으신 이</span><span>백성</span><span>양</span></div>
+      </div></div></div>
+    </div>
+    <div class="acc-item">
+      <button class="acc-head" aria-expanded="false">
+        <span class="num">4</span>
+        <span class="t"><small>시편 100:4</small><strong>감사함으로 그의 문에 들어가라</strong></span>
+        <span class="chev">▾</span>
+      </button>
+      <div class="acc-body"><div><div class="acc-pad">
+        <div class="quote">“감사함으로 그의 문에 들어가며 찬송함으로 그의 궁정에 들어가서 그에게 감사하며 그의 이름을 송축할지어다”</div>
+        <span class="note-tag">복습 요약</span>
+        <ul class="pts">
+          <li><b>그의 문 · 그의 궁정</b>: 하나님께 예배드리는 장소, 하나님의 임재 안입니다.</li>
+          <li>감사가 예배의 마음이 됩니다.</li>
+        </ul>
+        <div class="kw"><span>그의 문</span><span>그의 궁정</span><span>송축</span></div>
+      </div></div></div>
+    </div>
+    <div class="acc-item">
+      <button class="acc-head" aria-expanded="false">
+        <span class="num">5</span>
+        <span class="t"><small>시편 100:5</small><strong>여호와는 선하시다</strong></span>
+        <span class="chev">▾</span>
+      </button>
+      <div class="acc-body"><div><div class="acc-pad">
+        <div class="quote">"여호와는 선하시니 그의 인자하심이 영원하고 그의 성실하심이 대대에 이르리로다"</div>
+        <span class="note-tag">복습 요약</span>
+        <ul class="pts">
+          <li>선하심이 <b>인자하심(헤세드)</b>으로, 또 <b>성실하심(에무나토)</b>으로 나타납니다.</li>
+        </ul>
+        <div class="kw"><span>선하심</span><span>인자하심</span><span>성실하심</span></div>
+      </div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOZE -->
+<section id="cloze">
+  <div class="eyebrow rv">3 · 빈칸 채우기</div>
+  <h2 class="rv">말씀을<br>기억해 볼까요?</h2>
+  <p class="lead rv">아래 단어 중 알맞은 것을 눌러 빈칸을 채워 보세요. 함정 단어도 섞여 있어요.</p>
+  <div class="cloze-wrap" id="clozeWrap"></div>
+</section>
+
+<!-- FLASHCARDS -->
+<section id="cards">
+  <div class="eyebrow rv">4 · 플래시카드</div>
+  <h2 class="rv">뒤집어서<br>확인하세요.</h2>
+  <p class="lead rv">앞면을 보고 먼저 떠올려 본 뒤, 카드를 눌러 답을 확인하세요.</p>
+  <div class="fgrid" id="fgrid"></div>
+</section>
+
+<!-- QUIZ -->
+<section id="quiz">
+  <div class="eyebrow rv">5 · 퀴즈</div>
+  <h2 class="rv">얼마나<br>기억하고 있을까요?</h2>
+  <p class="lead rv">8문항. 고를 때마다 바로 해설이 나옵니다.</p>
+  <div class="quiz rv" id="quizBox"></div>
+</section>
+
+<!-- JOURNAL -->
+<section id="journal">
+  <div class="eyebrow rv">6 · 나의 감사 노트</div>
+  <h2 class="rv">내 삶에<br>적용해 봅시다.</h2>
+  <p class="prompt rv">“만약 우리가 기대했던 일들이 이루어지지 않았다면, 그래도 하나님께 감사할 수 있을까요?”</p>
+  <div class="card rv">
+    <div class="field"><label for="g1">올해 감사한 일 ①</label><input id="g1" placeholder="예: 가족이 함께 예배드린 것"></div>
+    <div class="field"><label for="g2">올해 감사한 일 ②</label><input id="g2" placeholder="아직 응답받지 못한 중에도 감사한 것"></div>
+    <div class="field"><label for="g3">올해 감사한 일 ③</label><input id="g3" placeholder="하나님의 성품 때문에 감사한 것"></div>
+    <div class="field"><label for="g4">이번 주, 감사함으로 예배의 자리에 나아가기 위한 나의 한 걸음</label><textarea id="g4" rows="3" placeholder="구체적으로 적어 보세요"></textarea></div>
+    <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+      <span class="saved" id="saved">✓ 저장되었습니다</span>
+      <button class="link" id="clearJ">노트 비우기</button>
+    </div>
+    <p class="priv">입력한 내용은 이 기기의 이 브라우저에만 저장되며, 어디로도 전송되지 않습니다.</p>
+  </div>
+</section>
+
+<!-- MEMORIZE -->
+<section id="memo">
+  <div class="eyebrow rv">7 · 이번 주 암송구절</div>
+  <h2 class="rv">한 주 동안<br>마음에 새겨요.</h2>
+  <p class="lead rv">읽고, 가리고, 맞추고, 매일 체크하면서 말씀을 외워 보세요.</p>
+
+  <div class="verse-card rv">
+    <div class="vref">이사야 53장 6절 · 개역개정</div>
+    <div class="verse-text" id="verseText" aria-live="polite"></div>
+    <div class="seg" id="seg" role="group" aria-label="가리기 단계">
+      <button data-l="1" class="on">1단계 · 보기</button>
+      <button data-l="2">2단계</button>
+      <button data-l="3">3단계</button>
+      <button data-l="4">4단계 · 외우기</button>
+    </div>
+    <div class="seg-hint" id="segHint">단계를 올려 가며 말씀을 가려 보세요. 가려진 단어를 누르면 확인할 수 있어요.</div>
+  </div>
+
+  <div class="memo-grid">
+    <div class="card memo-card rv">
+      <h3>순서 맞추기</h3>
+      <p class="sub">섞여 있는 조각을 말씀의 순서대로 눌러 보세요.</p>
+      <div class="built" id="built"></div>
+      <div class="chips" id="pieces"></div>
+      <div class="cl-foot"><span class="cl-msg" id="pMsg">🎉 완성했어요!</span><button class="link" id="pReset">다시 하기</button></div>
+    </div>
+
+    <div class="card memo-card rv">
+      <h3>7일 암송 체크</h3>
+      <p class="sub">오늘 암송했다면 그날을 눌러 표시하세요. <span id="weekCount" style="font-weight:600;color:var(--text)">0 / 7</span></p>
+      <div class="week" id="week"></div>
+      <p class="priv">체크 기록은 이 기기의 이 브라우저에만 저장됩니다.</p>
+    </div>
+  </div>
+
+  <div class="tie rv">
+    <span class="note-tag">복습 요약</span>
+    <p>시편 100편 3절은 우리를 “그의 기르시는 <b>양</b>”이라 했고, 이사야 53장 6절은 “우리는 다 <b>양</b> 같아서 그릇 행하여” 갔다고 말씀합니다. 길을 잃기 쉬운 양과 같은 우리를 위해 선한 목자 되신 예수님이 목숨을 버리셨습니다. (요 10:11)</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <b>시편 100편 · 2026년 그리고 감사</b><br>
+  “우리의 평생이 감사함으로 하나님을 예배하는 저와 여러분 되시기 바랍니다.”
+</footer>
+
+<canvas id="fx"></canvas>
+
+<script>
+(function(){
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const store={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}},del(k){try{localStorage.removeItem(k)}catch(e){}}};
+
+/* theme */
+const root=document.documentElement, tbtn=$('#theme');
+function setTheme(t){root.dataset.theme=t;tbtn.textContent=t==='dark'?'☀︎':'☾'}
+setTheme(store.get('gr-theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'));
+tbtn.onclick=()=>{const t=root.dataset.theme==='dark'?'light':'dark';setTheme(t);store.set('gr-theme',t)};
+
+/* progress bar + nav highlight */
+const bar=$('#bar'), links=$$('#links a'), secs=links.map(a=>$(a.getAttribute('href')));
+function onScroll(){
+  const h=document.documentElement;
+  bar.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight||1)*100)+'%';
+  let cur=-1;secs.forEach((s,i)=>{if(s.getBoundingClientRect().top<window.innerHeight*.4)cur=i});
+  links.forEach((a,i)=>a.classList.toggle('on',i===cur));
+}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+/* reveal */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+$$('.rv').forEach((el,i)=>{el.style.transitionDelay=(i%4)*70+'ms';io.observe(el)});
+
+/* accordion */
+$$('[data-acc]').forEach(g=>{
+  $$('.acc-head',g).forEach(b=>b.addEventListener('click',()=>{
+    const item=b.parentElement, open=!item.classList.contains('open');
+    item.classList.toggle('open',open);b.setAttribute('aria-expanded',open);
+  }));
+});
+
+/* confetti */
+const cv=$('#fx'),cx=cv.getContext('2d');let parts=[],raf=0;
+function sizeCv(){cv.width=innerWidth*devicePixelRatio;cv.height=innerHeight*devicePixelRatio}
+sizeCv();addEventListener('resize',sizeCv);
+function confetti(n=140){
+  if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  const cols=['#0071e3','#5e5ce6','#bf5af2','#ff9f0a','#30d158','#ff375f'],d=devicePixelRatio;
+  for(let i=0;i<n;i++)parts.push({x:innerWidth/2*d,y:innerHeight*.55*d,vx:(Math.random()-.5)*16*d,vy:(-Math.random()*16-6)*d,g:.38*d,s:(Math.random()*7+4)*d,r:Math.random()*6,vr:(Math.random()-.5)*.4,c:cols[i%cols.length],life:1});
+  if(!raf)raf=requestAnimationFrame(tick);
+}
+function tick(){
+  cx.clearRect(0,0,cv.width,cv.height);
+  parts.forEach(p=>{p.vy+=p.g;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;p.vx*=.99;p.life-=.008;
+    cx.save();cx.globalAlpha=Math.max(p.life,0);cx.translate(p.x,p.y);cx.rotate(p.r);cx.fillStyle=p.c;cx.fillRect(-p.s/2,-p.s/3,p.s,p.s*.6);cx.restore()});
+  parts=parts.filter(p=>p.life>0&&p.y<cv.height+50);
+  raf=parts.length?requestAnimationFrame(tick):0;if(!raf)cx.clearRect(0,0,cv.width,cv.height);
+}
+
+/* cloze */
+const CLOZE=[
+ {ref:'시편 100편 3절',parts:['“여호와가 우리 하나님이신 줄 너희는 ',{a:'알지어다'},'. 그는 우리를 ',{a:'지으신 이'},'요 우리는 그의 것이니 그의 백성이요 그의 기르시는 ',{a:'양'},'이로다.”'],chips:['알지어다','지으신 이','양','염소','깨달을지어다']},
+ {ref:'시편 100편 4절',parts:['“',{a:'감사함으로'},' 그의 ',{a:'문'},'에 들어가며 ',{a:'찬송함으로'},' 그의 ',{a:'궁정'},'에 들어가서 그에게 감사하며 그의 이름을 ',{a:'송축'},'할지어다”'],chips:['감사함으로','문','찬송함으로','궁정','송축','성전','간구']},
+ {ref:'시편 100편 5절',parts:['"여호와는 ',{a:'선하시니'},' 그의 ',{a:'인자하심'},'이 영원하고 그의 ',{a:'성실하심'},'이 대대에 이르리로다"'],chips:['선하시니','인자하심','성실하심','능력','공의']}
+];
+const cw=$('#clozeWrap');
+CLOZE.forEach(c=>{
+  const el=document.createElement('div');el.className='card rv';
+  const total=c.parts.filter(p=>typeof p==='object').length;let filled=0,active=0,bi=0;
+  const sent=document.createElement('div');sent.className='sentence';
+  const blanks=[];
+  c.parts.forEach(p=>{
+    if(typeof p==='string'){sent.appendChild(document.createTextNode(p))}
+    else{const b=document.createElement('button');b.className='blank';b.textContent=p.a;b.dataset.a=p.a;b.dataset.i=blanks.length;blanks.push(b);sent.appendChild(b)}
+  });
+  const shuffled=[...c.chips].sort(()=>Math.random()-.5);
+  const chips=document.createElement('div');chips.className='chips';
+  const msg=document.createElement('span');msg.className='cl-msg';msg.textContent='🎉 완성했어요!';
+  const rs=document.createElement('button');rs.className='link';rs.textContent='다시 하기';
+  const foot=document.createElement('div');foot.className='cl-foot';foot.append(msg,rs);
+  const refEl=document.createElement('div');refEl.className='ref';refEl.textContent=c.ref;
+  el.append(refEl,sent,chips,foot);cw.appendChild(el);io.observe(el);
+  function setActive(){
+    blanks.forEach((b,i)=>b.classList.remove('active'));
+    if(!blanks[active]||blanks[active].classList.contains('done')){active=blanks.findIndex(b=>!b.classList.contains('done'))}
+    if(active>=0)blanks[active].classList.add('active');
+  }
+  blanks.forEach((b,i)=>b.addEventListener('click',()=>{if(!b.classList.contains('done')){active=i;setActive()}}));
+  function build(){
+    chips.innerHTML='';
+    shuffled.forEach(w=>{
+      const ch=document.createElement('button');ch.className='chip';ch.textContent=w;
+      ch.onclick=()=>{
+        if(active<0)return;const b=blanks[active];
+        if(b.dataset.a===w){b.classList.add('done');ch.classList.add('used');filled++;setActive();
+          if(filled===total){msg.classList.add('show');confetti(50)}}
+        else{ch.classList.add('bad','shake');b.classList.add('shake');
+          setTimeout(()=>{ch.classList.remove('bad','shake');b.classList.remove('shake')},420)}
+      };chips.appendChild(ch);
+    });
+  }
+  rs.onclick=()=>{filled=0;active=0;blanks.forEach(b=>b.classList.remove('done','active'));msg.classList.remove('show');shuffled.sort(()=>Math.random()-.5);build();setActive()};
+  build();setActive();
+});
+
+/* flashcards */
+const CARDS=[
+ ['감사','복습 요약','내가 가진 모든 것이 하나님의 은혜라는 사실을 깨닫고, 인정하는 것'],
+ ['헤세드','인자하심','하나님의 언약적 사랑. 한번 약속하시면 실패하지 않는 사랑'],
+ ['에무나토','성실하심','‘견고하다, 믿을 만하다’라는 뜻. 하나님이 그 언약적 사랑을 성실하게 이루심'],
+ ['양','시편 100:3','스스로를 지키기에 연약한 존재. 목자 되신 하나님이 책임지시고, 인도하시고, 돌보심'],
+ ['그의 문 · 궁정','시편 100:4','하나님께 예배드리는 장소. 하나님의 임재 안으로 들어가는 것'],
+ ['고전 4:7','“네게 있는 것 중에…”','받지 아니한 것이 없다. 생명도, 시간도, 재능과 기회도 모두 하나님께로부터'],
+ ['시편 23:1','다윗의 고백','어려움이 없어서가 아니라, 돌보시는 하나님이 완전하시기에 “부족함이 없으리로다”'],
+ ['요 10:11','선한 목자','양들을 위하여 목숨을 버리신 목자, 우리를 구원하시려고 자기 생명까지 내어주신 예수님']
+];
+const fg=$('#fgrid');
+CARDS.forEach(([f,s,b])=>{
+  const d=document.createElement('div');d.className='flip rv';
+  d.innerHTML=`<div class="flip-in"><div class="face front"><div class="big">${f}</div><div class="small">${s}</div></div><div class="face back"><div><b>${f}</b>${b}</div></div></div><button aria-label="${f} 카드 뒤집기"></button>`;
+  $('button',d).onclick=()=>d.classList.toggle('on');
+  fg.appendChild(d);io.observe(d);
+});
+
+/* quiz */
+const QZ=[
+ {q:'올해 추수감사주일 설교의 부제는 무엇입니까?',o:['감사함으로 그의 문에 들어가라','범사에 감사하라','주께 감사하라 그는 선하시니','기뻐하라 쉬지 말고 기도하라'],a:0,e:'매년 설교 제목은 같지만 부제가 달라집니다. 올해는 “감사함으로 그의 문에 들어가라”입니다.'},
+ {q:'성경이 말씀하는 감사는 무엇에 기초합니까?',o:['좋은 일이 생겼다는 사실','하나님이 어떤 분이신지 아는 것','한 해 동안 받은 복의 크기','기도에 응답받은 경험'],a:1,e:'성경이 말하는 감사는 하나님이 어떤 분이신지를 알기 때문에 드리는 감사입니다. 우리의 감사가 조건에 기초하면 감사하기 어렵습니다.'},
+ {q:'시편 100편 3절의 “양”이라는 표현이 말해 주는 것은?',o:['하나님의 백성은 순종적이라는 것','우리가 스스로 자신을 지키기 어렵고, 목자 되신 하나님이 돌보신다는 것','희생제물로 드려진다는 것','광야에서 살았다는 것'],a:1,e:'양은 스스로를 지키기에 연약하고, 가장 중요한 것은 좋은 목자를 만나는 것입니다. 하나님이 우리의 목자이십니다.'},
+ {q:'다윗이 “내게 부족함이 없으리로다”라고 고백한 이유는?',o:['그의 형편이 완벽했기 때문에','왕이 되어 어려움이 사라졌기 때문에','자신을 돌보시는 하나님이 완전하시기 때문에','사울에게서 벗어났기 때문에'],a:2,e:'다윗에게도 사울에게 쫓기고 광야에서 고난을 겪는 등 많은 어려움이 있었습니다. 그러나 그의 목자이신 하나님이 완전하시기에 부족함이 없다고 고백했습니다.'},
+ {q:'요한복음 10장 11절에서 예수님은 어떤 목자라고 하셨습니까?',o:['양을 좋은 길로 인도하는 목자','양을 위하여 목숨을 버리는 선한 목자','양을 부유하게 하는 목자','양을 시험하는 목자'],a:1,e:'예수님은 단순히 좋은 길로 인도하시는 분이 아니라, 우리를 구원하시기 위해 자기 생명까지 내어주신 목자이십니다.'},
+ {q:'설교에서 “감사를 잃어버리면 ○○를 드릴 수 없다”고 했습니다. ○○는?',o:['참된 예배','헌금','기도','봉사'],a:0,e:'감사는 예배의 중요한 요소입니다. 감사를 잃어버리면 예배의 자리에 있어도 진정한 예배가 아닙니다.'},
+ {q:'‘헤세드’(인자하심)의 뜻으로 설교에서 설명한 것은?',o:['하나님의 공의로운 심판','하나님의 언약적 사랑, 한번 약속하시면 실패하지 않는 사랑','하나님의 전능하심','하나님의 거룩하심'],a:1,e:'헤세드는 하나님의 언약적 사랑입니다. 한번 약속하시면 실패하지 않는 사랑을 의미합니다.'},
+ {q:'‘에무나토’(성실하심)가 뜻하는 것은?',o:['기쁘다, 즐겁다','견고하다, 믿을 만하다','넓다, 크다','거룩하다, 구별되다'],a:1,e:'성실하심은 ‘견고하다, 믿을 만하다’는 뜻입니다. 하나님이 그 언약적 사랑을 성실하게 이루신다는 의미입니다.'}
+];
+const qb=$('#quizBox');let qi=0,score=0,marks=[];
+function renderQ(){
+  const q=QZ[qi];
+  qb.innerHTML=`<div class="dots">${QZ.map((_,i)=>`<i class="${marks[i]===1?'ok':marks[i]===0?'no':i===qi?'cur':''}"></i>`).join('')}</div>
+  <div class="q-n">문제 ${qi+1} / ${QZ.length}</div><div class="q-t">${q.q}</div>
+  <div class="opts">${q.o.map((t,i)=>`<button class="opt" data-i="${i}">${t}</button>`).join('')}</div>
+  <div class="fb" id="fb"></div><button class="btn q-next" id="nx">${qi===QZ.length-1?'결과 보기':'다음 문제'}</button>`;
+  $$('.opt',qb).forEach(b=>b.onclick=()=>pick(+b.dataset.i));
+  $('#nx').onclick=()=>{qi++;qi<QZ.length?renderQ():showResult()};
+}
+function pick(i){
+  const q=QZ[qi],ok=i===q.a;
+  $$('.opt',qb).forEach((b,j)=>{b.disabled=true;if(j===q.a)b.classList.add('right');else if(j===i)b.classList.add('wrong')});
+  marks[qi]=ok?1:0;if(ok)score++;
+  const fb=$('#fb');fb.innerHTML=`<strong>${ok?'정답입니다! 👏':'아쉬워요.'}</strong> ${q.e}`;fb.classList.add('show');
+  $('#nx').classList.add('show');
+  $$('.dots i',qb)[qi].className=ok?'ok':'no';
+  if(ok)confetti(24);
+}
+function showResult(){
+  const msgs=score===8?['완벽해요! 🎉','설교의 핵심을 모두 기억하고 계시네요.']:score>=6?['아주 잘했어요!','핵심을 잘 붙들고 계세요. 틀린 부분만 카드로 다시 확인해 보세요.']:score>=4?['좋은 출발이에요.','플래시카드와 시편 걸어가기를 한 번 더 둘러본 뒤 다시 도전해 보세요.']:['다시 한 번 천천히!','위의 3대지부터 차근차근 살펴본 뒤 다시 도전해 보세요.'];
+  qb.innerHTML=`<div class="result"><div class="ring"><svg width="200" height="200" viewBox="0 0 200 200"><defs><linearGradient id="rg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0071e3"/><stop offset=".5" stop-color="#5e5ce6"/><stop offset="1" stop-color="#bf5af2"/></linearGradient></defs><circle class="tr" cx="100" cy="100" r="80"/><circle class="pg" id="pg" cx="100" cy="100" r="80"/></svg><div class="sc"><span>${score}<small> / ${QZ.length}</small></span></div></div>
+  <h3>${msgs[0]}</h3><p>${msgs[1]}</p><button class="btn" id="re">다시 풀어보기</button></div>`;
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{$('#pg').style.strokeDashoffset=502*(1-score/QZ.length)}));
+  if(score>=6)setTimeout(()=>confetti(score===8?200:110),400);
+  $('#re').onclick=()=>{qi=0;score=0;marks=[];renderQ()};
+}
+renderQ();
+
+/* journal */
+const ids=['g1','g2','g3','g4'],sv=$('#saved');let st;
+ids.forEach(id=>{const el=$('#'+id);el.value=store.get('gr-'+id)||'';
+  el.addEventListener('input',()=>{store.set('gr-'+id,el.value);sv.classList.add('show');clearTimeout(st);st=setTimeout(()=>sv.classList.remove('show'),1400)})});
+$('#clearJ').onclick=()=>{if(confirm('작성한 노트 내용을 모두 비울까요? (이 브라우저에 저장된 노트만 지워집니다.)')){ids.forEach(id=>{$('#'+id).value='';store.del('gr-'+id)})}};
+
+/* memorize: 이사야 53:6 */
+const VERSE='우리는 다 양 같아서 그릇 행하여 각기 제 길로 갔거늘 여호와께서는 우리 모두의 죄악을 그에게 담당시키셨도다';
+const WORDS=VERSE.split(' ');
+const HIDE_ORDER=[2,5,9,11,14,15,4,7,10,13,0,3,6,8,12,1];
+const HIDE_N=[0,5,11,16],HINTS=['단계를 올려 가며 말씀을 가려 보세요. 가려진 단어를 누르면 확인할 수 있어요.','일부 단어가 가려졌어요. 빈칸을 떠올려 보세요.','대부분 가려졌어요. 소리 내어 말해 본 뒤 눌러서 확인하세요.','전부 가려졌어요. 외워서 말해 보고, 눌러서 맞춰 보세요.'];
+const vt=$('#verseText');let lvl=1;
+function renderVerse(){
+  const hid=new Set(HIDE_ORDER.slice(0,HIDE_N[lvl-1]));
+  vt.innerHTML='';
+  WORDS.forEach((w,i)=>{
+    const s=document.createElement('span');s.className='w'+(hid.has(i)?' hide':'');s.textContent=w;
+    if(hid.has(i)){s.setAttribute('role','button');s.tabIndex=0;
+      const tg=()=>s.classList.toggle('peek');
+      s.onclick=tg;s.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();tg()}}}
+    vt.append(s);
+  });
+  vt.insertAdjacentText('afterbegin','“');vt.insertAdjacentText('beforeend','”');
+  $('#segHint').textContent=HINTS[lvl-1];
+}
+$$('#seg button').forEach(b=>b.onclick=()=>{lvl=+b.dataset.l;$$('#seg button').forEach(x=>x.classList.toggle('on',x===b));renderVerse()});
+renderVerse();
+
+/* 순서 맞추기 */
+const CH=['우리는 다 양 같아서','그릇 행하여','각기 제 길로 갔거늘','여호와께서는','우리 모두의 죄악을','그에게 담당시키셨도다'];
+const built=$('#built'),pieces=$('#pieces'),pMsg=$('#pMsg');let nxt=0;
+function buildPuzzle(){
+  nxt=0;pMsg.classList.remove('show');built.innerHTML='<span class="ph">여기에 말씀이 완성됩니다</span>';pieces.innerHTML='';
+  let order=CH.map((t,i)=>i);
+  do{order.sort(()=>Math.random()-.5)}while(order.every((v,i)=>v===i));
+  order.forEach(i=>{
+    const b=document.createElement('button');b.className='chip';b.textContent=CH[i];
+    b.onclick=()=>{
+      if(i===nxt){
+        if(nxt===0)built.innerHTML='';
+        const s=document.createElement('span');s.textContent=CH[i];built.append(s);
+        b.classList.add('used');nxt++;
+        if(nxt===CH.length){built.classList.add('got');pMsg.classList.add('show');confetti(60)}
+      }else{b.classList.add('bad','shake');setTimeout(()=>b.classList.remove('bad','shake'),420)}
+    };pieces.append(b);
+  });
+  built.classList.remove('got');
+}
+$('#pReset').onclick=buildPuzzle;buildPuzzle();
+
+/* 7일 체크 */
+const DAYS=['월','화','수','목','금','토','일'],wk=$('#week');
+let wd;try{wd=JSON.parse(store.get('gr-memo-days')||'[]')}catch(e){wd=[]}
+if(!Array.isArray(wd)||wd.length!==7)wd=Array(7).fill(false);
+function renderWeek(){
+  wk.innerHTML='';
+  DAYS.forEach((d,i)=>{
+    const b=document.createElement('button');b.className='day'+(wd[i]?' on':'');b.textContent=d;b.setAttribute('aria-pressed',!!wd[i]);b.setAttribute('aria-label',d+'요일 암송 체크');
+    b.onclick=()=>{wd[i]=!wd[i];store.set('gr-memo-days',JSON.stringify(wd));renderWeek();if(wd.every(Boolean))confetti(120)};
+    wk.append(b);
+  });
+  $('#weekCount').textContent=wd.filter(Boolean).length+' / 7';
+}
+renderWeek();
+})();
+</script>
+</body>
+</html>
